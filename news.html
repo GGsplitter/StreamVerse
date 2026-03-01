@@ -2,139 +2,179 @@
 <html lang="fi">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CREATORS Hype Hub</title>
+<title>News</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 <style>
-/* CSS*/
+
 body{
 margin:0;
-font-family:Inter,sans-serif;
-background:#0b0b15;
+font-family:Arial;
+background:#060606;
 color:white;
-text-align:center;
-
-min-height:100vh;
-display:flex;
-flex-direction:column;
 }
 
-/* NAVBAR*/
-.navbar{
+nav{
+position:fixed;
+top:0;
+width:100%;
+padding:20px 8%;
 display:flex;
-justify-content:center;
-gap:25px;
-padding:20px;
-flex-wrap:wrap;
+gap:30px;
+backdrop-filter:blur(20px);
+background:rgba(0,0,0,0.7);
+z-index:1000;
 }
 
-.navbar a{
+nav a{
 color:white;
 text-decoration:none;
-padding:10px 18px;
-border-radius:25px;
+font-weight:bold;
 }
 
-.navbar a:hover{
-background:#ff0096;
+section{
+padding:140px 8%;
 }
 
-.contentBlock{
-max-width:1200px;
-margin:auto;
-padding:40px 20px;
-}
+/* ⭐ NEWS OTSIKKO SAMA KUIN MUISSA */
 
-/* footer */
-.footer{
-background:#0b0b15;
-padding:60px 20px;
-margin-top:auto;
-border-top:1px solid rgba(255,255,255,.08);
+.news-title{
 text-align:center;
+font-size:50px;
+background:linear-gradient(45deg,#ff0055,#7000ff);
+-webkit-background-clip:text;
+color:transparent;
+margin-bottom:60px;
 }
 
-.footer a{
-color:#ff0096;
-text-decoration:none;
+/* GRID */
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+gap:30px;
 }
 
-.footer a:hover{
-text-decoration:underline;
-}
+/* CARD */
 
-.socials{
-margin:25px 0;
-display:flex;
-justify-content:center;
-gap:20px;
-flex-wrap:wrap;
-}
-
-.socials a{
-padding:10px 18px;
-border-radius:25px;
-background:rgba(255,255,255,.05);
+.card{
+background:#111;
+border-radius:20px;
+overflow:hidden;
+padding-bottom:20px;
 transition:.3s;
 }
 
-.socials a:hover{
-background:#ff0096;
-color:white;
-transform:translateY(-3px);
+.card:hover{
+transform:translateY(-10px);
 }
+
+.card img{
+width:100%;
+height:220px;
+object-fit:cover;
+}
+
+.card h3{
+padding:20px 20px 10px 20px;
+margin:0;
+}
+
+.card p{
+padding:0 20px;
+opacity:.8;
+}
+
+/* FOOTER */
 
 footer{
-margin-top:auto;
+padding:80px;
+background:#0a0a0a;
+margin-top:120px;
+text-align:center;
 }
-  
-</style>
 
+</style>
 </head>
 
- <body> 
-  
+<body>
 
-<nav class="navbar">
+<nav>
 <a href="index.html">Home</a>
 <a href="news.html">News</a>
-<a href="creator.html">Creator of Month</a>
-<a href="about.html">About</a>
-<a href="streamers.html">Streamers</a>
-<a href="contact.html">Secret</a>
+<a href="creators.html">Creators</a>
+<a href="creator-month.html">Creator Of The Month</a>
+<a href="about.html">About Us</a>
+<a href="member.html">Member</a>
 </nav>
 
-<section class="contentBlock">
-<h2>📰 News</h2>
+<section>
+
+<h2 class="news-title">News</h2>
+
+<div class="grid">
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1522199755839-a2bacb67c546">
+<h3>Launch Campaign</h3>
+<p>Liity mukaan ensimmäisten joukossa</p>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1511512578047-dfb367046420">
+<h3>TBA</h3>
 <p>TBA</p>
+</div>
+
+</div>
 </section>
 
-<footer class="footer">
+<footer>
 
-<div class="footer-content">
+<h2>Contact & Socials</h2>
 
-<h3>Contact Us</h3>
-
-<p>
-Email: 
-<a href="mailto:contact@streamverse.gg">
-sähköposti tähän
+<p style="font-size:16px;">
+Email:
+<a href="mailto:your@email.com"
+style="color:white;text-decoration:none;font-size:16px;font-family:inherit;">
+your@email.com
 </a>
 </p>
 
-<div class="socials">
-<a href="https://twitter.com/streamverse" target="_blank">X</a>
-<a href="https://instagram.com/creatorshypehub" target="_blank">Instagram</a>
-<a href="https://youtube.com/@streamverse" target="_blank">YouTube</a>
-<a href="https://discord.gg/Tfganh4Rc5" target="_blank">Discord</a>
-<a href="https://facebook.com/profile.php?id=61583557840690" target="_blank">Facebook</a>
+<div style="margin-top:25px;display:flex;justify-content:center;gap:30px;">
+
+<a href="https://www.instagram.com" target="_blank">
+<i class="fab fa-instagram" style="color:white;font-size:28px;"></i>
+</a>
+
+<a href="https://x.com" target="_blank">
+<i class="fab fa-x-twitter" style="color:white;font-size:28px;"></i>
+</a>
+
+<a href="https://www.twitch.tv" target="_blank">
+<i class="fab fa-twitch" style="color:white;font-size:28px;"></i>
+</a>
+
+<a href="https://www.facebook.com" target="_blank">
+<i class="fab fa-facebook" style="color:white;font-size:28px;"></i>
+</a>
+
+<a href="https://www.tiktok.com" target="_blank">
+<i class="fab fa-tiktok" style="color:white;font-size:28px;"></i>
+</a>
+
+<a href="https://www.youtube.com" target="_blank">
+<i class="fab fa-youtube" style="color:white;font-size:28px;"></i>
+</a>
+
 </div>
 
-<p class="copyright">
-© 2026 CREATORS Hype Hub. All rights reserved.
+<p style="margin-top:40px;opacity:.7">
+© 2026 CREATORS Hype Hub
 </p>
 
-</div>
 </footer>
+
+</body>
+</html>
