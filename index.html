@@ -1,4 +1,4 @@
-ETUSIVU
+
 
 <!DOCTYPE html>
 <html lang="fi">
@@ -135,6 +135,34 @@ font-size:28px;
 text-decoration:none;
 }
 
+/*  LOGO */  
+.logo-box{
+position:fixed;
+top:85px;
+left:8%;
+z-index:900;
+}
+
+.logo-box img{
+height:70px;
+width:auto;
+filter:drop-shadow(0 0 15px rgba(255,0,150,.5));
+}
+
+/* MOBILE LOGO */
+
+@media (max-width:768px){
+
+.logo-box{
+top:110px;
+left:5%;
+}
+
+.logo-box img{
+height:55px;
+}
+
+}
 </style>
 </head>
 
@@ -149,6 +177,12 @@ text-decoration:none;
 <a href="member.html">Member</a>
 </nav>
 
+<!--  LOGO (NAVIN ALLE) -->
+<div class="logo-box">
+<img src="CHH_LOGO.png" alt="CHH Logo">
+</div>
+
+ <!--  HERO --> 
 <section class="hero">
 <h1>CREATORS HYPE HUB</h1>
 <p>Connect creators. Grow together. Get opportunities.</p>
@@ -233,5 +267,6 @@ gap:30px;
 </footer>
 </body>
 </html>
+
 
 
