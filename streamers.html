@@ -1,236 +1,137 @@
-
-
 <!DOCTYPE html>
 <html lang="fi">
 <head>
 <meta charset="UTF-8">
-<title>StreamVerse</title>
-
+<title>Creators</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 <style>
 
 body{
 margin:0;
-font-family:Inter,sans-serif;
-background:#0b0b15;
+font-family:Arial;
+background:#060606;
 color:white;
-text-align:center;
-
 min-height:100vh;
 display:flex;
 flex-direction:column;
 }
 
+/* NAV */
+
+nav{
+position:fixed;
+top:0;
+width:100%;
+padding:20px 8%;
+display:flex;
+gap:30px;
+background:rgba(0,0,0,0.7);
+backdrop-filter:blur(20px);
+z-index:1000;
+}
+
+nav a{
+color:white;
+text-decoration:none;
+font-weight:bold;
+}
+
+/* SECTION */
+
+section{
+padding:140px 8%;
+text-align:center;
+}
+
+/* TITLE */
+
+.page-title{
+font-size:50px;
+background:linear-gradient(45deg,#ff0055,#7000ff);
+-webkit-background-clip:text;
+color:transparent;
+margin-bottom:60px;
+}
+
+/* MEMBERS GRID */
+
 .members{
 max-width:1200px;
 margin:auto;
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
 gap:30px;
-padding:40px;
 }
 
-.navbar{
-display:flex;
-justify-content:center;
-gap:25px;
-padding:20px;
-}
-
-.navbar a{
-color:white;
-text-decoration:none;
-padding:10px 18px;
-border-radius:25px;
-}
-
-.navbar a:hover{
-background:#ff0096;
-}
+/* CARD */
 
 .card{
-background:linear-gradient(145deg,#1a1a2f,#121221);
-padding:30px;
-border-radius:25px;
-transition:0.3s ease;
+background:#111;
+border-radius:20px;
+padding:30px 20px;
+transition:.3s;
 color:white;
 text-decoration:none;
 display:flex;
 flex-direction:column;
 align-items:center;
-gap:12px;
-position:relative;
+gap:15px;
 }
 
 .card:hover{
-transform:translateY(-10px) scale(1.03);
-box-shadow:
-0 0 60px rgba(255,0,150,.25),
-0 0 120px rgba(255,0,150,.1);
+transform:translateY(-10px);
 }
+
+/* PROFILE IMAGE */
 
 .card img{
 width:110px;
 height:110px;
 border-radius:50%;
-border:3px solid #ff4040;
+object-fit:cover;
+border:3px solid #ff0055;
 }
 
-/* Live card glow */
-.card.live {
-    box-shadow: 0 0 20px rgba(0, 255, 120, 0.5);
-    border: 1px solid rgba(0, 255, 120, 0.6);
-    transition: 0.3s ease;
+/* LIVE STATE */
+
+.card.live{
+box-shadow:0 0 25px rgba(0,255,120,.5);
+border:1px solid rgba(0,255,120,.6);
 }
 
-.card.live:hover {
-    box-shadow:
-        0 0 40px rgba(0,255,120,0.9),
-        0 0 80px rgba(0,255,120,0.4);
+.card.live img{
+border:4px solid #00ff7a !important;
+box-shadow:0 0 20px rgba(0,255,120,.9);
 }
 
-/* Profile ring */
-.profile-img {
-    width: 110px;
-    height: 110px;
-    border-radius: 50%;
-    transition: 0.3s ease;
-    object-fit: cover;
+.viewer{
+font-size:14px;
+opacity:.85;
+white-space:pre-line;
 }
 
-/* Green ring when live */
-.card.live img {
-    border: 4px solid #00ff7a !important;
-    box-shadow: 0 0 20px rgba(0, 255, 120, 0.9);
-}
-  
+/* FOOTER */
 
- /* Footer */   
-.footer{
-background:#0b0b15;
-padding:60px 20px;
+footer{
+padding:80px;
+background:#0a0a0a;
 margin-top:auto;
-border-top:1px solid rgba(255,255,255,.08);
 text-align:center;
 }
 
-.footer a{
-color:#ff0096;
-text-decoration:none;
-}
-
-.footer a:hover{
-text-decoration:underline;
-}
-
-.socials{
-margin:25px 0;
-display:flex;
-justify-content:center;
-gap:20px;
-flex-wrap:wrap;
-}
-
-.socials a{
-padding:10px 18px;
-border-radius:25px;
-background:rgba(255,255,255,.05);
-transition:.3s;
-}
-
-.socials a:hover{
-background:#ff0096;
+footer a{
 color:white;
-transform:translateY(-3px);
+text-decoration:none;
+font-size:16px;
 }
 
-.socials a:hover {
-    background: #ff0096;
-}
-
-footer{
-margin-top:auto;
-}    
-
-/* ========================= */
-/* MOBILE RESPONSIVE DESIGN */
-/* ========================= */
-
-@media (max-width: 768px){
-
-/* Navbar */
-.navbar{
-flex-wrap:wrap;
-gap:10px;
-padding:15px;
-}
-
-.navbar a{
-padding:8px 14px;
-font-size:0.9rem;
-}
-
-/* Hero */
-.hero h1{
-font-size:2.2rem;
-}
-
-.hero-box{
-padding:35px 25px;
-margin:20px;
-}
-
-.heroText{
-font-size:1rem;
-}
-
-/* Join button */
-.joinBox{
-font-size:1.2rem;
-padding:18px 35px;
-}
-
-/* About cards */
-.aboutCard{
-padding:25px;
-}
-
-/* Stats grid */
-.aboutStats{
-grid-template-columns:1fr;
-}
-
-/* Streamer cards */
-.members{
-grid-template-columns:1fr;
-padding:20px;
-}
-
-.card{
-padding:25px;
-}
-
-/* Footer */
-.footer{
-padding:40px 15px;
-}
-
-.socials a{
-padding:8px 14px;
-font-size:0.9rem;
-}
-
-}    
-    
 </style>
-
 </head>
 
 <body>
-
 
 <nav>
 <a href="index.html">Home</a>
@@ -242,7 +143,11 @@ font-size:0.9rem;
 </nav>
 
 <section>
+
+<h2 class="page-title">Creators</h2>
+
 <div class="members" id="members"></div>
+
 </section>
 
 <script>
@@ -262,8 +167,6 @@ return await res.json();
 async function loadData(){
 
 const membersDiv = document.getElementById("members");
-if(!membersDiv) return;
-
 membersDiv.innerHTML = "";
 
 const tokenData = await getToken();
@@ -275,7 +178,6 @@ card.className = "card";
 card.href = `https://twitch.tv/${channel}`;
 card.target = "_blank";
 
-    
 try{
 
 const userRes = await fetch(
@@ -287,24 +189,22 @@ const data = await userRes.json();
 const user = data.user.data?.[0];
 const stream = data.live.data?.[0];
 
-console.log(user?.profile_image_url); // ← lisää tämä
-  
 const profileImage = user?.profile_image_url 
-  ? `https://static-cdn.jtvnw.net/${user.profile_image_url}`
-  : "https://placehold.co/110x110";
+? `https://static-cdn.jtvnw.net/${user.profile_image_url}`
+: "https://placehold.co/110x110";
 
 if(stream){
-    card.classList.add("live");
+card.classList.add("live");
 }
-    
+
 card.innerHTML = `
 <img src="${profileImage}">
 <h3>${channel}</h3>
 <div class="viewer">
 ${stream ? `
-🟢 LIVE  
-👁 ${stream.viewer_count} viewers  
-🎮 ${stream.game_name || ""}  
+🟢 LIVE
+👁 ${stream.viewer_count} viewers
+🎮 ${stream.game_name || ""}
 📺 ${stream.title || ""}
 ` : "⚫ OFFLINE"}
 </div>
@@ -326,81 +226,55 @@ document.addEventListener("DOMContentLoaded", loadData);
 
 </script>
 
-    
-<footer class="footer">
-    <div class="footer-content">
-        <h3>Contact Us</h3>
-        
-        <p>Email: 
-   <a href="mailto:contact@streamverse.gg">
-      sähköposti tähän
-   </a>
+<footer>
+
+<h2>Contact & Socials</h2>
+
+<p style="font-size:16px;">
+Email:
+<a href="mailto:contact@streamverse.gg">
+sähköposti tähän
+</a>
 </p>
 
+<div style="
+margin-top:25px;
+display:flex;
+justify-content:center;
+gap:30px;
+">
 
-        <div class="socials">
-            <a href="https://twitter.com/streamverse" target="_blank">X</a>
-            <a href="https://instagram.com/creatorshypehub" target="_blank">Instagram</a>
-            <a href="https://youtube.com/@streamverse" target="_blank">YouTube</a>
-            <a href="https://discord.gg/Tfganh4Rc5" target="_blank">Discord</a>
-            <a href="https://www.facebook.com/profile.php?id=61583557840690" target="_blank">Facebook</a>
-        </div>
+<a href="https://www.instagram.com" target="_blank">
+<i class="fab fa-instagram" style="font-size:28px;"></i>
+</a>
 
-        <p class="copyright">
-            © 2026 CREATORS Hype Hub. All rights reserved.
-        </p>
-    </div>
+<a href="https://x.com" target="_blank">
+<i class="fab fa-x-twitter" style="font-size:28px;"></i>
+</a>
+
+<a href="https://www.twitch.tv" target="_blank">
+<i class="fab fa-twitch" style="font-size:28px;"></i>
+</a>
+
+<a href="https://www.facebook.com" target="_blank">
+<i class="fab fa-facebook" style="font-size:28px;"></i>
+</a>
+
+<a href="https://www.tiktok.com" target="_blank">
+<i class="fab fa-tiktok" style="font-size:28px;"></i>
+</a>
+
+<a href="https://www.youtube.com" target="_blank">
+<i class="fab fa-youtube" style="font-size:28px;"></i>
+</a>
+
+</div>
+
+<p style="margin-top:40px;opacity:.7">
+© 2026 CREATORS Hype Hub
+</p>
+
 </footer>
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
