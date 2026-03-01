@@ -155,34 +155,53 @@ transform:scale(1.05);
 }
 
 /* ========================= */
-/* FULL MOBILE FIX (ONE CODE) */
+/* MOBILE MODERN NAV SYSTEM */
 /* ========================= */
 
-@media (max-width:768px){
-
-/* NAV */
 nav{
+position:fixed;
+top:0;
+width:100%;
+padding:15px 8%;
+display:flex;
+justify-content:space-between;
+align-items:center;
+backdrop-filter:blur(20px);
+background:rgba(0,0,0,0.7);
+z-index:1000;
 flex-wrap:wrap;
-justify-content:center;
-gap:12px;
-padding:15px 10px;
 }
 
-nav a{
-font-size:14px;
-padding:8px 12px;
+.nav-logo img{
+height:55px;
 }
 
-/* LOGO */
-.logo-box{
-top:110px;
-left:5%;
+/* Hamburger */
+.hamburger{
+font-size:28px;
+cursor:pointer;
 }
 
-.logo-box img{
-height:120px;
-max-width:80vw;
-width:auto;
+/* Mobile Menu */
+.mobile-menu{
+display:none;
+flex-direction:column;
+width:100%;
+text-align:center;
+padding-top:15px;
+gap:15px;
+}
+
+.mobile-menu a{
+color:white;
+text-decoration:none;
+font-weight:bold;
+padding:10px;
+}
+
+/* Show menu */
+.mobile-menu.show{
+display:flex;
 }
 
 /* HERO */
@@ -200,6 +219,19 @@ word-break:break-word;
 .hero p{
 font-size:16px;
 padding:0 15px;
+}
+
+/* LOGO MOBILE */
+.logo-box img{
+height:120px;
+max-width:80vw;
+width:auto;
+}
+
+@media (max-width:768px){
+
+.nav-logo img{
+height:45px;
 }
 
 }
@@ -306,8 +338,20 @@ gap:30px;
 </p>
 
 </footer>
+
+ <!-- MOBILE -->
+<script>
+
+function toggleMenu(){
+document.getElementById("mobileMenu")
+.classList.toggle("show");
+}
+
+</script>
+ 
 </body>
 </html>
+
 
 
 
