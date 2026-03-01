@@ -154,18 +154,54 @@ transition:.3s;
 transform:scale(1.05);
 }
 
-/* MOBILE LOGO */
+/* ========================= */
+/* FULL MOBILE FIX (ONE CODE) */
+/* ========================= */
 
 @media (max-width:768px){
 
+/* NAV */
+nav{
+flex-wrap:wrap;
+justify-content:center;
+gap:12px;
+padding:15px 10px;
+}
+
+nav a{
+font-size:14px;
+padding:8px 12px;
+}
+
+/* LOGO */
 .logo-box{
 top:110px;
 left:5%;
 }
 
 .logo-box img{
-height:80px;
+height:120px;
+max-width:80vw;
+width:auto;
 }
+
+/* HERO */
+.hero{
+padding:140px 20px 60px;
+height:auto;
+}
+
+.hero h1{
+font-size:34px;
+line-height:1.2;
+word-break:break-word;
+}
+
+.hero p{
+font-size:16px;
+padding:0 15px;
+}
+
 }
 
 </style>
@@ -272,6 +308,7 @@ gap:30px;
 </footer>
 </body>
 </html>
+
 
 
 
