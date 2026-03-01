@@ -1,146 +1,181 @@
-
-
 <!DOCTYPE html>
 <html lang="fi">
 <head>
 <meta charset="UTF-8">
-<title>StreamVerse</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+<title>Creator of the Month</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 <style>
-/* CSS*/
+
 body{
 margin:0;
-font-family:Inter,sans-serif;
-background:#0b0b15;
+font-family:Arial;
+background:#060606;
 color:white;
-text-align:center;
-
 min-height:100vh;
 display:flex;
 flex-direction:column;
 }
 
-.navbar{
+/* NAV */
+
+nav{
+position:fixed;
+top:0;
+width:100%;
+padding:18px 8%;
 display:flex;
-justify-content:center;
-gap:25px;
-padding:20px;
-flex-wrap:wrap;
+gap:30px;
+backdrop-filter:blur(20px);
+background:rgba(0,0,0,0.7);
+z-index:1000;
 }
 
-.navbar a{
+nav a{
 color:white;
 text-decoration:none;
-padding:10px 18px;
-border-radius:25px;
+font-weight:bold;
 }
 
-.navbar a:hover{
-background:#ff0096;
-}
+/* CONTENT */
 
-.contentBlock{
-max-width:1200px;
-margin:auto;
-padding:40px 20px;
-}
-
-
-/* footer */
-.footer{
-background:#0b0b15;
-padding:60px 20px;
-margin-top:auto;
-border-top:1px solid rgba(255,255,255,.08);
+section{
+padding:140px 8%;
 text-align:center;
 }
 
-.footer a{
-color:#ff0096;
-text-decoration:none;
+/* ⭐ GRADIENT TITLE (SAMA KUIN INDEX) */
+
+.gradient-text{
+font-size:48px;
+background:linear-gradient(45deg,#ff0055,#7000ff);
+-webkit-background-clip:text;
+color:transparent;
 }
 
-.footer a:hover{
-text-decoration:underline;
-}
+/* CREATOR CARD */
 
-.socials{
-margin:25px 0;
-display:flex;
-justify-content:center;
-gap:20px;
-flex-wrap:wrap;
-}
-
-.socials a{
-padding:10px 18px;
+.creator-card{
+max-width:450px;
+margin:auto;
+background:#111;
+padding:40px;
 border-radius:25px;
-background:rgba(255,255,255,.05);
 transition:.3s;
 }
 
-.socials a:hover{
-background:#ff0096;
-color:white;
-transform:translateY(-3px);
+.creator-card:hover{
+transform:translateY(-10px);
 }
 
+.creator-card img{
+width:100%;
+border-radius:20px;
+}
+
+/* FOOTER */
+
 footer{
+padding:70px;
+background:#0a0a0a;
+text-align:center;
 margin-top:auto;
 }
 
-</style>
+footer a{
+color:white;
+text-decoration:none;
+font-size:16px;
+font-family:inherit;
+}
 
+</style>
 </head>
 
 <body>
 
-
-<nav class="navbar">
+<nav>
 <a href="index.html">Home</a>
 <a href="news.html">News</a>
-<a href="creator.html">Creator of Month</a>
-<a href="about.html">About</a>
-<a href="streamers.html">Streamers</a>
-<a href="contact.html">Secret</a>
-
+<a href="creators.html">Creators</a>
+<a href="creator-month.html">Creator of the Month</a>
+<a href="about.html">About Us</a>
+<a href="member.html">Member</a>
 </nav>
 
-<section class="contentBlock">
-<h2>🏆 Creator of the Month</h2>
-<p style="font-size:2rem; opacity:.7;">TBA</p>
+<section>
+
+<h2 class="gradient-text">
+Creator of the Month
+</h2>
+
+<div class="creator-card">
+
+<img src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5">
+
+<h2 style="margin-top:20px">Creator Name</h2>
+
+<p style="opacity:.8">
+This month’s featured creator who showed exceptional growth,
+community engagement and content quality.
+</p>
+
+</div>
+
 </section>
 
-<footer class="footer">
+<footer>
 
-<div class="footer-content">
+<h2>Contact & Socials</h2>
 
-<h3>Contact Us</h3>
-
-<p>
-Email: 
-<a href="mailto:contact@streamverse.gg">
-Sähköposti tähän
+<p style="font-size:16px">
+Email:
+<a href="mailto:your@email.com">
+your@email.com
 </a>
 </p>
 
-<div class="socials">
-<a href="https://twitter.com/streamverse" target="_blank">X</a>
-<a href="https://instagram.com/creatorshypehub" target="_blank">Instagram</a>
-<a href="https://youtube.com/@streamverse" target="_blank">YouTube</a>
-<a href="https://discord.gg/Tfganh4Rc5" target="_blank">Discord</a>
-<a href="https://facebook.com/profile.php?id=61583557840690" target="_blank">Facebook</a>
+<div style="
+margin-top:25px;
+display:flex;
+justify-content:center;
+gap:30px;
+">
+
+<a href="https://www.instagram.com" target="_blank">
+<i class="fab fa-instagram" style="color:white;font-size:28px"></i>
+</a>
+
+<a href="https://x.com" target="_blank">
+<i class="fab fa-x-twitter" style="color:white;font-size:28px"></i>
+</a>
+
+<a href="https://www.twitch.tv" target="_blank">
+<i class="fab fa-twitch" style="color:white;font-size:28px"></i>
+</a>
+
+<a href="https://www.facebook.com" target="_blank">
+<i class="fab fa-facebook" style="color:white;font-size:28px"></i>
+</a>
+
+<a href="https://www.tiktok.com" target="_blank">
+<i class="fab fa-tiktok" style="color:white;font-size:28px"></i>
+</a>
+
+<a href="https://www.youtube.com" target="_blank">
+<i class="fab fa-youtube" style="color:white;font-size:28px"></i>
+</a>
+
 </div>
 
-<p class="copyright">
-© 2026 CREATORS Hype Hub. All rights reserved.
+<p style="margin-top:40px;opacity:.7">
+© 2026 CREATORS Hype Hub
 </p>
 
-</div>
 </footer>
 
-
-
-
+</body>
+</html>
