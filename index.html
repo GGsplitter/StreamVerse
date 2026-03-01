@@ -154,87 +154,7 @@ transition:.3s;
 transform:scale(1.05);
 }
 
-/* ========================= */
-/* MOBILE MODERN NAV SYSTEM */
-/* ========================= */
 
-nav{
-position:fixed;
-top:0;
-width:100%;
-padding:15px 8%;
-display:flex;
-justify-content:space-between;
-align-items:center;
-backdrop-filter:blur(20px);
-background:rgba(0,0,0,0.7);
-z-index:1000;
-flex-wrap:wrap;
-}
-
-.nav-logo img{
-height:55px;
-}
-
-/* Hamburger */
-.hamburger{
-font-size:28px;
-cursor:pointer;
-}
-
-/* Mobile Menu */
-.mobile-menu{
-display:none;
-flex-direction:column;
-width:100%;
-text-align:center;
-padding-top:15px;
-gap:15px;
-}
-
-.mobile-menu a{
-color:white;
-text-decoration:none;
-font-weight:bold;
-padding:10px;
-}
-
-/* Show menu */
-.mobile-menu.show{
-display:flex;
-}
-
-/* HERO */
-.hero{
-padding:140px 20px 60px;
-height:auto;
-}
-
-.hero h1{
-font-size:34px;
-line-height:1.2;
-word-break:break-word;
-}
-
-.hero p{
-font-size:16px;
-padding:0 15px;
-}
-
-/* LOGO MOBILE */
-.logo-box img{
-height:120px;
-max-width:80vw;
-width:auto;
-}
-
-@media (max-width:768px){
-
-.nav-logo img{
-height:45px;
-}
-
-}
 
 </style>
 </head>
@@ -339,18 +259,13 @@ gap:30px;
 
 </footer>
 
- <!-- MOBILE -->
-<script>
 
-function toggleMenu(){
-document.getElementById("mobileMenu")
-.classList.toggle("show");
-}
 
 </script>
  
 </body>
 </html>
+
 
 
 
