@@ -10,7 +10,7 @@
 
 <style>
 
-/* PAGE */
+/* PAGE LAYOUT FIX */
 
 body{
 margin:0;
@@ -31,8 +31,9 @@ width:100%;
 padding:18px 8%;
 display:flex;
 align-items:center;
-background:rgba(0,0,0,.7);
+gap:30px;
 backdrop-filter:blur(20px);
+background:rgba(0,0,0,0.7);
 z-index:1000;
 }
 
@@ -40,7 +41,6 @@ nav a{
 color:white;
 text-decoration:none;
 font-weight:bold;
-margin-right:30px;
 }
 
 /* NAV LINKS WRAPPER */
@@ -48,6 +48,7 @@ margin-right:30px;
 .nav-links{
 display:flex;
 margin-left:auto;
+gap:30px;
 }
 
 /* HAMBURGER */
@@ -70,10 +71,10 @@ border-radius:3px;
 /* HERO */
 
 .hero{
-margin-top:120px;
+flex:1;
 height:60vh;
 background:
-linear-gradient(rgba(0,0,0,.6),rgba(0,0,0,.9)),
+linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.9)),
 url("https://images.unsplash.com/photo-1542751371-adc38448a05e");
 
 background-size:cover;
@@ -84,6 +85,7 @@ flex-direction:column;
 justify-content:center;
 align-items:center;
 text-align:center;
+padding-top:120px;
 }
 
 .hero h1{
@@ -163,9 +165,13 @@ filter:drop-shadow(0 0 20px rgba(255,0,150,.6));
 
 .nav-links{
 display:none;
+position:absolute;
+top:70px;
+left:0;
 width:100%;
+background:black;
 flex-direction:column;
-padding-top:15px;
+padding:20px;
 }
 
 nav.open .nav-links{
@@ -176,12 +182,12 @@ display:flex;
 display:flex;
 }
 
-.hero h1{
-font-size:36px;
-}
-
 .logo-box{
 display:none;
+}
+
+.hero h1{
+font-size:36px;
 }
 
 }
