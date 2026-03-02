@@ -133,10 +133,8 @@ white-space:pre-line;
 
 <nav>
 <a href="index.html">Home</a>
-<a href="news.html">News</a>
 <a href="streamers.html">Creators</a>
 <a href="about.html">About</a>
-<a href="member.html">Member</a>
 </nav>
 
 <section>
@@ -149,9 +147,11 @@ white-space:pre-line;
 
 <script>
 
-/* ⭐ YOUR TWITCH APP INFO */
-const CLIENT_ID = "SINUN_CLIENT_ID";
+/* ⭐ TWITCH APP CREDENTIALS */
+const CLIENT_ID = "YOUR_TWITCH_CLIENT_ID";
+const CLIENT_SECRET = "YOUR_TWITCH_CLIENT_SECRET";
 
+/* ⭐ STREAMERS */
 const channels = [
 "G3splitter",
 "Koeda666",
@@ -166,7 +166,7 @@ membersDiv.innerHTML = "";
 
 try{
 
-/* ⭐ GET TOKEN DIRECTLY FROM TWITCH */
+/* ⭐ GET TOKEN */
 const tokenRes = await fetch(
 "https://id.twitch.tv/oauth2/token",
 {
@@ -176,7 +176,7 @@ headers:{
 },
 body:new URLSearchParams({
 client_id:CLIENT_ID,
-client_secret:"SINUN_CLIENT_SECRET",
+client_secret:CLIENT_SECRET,
 grant_type:"client_credentials"
 })
 }
@@ -184,7 +184,7 @@ grant_type:"client_credentials"
 
 const tokenData = await tokenRes.json();
 
-/* ⭐ USERS + STREAMS */
+/* ⭐ FETCH DATA PER USER */
 for(const channel of channels){
 
 const userRes = await fetch(
