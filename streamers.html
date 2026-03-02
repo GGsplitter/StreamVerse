@@ -1,9 +1,6 @@
 <script>
 
 /* ⭐ TWITCH APP INFO */
-const CLIENT_ID = "SINUN_CLIENT_ID";
-const CLIENT_SECRET = "SINUN_CLIENT_SECRET";
-
 const channels = [
 "G3splitter",
 "Koeda666",
@@ -11,100 +8,55 @@ const channels = [
 "lofigirl"
 ];
 
-async function loadCreators(){
+async function loadData(){
+
+const res = await fetch(
+"/api/twitchuser?logins=" + channels.join(",")
+);
+
+const data = await res.json();
+
+const users = data.users;
+const streams = data.streams;
 
 const membersDiv = document.getElementById("members");
-if(!membersDiv) return;
 
-membersDiv.innerHTML = "";
+channels.forEach(channel=>{
 
-try{
+const user = users.find(u=>u.login === channel);
+const stream = streams.find(s=>s.user_login === channel);
 
-/* ⭐ GET TOKEN */
-const tokenRes = await fetch(
-"https://id.twitch.tv/oauth2/token",
-{
-method:"POST",
-headers:{
-"Content-Type":"application/x-www-form-urlencoded"
-},
-body:new URLSearchParams({
-client_id:CLIENT_ID,
-client_secret:CLIENT_SECRET,
-grant_type:"client_credentials"
-})
-}
-);
-
-const tokenData = await tokenRes.json();
-
-/* ⭐ LOAD USERS + STREAMS */
-for(const channel of channels){
-
-const userRes = await fetch(
-`https://api.twitch.tv/helix/users?login=${channel}`,
-{
-headers:{
-Authorization:`Bearer ${tokenData.access_token}`,
-"Client-Id":CLIENT_ID
-}
-}
-);
-
-const userData = await userRes.json();
-
-const streamRes = await fetch(
-`https://api.twitch.tv/helix/streams?user_login=${channel}`,
-{
-headers:{
-Authorization:`Bearer ${tokenData.access_token}`,
-"Client-Id":CLIENT_ID
-}
-}
-);
-
-const streamData = await streamRes.json();
-
-const user = userData.data?.[0];
-const stream = streamData.data?.[0];
-
-/* ⭐ CARD CREATION */
 const card = document.createElement("a");
-card.className = "card";
-card.href = `https://twitch.tv/${channel}`;
-card.target = "_blank";
-
-const profileImage =
-user?.profile_image_url ||
-"https://placehold.co/110x110";
+card.className="card";
+card.href=`https://twitch.tv/${channel}`;
+card.target="_blank";
 
 if(stream){
 card.classList.add("live");
 }
 
 card.innerHTML = `
-<img src="${profileImage}">
+<img src="${user?.profile_image_url}">
 <h3>${channel}</h3>
 <div class="viewer">
-${stream ? `
-🟢 LIVE
-👁 ${stream.viewer_count} viewers
+${stream ?
+`🟢 LIVE
+👁 ${stream.viewer_count}
 🎮 ${stream.game_name || ""}
-📺 ${stream.title || ""}
-` : "🔴 OFFLINE"}
+📺 ${stream.title || ""}`
+:
+"🔴 OFFLINE"
+}
 </div>
 `;
 
 membersDiv.appendChild(card);
 
-}
-
-}catch(err){
-console.error(err);
-}
+});
 
 }
 
-document.addEventListener("DOMContentLoaded", loadCreators);
+document.addEventListener("DOMContentLoaded",loadData);
 
 </script>
+
