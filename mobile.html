@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>CHH Mobile</title>
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+
+body{
+margin:0;
+font-family:Arial;
+background:#060606;
+color:white;
+}
+
+/* HEADER */
+
+header{
+padding:18px 20px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+background:linear-gradient(90deg,#ff0055,#7000ff);
+position:sticky;
+top:0;
+z-index:1000;
+box-shadow:0 5px 30px rgba(0,0,0,.6);
+}
+
+.logo{
+font-weight:bold;
+font-size:18px;
+}
+
+/* FEED */
+
+.feed{
+padding:20px 15px 100px 15px;
+display:flex;
+flex-direction:column;
+gap:22px;
+}
+
+/* CARD DESIGN */
+
+.card{
+background:#111;
+padding:22px;
+border-radius:24px;
+box-shadow:0 8px 25px rgba(0,0,0,.6);
+transition:.3s;
+border:1px solid rgba(255,255,255,.05);
+}
+
+.card:hover{
+transform:translateY(-5px);
+}
+
+.card h3{
+margin-top:0;
+}
+
+/* BUTTON */
+
+.big-btn{
+width:100%;
+padding:18px;
+border:none;
+border-radius:18px;
+font-size:18px;
+background:linear-gradient(45deg,#ff0055,#7000ff);
+color:white;
+font-weight:bold;
+cursor:pointer;
+transition:.3s;
+}
+
+.big-btn:hover{
+transform:scale(1.03);
+}
+
+/* BOTTOM NAV */
+
+.bottom-nav{
+position:fixed;
+bottom:0;
+width:100%;
+display:flex;
+justify-content:space-around;
+padding:14px 0;
+background:rgba(0,0,0,.95);
+backdrop-filter:blur(25px);
+border-top:1px solid rgba(255,255,255,.05);
+}
+
+.bottom-nav a{
+color:white;
+text-decoration:none;
+font-size:12px;
+display:flex;
+flex-direction:column;
+align-items:center;
+gap:6px;
+opacity:.7;
+transition:.3s;
+}
+
+.bottom-nav a:hover{
+opacity:1;
+transform:translateY(-3px);
+}
+
+.bottom-nav i{
+font-size:22px;
+}
+
+/* ACTIVE NAV STYLE */
+
+.bottom-nav a.active{
+opacity:1;
+color:#ff0055;
+}
+
+/* RESPONSIVE TEXT */
+
+@media(max-width:400px){
+.card h3{
+font-size:18px;
+}
+.card p{
+font-size:14px;
+}
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+<div class="logo">Creators Hype Hub</div>
+<i class="fa-solid fa-bell"></i>
+</header>
+
+<div class="feed">
+
+<div class="card">
+<h3>News</h3>
+<p>Enemmän uutisista ja tapahtumista.</p>
+<button class="big-btn">Join Community</button>
+</div>
+
+<div class="card">
+<h3>Live Content</h3>
+<p>Katso suoratoistoja ja sisällöntuottajia livenä.</p>
+<button class="big-btn">Watch Live</button>
+</div>
+
+<div class="card">
+<h3>Creator Of The Month</h3>
+<p>Kuukauden sisällöntuottaja.</p>
+<button class="big-btn">View Creator</button>
+</div>
+
+<div class="card">
+<h3>About us</h3>
+<p>Mikä on Creator Hype Hub.</p>
+<button class="big-btn">Open</button>
+</div>
+
+<div class="card">
+<h3>Member</h3>
+<p>Liity jäseneksi.</p>
+<button class="big-btn">Join Community</button>
+</div>
+
+</div>
+
+<!-- BOTTOM NAV -->
+
+<div class="bottom-nav">
+
+<a href="#" class="active">
+<i class="fa-solid fa-house"></i>
+Home
+</a>
+
+<a href="#">
+<i class="fa-solid fa-video"></i>
+Live
+</a>
+
+<a href="#">
+<i class="fa-solid fa-users"></i>
+Creators
+</a>
+
+<a href="#">
+<i class="fa-solid fa-user"></i>
+Profile
+</a>
+
+</div>
+
+</body>
+</html>
