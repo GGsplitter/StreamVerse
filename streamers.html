@@ -158,7 +158,7 @@ text-align:center;
 
 <script>
 
-/* ⭐ STREAMER LIST */
+const BASE_URL = "https://streamverse26.vercel.app";
 
 const channels = [
 "G3splitter",
@@ -174,34 +174,31 @@ membersDiv.innerHTML = "";
 
 try{
 
-/* ⭐ YOUR REAL VERCE L DOMAIN */
-const BASE_URL = "https://streamverse26.vercel.app";
-
-/* ⭐ TOKEN FETCH */
+/* TOKEN */
 const tokenRes = await fetch(
 `${BASE_URL}/api/token`
 );
 
 const tokenData = await tokenRes.json();
 
-/* ⭐ QUERY BUILD */
+/* QUERY */
 const query = channels.map(c => `login=${c}`).join("&");
 
-/* ⭐ USERS FETCH */
+/* USERS */
 const usersRes = await fetch(
 `${BASE_URL}/api/twitchusers?${query}&token=${tokenData.access_token}`
 );
 
 const usersData = await usersRes.json();
 
-/* ⭐ STREAMS FETCH */
+/* STREAMS */
 const streamsRes = await fetch(
 `${BASE_URL}/api/twitchstreams?${query}&token=${tokenData.access_token}`
 );
 
 const streamsData = await streamsRes.json();
 
-/* ⭐ RENDER CARDS */
+/* RENDER */
 
 channels.forEach(channel =>{
 
@@ -255,5 +252,3 @@ document.addEventListener("DOMContentLoaded", loadData);
 
 </body>
 </html>
-
-
