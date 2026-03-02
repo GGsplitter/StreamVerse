@@ -110,25 +110,25 @@ opacity:.85;
 white-space:pre-line;
 }
 
-/* ⭐ OFFLINE CARD */
+/*  OFFLINE DEFAULT (HIMMEÄ RED GLOW) */
 
 .card:not(.live){
-border:1px solid rgba(255,0,80,.4);
+border:1px solid rgba(255,0,80,.3);
 box-shadow:
-0 0 25px rgba(255,0,80,.2),
-0 0 80px rgba(255,0,80,.1);
+0 0 15px rgba(255,0,80,.15),
+0 0 40px rgba(255,0,80,.1);
 }
 
-/* ⭐ OFFLINE HOVER HEHKU */
+/*  OFFLINE HOVER = SAMANLAINEN KUIN LIVE GLOW */
 
 .card:not(.live):hover{
 box-shadow:
 0 0 25px rgba(255,0,80,.6),
-0 0 80px rgba(255,0,80,.4);
+0 0 80px rgba(255,0,80,.35);
 transform:translateY(-10px);
 }
   
-/* ⭐ NEWS STYLE FOOTER */
+/*  NEWS STYLE FOOTER */
 
 footer{
 padding:80px;
@@ -263,5 +263,6 @@ document.addEventListener("DOMContentLoaded",loadData);
 
 </body>
 </html>
+
 
 
