@@ -32,7 +32,35 @@ headers:{
 
 const streamData = await streamRes.json();
 
-res.status(200).json({
+res.status(200).json({export default async function handler(req,res){
+
+try{
+
+const { token, ...logins } = req.query;
+
+const loginParams = Object.values(logins)
+.map(l => `login=${l}`)
+.join("&");
+
+const response = await fetch(
+`https://api.twitch.tv/helix/users?${loginParams}`,
+{
+headers:{
+Authorization:`Bearer ${token}`,
+"Client-Id": process.env.CLIENT_ID
+}
+}
+);
+
+const data = await response.json();
+
+res.status(200).json(data);
+
+}catch(err){
+res.status(500).json({error:err.message});
+}
+
+}
 user:userData,
 live:streamData
 });
