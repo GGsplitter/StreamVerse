@@ -10,6 +10,8 @@
 
 <style>
 
+/* PAGE LAYOUT */
+
 body{
 margin:0;
 font-family:Arial;
@@ -29,29 +31,16 @@ width:100%;
 padding:18px 8%;
 display:flex;
 align-items:center;
-background:rgba(0,0,0,.7);
+gap:30px;
 backdrop-filter:blur(20px);
+background:rgba(0,0,0,0.7);
 z-index:1000;
 }
 
-.logo-text{
-font-weight:bold;
-font-size:20px;
-}
-
-/* MENU LINKS */
-
-.nav-links{
-display:flex;
-gap:30px;
-margin-left:auto;
-}
-
-.nav-links a{
+nav a{
 color:white;
 text-decoration:none;
 font-weight:bold;
-white-space:nowrap;
 }
 
 /* HAMBURGER */
@@ -74,20 +63,22 @@ border-radius:3px;
 /* HERO */
 
 .hero{
-padding-top:140px;
+flex:1;
 height:60vh;
-text-align:center;
-
-display:flex;
-flex-direction:column;
-justify-content:center;
-
 background:
-linear-gradient(rgba(0,0,0,.6),rgba(0,0,0,.9)),
+linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.9)),
 url("https://images.unsplash.com/photo-1542751371-adc38448a05e");
 
 background-size:cover;
 background-position:center;
+
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+text-align:center;
+
+padding-top:120px;
 }
 
 .hero h1{
@@ -98,9 +89,9 @@ color:transparent;
 }
 
 .btn{
-padding:15px 35px;
+padding:15px 40px;
 border:none;
-border-radius:12px;
+border-radius:14px;
 background:linear-gradient(45deg,#ff0055,#7000ff);
 color:white;
 font-size:18px;
@@ -113,10 +104,6 @@ cursor:pointer;
 background:#111;
 padding:30px 0;
 overflow:hidden;
-
--webkit-mask-image:
-linear-gradient(to right, transparent, black 15%, black 85%, transparent),
-linear-gradient(to left, transparent, black 15%, black 85%, transparent);
 }
 
 .sponsor-track{
@@ -150,24 +137,45 @@ font-size:28px;
 text-decoration:none;
 }
 
+/* LOGO */
+
+.logo-box{
+position:fixed;
+top:85px;
+left:8%;
+z-index:900;
+}
+
+.logo-box img{
+height:300px;
+transition:.3s;
+filter:drop-shadow(0 0 20px rgba(255,0,150,.6));
+}
+
 /* MOBILE */
 
 @media(max-width:768px){
 
-.nav-links{
-display:none;
-width:100%;
-flex-direction:column;
-gap:15px;
-padding-top:15px;
+nav{
+flex-wrap:wrap;
 }
 
-nav.open .nav-links{
-display:flex;
+nav a{
+display:none;
+width:100%;
+padding:12px 0;
+}
+
+nav.open a{
+display:block;
 }
 
 .hamburger{
 display:flex;
+}
+
+.logo-box{
+display:none;
 }
 
 .hero h1{
@@ -183,16 +191,12 @@ font-size:36px;
 
 <nav id="nav">
 
-<div class="logo-text">CREATORS</div>
-
-<div class="nav-links">
 <a href="index.html">Home</a>
 <a href="news.html">News</a>
 <a href="streamers.html">Creators</a>
 <a href="creatorofthemonth.html">Creator of the Month</a>
 <a href="about.html">About Us</a>
 <a href="member.html">Member</a>
-</div>
 
 <div class="hamburger" onclick="toggleMenu()">
 <span></span>
@@ -201,6 +205,10 @@ font-size:36px;
 </div>
 
 </nav>
+
+<div class="logo-box">
+<img src="CHH_LOGO.png">
+</div>
 
 <section class="hero">
 
@@ -234,7 +242,10 @@ font-size:36px;
 
 <h2>Contact & Socials</h2>
 
-<p>your@email.com</p>
+<p>
+Email:
+<a href="mailto:your@email.com">your@email.com</a>
+</p>
 
 <div style="margin-top:25px;display:flex;justify-content:center;gap:30px;flex-wrap:wrap;">
 <a href="#"><i class="fab fa-instagram"></i></a>
@@ -252,11 +263,9 @@ font-size:36px;
 </footer>
 
 <script>
-
 function toggleMenu(){
 document.getElementById("nav").classList.toggle("open");
 }
-
 </script>
 
 </body>
