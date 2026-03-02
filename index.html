@@ -6,20 +6,13 @@
 
 <title>Creators Hype Hub</title>
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
 <style>
-
-/* PAGE LAYOUT FIX */
 
 body{
 margin:0;
 font-family:Arial;
 background:#060606;
 color:white;
-min-height:100vh;
-display:flex;
-flex-direction:column;
 }
 
 /* NAV */
@@ -28,12 +21,10 @@ nav{
 position:fixed;
 top:0;
 width:100%;
+background:rgba(0,0,0,.85);
 padding:18px 8%;
 display:flex;
 align-items:center;
-gap:30px;
-backdrop-filter:blur(20px);
-background:rgba(0,0,0,0.7);
 z-index:1000;
 }
 
@@ -41,14 +32,14 @@ nav a{
 color:white;
 text-decoration:none;
 font-weight:bold;
+margin-right:30px;
 }
 
-/* NAV LINKS WRAPPER */
+/* NAV LINKS */
 
 .nav-links{
-display:flex;
 margin-left:auto;
-gap:30px;
+display:flex;
 }
 
 /* HAMBURGER */
@@ -65,16 +56,15 @@ cursor:pointer;
 width:28px;
 height:3px;
 background:white;
-border-radius:3px;
 }
 
 /* HERO */
 
 .hero{
-flex:1;
+margin-top:120px;
 height:60vh;
 background:
-linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.9)),
+linear-gradient(rgba(0,0,0,.6),rgba(0,0,0,.9)),
 url("https://images.unsplash.com/photo-1542751371-adc38448a05e");
 
 background-size:cover;
@@ -85,7 +75,6 @@ flex-direction:column;
 justify-content:center;
 align-items:center;
 text-align:center;
-padding-top:120px;
 }
 
 .hero h1{
@@ -96,13 +85,12 @@ color:transparent;
 }
 
 .btn{
-padding:15px 40px;
+padding:15px 35px;
 border:none;
-border-radius:14px;
+border-radius:12px;
 background:linear-gradient(45deg,#ff0055,#7000ff);
 color:white;
 font-size:18px;
-cursor:pointer;
 }
 
 /* SLIDER */
@@ -138,24 +126,16 @@ text-align:center;
 margin-top:auto;
 }
 
-footer a{
-color:white;
-font-size:28px;
-text-decoration:none;
-}
-
 /* LOGO */
 
 .logo-box{
 position:fixed;
 top:85px;
 left:8%;
-z-index:900;
 }
 
 .logo-box img{
 height:300px;
-transition:.3s;
 filter:drop-shadow(0 0 20px rgba(255,0,150,.6));
 }
 
@@ -202,12 +182,11 @@ font-size:36px;
 <div style="font-weight:bold;font-size:20px">CREATORS</div>
 
 <div class="nav-links">
-<a href="index.html">Home</a>
-<a href="news.html">News</a>
-<a href="streamers.html">Creators</a>
-<a href="creatorofthemonth.html">Creator of the Month</a>
-<a href="about.html">About Us</a>
-<a href="member.html">Member</a>
+<a href="#">Home</a>
+<a href="#">News</a>
+<a href="#">Creators</a>
+<a href="#">About</a>
+<a href="#">Member</a>
 </div>
 
 <div class="hamburger" onclick="toggleMenu()">
@@ -223,18 +202,14 @@ font-size:36px;
 </div>
 
 <section class="hero">
-
 <h1>CREATORS HYPE HUB</h1>
-<p>Connect creators. Grow together. Get opportunities.</p>
-
+<p>Connect creators. Grow together.</p>
 <br>
 <button class="btn">Join Hype Hub</button>
-
 </section>
 
 <div class="sponsor">
 <div class="sponsor-track">
-
 <span>👑 Creator Of The Month</span>
 <span>🔴 Live Content</span>
 <span>🔝 Grow your community</span>
@@ -246,37 +221,24 @@ font-size:36px;
 <span>🔝 Grow your community</span>
 <span>🔗 Collabs</span>
 <span>🌏 Visibility</span>
-
 </div>
 </div>
 
 <footer>
-
 <h2>Contact & Socials</h2>
 
 <p>your@email.com</p>
 
-<div style="margin-top:25px;display:flex;justify-content:center;gap:30px;flex-wrap:wrap;">
-<a href="#"><i class="fab fa-instagram"></i></a>
-<a href="#"><i class="fab fa-x-twitter"></i></a>
-<a href="#"><i class="fab fa-twitch"></i></a>
-<a href="#"><i class="fab fa-facebook"></i></a>
-<a href="#"><i class="fab fa-tiktok"></i></a>
-<a href="#"><i class="fab fa-youtube"></i></a>
-</div>
-
-<p style="margin-top:40px;opacity:.7">
+<p style="opacity:.7;margin-top:40px">
 © 2026 CREATORS Hype Hub
 </p>
 
 </footer>
 
 <script>
-
 function toggleMenu(){
 document.getElementById("nav").classList.toggle("open");
 }
-
 </script>
 
 </body>
