@@ -170,31 +170,38 @@ const channels = [
 async function loadData(){
 
 const membersDiv = document.getElementById("members");
-
 membersDiv.innerHTML = "";
 
 try{
 
-const tokenRes = await fetch("/api/token");
+/* ⭐ YOUR REAL VERCE L DOMAIN */
+const BASE_URL = "https://streamverse26.vercel.app";
+
+/* ⭐ TOKEN FETCH */
+const tokenRes = await fetch(
+`${BASE_URL}/api/token`
+);
+
 const tokenData = await tokenRes.json();
 
+/* ⭐ QUERY BUILD */
 const query = channels.map(c => `login=${c}`).join("&");
 
-/* USERS */
+/* ⭐ USERS FETCH */
 const usersRes = await fetch(
-`/api/twitchusers?${query}&token=${tokenData.access_token}`
+`${BASE_URL}/api/twitchusers?${query}&token=${tokenData.access_token}`
 );
 
 const usersData = await usersRes.json();
 
-/* STREAMS */
+/* ⭐ STREAMS FETCH */
 const streamsRes = await fetch(
-`/api/twitchstreams?${query}&token=${tokenData.access_token}`
+`${BASE_URL}/api/twitchstreams?${query}&token=${tokenData.access_token}`
 );
 
 const streamsData = await streamsRes.json();
 
-/* RENDER CARDS */
+/* ⭐ RENDER CARDS */
 
 channels.forEach(channel =>{
 
@@ -237,7 +244,7 @@ membersDiv.appendChild(card);
 });
 
 }catch(err){
-console.error(err);
+console.error("Load error:", err);
 }
 
 }
@@ -248,4 +255,5 @@ document.addEventListener("DOMContentLoaded", loadData);
 
 </body>
 </html>
+
 
