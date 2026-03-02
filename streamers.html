@@ -17,7 +17,7 @@ color:white;
 min-height:100vh;
 background:
 linear-gradient(rgba(6,6,6,0.65),rgba(6,6,6,0.95)),
-url("https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=1920&q=80");
+url("https://images.unsplash.com/photo-1542751371-adc38448a05e");
 background-size:cover;
 background-position:center;
 background-attachment:fixed;
@@ -126,15 +126,6 @@ opacity:.85;
 white-space:pre-line;
 }
 
-/* FOOTER */
-
-footer{
-padding:80px;
-background:#0a0a0a;
-margin-top:auto;
-text-align:center;
-}
-
 </style>
 </head>
 
@@ -144,7 +135,7 @@ text-align:center;
 <a href="index.html">Home</a>
 <a href="news.html">News</a>
 <a href="streamers.html">Creators</a>
-<a href="about.html">About Us</a>
+<a href="about.html">About</a>
 <a href="member.html">Member</a>
 </nav>
 
@@ -158,6 +149,7 @@ text-align:center;
 
 <script>
 
+/* ⭐ IMPORTANT */
 const BASE_URL = "https://streamverse26.vercel.app";
 
 const channels = [
@@ -241,7 +233,7 @@ membersDiv.appendChild(card);
 });
 
 }catch(err){
-console.error("Load error:", err);
+console.error(err);
 }
 
 }
