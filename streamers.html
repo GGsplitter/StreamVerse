@@ -167,50 +167,47 @@ const channels = [
 "lofigirl"
 ];
 
-/* ⭐ TOKEN */
-
-async function getToken(){
-
-const res = await fetch("/api/token");
-return await res.json();
-
-}
-
-/* ⭐ LOAD DATA */
-
 async function loadData(){
 
 const membersDiv = document.getElementById("members");
+
 membersDiv.innerHTML = "";
 
-const tokenData = await getToken();
+try{
 
-/* Build query */
+const tokenRes = await fetch("/api/token");
+const tokenData = await tokenRes.json();
 
 const query = channels.map(c => `login=${c}`).join("&");
 
-/* Fetch once users + streams */
-
-const users = await fetch(
+/* USERS */
+const usersRes = await fetch(
 `/api/twitchusers?${query}&token=${tokenData.access_token}`
-).then(r => r.json());
+);
 
-const streams = await fetch(
+const usersData = await usersRes.json();
+
+/* STREAMS */
+const streamsRes = await fetch(
 `/api/twitchstreams?${query}&token=${tokenData.access_token}`
-).then(r => r.json());
+);
 
-for(const channel of channels){
+const streamsData = await streamsRes.json();
+
+/* RENDER CARDS */
+
+channels.forEach(channel =>{
 
 const card = document.createElement("a");
 card.className = "card";
 card.href = `https://twitch.tv/${channel}`;
 card.target = "_blank";
 
-const user = users.data?.find(
+const user = usersData.data?.find(
 u => u.login.toLowerCase() === channel.toLowerCase()
 );
 
-const stream = streams.data?.find(
+const stream = streamsData.data?.find(
 s => s.user_login.toLowerCase() === channel.toLowerCase()
 );
 
@@ -237,6 +234,10 @@ ${stream ? `
 
 membersDiv.appendChild(card);
 
+});
+
+}catch(err){
+console.error(err);
 }
 
 }
@@ -247,3 +248,4 @@ document.addEventListener("DOMContentLoaded", loadData);
 
 </body>
 </html>
+
