@@ -149,8 +149,8 @@ white-space:pre-line;
 
 <script>
 
-/* ⭐ IMPORTANT */
-const BASE_URL = "https://streamverse26.vercel.app";
+/* ⭐ YOUR TWITCH APP INFO */
+const CLIENT_ID = "SINUN_CLIENT_ID";
 
 const channels = [
 "G3splitter",
@@ -166,46 +166,58 @@ membersDiv.innerHTML = "";
 
 try{
 
-/* TOKEN */
+/* ⭐ GET TOKEN DIRECTLY FROM TWITCH */
 const tokenRes = await fetch(
-`${BASE_URL}/api/token`
+"https://id.twitch.tv/oauth2/token",
+{
+method:"POST",
+headers:{
+"Content-Type":"application/x-www-form-urlencoded"
+},
+body:new URLSearchParams({
+client_id:CLIENT_ID,
+client_secret:"SINUN_CLIENT_SECRET",
+grant_type:"client_credentials"
+})
+}
 );
 
 const tokenData = await tokenRes.json();
 
-/* QUERY */
-const query = channels.map(c => `login=${c}`).join("&");
+/* ⭐ USERS + STREAMS */
+for(const channel of channels){
 
-/* USERS */
-const usersRes = await fetch(
-`${BASE_URL}/api/twitchusers?${query}&token=${tokenData.access_token}`
+const userRes = await fetch(
+`https://api.twitch.tv/helix/users?login=${channel}`,
+{
+headers:{
+Authorization:`Bearer ${tokenData.access_token}`,
+"Client-Id":CLIENT_ID
+}
+}
 );
 
-const usersData = await usersRes.json();
+const userData = await userRes.json();
 
-/* STREAMS */
-const streamsRes = await fetch(
-`${BASE_URL}/api/twitchstreams?${query}&token=${tokenData.access_token}`
+const streamRes = await fetch(
+`https://api.twitch.tv/helix/streams?user_login=${channel}`,
+{
+headers:{
+Authorization:`Bearer ${tokenData.access_token}`,
+"Client-Id":CLIENT_ID
+}
+}
 );
 
-const streamsData = await streamsRes.json();
+const streamData = await streamRes.json();
 
-/* RENDER */
-
-channels.forEach(channel =>{
+const user = userData.data?.[0];
+const stream = streamData.data?.[0];
 
 const card = document.createElement("a");
 card.className = "card";
 card.href = `https://twitch.tv/${channel}`;
 card.target = "_blank";
-
-const user = usersData.data?.find(
-u => u.login.toLowerCase() === channel.toLowerCase()
-);
-
-const stream = streamsData.data?.find(
-s => s.user_login.toLowerCase() === channel.toLowerCase()
-);
 
 const profileImage =
 user?.profile_image_url ||
@@ -230,7 +242,7 @@ ${stream ? `
 
 membersDiv.appendChild(card);
 
-});
+}
 
 }catch(err){
 console.error(err);
