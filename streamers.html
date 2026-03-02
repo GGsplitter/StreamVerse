@@ -2,9 +2,9 @@
 <html lang="fi">
 <head>
 <meta charset="UTF-8">
-<title>Creators</title>
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Creators</title>
 
 <style>
 
@@ -13,9 +13,11 @@ margin:0;
 font-family:Arial;
 color:white;
 min-height:100vh;
+
 background:
 linear-gradient(rgba(6,6,6,0.65),rgba(6,6,6,0.95)),
 url("https://images.unsplash.com/photo-1542751371-adc38448a05e");
+
 background-size:cover;
 background-position:center;
 background-attachment:fixed;
@@ -46,13 +48,16 @@ gap:30px;
 background:rgba(17,17,17,0.9);
 border-radius:20px;
 padding:30px 20px;
+
 display:flex;
 flex-direction:column;
 align-items:center;
 gap:15px;
+
 text-decoration:none;
 color:white;
 transition:.3s;
+
 box-shadow:
 0 0 15px rgba(0,0,0,.6),
 0 0 40px rgba(0,0,0,.3);
@@ -80,6 +85,10 @@ box-shadow:
 font-size:14px;
 opacity:.85;
 white-space:pre-line;
+}
+
+.offline{
+opacity:.7;
 }
 
 </style>
@@ -124,8 +133,13 @@ membersDiv.innerHTML = "";
 
 channels.forEach(channel=>{
 
-const user = users.find(u=>u.login === channel);
-const stream = streams.find(s=>s.user_login === channel);
+const user = users.find(
+u => u.login.toLowerCase() === channel.toLowerCase()
+);
+
+const stream = streams.find(
+s => s.user_login.toLowerCase() === channel.toLowerCase()
+);
 
 const card = document.createElement("a");
 
@@ -133,13 +147,13 @@ card.className="card";
 card.href=`https://twitch.tv/${channel}`;
 card.target="_blank";
 
-if(stream){
-card.classList.add("live");
-}
-
 const profileImage =
 user?.profile_image_url ||
 "https://placehold.co/110x110";
+
+if(stream){
+card.classList.add("live");
+}
 
 card.innerHTML = `
 <img src="${profileImage}">
@@ -147,11 +161,12 @@ card.innerHTML = `
 <div class="viewer">
 ${stream ?
 `🟢 LIVE
-👁 ${stream.viewer_count}
+👁 ${stream.viewer_count} viewers
 🎮 ${stream.game_name || ""}
 📺 ${stream.title || ""}`
 :
-"🔴 OFFLINE"}
+`🔴 OFFLINE`
+}
 </div>
 `;
 
