@@ -11,19 +11,11 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
 
 <style>
 
-/* ⭐ FOOTER FIX (TÄRKEIN MUUTOS) */
-
 body{
 margin:0;
 font-family:Arial;
 color:white;
-min-height:100vh;
 
-/* Flex layout */
-display:flex;
-flex-direction:column;
-
-/* Background */
 background:
 linear-gradient(rgba(6,6,6,0.65),rgba(6,6,6,0.95)),
 url("https://images.unsplash.com/photo-1542751371-adc38448a05e");
@@ -31,13 +23,6 @@ url("https://images.unsplash.com/photo-1542751371-adc38448a05e");
 background-size:cover;
 background-position:center;
 background-attachment:fixed;
-}
-
-/* CONTENT TAKAA FOOTERIN ALAS */
-section{
-padding:140px 8%;
-flex:1;
-text-align:center;
 }
 
 /* NAV */
@@ -60,9 +45,14 @@ text-decoration:none;
 font-weight:bold;
 }
 
-/* TITLE */
+/* CONTENT */
+
+section{
+padding:140px 8%;
+}
 
 .page-title{
+text-align:center;
 font-size:50px;
 background:linear-gradient(45deg,#ff0055,#7000ff);
 -webkit-background-clip:text;
@@ -83,21 +73,17 @@ gap:30px;
 /* CARD */
 
 .card{
-background:rgba(17,17,17,0.9);
+background:#111;
 border-radius:20px;
 padding:30px 20px;
 transition:.3s;
-color:white;
 text-decoration:none;
+color:white;
 
 display:flex;
 flex-direction:column;
 align-items:center;
 gap:15px;
-
-box-shadow:
-0 0 15px rgba(0,0,0,.6),
-0 0 40px rgba(0,0,0,.3);
 }
 
 .card:hover{
@@ -112,10 +98,10 @@ object-fit:cover;
 }
 
 .card.live{
-border:1px solid rgba(0,255,120,.6);
 box-shadow:
 0 0 25px rgba(0,255,120,.6),
 0 0 80px rgba(0,255,120,.3);
+border:1px solid rgba(0,255,120,.6);
 }
 
 .viewer{
@@ -124,13 +110,13 @@ opacity:.85;
 white-space:pre-line;
 }
 
-/* FOOTER */
+/* ⭐ NEWS STYLE FOOTER */
 
 footer{
 padding:80px;
 background:#0a0a0a;
-text-align:center;
 margin-top:120px;
+text-align:center;
 }
 
 </style>
@@ -138,7 +124,6 @@ margin-top:120px;
 
 <body>
 
-<!-- NAV -->
 <nav>
 <a href="index.html">Home</a>
 <a href="news.html">News</a>
@@ -147,7 +132,6 @@ margin-top:120px;
 <a href="member.html">Member</a>
 </nav>
 
-<!-- CONTENT -->
 <section>
 
 <h2 class="page-title">Creators</h2>
@@ -156,12 +140,13 @@ margin-top:120px;
 
 </section>
 
-<!-- FOOTER -->
+<!-- FOOTER (NEWS STYLE) -->
+
 <footer>
 
 <h2>Contact & Socials</h2>
 
-<p>
+<p style="font-size:16px;">
 Email:
 <a href="mailto:your@email.com"
 style="color:white;text-decoration:none;">
@@ -171,12 +156,12 @@ your@email.com
 
 <div style="margin-top:25px;display:flex;justify-content:center;gap:30px;">
 
-<i class="fab fa-instagram" style="font-size:28px"></i>
-<i class="fab fa-x-twitter" style="font-size:28px"></i>
-<i class="fab fa-twitch" style="font-size:28px"></i>
-<i class="fab fa-facebook" style="font-size:28px"></i>
-<i class="fab fa-tiktok" style="font-size:28px"></i>
-<i class="fab fa-youtube" style="font-size:28px"></i>
+<a href="#"><i class="fab fa-instagram" style="font-size:28px;color:white;"></i></a>
+<a href="#"><i class="fab fa-x-twitter" style="font-size:28px;color:white;"></i></a>
+<a href="#"><i class="fab fa-twitch" style="font-size:28px;color:white;"></i></a>
+<a href="#"><i class="fab fa-facebook" style="font-size:28px;color:white;"></i></a>
+<a href="#"><i class="fab fa-tiktok" style="font-size:28px;color:white;"></i></a>
+<a href="#"><i class="fab fa-youtube" style="font-size:28px;color:white;"></i></a>
 
 </div>
 
