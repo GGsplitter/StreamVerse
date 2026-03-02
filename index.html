@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="fi">
 <head>
@@ -6,7 +8,11 @@
 
 <title>Creators Hype Hub</title>
 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
 <style>
+
+/* PAGE LAYOUT FIX */
 
 body{
 margin:0;
@@ -26,10 +32,9 @@ top:0;
 width:100%;
 padding:18px 8%;
 display:flex;
-align-items:center;
 gap:30px;
-background:rgba(0,0,0,0.7);
 backdrop-filter:blur(20px);
+background:rgba(0,0,0,0.7);
 z-index:1000;
 }
 
@@ -37,24 +42,6 @@ nav a{
 color:white;
 text-decoration:none;
 font-weight:bold;
-white-space:nowrap;
-}
-
-/* Hamburger */
-
-.hamburger{
-margin-left:auto;
-display:none;
-flex-direction:column;
-gap:5px;
-cursor:pointer;
-}
-
-.hamburger span{
-width:28px;
-height:3px;
-background:white;
-border-radius:3px;
 }
 
 /* HERO */
@@ -74,8 +61,6 @@ flex-direction:column;
 justify-content:center;
 align-items:center;
 text-align:center;
-
-padding-top:90px;
 }
 
 .hero h1{
@@ -95,20 +80,28 @@ font-size:18px;
 cursor:pointer;
 }
 
-/* SLIDER */
+/* ⭐ SLIDER FADE FIX 4 DIRECTIONS */
 
 .sponsor{
 background:#111;
 padding:30px 0;
 overflow:hidden;
 
+/* 4 direction fade mask */
 -webkit-mask-image:
 linear-gradient(to right, transparent, black 15%, black 85%, transparent),
-linear-gradient(to left, transparent, black 15%, black 85%, transparent);
+linear-gradient(to left, transparent, black 15%, black 85%, transparent),
+linear-gradient(to bottom, transparent, black 20%, black 80%, transparent),
+linear-gradient(to top, transparent, black 20%, black 80%, transparent);
 
 mask-image:
 linear-gradient(to right, transparent, black 15%, black 85%, transparent),
-linear-gradient(to left, transparent, black 15%, black 85%, transparent);
+linear-gradient(to left, transparent, black 15%, black 85%, transparent),
+linear-gradient(to bottom, transparent, black 20%, black 80%, transparent),
+linear-gradient(to top, transparent, black 20%, black 80%, transparent);
+
+-webkit-mask-composite: intersect;
+mask-composite: intersect;
 }
 
 .sponsor-track{
@@ -127,7 +120,7 @@ from{transform:translateX(0);}
 to{transform:translateX(-33.333%);}
 }
 
-/* FOOTER */
+/* FOOTER STAYS AT BOTTOM */
 
 footer{
 padding:70px;
@@ -136,8 +129,13 @@ text-align:center;
 margin-top:auto;
 }
 
-/* LOGO */
+footer a{
+color:white;
+font-size:28px;
+text-decoration:none;
+}
 
+/*  LOGO */  
 .logo-box{
 position:fixed;
 top:85px;
@@ -147,79 +145,47 @@ z-index:900;
 
 .logo-box img{
 height:300px;
+width:auto;
 filter:drop-shadow(0 0 20px rgba(255,0,150,.6));
 transition:.3s;
 }
 
-/* MOBILE */
-
-@media(max-width:768px){
-
-nav{
-flex-wrap:wrap;
+.logo-box img:hover{
+transform:scale(1.05);
 }
 
-nav a{
-display:none;
-width:100%;
-padding:12px 0;
-}
 
-nav.open a{
-display:block;
-}
-
-.hamburger{
-display:flex;
-}
-
-.logo-box{
-display:none;
-}
-
-.hero h1{
-font-size:36px;
-}
-
-}
 
 </style>
 </head>
 
 <body>
 
-<nav id="nav">
-
+<nav>
 <a href="index.html">Home</a>
 <a href="news.html">News</a>
 <a href="streamers.html">Creators</a>
 <a href="creatorofthemonth.html">Creator of the Month</a>
 <a href="about.html">About Us</a>
 <a href="member.html">Member</a>
-
-<div class="hamburger" onclick="toggleMenu()">
-<span></span>
-<span></span>
-<span></span>
-</div>
-
 </nav>
 
+<!--  LOGO (NAVIN ALLE) -->
 <div class="logo-box">
-<img src="CHH_LOGO.png">
+<img src="CHH_LOGO.png" alt="CHH Logo">
 </div>
 
+ <!--  HERO --> 
 <section class="hero">
-
 <h1>CREATORS HYPE HUB</h1>
-<p>Connect creators. Grow together.</p>
-
+<p>Connect creators. Grow together. Get opportunities.</p>
 <br>
 <button class="btn">Join Hype Hub</button>
-
 </section>
 
+<!-- SLIDER -->
 <div class="sponsor">
+
 <div class="sponsor-track">
 
 <span>👑 Creator Of The Month</span>
@@ -241,15 +207,50 @@ font-size:36px;
 
 <h2>Contact & Socials</h2>
 
-<p>your@email.com</p>
+<p style="font-size:16px;">
+Email:
+<a href="mailto:your@email.com"
+style="
+color:white;
+text-decoration:none;
+font-size:16px;
+font-family:inherit;
+">
+your@email.com
+</a>
+</p>
 
-<div style="margin-top:25px;display:flex;justify-content:center;gap:30px;flex-wrap:wrap;">
-<a href="#"><i class="fab fa-instagram"></i></a>
-<a href="#"><i class="fab fa-x-twitter"></i></a>
-<a href="#"><i class="fab fa-twitch"></i></a>
-<a href="#"><i class="fab fa-facebook"></i></a>
-<a href="#"><i class="fab fa-tiktok"></i></a>
-<a href="#"><i class="fab fa-youtube"></i></a>
+<div style="
+margin-top:25px;
+display:flex;
+justify-content:center;
+gap:30px;
+">
+
+<a href="https://www.instagram.com" target="_blank">
+<i class="fab fa-instagram" style="color:white;font-size:28px;"></i>
+</a>
+
+<a href="https://x.com" target="_blank">
+<i class="fab fa-x-twitter" style="color:white;font-size:28px;"></i>
+</a>
+
+<a href="https://www.twitch.tv" target="_blank">
+<i class="fab fa-twitch" style="color:white;font-size:28px;"></i>
+</a>
+
+<a href="https://www.facebook.com" target="_blank">
+<i class="fab fa-facebook" style="color:white;font-size:28px;"></i>
+</a>
+
+<a href="https://www.tiktok.com" target="_blank">
+<i class="fab fa-tiktok" style="color:white;font-size:28px;"></i>
+</a>
+
+<a href="https://www.youtube.com" target="_blank">
+<i class="fab fa-youtube" style="color:white;font-size:28px;"></i>
+</a>
+
 </div>
 
 <p style="margin-top:40px;opacity:.7">
@@ -258,13 +259,19 @@ font-size:36px;
 
 </footer>
 
-<script>
 
-function toggleMenu(){
-document.getElementById("nav").classList.toggle("open");
-}
 
 </script>
-
+ 
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
