@@ -110,6 +110,24 @@ opacity:.85;
 white-space:pre-line;
 }
 
+/* ⭐ OFFLINE CARD */
+
+.card:not(.live){
+border:1px solid rgba(255,0,80,.4);
+box-shadow:
+0 0 25px rgba(255,0,80,.2),
+0 0 80px rgba(255,0,80,.1);
+}
+
+/* ⭐ OFFLINE HOVER HEHKU */
+
+.card:not(.live):hover{
+box-shadow:
+0 0 25px rgba(255,0,80,.6),
+0 0 80px rgba(255,0,80,.4);
+transform:translateY(-10px);
+}
+  
 /* ⭐ NEWS STYLE FOOTER */
 
 footer{
@@ -245,3 +263,4 @@ document.addEventListener("DOMContentLoaded",loadData);
 
 </body>
 </html>
+
