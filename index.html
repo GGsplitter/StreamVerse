@@ -10,7 +10,7 @@
 
 <style>
 
-/* PAGE LAYOUT */
+/* PAGE */
 
 body{
 margin:0;
@@ -31,9 +31,8 @@ width:100%;
 padding:18px 8%;
 display:flex;
 align-items:center;
-gap:30px;
+background:rgba(0,0,0,.7);
 backdrop-filter:blur(20px);
-background:rgba(0,0,0,0.7);
 z-index:1000;
 }
 
@@ -41,6 +40,14 @@ nav a{
 color:white;
 text-decoration:none;
 font-weight:bold;
+margin-right:30px;
+}
+
+/* NAV LINKS WRAPPER */
+
+.nav-links{
+display:flex;
+margin-left:auto;
 }
 
 /* HAMBURGER */
@@ -63,10 +70,10 @@ border-radius:3px;
 /* HERO */
 
 .hero{
-flex:1;
+margin-top:120px;
 height:60vh;
 background:
-linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.9)),
+linear-gradient(rgba(0,0,0,.6),rgba(0,0,0,.9)),
 url("https://images.unsplash.com/photo-1542751371-adc38448a05e");
 
 background-size:cover;
@@ -77,8 +84,6 @@ flex-direction:column;
 justify-content:center;
 align-items:center;
 text-align:center;
-
-padding-top:120px;
 }
 
 .hero h1{
@@ -156,30 +161,27 @@ filter:drop-shadow(0 0 20px rgba(255,0,150,.6));
 
 @media(max-width:768px){
 
-nav{
-flex-wrap:wrap;
-}
-
-nav a{
+.nav-links{
 display:none;
 width:100%;
-padding:12px 0;
+flex-direction:column;
+padding-top:15px;
 }
 
-nav.open a{
-display:block;
+nav.open .nav-links{
+display:flex;
 }
 
 .hamburger{
 display:flex;
 }
 
-.logo-box{
-display:none;
-}
-
 .hero h1{
 font-size:36px;
+}
+
+.logo-box{
+display:none;
 }
 
 }
@@ -191,12 +193,16 @@ font-size:36px;
 
 <nav id="nav">
 
+<div style="font-weight:bold;font-size:20px">CREATORS</div>
+
+<div class="nav-links">
 <a href="index.html">Home</a>
 <a href="news.html">News</a>
 <a href="streamers.html">Creators</a>
 <a href="creatorofthemonth.html">Creator of the Month</a>
 <a href="about.html">About Us</a>
 <a href="member.html">Member</a>
+</div>
 
 <div class="hamburger" onclick="toggleMenu()">
 <span></span>
@@ -242,10 +248,7 @@ font-size:36px;
 
 <h2>Contact & Socials</h2>
 
-<p>
-Email:
-<a href="mailto:your@email.com">your@email.com</a>
-</p>
+<p>your@email.com</p>
 
 <div style="margin-top:25px;display:flex;justify-content:center;gap:30px;flex-wrap:wrap;">
 <a href="#"><i class="fab fa-instagram"></i></a>
@@ -263,9 +266,11 @@ Email:
 </footer>
 
 <script>
+
 function toggleMenu(){
 document.getElementById("nav").classList.toggle("open");
 }
+
 </script>
 
 </body>
