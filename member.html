@@ -1,9 +1,9 @@
-
-
 <!DOCTYPE html>
 <html>
 <head>
 <title>Member</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
@@ -16,6 +16,8 @@ background:#060606;
 color:white;
 }
 
+/* NAV */
+
 nav{
 position:fixed;
 top:0;
@@ -23,14 +25,26 @@ width:100%;
 padding:20px 8%;
 display:flex;
 gap:30px;
+align-items:center;
 background:rgba(0,0,0,.7);
 backdrop-filter:blur(20px);
+z-index:1000;
 }
 
 nav a{
 color:white;
 text-decoration:none;
+white-space:nowrap;
 }
+
+.menu-icon{
+display:none;
+margin-left:auto;
+font-size:24px;
+cursor:pointer;
+}
+
+/* SECTION */
 
 section{
 padding:140px 8%;
@@ -64,6 +78,8 @@ border-radius:14px;
 color:white;
 }
 
+/* FOOTER */
+
 footer{
 padding:80px;
 background:#0a0a0a;
@@ -71,18 +87,53 @@ margin-top:120px;
 text-align:center;
 }
 
+/* MOBILE ONLY */
+
+@media(max-width:768px){
+
+nav{
+flex-wrap:wrap;
+gap:15px;
+}
+
+nav a{
+display:none;
+width:100%;
+padding:10px 0;
+}
+
+nav.active a{
+display:block;
+}
+
+.menu-icon{
+display:block;
+}
+
+section{
+padding-top:160px;
+}
+
+}
+
 </style>
 </head>
 
 <body>
 
-<nav>
+<nav id="navbar">
+
 <a href="index.html">Home</a>
 <a href="news.html">News</a>
 <a href="streamers.html">Creators</a>
 <a href="creatorofthemonth.html">Creator of the Month</a>
 <a href="about.html">About Us</a>
 <a href="member.html">Member</a>
+
+<div class="menu-icon" onclick="toggleMenu()">
+<i class="fas fa-bars"></i>
+</div>
+
 </nav>
 
 <section>
@@ -122,6 +173,7 @@ margin-top:25px;
 display:flex;
 justify-content:center;
 gap:30px;
+flex-wrap:wrap;
 ">
 
 <a href="https://www.instagram.com" target="_blank">
@@ -156,8 +208,11 @@ gap:30px;
 
 </footer>
 
+<script>
+function toggleMenu(){
+document.getElementById("navbar").classList.toggle("active");
+}
+</script>
+
 </body>
-
 </html>
-
-
