@@ -14,8 +14,11 @@ margin:0;
 font-family:Arial;
 color:white;
 
+/* ⭐ Tausta */
 background:
-linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.9)),
+radial-gradient(circle at center,
+rgba(0,0,0,0.2) 0%,
+rgba(0,0,0,0.8) 70%),
 url("https://images.unsplash.com/photo-1542751371-adc38448a05e");
 
 background-size:cover;
@@ -68,7 +71,7 @@ color:transparent;
 margin-bottom:70px;
 }
 
-/* ⭐ ABOUT BOX — SOFT GLASS (EI MUSTAA FADEA) */
+/* ⭐ ABOUT BOX — EDGE FADE (REUNAT) */
 
 .about-box{
 max-width:900px;
@@ -77,12 +80,13 @@ padding:60px;
 border-radius:25px;
 
 background:rgba(0,0,0,0.6);
+
 backdrop-filter:blur(22px);
 
 line-height:1.7;
 
 box-shadow:
-0 30px 70px rgba(0,0,0,0.55),
+0 30px 70px rgba(0,0,0,0.6),
 0 0 0 1px rgba(255,255,255,0.03);
 }
 
@@ -96,7 +100,7 @@ grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
 gap:40px;
 }
 
-/* ⭐ TEAM CARD GLASS STYLE */
+/* ⭐ TEAM CARD EDGE SOFTNESS */
 
 .team-card{
 text-align:center;
