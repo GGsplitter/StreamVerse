@@ -91,16 +91,6 @@ min-height:180px;
 transform:translateY(-8px);
 }
 
-/* CARD TOP */
-
-.card-top{
-display:flex;
-justify-content:space-between;
-width:100%;
-font-size:14px;
-opacity:.9;
-}
-
 /* PROFILE */
 
 .card-center{
@@ -119,7 +109,7 @@ object-fit:cover;
 border:3px solid #111;
 }
 
-/* LIVE */
+/* LIVE CARD */
 
 .card.live{
 border:1px solid #00ff7a;
@@ -135,7 +125,7 @@ box-shadow:
 0 0 25px rgba(0,255,120,.4);
 }
 
-/* OFFLINE */
+/* OFFLINE CARD */
 
 .card:not(.live){
 border:1px solid rgba(255,0,80,.3);
@@ -150,7 +140,7 @@ box-shadow:
 0 0 80px rgba(255,0,80,.35);
 }
 
-/* VIEWER */
+/* VIEWER / STATUS */
 
 .viewer{
 font-size:13px;
@@ -160,7 +150,7 @@ margin-top:8px;
 white-space:pre-line;
 }
 
-/* FOOTER (ALKUPERÄINEN ULKOASU) */
+/* FOOTER */
 
 footer{
 padding:80px;
@@ -189,8 +179,6 @@ text-align:center;
 <div class="members" id="members"></div>
 
 </section>
-
-<!-- FOOTER -->
 
 <footer>
 
@@ -286,18 +274,6 @@ card.classList.add("live");
 
 card.innerHTML = `
 
-<div class="card-top">
-
-<div>
-${item.stream ? "🟢 LIVE" : "🔴 OFFLINE"}
-</div>
-
-<div>
-👁 ${item.stream?.viewer_count || 0}
-</div>
-
-</div>
-
 <div class="card-center">
 
 <img src="${profileImage}" class="profile">
@@ -308,11 +284,16 @@ ${item.stream ? "🟢 LIVE" : "🔴 OFFLINE"}
 
 ${item.stream ?
 `
-🎮 ${item.stream.game_name || ""}
-📺 ${item.stream.title || ""}
+🟢 LIVE  
+🎮 ${item.stream.game_name || ""}  
+📺 ${item.stream.title || ""}  
+👁 ${item.stream.viewer_count || 0} katsojaa
 `
 :
-""}
+`
+🔴 OFFLINE
+`
+}
 
 </div>
 
