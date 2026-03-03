@@ -293,9 +293,15 @@ stream
 });
 
 });
-
+/* Live järjestys korteissa */
 cards.sort((a,b)=>{
+
+if(a.stream && b.stream){
+return new Date(a.stream.started_at) - new Date(b.stream.started_at);
+}
+
 return (b.stream ? 1 : 0) - (a.stream ? 1 : 0);
+
 });
 
 cards.forEach(item=>{
@@ -374,4 +380,5 @@ setInterval(loadData, 30000);
 
 </body>
 </html>
+
 
