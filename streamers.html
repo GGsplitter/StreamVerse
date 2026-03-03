@@ -75,7 +75,7 @@ gap:30px;
 .card{
 background:#111;
 border-radius:20px;
-padding:30px 20px;
+padding:18px;
 transition:.3s;
 text-decoration:none;
 color:white;
@@ -83,33 +83,38 @@ color:white;
 display:flex;
 flex-direction:column;
 align-items:center;
-gap:15px;
+gap:10px;
+
+min-height:260px;
+justify-content:flex-start;
 }
 
 .card:hover{
 transform:translateY(-10px);
 }
 
-.card img{
-width:110px;
-height:110px;
+.card img.profile{
+width:80px;
+height:80px;
 border-radius:50%;
 object-fit:cover;
+margin-top:-35px;
+border:4px solid #111;
 }
 
 /*  LIVE PROFILE IMAGE GREEN RING */
 
-.card.live img{
-border:4px solid #00ff7a;
-box-shadow:
-0 0 20px rgba(0,255,120,.7);
-}
-
 .card.live{
 box-shadow:
-0 0 25px rgba(0,255,120,.6),
-0 0 80px rgba(0,255,120,.3);
-border:1px solid rgba(0,255,120,.6);
+0 0 30px rgba(0,255,120,.8),
+0 0 90px rgba(0,255,120,.35);
+border:1px solid rgba(0,255,120,.8);
+}
+
+.card.live .profile{
+border:4px solid #00ff7a;
+box-shadow:
+0 0 25px rgba(0,255,120,.8);
 }
 
 .viewer{
@@ -275,11 +280,7 @@ ${thumbnail ? `
 style="width:100%;height:160px;border-radius:14px;object-fit:cover;">
 ` : ""}
 
-<img src="${profileImage}"
-style="width:80px;height:80px;border-radius:50%;
-margin-top:-40px;
-border:4px solid #111;
-background:#111;">
+<img src="${profileImage}" class="profile">
 
 <h3>${item.channel}</h3>
 
@@ -306,6 +307,7 @@ document.addEventListener("DOMContentLoaded",loadData);
 
 </body>
 </html>
+
 
 
 
