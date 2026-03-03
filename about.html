@@ -9,6 +9,8 @@
 
 <style>
 
+/* ===== BASE ===== */
+
 body{
 margin:0;
 font-family:Arial;
@@ -16,7 +18,7 @@ color:white;
 
 /* Tausta */
 background:
-linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.9)),
+linear-gradient(rgba(0,0,0,0.65),rgba(0,0,0,0.95)),
 url("https://images.unsplash.com/photo-1542751371-adc38448a05e");
 
 background-size:cover;
@@ -28,7 +30,7 @@ background-attachment:fixed;
 box-sizing:border-box;
 }
 
-/* NAV */
+/* ===== NAV ===== */
 
 nav{
 position:fixed;
@@ -39,8 +41,8 @@ padding:20px 8%;
 display:flex;
 gap:30px;
 
-background:rgba(0,0,0,0.7);
-backdrop-filter:blur(18px);
+background:rgba(0,0,0,0.75);
+backdrop-filter:blur(20px);
 
 z-index:1000;
 }
@@ -51,13 +53,13 @@ text-decoration:none;
 font-weight:bold;
 }
 
-/* SECTION */
+/* ===== SECTION ===== */
 
 section{
 padding:140px 8%;
 }
 
-/* TITLE */
+/* ===== TITLE ===== */
 
 .about-title{
 text-align:center;
@@ -70,7 +72,7 @@ color:transparent;
 margin-bottom:70px;
 }
 
-/* ⭐ ABOUT BOX (SAFE GLASS) */
+/* ===== ABOUT BOX ===== */
 
 .about-box{
 max-width:900px;
@@ -78,20 +80,19 @@ margin:auto;
 padding:60px;
 border-radius:25px;
 
-/* Läpinäkyvä pohja */
+/* Soft glass */
 background:rgba(0,0,0,0.55);
-
-/* Blur glass effect */
 backdrop-filter:blur(20px);
 
-line-height:1.7;
-
-/* Soft shadow */
+/* Soft edge feel (ei fadea tekstille) */
 box-shadow:
-0 30px 70px rgba(0,0,0,0.5);
+0 35px 80px rgba(0,0,0,0.55),
+0 0 0 1px rgba(255,255,255,0.03);
+
+line-height:1.7;
 }
 
-/* TEAM GRID */
+/* ===== TEAM GRID ===== */
 
 .team-grid{
 margin-top:120px;
@@ -101,19 +102,20 @@ grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
 gap:40px;
 }
 
-/* ⭐ TEAM CARDS */
+/* ===== TEAM CARD ===== */
 
 .team-card{
 text-align:center;
 padding:30px;
 
 background:rgba(0,0,0,0.55);
-backdrop-filter:blur(15px);
+backdrop-filter:blur(18px);
 
 border-radius:20px;
 
 box-shadow:
-0 20px 40px rgba(0,0,0,0.5);
+0 20px 40px rgba(0,0,0,0.5),
+0 0 0 1px rgba(255,255,255,0.03);
 
 transition:0.4s ease;
 }
@@ -130,13 +132,18 @@ border-radius:50%;
 margin-bottom:20px;
 }
 
-/* FOOTER */
+/* ===== FOOTER ===== */
 
 footer{
 padding:90px;
-background:linear-gradient(#0a0402,#120603);
+background:linear-gradient(#0a0a0a,#111);
 margin-top:140px;
 text-align:center;
+}
+
+footer a{
+color:white;
+text-decoration:none;
 }
 
 </style>
@@ -145,12 +152,10 @@ text-align:center;
 <body>
 
 <nav>
-<a href="index.html">Home</a>
-<a href="news.html">News</a>
-<a href="streamers.html">Creators</a>
-<a href="creatorofthemonth.html">Creator of the Month</a>
-<a href="about.html">About Us</a>
-<a href="member.html">Member</a>
+<a href="#">Home</a>
+<a href="#">News</a>
+<a href="#">Creators</a>
+<a href="#">About</a>
 </nav>
 
 <section>
@@ -159,11 +164,10 @@ text-align:center;
 Mikä on CREATORS Hype Hub
 </h2>
 
-
 <div class="about-box">
 
 <p>
-Creators Hype Hub on moderni sisällöntuottajien alustasta riippumaton yhteisöalusta, joka yhdistää sisällöntuottajat, katsojat ja seuraajat sekä tukee kasvumahdollisuuksia. Tavoitteenamme on auttaa pienempiä sekä suurempia sisällöntuottajia löytämään yleisönsä, lisäämään näkyvyyttään ja rakentamaan pitkäkestoisia yhteisöjä sisältönsä ympärille.
+Creators Hype Hub on moderni sisällöntuottajien alustasta riippumaton yhteisöalusta, joka yhdistää sisällöntuottajat, katsojat ja seuraajat sekä tukee kasvumahdollisuuksia.
 
 <br><br>
 
@@ -171,19 +175,14 @@ Emme ole vain hype alusta — Olemme mahdollisuus pitkäaikaiseen yhteistyöhön
 
 <br><br>
 
--Connecting creators with opportunity
-
-<br><br>
-
 Tulossa:
 
-<ul style="line-height:2; text-align:left; max-width:600px; margin:auto;">
+<ul>
 <li>Members only</li>
 <li>Leaderboard</li>
 <li>Spotlight</li>
 <li>Yhteistyömahdollisuudet</li>
 <li>Sponsorointi mahdollisuuksia</li>
-<li>yms..</li>
 </ul>
 
 </p>
@@ -227,19 +226,17 @@ Tiimimme
 
 <p>
 Email:
-<a href="mailto:your@email.com" style="color:white;text-decoration:none;">
-your@email.com
-</a>
+<a href="mailto:your@email.com">your@email.com</a>
 </p>
 
 <div style="margin-top:25px;display:flex;justify-content:center;gap:30px">
 
-<a href="#"><i class="fab fa-instagram" style="color:white;font-size:28px;"></i></a>
-<a href="#"><i class="fab fa-x-twitter" style="color:white;font-size:28px;"></i></a>
-<a href="#"><i class="fab fa-twitch" style="color:white;font-size:28px;"></i></a>
-<a href="#"><i class="fab fa-facebook" style="color:white;font-size:28px;"></i></a>
-<a href="#"><i class="fab fa-tiktok" style="color:white;font-size:28px;"></i></a>
-<a href="#"><i class="fab fa-youtube" style="color:white;font-size:28px;"></i></a>
+<a href="#"><i class="fab fa-instagram" style="font-size:28px;"></i></a>
+<a href="#"><i class="fab fa-x-twitter" style="font-size:28px;"></i></a>
+<a href="#"><i class="fab fa-twitch" style="font-size:28px;"></i></a>
+<a href="#"><i class="fab fa-facebook" style="font-size:28px;"></i></a>
+<a href="#"><i class="fab fa-tiktok" style="font-size:28px;"></i></a>
+<a href="#"><i class="fab fa-youtube" style="font-size:28px;"></i></a>
 
 </div>
 
