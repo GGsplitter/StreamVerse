@@ -5,19 +5,22 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>About</title>
 
-<!-- FontAwesome (social icons) -->
+<!-- FontAwesome -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<!-- Google Font -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
 
 <style>
 
 body{
 margin:0;
-font-family:Arial;
+font-family:'Poppins', Arial, sans-serif;
 color:white;
 
-/* ⭐ SAMA TAUSTA KUIN INDEX */
+/* ⭐ Sama tumma hype-tausta */
 background:
-linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.9)),
+linear-gradient(rgba(0,0,0,0.55),rgba(0,0,0,0.9)),
 url("https://images.unsplash.com/photo-1542751371-adc38448a05e");
 
 background-size:cover;
@@ -31,18 +34,18 @@ nav{
 position:fixed;
 top:0;
 width:100%;
-padding:20px 8%;
+padding:18px 8%;
 display:flex;
 gap:30px;
-background:rgba(0,0,0,.7);
-backdrop-filter:blur(20px);
+background:rgba(0,0,0,.65);
+backdrop-filter:blur(15px);
 z-index:1000;
 }
 
 nav a{
 color:white;
 text-decoration:none;
-font-weight:bold;
+font-weight:600;
 }
 
 /* SECTION */
@@ -55,10 +58,13 @@ padding:140px 8%;
 
 .about-title{
 text-align:center;
-font-size:50px;
-background:linear-gradient(45deg,#ff0055,#7000ff);
+font-size:52px;
+font-weight:700;
+
+background:linear-gradient(45deg,#ff2d6c,#6a00ff);
 -webkit-background-clip:text;
 color:transparent;
+
 margin-bottom:50px;
 }
 
@@ -67,18 +73,24 @@ margin-bottom:50px;
 .about-box{
 max-width:700px;
 margin:auto;
-background:rgba(0,0,0,0.75);
-padding:50px;
-border-radius:20px;
-line-height:1.6;
+
+background:rgba(0,0,0,0.7);
+padding:55px;
+border-radius:25px;
+
+backdrop-filter:blur(15px);
+box-shadow:0 15px 40px rgba(0,0,0,0.5);
+
+line-height:1.7;
+font-weight:300;
 }
 
 /* FOOTER */
 
 footer{
-padding:80px;
-background:#0a0a0a;
-margin-top:120px;
+padding:90px;
+background:linear-gradient(#0a0402,#1a0805);
+margin-top:140px;
 text-align:center;
 }
 
@@ -104,13 +116,14 @@ Mikä on CREATORS Hype Hub
 
 <div class="about-box">
 <p>
-Creators Hype Hub on moderni sisällöntuottajien alustasta riippumaton yhteisöalusta, joka yhdistää sisällöntuottajat, katsojat ja seuraajat sekä tukee kasvumahdollisuuksia. Tavoitteenamme on auttaa pienempiä sekä suurempia sisällöntuottajia löytämään yleisönsä, lisäämään näkyvyyttään ja rakentamaan pitkäkestoisia yhteisöjä sisältönsä ympärille. 
+Creators Hype Hub on moderni sisällöntuottajien alustasta riippumaton yhteisöalusta, joka yhdistää sisällöntuottajat, katsojat ja seuraajat sekä tukee kasvumahdollisuuksia. Tavoitteenamme on auttaa pienempiä sekä suurempia sisällöntuottajia löytämään yleisönsä, lisäämään näkyvyyttään ja rakentamaan pitkäkestoisia yhteisöjä sisältönsä ympärille.
 
 <br><br>
 Emme ole vain hype alusta — Olemme mahdollisuus pitkäaikaiseen yhteistyöhön.
 <br><br>
+
 -Connecting creators with opportunity
-<br><br>
+
 <br><br>
 
 Tulossa:
@@ -135,8 +148,7 @@ Tulossa:
 
 <p style="font-size:16px;">
 Email:
-<a href="mailto:your@email.com"
-style="color:white;text-decoration:none;font-size:16px;">
+<a href="mailto:your@email.com" style="color:white;text-decoration:none;">
 your@email.com
 </a>
 </p>
@@ -177,11 +189,3 @@ your@email.com
 
 </body>
 </html>
-
-
-
-
-
-
-
-
