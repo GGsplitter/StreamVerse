@@ -70,7 +70,7 @@ grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
 gap:16px;
 }
 
-/* CARD — TIIVISTETTY */
+/* CARD */
 
 .card{
 background:#111;
@@ -85,10 +85,32 @@ flex-direction:column;
 align-items:center;
 
 min-height:150px;
+
+position:relative;
+overflow:hidden;
 }
 
 .card:hover{
 transform:translateY(-6px);
+}
+
+/* THUMBNAIL PREVIEW */
+
+.thumb-preview{
+position:absolute;
+top:0;
+left:0;
+width:100%;
+height:100%;
+object-fit:cover;
+opacity:0;
+transition:.35s ease;
+pointer-events:none;
+}
+
+.card:hover .thumb-preview{
+opacity:.35;
+transform:scale(1.1);
 }
 
 /* CARD TOP */
@@ -99,6 +121,7 @@ justify-content:space-between;
 width:100%;
 font-size:13px;
 opacity:.9;
+z-index:2;
 }
 
 /* PROFILE */
@@ -109,6 +132,7 @@ flex-direction:column;
 align-items:center;
 width:100%;
 margin-top:8px;
+z-index:2;
 }
 
 .card img.profile{
@@ -142,7 +166,7 @@ box-shadow:
 0 0 25px rgba(0,255,120,.4);
 }
 
-/* OFFLINE CARD */
+/* OFFLINE */
 
 .card:not(.live){
 border:1px solid rgba(255,0,80,.3);
@@ -157,7 +181,7 @@ box-shadow:
 0 0 80px rgba(255,0,80,.35);
 }
 
-/* STATUS / INFO */
+/* STATUS TEXT */
 
 .viewer{
 font-size:12px;
@@ -165,6 +189,7 @@ opacity:.85;
 text-align:center;
 margin-top:6px;
 white-space:pre-line;
+z-index:2;
 }
 
 /* FOOTER */
@@ -289,18 +314,22 @@ if(item.stream){
 card.classList.add("live");
 }
 
+/* Twitch thumbnail preview */
+const thumbnailUrl = item.stream
+? `https://static-cdn.jtvnw.net/previews-ttv/live_user_${item.channel.toLowerCase()}-320x180.jpg`
+: null;
+
 card.innerHTML = `
+
+${thumbnailUrl ? `
+<img src="${thumbnailUrl}" class="thumb-preview">
+` : ""}
 
 ${item.stream ? `
 <div class="card-top">
 
-<div>
-🟢 LIVE
-</div>
-
-<div>
-👁 ${item.stream.viewer_count || 0}
-</div>
+<div>🟢 LIVE</div>
+<div>👁 ${item.stream.viewer_count || 0}</div>
 
 </div>
 ` : ""}
