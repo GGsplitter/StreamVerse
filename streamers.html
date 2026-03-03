@@ -66,47 +66,49 @@ margin-bottom:60px;
 max-width:1200px;
 margin:auto;
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-gap:25px;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:20px;
 }
 
 /* CARD */
 
 .card{
 background:#111;
-border-radius:18px;
-padding:16px;
+border-radius:16px;
+padding:14px;
 transition:.3s;
 text-decoration:none;
 color:white;
 
 display:flex;
 flex-direction:column;
+align-items:center;
 
-min-height:200px;
+min-height:180px;
 }
 
 .card:hover{
 transform:translateY(-8px);
 }
 
-/* CARD TOP ROW */
+/* CARD TOP */
 
 .card-top{
 display:flex;
 justify-content:space-between;
-align-items:center;
 width:100%;
+font-size:14px;
+opacity:.9;
 }
 
-/* PROFILE + NAME */
+/* PROFILE */
 
 .card-center{
 display:flex;
 flex-direction:column;
 align-items:center;
 width:100%;
-margin-top:10px;
+margin-top:12px;
 }
 
 .card img.profile{
@@ -117,7 +119,7 @@ object-fit:cover;
 border:3px solid #111;
 }
 
-/* LIVE CARD */
+/* LIVE */
 
 .card.live{
 border:1px solid #00ff7a;
@@ -148,14 +150,14 @@ box-shadow:
 0 0 80px rgba(255,0,80,.35);
 }
 
-/* VIEWER TEXT */
+/* VIEWER */
 
 .viewer{
-font-size:14px;
+font-size:13px;
 opacity:.85;
-white-space:pre-line;
 text-align:center;
 margin-top:8px;
+white-space:pre-line;
 }
 
 /* FOOTER */
@@ -263,13 +265,6 @@ const profileImage =
 item.user?.profile_image_url ||
 "https://placehold.co/110x110";
 
-const thumbnail =
-item.stream
-? item.stream.thumbnail_url
-.replace("{width}", "320")
-.replace("{height}", "180")
-: null;
-
 if(item.stream){
 card.classList.add("live");
 }
@@ -307,11 +302,6 @@ ${item.stream ?
 </div>
 
 </div>
-
-${thumbnail ? `
-<img src="${thumbnail}"
-style="width:100%;height:120px;border-radius:12px;object-fit:cover;margin-top:12px;">
-` : ""}
 
 `;
 
