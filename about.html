@@ -68,35 +68,36 @@ color:transparent;
 margin-bottom:70px;
 }
 
-/* ⭐ ABOUT BOX — FULL FADE EVERY DIRECTION */
+/* ⭐ ABOUT BOX FADE EVERY DIRECTION */
 
 .about-box{
 max-width:900px;
 margin:auto;
-
 padding:60px;
 border-radius:25px;
 
-/* Dark base layer */
-background:
-linear-gradient(
-180deg,
-rgba(0,0,0,0.85) 0%,
-rgba(0,0,0,0.70) 50%,
-rgba(0,0,0,0.85) 100%
-);
+position:relative;
+overflow:hidden;
 
-/* Fade mask effect */
-mask-image:
-radial-gradient(circle at center, black 70%, transparent 100%);
--webkit-mask-image:
-radial-gradient(circle at center, black 70%, transparent 100%);
-
+background:rgba(0,0,0,0.65);
 backdrop-filter:blur(20px);
 
 line-height:1.7;
 
 box-shadow:0 20px 60px rgba(0,0,0,0.6);
+}
+
+.about-box::before{
+content:"";
+position:absolute;
+inset:-180px;
+
+background:
+radial-gradient(circle at center,
+rgba(0,0,0,0.95),
+rgba(0,0,0,0.0) 70%);
+
+pointer-events:none;
 }
 
 /* TEAM GRID */
@@ -115,18 +116,10 @@ gap:40px;
 text-align:center;
 padding:30px;
 
-background:
-linear-gradient(
-180deg,
-rgba(0,0,0,0.75),
-rgba(0,0,0,0.5)
-);
+position:relative;
+overflow:hidden;
 
-mask-image:
-radial-gradient(circle at center, black 75%, transparent 100%);
--webkit-mask-image:
-radial-gradient(circle at center, black 75%, transparent 100%);
-
+background:rgba(0,0,0,0.6);
 backdrop-filter:blur(15px);
 
 border-radius:20px;
@@ -134,6 +127,19 @@ border-radius:20px;
 box-shadow:0 15px 40px rgba(0,0,0,0.5);
 
 transition:0.4s ease;
+}
+
+.team-card::before{
+content:"";
+position:absolute;
+inset:-150px;
+
+background:
+radial-gradient(circle at center,
+rgba(0,0,0,0.9),
+rgba(0,0,0,0) 75%);
+
+pointer-events:none;
 }
 
 .team-card:hover{
@@ -145,7 +151,6 @@ width:140px;
 height:140px;
 object-fit:cover;
 border-radius:50%;
-
 margin-bottom:20px;
 }
 
