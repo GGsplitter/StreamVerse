@@ -23,11 +23,7 @@ background-position:center;
 background-attachment:fixed;
 }
 
-*{
-box-sizing:border-box;
-}
-
-/* ⭐ SINUN NAV (PALAUTETTU TÄYSIN) */
+/* NAV */
 
 nav{
 position:fixed;
@@ -64,37 +60,40 @@ color:transparent;
 margin-bottom:70px;
 }
 
-/* ⭐ ABOUT BOX (FADE LISÄTTY — EI SISÄLTÖÄ POISTETTU) */
+/* ⭐ ABOUT BOX (Fade lisätty — EI MITÄÄN POISTETTU) */
 
 .about-box{
 max-width:900px;
 margin:auto;
 padding:60px;
 border-radius:25px;
-position:relative;
 
-/* sinun alkuperäinen tyyli */
+position:relative;
+overflow:hidden;
+
 background:rgba(0,0,0,0.55);
 backdrop-filter:blur(25px);
 
 line-height:1.7;
 
-/* ei reunoja */
 box-shadow:0 30px 70px rgba(0,0,0,0.5);
 }
 
-/* FADE REUNAT — VAIN VISUAALINEN KERROS */
+/* ⭐ FADE REUNA — VAIN VISUAALINEN LISÄYS */
+
 .about-box::after{
 content:"";
 position:absolute;
 inset:0;
 pointer-events:none;
+
 border-radius:25px;
 
-background:
-radial-gradient(circle at center,
-rgba(0,0,0,0) 60%,
-rgba(0,0,0,0.65) 100%);
+background:radial-gradient(
+circle at center,
+rgba(0,0,0,0) 55%,
+rgba(0,0,0,0.65) 100%
+);
 }
 
 /* TEAM GRID */
@@ -105,8 +104,6 @@ display:grid;
 grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
 gap:40px;
 }
-
-/* TEAM CARD */
 
 .team-card{
 text-align:center;
@@ -141,6 +138,11 @@ padding:90px;
 background:linear-gradient(#0a0402,#120603);
 margin-top:140px;
 text-align:center;
+}
+
+footer a{
+color:white;
+text-decoration:none;
 }
 
 </style>
@@ -223,9 +225,7 @@ Tiimimme
 
 <p>
 Email:
-<a href="mailto:your@email.com" style="color:white;text-decoration:none;">
-your@email.com
-</a>
+<a href="mailto:your@email.com">your@email.com</a>
 </p>
 
 </footer>
