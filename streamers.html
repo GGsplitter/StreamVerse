@@ -260,20 +260,20 @@ const profileImage =
 item.user?.profile_image_url ||
 "https://placehold.co/110x110";
 
-if(item.stream){
-card.classList.add("live");
-}
-
+// Thumbnail vain jos live
 const thumbnail =
 item.stream
 ? item.stream.thumbnail_url
 .replace("{width}", "320")
 .replace("{height}", "180")
-: "https://placehold.co/320x180";
+: null;
 
 card.innerHTML = `
+
+${thumbnail ? `
 <img src="${thumbnail}"
 style="width:100%;height:160px;border-radius:14px;object-fit:cover;">
+` : ""}
 
 <img src="${profileImage}"
 style="width:80px;height:80px;border-radius:50%;
@@ -306,6 +306,7 @@ document.addEventListener("DOMContentLoaded",loadData);
 
 </body>
 </html>
+
 
 
 
