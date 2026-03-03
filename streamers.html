@@ -264,14 +264,30 @@ if(item.stream){
 card.classList.add("live");
 }
 
+const thumbnail =
+item.stream
+? item.stream.thumbnail_url
+.replace("{width}", "320")
+.replace("{height}", "180")
+: "https://placehold.co/320x180";
+
 card.innerHTML = `
-<img src="${profileImage}">
+<img src="${thumbnail}"
+style="width:100%;height:160px;border-radius:14px;object-fit:cover;">
+
+<img src="${profileImage}"
+style="width:80px;height:80px;border-radius:50%;
+margin-top:-40px;
+border:4px solid #111;
+background:#111;">
+
 <h3>${item.channel}</h3>
+
 <div class="viewer">
 ${item.stream ?
-`🟢 LIVE
-👁 ${item.stream.viewer_count}
-🎮 ${item.stream.game_name || ""}
+`🟢 LIVE<br>
+👁 ${item.stream.viewer_count}<br>
+🎮 ${item.stream.game_name || ""}<br>
 📺 ${item.stream.title || ""}`
 :
 `🔴 OFFLINE`}
@@ -290,6 +306,7 @@ document.addEventListener("DOMContentLoaded",loadData);
 
 </body>
 </html>
+
 
 
 
