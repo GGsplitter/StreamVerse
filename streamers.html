@@ -91,6 +91,16 @@ min-height:180px;
 transform:translateY(-8px);
 }
 
+/* CARD TOP */
+
+.card-top{
+display:flex;
+justify-content:space-between;
+width:100%;
+font-size:14px;
+opacity:.9;
+}
+
 /* PROFILE */
 
 .card-center{
@@ -274,6 +284,20 @@ card.classList.add("live");
 
 card.innerHTML = `
 
+${item.stream ? `
+<div class="card-top">
+
+<div>
+🟢 LIVE
+</div>
+
+<div>
+👁 ${item.stream.viewer_count || 0}
+</div>
+
+</div>
+` : ""}
+
 <div class="card-center">
 
 <img src="${profileImage}" class="profile">
@@ -284,10 +308,8 @@ card.innerHTML = `
 
 ${item.stream ?
 `
-🟢 LIVE  
 🎮 ${item.stream.game_name || ""}  
-📺 ${item.stream.title || ""}  
-👁 ${item.stream.viewer_count || 0} katsojaa
+📺 ${item.stream.title || ""}
 `
 :
 `
