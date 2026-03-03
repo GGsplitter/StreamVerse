@@ -14,10 +14,8 @@ margin:0;
 font-family:Arial;
 color:white;
 
-/* ⭐ Premium valo-tausta */
 background:
-radial-gradient(circle at top,#22001a,transparent 60%),
-linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.95)),
+linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.9)),
 url("https://images.unsplash.com/photo-1542751371-adc38448a05e");
 
 background-size:cover;
@@ -36,11 +34,12 @@ position:fixed;
 top:0;
 width:100%;
 padding:20px 8%;
+
 display:flex;
 gap:30px;
 
-background:rgba(0,0,0,.7);
-backdrop-filter:blur(20px);
+background:rgba(0,0,0,0.7);
+backdrop-filter:blur(18px);
 
 z-index:1000;
 }
@@ -70,7 +69,7 @@ color:transparent;
 margin-bottom:70px;
 }
 
-/* ESITTELY BOX */
+/* ESITTELY BOX — FADE EVERY DIRECTION */
 
 .about-box{
 max-width:900px;
@@ -79,33 +78,19 @@ margin:auto;
 padding:60px;
 border-radius:25px;
 
-/* ⭐ Häivytys taustaan */
-background:linear-gradient(
+background:
+linear-gradient(
 180deg,
-rgba(0,0,0,0.85),
-rgba(0,0,0,0.6)
+rgba(0,0,0,0.8) 0%,
+rgba(0,0,0,0.7) 50%,
+rgba(0,0,0,0.8) 100%
 );
 
 backdrop-filter:blur(18px);
 
 line-height:1.9;
 
-box-shadow:0 30px 70px rgba(0,0,0,0.6);
-
-position:relative;
-}
-
-.about-box::after{
-content:"";
-position:absolute;
-inset:0;
-border-radius:25px;
-
-background:
-radial-gradient(circle at top left, rgba(255,0,100,0.15), transparent 60%),
-radial-gradient(circle at bottom right, rgba(120,0,255,0.15), transparent 60%);
-
-pointer-events:none;
+box-shadow:0 20px 60px rgba(0,0,0,0.6);
 }
 
 /* TEAM GRID */
@@ -122,10 +107,11 @@ gap:40px;
 text-align:center;
 padding:30px;
 
-background:linear-gradient(
+background:
+linear-gradient(
 180deg,
-rgba(0,0,0,0.75),
-rgba(0,0,0,0.45)
+rgba(0,0,0,0.7),
+rgba(0,0,0,0.5)
 );
 
 backdrop-filter:blur(15px);
@@ -134,26 +120,11 @@ border-radius:20px;
 
 box-shadow:0 15px 40px rgba(0,0,0,0.5);
 
-transition:0.5s ease;
-
-position:relative;
+transition:0.4s ease;
 }
 
 .team-card:hover{
-transform:translateY(-12px) scale(1.03);
-box-shadow:0 25px 60px rgba(0,0,0,0.8);
-}
-
-.team-card::after{
-content:"";
-position:absolute;
-inset:0;
-border-radius:20px;
-
-background:
-radial-gradient(circle at top, rgba(255,0,120,0.12), transparent 70%);
-
-pointer-events:none;
+transform:translateY(-8px);
 }
 
 .team-card img{
@@ -193,7 +164,6 @@ text-align:center;
 Mikä on CREATORS Hype Hub
 </h2>
 
-
 <div class="about-box">
 
 <p>
@@ -228,7 +198,6 @@ Tulossa:
 <h2 style="text-align:center;margin-top:120px;margin-bottom:60px;">
 Tiimimme
 </h2>
-
 
 <div class="team-grid">
 
