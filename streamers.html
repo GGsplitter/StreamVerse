@@ -221,6 +221,9 @@ const streams = data.streams || [];
 
 membersDiv.innerHTML = "";
 
+const cards = [];
+
+// Kerää data
 channels.forEach(channel=>{
 
 const user = users.find(
@@ -231,29 +234,45 @@ const stream = streams.find(
 s => s.user_login.toLowerCase() === channel.toLowerCase()
 );
 
+cards.push({
+channel,
+user,
+stream
+});
+
+});
+
+// Live ensin
+cards.sort((a,b)=>{
+return (b.stream ? 1 : 0) - (a.stream ? 1 : 0);
+});
+
+// Render
+cards.forEach(item=>{
+
 const card = document.createElement("a");
 
 card.className="card";
-card.href=`https://twitch.tv/${channel}`;
+card.href=`https://twitch.tv/${item.channel}`;
 card.target="_blank";
 
 const profileImage =
-user?.profile_image_url ||
+item.user?.profile_image_url ||
 "https://placehold.co/110x110";
 
-if(stream){
+if(item.stream){
 card.classList.add("live");
 }
 
 card.innerHTML = `
 <img src="${profileImage}">
-<h3>${channel}</h3>
+<h3>${item.channel}</h3>
 <div class="viewer">
-${stream ?
+${item.stream ?
 `🟢 LIVE
-👁 ${stream.viewer_count}
-🎮 ${stream.game_name || ""}
-📺 ${stream.title || ""}`
+👁 ${item.stream.viewer_count}
+🎮 ${item.stream.game_name || ""}
+📺 ${item.stream.title || ""}`
 :
 `🔴 OFFLINE`}
 </div>
@@ -263,14 +282,13 @@ membersDiv.appendChild(card);
 
 });
 
-}
-
 document.addEventListener("DOMContentLoaded",loadData);
 
 </script>
 
 </body>
 </html>
+
 
 
 
