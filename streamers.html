@@ -209,7 +209,9 @@ const channels = [
 async function loadData(){
 
 const membersDiv = document.getElementById("members");
+membersDiv.innerHTML = "";
 
+// Haetaan API data
 const res = await fetch(
 "/api/twitchuser?logins=" + channels.join(",")
 );
@@ -219,11 +221,9 @@ const data = await res.json();
 const users = data.users || [];
 const streams = data.streams || [];
 
-membersDiv.innerHTML = "";
-
+// Rakennetaan datalist
 const cards = [];
 
-// Kerää data
 channels.forEach(channel=>{
 
 const user = users.find(
@@ -242,12 +242,12 @@ stream
 
 });
 
-// Live ensin
+// LIVE ensin
 cards.sort((a,b)=>{
 return (b.stream ? 1 : 0) - (a.stream ? 1 : 0);
 });
 
-// Render
+// Renderöi
 cards.forEach(item=>{
 
 const card = document.createElement("a");
@@ -282,12 +282,15 @@ membersDiv.appendChild(card);
 
 });
 
+}
+
 document.addEventListener("DOMContentLoaded",loadData);
 
 </script>
 
 </body>
 </html>
+
 
 
 
