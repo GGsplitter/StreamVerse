@@ -27,7 +27,7 @@ background-attachment:fixed;
 box-sizing:border-box;
 }
 
-/* NAV */
+/* ⭐ SINUN NAV (PALAUTETTU TÄYSIN) */
 
 nav{
 position:fixed;
@@ -36,10 +36,8 @@ width:100%;
 padding:20px 8%;
 display:flex;
 gap:30px;
-
-background:rgba(0,0,0,0.7);
-backdrop-filter:blur(18px);
-
+background:rgba(0,0,0,.7);
+backdrop-filter:blur(20px);
 z-index:1000;
 }
 
@@ -60,42 +58,37 @@ padding:140px 8%;
 .about-title{
 text-align:center;
 font-size:50px;
-
 background:linear-gradient(45deg,#ff0055,#7000ff);
 -webkit-background-clip:text;
 color:transparent;
-
 margin-bottom:70px;
 }
 
-/* ⭐ ABOUT BOX (REUNA FADE — EI TEKSTIIN VAIKUTUSTA) */
+/* ⭐ ABOUT BOX (FADE LISÄTTY — EI SISÄLTÖÄ POISTETTU) */
 
 .about-box{
 max-width:900px;
 margin:auto;
 padding:60px;
 border-radius:25px;
-
 position:relative;
 
-/* Sinun alkuperäinen tyyli säilyy */
+/* sinun alkuperäinen tyyli */
 background:rgba(0,0,0,0.55);
 backdrop-filter:blur(25px);
 
 line-height:1.7;
 
-/* Pieni varjo */
+/* ei reunoja */
 box-shadow:0 30px 70px rgba(0,0,0,0.5);
 }
 
-/* ⭐ FADE KEHYS — VAIN REUNAT */
-
+/* FADE REUNAT — VAIN VISUAALINEN KERROS */
 .about-box::after{
 content:"";
 position:absolute;
 inset:0;
 pointer-events:none;
-
 border-radius:25px;
 
 background:
@@ -108,19 +101,16 @@ rgba(0,0,0,0.65) 100%);
 
 .team-grid{
 margin-top:120px;
-
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
 gap:40px;
 }
 
-/* TEAM CARDS */
+/* TEAM CARD */
 
 .team-card{
 text-align:center;
 padding:30px;
-
-position:relative;
 
 background:rgba(0,0,0,0.55);
 backdrop-filter:blur(20px);
@@ -148,14 +138,9 @@ margin-bottom:20px;
 
 footer{
 padding:90px;
-background:linear-gradient(#0a0a0a,#111);
+background:linear-gradient(#0a0402,#120603);
 margin-top:140px;
 text-align:center;
-}
-
-footer a{
-color:white;
-text-decoration:none;
 }
 
 </style>
@@ -164,10 +149,12 @@ text-decoration:none;
 <body>
 
 <nav>
-<a href="#">Home</a>
-<a href="#">News</a>
-<a href="#">Creators</a>
-<a href="#">About</a>
+<a href="index.html">Home</a>
+<a href="news.html">News</a>
+<a href="streamers.html">Creators</a>
+<a href="creatorofthemonth.html">Creator of the Month</a>
+<a href="about.html">About Us</a>
+<a href="member.html">Member</a>
 </nav>
 
 <section>
@@ -200,7 +187,6 @@ Tulossa:
 </p>
 
 </div>
-
 
 <h2 style="text-align:center;margin-top:120px;margin-bottom:60px;">
 Tiimimme
@@ -237,7 +223,9 @@ Tiimimme
 
 <p>
 Email:
-<a href="mailto:your@email.com">your@email.com</a>
+<a href="mailto:your@email.com" style="color:white;text-decoration:none;">
+your@email.com
+</a>
 </p>
 
 </footer>
