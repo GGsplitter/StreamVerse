@@ -79,6 +79,89 @@ overflow:hidden;
 transform:translateY(-6px);
 }
 
+.thumb-preview{
+position:absolute;
+top:0;
+left:0;
+width:100%;
+height:100%;
+object-fit:cover;
+opacity:0;
+transition:.35s ease;
+pointer-events:none;
+}
+
+.card:hover .thumb-preview{
+opacity:.35;
+transform:scale(1.1);
+}
+
+.card-top{
+display:flex;
+justify-content:space-between;
+width:100%;
+font-size:13px;
+opacity:.9;
+z-index:2;
+}
+
+.card-center{
+display:flex;
+flex-direction:column;
+align-items:center;
+width:100%;
+margin-top:8px;
+z-index:2;
+}
+
+.card img.profile{
+width:60px;
+height:60px;
+border-radius:50%;
+object-fit:cover;
+border:2px solid #111;
+}
+
+.card h3{
+margin:6px 0;
+font-size:16px;
+}
+
+.card.live{
+border:1px solid #00ff7a;
+box-shadow:
+0 0 20px rgba(0,255,120,.6),
+0 0 60px rgba(0,255,120,.25);
+}
+
+.card.live .profile{
+border:2px solid #00ff7a;
+box-shadow:
+0 0 12px rgba(0,255,120,.9),
+0 0 25px rgba(0,255,120,.4);
+}
+
+.card:not(.live){
+border:1px solid rgba(255,0,80,.3);
+box-shadow:
+0 0 15px rgba(255,0,80,.15),
+0 0 40px rgba(255,0,80,.1);
+}
+
+.card:not(.live):hover{
+box-shadow:
+0 0 25px rgba(255,0,80,.6),
+0 0 80px rgba(255,0,80,.35);
+}
+
+.viewer{
+font-size:12px;
+opacity:.85;
+text-align:center;
+margin-top:6px;
+white-space:pre-line;
+}
+
 footer{
 padding:80px;
 background:#0a0a0a;
@@ -106,11 +189,18 @@ text-align:center;
 
 <script>
 
-/* NAVBAR LOAD ONLY */
+/* ONLY NAV LOADER */
 fetch("navbar.html")
 .then(r => r.text())
 .then(data => {
 document.getElementById("navbar").innerHTML = data;
+});
+
+/* FOOTER LOADER */
+fetch("footer.html")
+.then(r => r.text())
+.then(data => {
+document.getElementById("footer").innerHTML = data;
 });
 
 const channels = [
@@ -191,6 +281,13 @@ card.innerHTML = `
 
 ${thumbnailUrl ? `
 <img src="${thumbnailUrl}" class="thumb-preview">
+` : ""}
+
+${item.stream ? `
+<div class="card-top">
+<div>🟢 LIVE</div>
+<div>👁 ${item.stream.viewer_count || 0}</div>
+</div>
 ` : ""}
 
 <div class="card-center">
