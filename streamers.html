@@ -23,14 +23,26 @@ url("https://images.unsplash.com/photo-1542751371-adc38448a05e");
 background-size:cover;
 background-position:center;
 background-attachment:fixed;
-
-min-height:100vh;
-display:flex;
-flex-direction:column;
 }
 
-main{
-flex:1;
+/* NAV */
+
+nav{
+position:fixed;
+top:0;
+width:100%;
+padding:20px 8%;
+display:flex;
+gap:30px;
+background:rgba(0,0,0,0.7);
+backdrop-filter:blur(20px);
+z-index:1000;
+}
+
+nav a{
+color:white;
+text-decoration:none;
+font-weight:bold;
 }
 
 /* CONTENT */
@@ -82,6 +94,8 @@ overflow:hidden;
 transform:translateY(-6px);
 }
 
+/* THUMBNAIL PREVIEW */
+
 .thumb-preview{
 position:absolute;
 top:0;
@@ -99,6 +113,85 @@ opacity:.35;
 transform:scale(1.1);
 }
 
+/* CARD TOP */
+
+.card-top{
+display:flex;
+justify-content:space-between;
+width:100%;
+font-size:13px;
+opacity:.9;
+z-index:2;
+}
+
+/* PROFILE */
+
+.card-center{
+display:flex;
+flex-direction:column;
+align-items:center;
+width:100%;
+margin-top:8px;
+z-index:2;
+}
+
+.card img.profile{
+width:60px;
+height:60px;
+border-radius:50%;
+object-fit:cover;
+border:2px solid #111;
+}
+
+/* NIMI */
+
+.card h3{
+margin:6px 0;
+font-size:16px;
+}
+
+/* LIVE CARD */
+
+.card.live{
+border:1px solid #00ff7a;
+box-shadow:
+0 0 20px rgba(0,255,120,.6),
+0 0 60px rgba(0,255,120,.25);
+}
+
+.card.live .profile{
+border:2px solid #00ff7a;
+box-shadow:
+0 0 12px rgba(0,255,120,.9),
+0 0 25px rgba(0,255,120,.4);
+}
+
+/* OFFLINE */
+
+.card:not(.live){
+border:1px solid rgba(255,0,80,.3);
+box-shadow:
+0 0 15px rgba(255,0,80,.15),
+0 0 40px rgba(255,0,80,.1);
+}
+
+.card:not(.live):hover{
+box-shadow:
+0 0 25px rgba(255,0,80,.6),
+0 0 80px rgba(255,0,80,.35);
+}
+
+/* STATUS TEXT */
+
+.viewer{
+font-size:12px;
+opacity:.85;
+text-align:center;
+margin-top:6px;
+white-space:pre-line;
+z-index:2;
+}
+
 /* FOOTER */
 
 footer{
@@ -113,8 +206,13 @@ text-align:center;
 
 <body>
 
-<!-- ⭐ NAVBAR -->
-<div id="navbar"></div>
+<nav>
+<a href="index.html">Home</a>
+<a href="news.html">News</a>
+<a href="streamers.html">Creators</a>
+<a href="about.html">About</a>
+<a href="member.html">Member</a>
+</nav>
 
 <section>
 
@@ -124,24 +222,36 @@ text-align:center;
 
 </section>
 
-<!-- ⭐ FOOTER -->
-<div id="footer"></div>
+<footer>
+
+<h2>Contact & Socials</h2>
+
+<p style="font-size:16px;">
+Email:
+<a href="mailto:your@email.com"
+style="color:white;text-decoration:none;">
+your@email.com
+</a>
+</p>
+
+<div style="margin-top:25px;display:flex;justify-content:center;gap:30px;">
+
+<a href="#"><i class="fab fa-instagram" style="font-size:28px;color:white;"></i></a>
+<a href="#"><i class="fab fa-x-twitter" style="font-size:28px;color:white;"></i></a>
+<a href="#"><i class="fab fa-twitch" style="font-size:28px;color:white;"></i></a>
+<a href="#"><i class="fab fa-facebook" style="font-size:28px;color:white;"></i></a>
+<a href="#"><i class="fab fa-tiktok" style="font-size:28px;color:white;"></i></a>
+<a href="#"><i class="fab fa-youtube" style="font-size:28px;color:white;"></i></a>
+
+</div>
+
+<p style="margin-top:40px;opacity:.7">
+© 2026 CREATORS Hype Hub
+</p>
+
+</footer>
 
 <script>
-
-/* Load Navbar */
-fetch("navbar.html")
-.then(r=>r.text())
-.then(data=>{
-document.getElementById("navbar").innerHTML=data;
-});
-
-/* Load Footer */
-fetch("footer.html")
-.then(r=>r.text())
-.then(data=>{
-document.getElementById("footer").innerHTML=data;
-});
 
 const channels = [
 "G3splitter",
@@ -190,7 +300,6 @@ stream
 });
 
 });
-
 /* Live järjestys korteissa */
 cards.sort((a,b)=>{
 
@@ -218,6 +327,7 @@ if(item.stream){
 card.classList.add("live");
 }
 
+/* Twitch thumbnail preview */
 const thumbnailUrl = item.stream
 ? `https://static-cdn.jtvnw.net/previews-ttv/live_user_${item.channel.toLowerCase()}-320x180.jpg`
 : null;
@@ -226,6 +336,15 @@ card.innerHTML = `
 
 ${thumbnailUrl ? `
 <img src="${thumbnailUrl}" class="thumb-preview">
+` : ""}
+
+${item.stream ? `
+<div class="card-top">
+
+<div>🟢 LIVE</div>
+<div>👁 ${item.stream.viewer_count || 0}</div>
+
+</div>
 ` : ""}
 
 <div class="card-center">
@@ -260,9 +379,15 @@ membersDiv.appendChild(card);
 }
 
 document.addEventListener("DOMContentLoaded",loadData);
-setInterval(loadData, 30000);
 
+// Auto refresh every 30 seconds
+setInterval(loadData, 30000);
+  
 </script>
 
 </body>
 </html>
+
+
+
+
