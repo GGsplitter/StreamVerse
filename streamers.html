@@ -73,6 +73,7 @@ flex-direction:column;
 align-items:center;
 
 min-height:150px;
+
 position:relative;
 overflow:hidden;
 }
@@ -159,7 +160,7 @@ const channels = [
 async function loadData(){
 
 const membersDiv = document.getElementById("members");
-membersDiv.innerHTML="";
+membersDiv.innerHTML = "";
 
 const res = await fetch(
 "/api/twitchuser?logins=" + channels.join(",")
@@ -182,11 +183,15 @@ const stream = streams.find(
 s => s.user_login.toLowerCase() === channel.toLowerCase()
 );
 
-cards.push({channel,user,stream});
+cards.push({
+channel,
+user,
+stream
+});
 
 });
 
-/* LIVE SORT */
+/* Live järjestys korteissa */
 cards.sort((a,b)=>{
 
 if(a.stream && b.stream){
@@ -199,7 +204,7 @@ return (b.stream ? 1 : 0) - (a.stream ? 1 : 0);
 
 cards.forEach(item=>{
 
-const card=document.createElement("a");
+const card = document.createElement("a");
 
 card.className="card";
 card.href=`https://twitch.tv/${item.channel}`;
@@ -219,7 +224,9 @@ const thumbnailUrl = item.stream
 
 card.innerHTML = `
 
-${thumbnailUrl ? `<img src="${thumbnailUrl}" class="thumb-preview">` : ""}
+${thumbnailUrl ? `
+<img src="${thumbnailUrl}" class="thumb-preview">
+` : ""}
 
 <div class="card-center">
 
@@ -230,10 +237,14 @@ ${thumbnailUrl ? `<img src="${thumbnailUrl}" class="thumb-preview">` : ""}
 <div class="viewer">
 
 ${item.stream ?
-`🎮 ${item.stream.game_name || ""}  
-📺 ${item.stream.title || ""}`
+`
+🎮 ${item.stream.game_name || ""}  
+📺 ${item.stream.title || ""}
+`
 :
-"🔴 OFFLINE"
+`
+🔴 OFFLINE
+`
 }
 
 </div>
@@ -249,7 +260,7 @@ membersDiv.appendChild(card);
 }
 
 document.addEventListener("DOMContentLoaded",loadData);
-setInterval(loadData,30000);
+setInterval(loadData, 30000);
 
 </script>
 
