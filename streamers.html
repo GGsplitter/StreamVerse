@@ -25,26 +25,6 @@ background-position:center;
 background-attachment:fixed;
 }
 
-/* NAV */
-
-nav{
-position:fixed;
-top:0;
-width:100%;
-padding:20px 8%;
-display:flex;
-gap:30px;
-background:rgba(0,0,0,0.7);
-backdrop-filter:blur(20px);
-z-index:1000;
-}
-
-nav a{
-color:white;
-text-decoration:none;
-font-weight:bold;
-}
-
 /* CONTENT */
 
 section{
@@ -85,6 +65,7 @@ flex-direction:column;
 align-items:center;
 
 min-height:150px;
+
 position:relative;
 overflow:hidden;
 }
@@ -92,8 +73,6 @@ overflow:hidden;
 .card:hover{
 transform:translateY(-6px);
 }
-
-/* THUMBNAIL */
 
 .thumb-preview{
 position:absolute;
@@ -112,27 +91,7 @@ opacity:.35;
 transform:scale(1.1);
 }
 
-/* CARD TOP */
-
-.card-top{
-display:flex;
-justify-content:space-between;
-width:100%;
-font-size:13px;
-opacity:.9;
-z-index:2;
-}
-
 /* PROFILE */
-
-.card-center{
-display:flex;
-flex-direction:column;
-align-items:center;
-width:100%;
-margin-top:8px;
-z-index:2;
-}
 
 .card img.profile{
 width:60px;
@@ -147,7 +106,7 @@ margin:6px 0;
 font-size:16px;
 }
 
-/* LIVE CARD */
+/* LIVE */
 
 .card.live{
 border:1px solid #00ff7a;
@@ -161,31 +120,6 @@ border:2px solid #00ff7a;
 box-shadow:
 0 0 12px rgba(0,255,120,.9),
 0 0 25px rgba(0,255,120,.4);
-}
-
-/* OFFLINE */
-
-.card:not(.live){
-border:1px solid rgba(255,0,80,.3);
-box-shadow:
-0 0 15px rgba(255,0,80,.15),
-0 0 40px rgba(255,0,80,.1);
-}
-
-.card:not(.live):hover{
-box-shadow:
-0 0 25px rgba(255,0,80,.6),
-0 0 80px rgba(255,0,80,.35);
-}
-
-/* STATUS */
-
-.viewer{
-font-size:12px;
-opacity:.85;
-text-align:center;
-margin-top:6px;
-white-space:pre-line;
 }
 
 /* FOOTER */
@@ -202,13 +136,8 @@ text-align:center;
 
 <body>
 
-<nav>
-<a href="index.html">Home</a>
-<a href="news.html">News</a>
-<a href="streamers.html">Creators</a>
-<a href="about.html">About</a>
-<a href="member.html">Member</a>
-</nav>
+<!-- ⭐ NAVBAR LOAD -->
+<div id="navbar"></div>
 
 <section>
 
@@ -218,12 +147,19 @@ text-align:center;
 
 </section>
 
-<!-- ⭐ FOOTER FROM FILE -->
+<!-- ⭐ FOOTER LOAD -->
 <div id="footer"></div>
 
 <script>
 
-/* ONLY FOOTER LOADER ADDED */
+/* Load navbar */
+fetch("navbar.html")
+.then(r => r.text())
+.then(data => {
+document.getElementById("navbar").innerHTML = data;
+});
+
+/* Load footer */
 fetch("footer.html")
 .then(r => r.text())
 .then(data => {
@@ -304,18 +240,10 @@ const thumbnailUrl = item.stream
 ? `https://static-cdn.jtvnw.net/previews-ttv/live_user_${item.channel.toLowerCase()}-320x180.jpg`
 : null;
 
-/* ORIGINAL CARD RENDER */
 card.innerHTML = `
 
 ${thumbnailUrl ? `
 <img src="${thumbnailUrl}" class="thumb-preview">
-` : ""}
-
-${item.stream ? `
-<div class="card-top">
-<div>🟢 LIVE</div>
-<div>👁 ${item.stream.viewer_count || 0}</div>
-</div>
 ` : ""}
 
 <div class="card-center">
@@ -340,6 +268,7 @@ ${item.stream ?
 </div>
 
 </div>
+
 `;
 
 membersDiv.appendChild(card);
