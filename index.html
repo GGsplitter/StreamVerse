@@ -18,9 +18,30 @@ color:white;
 min-height:100vh;
 }
 
-/*  MAIN WRAPPER (Navbar fix) */
+/* ⭐ LOGO LEFT TOP */
+
+.site-logo{
+position:fixed;
+top:20px;
+left:20px;
+z-index:1100;
+}
+
+.site-logo img{
+height:120px;
+width:auto;
+filter:drop-shadow(0 0 20px rgba(255,0,150,.6));
+transition:.3s;
+}
+
+.site-logo img:hover{
+transform:scale(1.05);
+}
+
+/* MAIN WRAPPER */
+
 main{
-padding-top:100px;
+padding-top:140px;
 }
 
 /* HERO */
@@ -101,6 +122,10 @@ text-decoration:none;
 
 @media(max-width:900px){
 
+.site-logo img{
+height:70px;
+}
+
 .hero h1{
 font-size:40px;
 }
@@ -116,12 +141,16 @@ height:50vh;
 
 <body>
 
-<!--  NAVBAR -->
+<!-- ⭐ LOGO -->
+<div class="site-logo">
+<img src="CHH_LOGO.png" alt="CHH Logo">
+</div>
+
+<!-- NAVBAR -->
 <div id="navbar"></div>
 
 <main>
 
-<!-- HERO -->
 <section class="hero">
 <h1>CREATORS HYPE HUB</h1>
 <p>Connect creators. Grow together. Get opportunities.</p>
@@ -129,7 +158,6 @@ height:50vh;
 <button class="btn">Join Hype Hub</button>
 </section>
 
-<!-- SLIDER -->
 <div class="sponsor">
 <div class="sponsor-track">
 
@@ -150,7 +178,7 @@ height:50vh;
 
 </main>
 
-<!--  FOOTER -->
+<!-- FOOTER -->
 <div id="footer"></div>
 
 <script>
