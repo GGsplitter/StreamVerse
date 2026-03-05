@@ -108,15 +108,12 @@ text-align:center;
 }
 
 </style>
-
 </head>
 
 <body>
 
 <!-- ⭐ NAVBAR -->
 <div id="navbar"></div>
-
-<main>
 
 <section>
 
@@ -126,19 +123,19 @@ text-align:center;
 
 </section>
 
-</main>
-
-<!--  FOOTER -->
+<!-- ⭐ FOOTER -->
 <div id="footer"></div>
 
 <script>
 
+/* Load Navbar */
 fetch("navbar.html")
 .then(r=>r.text())
 .then(data=>{
 document.getElementById("navbar").innerHTML=data;
 });
 
+/* Load Footer */
 fetch("footer.html")
 .then(r=>r.text())
 .then(data=>{
@@ -164,7 +161,10 @@ async function loadData(){
 const membersDiv = document.getElementById("members");
 membersDiv.innerHTML="";
 
-const res = await fetch("/api/twitchuser?logins=" + channels.join(","));
+const res = await fetch(
+"/api/twitchuser?logins=" + channels.join(",")
+);
+
 const data = await res.json();
 
 const users = data.users || [];
@@ -186,7 +186,7 @@ cards.push({channel,user,stream});
 
 });
 
-/* LIVE SORT (EI MUUTETTU) */
+/* LIVE SORT */
 cards.sort((a,b)=>{
 
 if(a.stream && b.stream){
