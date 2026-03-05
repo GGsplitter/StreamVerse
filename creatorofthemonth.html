@@ -10,12 +10,16 @@
 
 <style>
 
+/* ⭐ VAIN TÄMÄ LISÄTTY LAYOUT FIX */
 body{
 margin:0;
 font-family:Arial;
 color:white;
 
-/*  SAMA TAUSTA KUIN INDEX */
+min-height:100vh;
+display:flex;
+flex-direction:column;
+
 background:
 linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.9)),
 url("https://images.unsplash.com/photo-1542751371-adc38448a05e");
@@ -50,6 +54,7 @@ font-weight:bold;
 section{
 padding:140px 8%;
 text-align:center;
+flex:1;
 }
 
 /* GRADIENT TITLE */
@@ -77,7 +82,7 @@ transition:.3s;
 transform:translateY(-10px);
 }
 
-/* ⭐ LOGO STYLE */
+/* LOGO */
 
 .cotm-logo{
 max-width:220px;
@@ -100,7 +105,7 @@ footer{
 padding:70px;
 background:#0a0a0a;
 text-align:center;
-margin-top:auto;
+margin-top:auto; /* ⭐ TÄRKEÄ */
 }
 
 footer a{
@@ -132,7 +137,7 @@ Creator of the Month
 
 <div class="creator-card">
 
-<img src="COTM_LOGO.png" alt="Creator of the Month Logo" class="cotm-logo">
+<img src="COTM_LOGO.png" class="cotm-logo">
 
 <h2 style="margin-top:20px">Creator Name</h2>
 
@@ -149,43 +154,19 @@ community engagement and content quality.
 
 <h2>Contact & Socials</h2>
 
-<p style="font-size:16px">
+<p>
 Email:
-<a href="mailto:your@email.com">
-your@email.com
-</a>
+<a href="mailto:your@email.com">your@email.com</a>
 </p>
 
-<div style="
-margin-top:25px;
-display:flex;
-justify-content:center;
-gap:30px;
-">
+<div style="margin-top:25px;display:flex;justify-content:center;gap:30px;">
 
-<a href="https://www.instagram.com" target="_blank">
-<i class="fab fa-instagram" style="color:white;font-size:28px"></i>
-</a>
-
-<a href="https://x.com" target="_blank">
-<i class="fab fa-x-twitter" style="color:white;font-size:28px"></i>
-</a>
-
-<a href="https://www.twitch.tv" target="_blank">
-<i class="fab fa-twitch" style="color:white;font-size:28px"></i>
-</a>
-
-<a href="https://www.facebook.com" target="_blank">
-<i class="fab fa-facebook" style="color:white;font-size:28px"></i>
-</a>
-
-<a href="https://www.tiktok.com" target="_blank">
-<i class="fab fa-tiktok" style="color:white;font-size:28px"></i>
-</a>
-
-<a href="https://www.youtube.com" target="_blank">
-<i class="fab fa-youtube" style="color:white;font-size:28px"></i>
-</a>
+<a href="#"><i class="fab fa-instagram" style="font-size:28px"></i></a>
+<a href="#"><i class="fab fa-x-twitter" style="font-size:28px"></i></a>
+<a href="#"><i class="fab fa-twitch" style="font-size:28px"></i></a>
+<a href="#"><i class="fab fa-facebook" style="font-size:28px"></i></a>
+<a href="#"><i class="fab fa-tiktok" style="font-size:28px"></i></a>
+<a href="#"><i class="fab fa-youtube" style="font-size:28px"></i></a>
 
 </div>
 
@@ -197,7 +178,3 @@ gap:30px;
 
 </body>
 </html>
-
-
-
-
