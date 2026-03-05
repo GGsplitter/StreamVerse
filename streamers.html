@@ -167,17 +167,12 @@ margin-top:6px;
 white-space:pre-line;
 }
 
-/* FOOTER SPACING FIX */
-main{
-min-height:100vh;
-display:flex;
-flex-direction:column;
-}
+/* FOOTER */
 
 footer{
 padding:80px;
 background:#0a0a0a;
-margin-top:auto;
+margin-top:120px;
 text-align:center;
 }
 
@@ -194,8 +189,6 @@ text-align:center;
 <a href="member.html">Member</a>
 </nav>
 
-<main>
-
 <section>
 
 <h2 class="page-title">Creators</h2>
@@ -204,14 +197,12 @@ text-align:center;
 
 </section>
 
-</main>
-
-<!-- ⭐ FOOTER LOADER -->
+<!-- ⭐ FOOTER LOAD -->
 <div id="footer"></div>
 
 <script>
 
-/* LOAD FOOTER FROM OWN FILE */
+/* Load footer from external file */
 fetch("footer.html")
 .then(r=>r.text())
 .then(data=>{
@@ -266,7 +257,6 @@ stream
 
 });
 
-/* LIVE SORT */
 cards.sort((a,b)=>{
 
 if(a.stream && b.stream){
@@ -299,7 +289,9 @@ const thumbnailUrl = item.stream
 
 card.innerHTML = `
 
-${thumbnailUrl ? `<img src="${thumbnailUrl}" class="thumb-preview">` : ""}
+${thumbnailUrl ? `
+<img src="${thumbnailUrl}" class="thumb-preview">
+` : ""}
 
 <div class="card-center">
 
