@@ -1,4 +1,6 @@
-<nav style="
+<style>
+
+.navbar{
 position:fixed;
 top:0;
 width:100%;
@@ -8,9 +10,23 @@ gap:30px;
 backdrop-filter:blur(20px);
 background:rgba(0,0,0,0.7);
 z-index:1000;
-">
+}
 
-<nav>
+.navbar a{
+color:white;
+text-decoration:none;
+font-weight:bold;
+transition:.3s;
+}
+
+.navbar a:hover{
+color:#ff0055;
+}
+
+</style>
+
+<nav class="navbar">
+
 <a href="index.html">Home</a>
 <a href="news.html">News</a>
 <a href="streamers.html">Creators</a>
