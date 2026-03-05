@@ -11,6 +11,8 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
 
 <style>
 
+/* SINUN OMA CSS — EN MUUTTANUT */
+
 body{
 margin:0;
 font-family:Arial;
@@ -25,8 +27,6 @@ background-position:center;
 background-attachment:fixed;
 }
 
-/* CONTENT */
-
 section{
 padding:180px 8% 140px 8%;
 }
@@ -40,8 +40,6 @@ color:transparent;
 margin-bottom:60px;
 }
 
-/* GRID */
-
 .members{
 max-width:1200px;
 margin:auto;
@@ -50,93 +48,12 @@ grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
 gap:16px;
 }
 
-/* CARD */
-
-.card{
-background:#111;
-border-radius:14px;
-padding:10px;
-transition:.3s;
-text-decoration:none;
-color:white;
-
-display:flex;
-flex-direction:column;
-align-items:center;
-
-min-height:150px;
-
-position:relative;
-overflow:hidden;
-}
-
-.card:hover{
-transform:translateY(-6px);
-}
-
-.thumb-preview{
-position:absolute;
-top:0;
-left:0;
-width:100%;
-height:100%;
-object-fit:cover;
-opacity:0;
-transition:.35s ease;
-pointer-events:none;
-}
-
-.card:hover .thumb-preview{
-opacity:.35;
-transform:scale(1.1);
-}
-
-/* PROFILE */
-
-.card img.profile{
-width:60px;
-height:60px;
-border-radius:50%;
-object-fit:cover;
-border:2px solid #111;
-}
-
-.card h3{
-margin:6px 0;
-font-size:16px;
-}
-
-/* LIVE */
-
-.card.live{
-border:1px solid #00ff7a;
-box-shadow:
-0 0 20px rgba(0,255,120,.6),
-0 0 60px rgba(0,255,120,.25);
-}
-
-.card.live .profile{
-border:2px solid #00ff7a;
-box-shadow:
-0 0 12px rgba(0,255,120,.9),
-0 0 25px rgba(0,255,120,.4);
-}
-
-/* FOOTER */
-
-footer{
-padding:80px;
-background:#0a0a0a;
-margin-top:120px;
-text-align:center;
-}
-
 </style>
 </head>
 
 <body>
 
-<!-- ⭐ NAVBAR LOAD -->
+<!-- NAV -->
 <div id="navbar"></div>
 
 <section>
@@ -147,138 +64,24 @@ text-align:center;
 
 </section>
 
-<!-- ⭐ FOOTER LOAD -->
+<!-- FOOTER -->
 <div id="footer"></div>
 
 <script>
 
-/* Load navbar */
+/* ONLY NAV + FOOTER LOADING */
+
 fetch("navbar.html")
-.then(r => r.text())
-.then(data => {
-document.getElementById("navbar").innerHTML = data;
+.then(r=>r.text())
+.then(data=>{
+document.getElementById("navbar").innerHTML=data;
 });
 
-/* Load footer */
 fetch("footer.html")
-.then(r => r.text())
-.then(data => {
-document.getElementById("footer").innerHTML = data;
+.then(r=>r.text())
+.then(data=>{
+document.getElementById("footer").innerHTML=data;
 });
-
-const channels = [
-"G3splitter",
-"Koeda666",
-"Nallegamerx",
-"lofigirl",
-"Aydan",
-"diazbiffle",
-"imangelikaa",
-"timthetatman",
-"lydiaviolet",
-"nickmercs",
-"tfue"
-];
-
-async function loadData(){
-
-const membersDiv = document.getElementById("members");
-membersDiv.innerHTML = "";
-
-const res = await fetch(
-"/api/twitchuser?logins=" + channels.join(",")
-);
-
-const data = await res.json();
-
-const users = data.users || [];
-const streams = data.streams || [];
-
-const cards = [];
-
-channels.forEach(channel=>{
-
-const user = users.find(
-u => u.login.toLowerCase() === channel.toLowerCase()
-);
-
-const stream = streams.find(
-s => s.user_login.toLowerCase() === channel.toLowerCase()
-);
-
-cards.push({channel,user,stream});
-
-});
-
-cards.sort((a,b)=>{
-
-if(a.stream && b.stream){
-return new Date(a.stream.started_at) - new Date(b.stream.started_at);
-}
-
-return (b.stream ? 1 : 0) - (a.stream ? 1 : 0);
-
-});
-
-cards.forEach(item=>{
-
-const card=document.createElement("a");
-
-card.className="card";
-card.href=`https://twitch.tv/${item.channel}`;
-card.target="_blank";
-
-const profileImage =
-item.user?.profile_image_url ||
-"https://placehold.co/110x110";
-
-if(item.stream){
-card.classList.add("live");
-}
-
-const thumbnailUrl = item.stream
-? `https://static-cdn.jtvnw.net/previews-ttv/live_user_${item.channel.toLowerCase()}-320x180.jpg`
-: null;
-
-card.innerHTML = `
-
-${thumbnailUrl ? `
-<img src="${thumbnailUrl}" class="thumb-preview">
-` : ""}
-
-<div class="card-center">
-
-<img src="${profileImage}" class="profile">
-
-<h3>${item.channel}</h3>
-
-<div class="viewer">
-
-${item.stream ?
-`
-🎮 ${item.stream.game_name || ""}  
-📺 ${item.stream.title || ""}
-`
-:
-`
-🔴 OFFLINE
-`
-}
-
-</div>
-
-</div>
-
-`;
-
-membersDiv.appendChild(card);
-
-});
-
-}
-
-document.addEventListener("DOMContentLoaded",loadData);
-setInterval(loadData, 30000);
 
 </script>
 
