@@ -147,16 +147,26 @@ box-shadow:
   position:relative;
 }
 
-/* Fade overlay (TÄMÄ tekee kaiken) */
+/* FADE LEFT + RIGHT */
+.sponsor::before,
 .sponsor::after{
 content:"";
 position:absolute;
-inset:0;
-pointer-events:none;
-background:
-linear-gradient(to right,#111 0%, transparent 10%, transparent 90%, #111 100%),
-linear-gradient(to bottom,#111 0%, transparent 15%, transparent 85%, #111 100%);
+top:0;
+width:150px;
+height:100%;
 z-index:2;
+pointer-events:none;
+}
+
+.sponsor::before{
+left:0;
+background:linear-gradient(to right,#111,transparent);
+}
+
+.sponsor::after{
+right:0;
+background:linear-gradient(to left,#111,transparent);
 }
 
 /* Slider track */
@@ -292,6 +302,7 @@ document.getElementById("footer").innerHTML=d;
 
 </body>
 </html>
+
 
 
 
