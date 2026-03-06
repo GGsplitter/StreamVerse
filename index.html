@@ -146,9 +146,27 @@ padding:30px 0;
 overflow:hidden;
 }
 
+/* Fade reunat */
+mask-image:
+linear-gradient(to right,
+transparent,
+black 10%,
+black 90%,
+transparent);
+-webkit-mask-image:
+linear-gradient(to right,
+transparent,
+black 10%,
+black 90%,
+transparent);
+}
+
 .sponsor-track{
 display:flex;
 animation:loopTape 36s linear infinite;
+
+padding:0 10vw;
+box-sizing:border-box;
 }
 
 .sponsor-track span{
@@ -273,6 +291,7 @@ document.getElementById("footer").innerHTML=d;
 
 </body>
 </html>
+
 
 
 
