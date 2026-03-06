@@ -141,52 +141,45 @@ box-shadow:
 /*  SLIDER */
 
 .sponsor{
-background:#111;
-padding:30px 0;
-overflow:hidden;
-position:relative;
+  background:#111;
+  padding:30px 0;
+  overflow:hidden;
+  position:relative;
 }
 
-.sponsor::before,
-.sponsor::after{
-content:"";
-position:absolute;
-top:0;
-height:100%;
-width:120px;
-z-index:2;
-pointer-events:none;
-}
-
+/* Overlay joka näyttää fade kaikkiin suuntiin */
 .sponsor::before{
-left:0;
-background:linear-gradient(to right,#111,transparent);
+  content:"";
+  position:absolute;
+  top:0; left:0; right:0; bottom:0;
+  pointer-events:none;
+  z-index:2;
+
+  background:
+    linear-gradient(to right, #111, transparent 10%, transparent 90%, #111), /* vasen/oikea */
+    linear-gradient(to bottom, #111, transparent 5%, transparent 95%, #111); /* ylös/alas */
 }
 
-.sponsor::after{
-right:0;
-background:linear-gradient(to left,#111,transparent);
-}
-
+/* Slider track */
 .sponsor-track{
-display:flex;
-width:max-content;
-animation:loopTape 36s linear infinite;
+  display:flex;
+  width:max-content;
+  animation:loopTape 36s linear infinite;
+  position:relative;
+  z-index:1; /* varmista että overlay on päällä */
 }
 
+/* Spacerit ja sisältö */
 .sponsor-track span{
-padding:0 70px;
-white-space:nowrap;
-font-weight:bold;
+  padding:0 70px;
+  white-space:nowrap;
+  font-weight:bold;
 }
 
+/* Loop animaatio */
 @keyframes loopTape{
-from{
-transform:translateX(0);
-}
-to{
-transform:translateX(-50%);
-}
+  from{transform:translateX(0);}
+  to{transform:translateX(-50%);}
 }
 
 /* FOOTER */
@@ -300,6 +293,7 @@ document.getElementById("footer").innerHTML=d;
 
 </body>
 </html>
+
 
 
 
