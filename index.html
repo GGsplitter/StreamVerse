@@ -147,14 +147,13 @@ overflow:hidden;
 position:relative;
 }
 
-/* ⭐ Fade vasen + oikea */
 .sponsor::before,
 .sponsor::after{
 content:"";
 position:absolute;
 top:0;
-width:15%;
 height:100%;
+width:120px;
 z-index:2;
 pointer-events:none;
 }
@@ -169,18 +168,25 @@ right:0;
 background:linear-gradient(to left,#111,transparent);
 }
 
-/* ⭐ Fade ylös + alas */
-.sponsor::after{
-background:
-linear-gradient(to left,#111,transparent),
-linear-gradient(to top,#111,transparent);
+.sponsor-track{
+display:flex;
+width:max-content;
+animation:loopTape 36s linear infinite;
 }
 
-/* ⭐ Top + bottom fade */
-.sponsor::before{
-background:
-linear-gradient(to right,#111,transparent),
-linear-gradient(to bottom,#111,transparent);
+.sponsor-track span{
+padding:0 70px;
+white-space:nowrap;
+font-weight:bold;
+}
+
+@keyframes loopTape{
+from{
+transform:translateX(0);
+}
+to{
+transform:translateX(-50%);
+}
 }
 
 /* FOOTER */
@@ -294,6 +300,7 @@ document.getElementById("footer").innerHTML=d;
 
 </body>
 </html>
+
 
 
 
