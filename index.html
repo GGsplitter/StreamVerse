@@ -147,17 +147,54 @@ box-shadow:
   position:relative;
 }
 
-/* Overlay joka näyttää fade kaikkiin suuntiin */
+/* Vasen fade */
 .sponsor::before{
   content:"";
   position:absolute;
-  top:0; left:0; right:0; bottom:0;
-  pointer-events:none;
+  top:0;
+  left:0;
+  width:120px;
+  height:100%;
+  background: linear-gradient(to right,#111,transparent);
   z-index:2;
+  pointer-events:none;
+}
 
-  background:
-    linear-gradient(to right, #111, transparent 10%, transparent 90%, #111), /* vasen/oikea */
-    linear-gradient(to bottom, #111, transparent 5%, transparent 95%, #111); /* ylös/alas */
+/* Oikea fade */
+.sponsor::after{
+  content:"";
+  position:absolute;
+  top:0;
+  right:0;
+  width:120px;
+  height:100%;
+  background: linear-gradient(to left,#111,transparent);
+  z-index:2;
+  pointer-events:none;
+}
+
+/* Yläfade */
+.sponsor .fade-top{
+  position:absolute;
+  top:0;
+  left:0;
+  right:0;
+  height:40px; /* säädä haluamasi fade korkeus */
+  background: linear-gradient(to bottom,#111,transparent);
+  z-index:2;
+  pointer-events:none;
+}
+
+/* Alafade */
+.sponsor .fade-bottom{
+  position:absolute;
+  bottom:0;
+  left:0;
+  right:0;
+  height:40px;
+  background: linear-gradient(to top,#111,transparent);
+  z-index:2;
+  pointer-events:none;
 }
 
 /* Slider track */
@@ -166,7 +203,7 @@ box-shadow:
   width:max-content;
   animation:loopTape 36s linear infinite;
   position:relative;
-  z-index:1; /* varmista että overlay on päällä */
+  z-index:1; 
 }
 
 /* Spacerit ja sisältö */
@@ -293,6 +330,7 @@ document.getElementById("footer").innerHTML=d;
 
 </body>
 </html>
+
 
 
 
