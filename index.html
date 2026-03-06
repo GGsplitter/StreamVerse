@@ -147,54 +147,16 @@ box-shadow:
   position:relative;
 }
 
-/* Vasen fade */
-.sponsor::before{
-  content:"";
-  position:absolute;
-  top:0;
-  left:0;
-  width:120px;
-  height:100%;
-  background: linear-gradient(to right,#111,transparent);
-  z-index:2;
-  pointer-events:none;
-}
-
-/* Oikea fade */
+/* Fade overlay (TÄMÄ tekee kaiken) */
 .sponsor::after{
-  content:"";
-  position:absolute;
-  top:0;
-  right:0;
-  width:120px;
-  height:100%;
-  background: linear-gradient(to left,#111,transparent);
-  z-index:2;
-  pointer-events:none;
-}
-
-/* Yläfade */
-.sponsor .fade-top{
-  position:absolute;
-  top:0;
-  left:0;
-  right:0;
-  height:40px; /* säädä haluamasi fade korkeus */
-  background: linear-gradient(to bottom,#111,transparent);
-  z-index:2;
-  pointer-events:none;
-}
-
-/* Alafade */
-.sponsor .fade-bottom{
-  position:absolute;
-  bottom:0;
-  left:0;
-  right:0;
-  height:40px;
-  background: linear-gradient(to top,#111,transparent);
-  z-index:2;
-  pointer-events:none;
+content:"";
+position:absolute;
+inset:0;
+pointer-events:none;
+background:
+linear-gradient(to right,#111 0%, transparent 10%, transparent 90%, #111 100%),
+linear-gradient(to bottom,#111 0%, transparent 15%, transparent 85%, #111 100%);
+z-index:2;
 }
 
 /* Slider track */
@@ -289,8 +251,6 @@ Connect creators. Grow together. Get opportunities.
 </section>
 
 <div class="sponsor">
-   <div class="fade-top"></div>
-  <div class="fade-bottom"></div>
 <div class="sponsor-track">
 
 <span>👑 Creator Of The Month</span>
@@ -332,6 +292,7 @@ document.getElementById("footer").innerHTML=d;
 
 </body>
 </html>
+
 
 
 
