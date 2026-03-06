@@ -163,30 +163,32 @@ z-index:1;
   font-weight:bold;
 } 
  
-/* ========================= */
-/* FULL FADE (4 suuntaa) */
-/* ========================= */
+/*  4 suunnan fade mask */
+-webkit-mask-image:
+radial-gradient(circle at center,
+black 0%,
+black 55%,
+transparent 100%);
 
-.sponsor::before{
-content:"";
-position:absolute;
-inset:0;
-z-index:2;
-pointer-events:none;
-
-background:
-linear-gradient(to right,
-#111 0%,
-transparent 15%,
-transparent 85%,
-#111 100%),
-
-linear-gradient(to bottom,
-#111 0%,
-transparent 15%,
-transparent 85%,
-#111 100%);
+mask-image:
+radial-gradient(circle at center,
+black 0%,
+black 55%,
+transparent 100%);
 }
+
+.sponsor-track{
+display:flex;
+width:max-content;
+animation:loopTape 35s linear infinite;
+}
+
+.sponsor-track span{
+padding:0 70px;
+white-space:nowrap;
+font-weight:bold;
+}
+
 
 /* Loop animaatio */
 @keyframes loopTape{
@@ -306,6 +308,7 @@ document.getElementById("footer").innerHTML=d;
 
 </body>
 </html>
+
 
 
 
