@@ -147,26 +147,17 @@ box-shadow:
   position:relative;
 }
 
-/* FADE LEFT + RIGHT */
-.sponsor::before,
-.sponsor::after{
+/* Fade overlay */
+.sponsor::before{
 content:"";
 position:absolute;
-top:0;
-width:300px;
-height:100%;
+inset:0;
 z-index:2;
 pointer-events:none;
-}
 
-.sponsor::before{
-left:0;
-background:linear-gradient(to right,#111,transparent);
-}
-
-.sponsor::after{
-right:0;
-background:linear-gradient(to left,#111,transparent);
+background:
+linear-gradient(to right,#111 0%, transparent 12%, transparent 88%, #111 100%),
+linear-gradient(to bottom,#111 0%, transparent 15%, transparent 85%, #111 100%);
 }
 
 /* Slider track */
@@ -302,6 +293,7 @@ document.getElementById("footer").innerHTML=d;
 
 </body>
 </html>
+
 
 
 
