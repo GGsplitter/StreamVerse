@@ -144,37 +144,35 @@ box-shadow:
 background:#111;
 padding:30px 0;
 overflow:hidden;
-
 position:relative;
+}
+
+/* Fade overlay vasen + oikea */
+.sponsor::before,
+.sponsor::after{
+content:"";
+position:absolute;
+top:0;
+width:15%;
+height:100%;
+z-index:2;
+pointer-events:none;
+}
+
+.sponsor::before{
+left:0;
+background:linear-gradient(to right,#111,transparent);
+}
+
+.sponsor::after{
+right:0;
+background:linear-gradient(to left,#111,transparent);
 }
 
 .sponsor-track{
 display:flex;
 width:max-content;
-
-animation:loopTape 36s linear infinite;
-
-padding:0 8vw;
-box-sizing:border-box;
-
-/* Fade mask */
-mask-image:
-linear-gradient(
-to right,
-transparent,
-black 8%,
-black 92%,
-transparent
-);
-
--webkit-mask-image:
-linear-gradient(
-to right,
-transparent,
-black 8%,
-black 92%,
-transparent
-);
+animation:loopTape 30s linear infinite;
 }
 
 .sponsor-track span{
@@ -184,12 +182,8 @@ font-weight:bold;
 }
 
 @keyframes loopTape{
-from{
-transform:translateX(0);
-}
-to{
-transform:translateX(-50%);
-}
+from{transform:translateX(0);}
+to{transform:translateX(-50%);}
 }
 
 /* FOOTER */
@@ -303,6 +297,7 @@ document.getElementById("footer").innerHTML=d;
 
 </body>
 </html>
+
 
 
 
