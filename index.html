@@ -163,16 +163,25 @@ z-index:1;
   font-weight:bold;
 } 
  
-/* FADE */
-.sponsor::after{
+/* ========================= */
+/* FULL FADE (4 suuntaa) */
+/* ========================= */
+
+.sponsor::before{
 content:"";
 position:absolute;
 inset:0;
-pointer-events:none;
 z-index:2;
+pointer-events:none;
 
 background:
 linear-gradient(to right,
+#111 0%,
+transparent 15%,
+transparent 85%,
+#111 100%),
+
+linear-gradient(to bottom,
 #111 0%,
 transparent 15%,
 transparent 85%,
@@ -297,6 +306,7 @@ document.getElementById("footer").innerHTML=d;
 
 </body>
 </html>
+
 
 
 
