@@ -144,29 +144,37 @@ box-shadow:
 background:#111;
 padding:30px 0;
 overflow:hidden;
-}
 
-/* Fade reunat */
-mask-image:
-linear-gradient(to right,
-transparent,
-black 10%,
-black 90%,
-transparent);
--webkit-mask-image:
-linear-gradient(to right,
-transparent,
-black 10%,
-black 90%,
-transparent);
+position:relative;
 }
 
 .sponsor-track{
 display:flex;
+width:max-content;
+
 animation:loopTape 36s linear infinite;
 
-padding:0 10vw;
+padding:0 8vw;
 box-sizing:border-box;
+
+/* Fade mask */
+mask-image:
+linear-gradient(
+to right,
+transparent,
+black 8%,
+black 92%,
+transparent
+);
+
+-webkit-mask-image:
+linear-gradient(
+to right,
+transparent,
+black 8%,
+black 92%,
+transparent
+);
 }
 
 .sponsor-track span{
@@ -176,8 +184,12 @@ font-weight:bold;
 }
 
 @keyframes loopTape{
-from{transform:translateX(0);}
-to{transform:translateX(-33.333%);}
+from{
+transform:translateX(0);
+}
+to{
+transform:translateX(-50%);
+}
 }
 
 /* FOOTER */
@@ -291,6 +303,7 @@ document.getElementById("footer").innerHTML=d;
 
 </body>
 </html>
+
 
 
 
