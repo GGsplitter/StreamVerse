@@ -148,9 +148,26 @@ box-shadow:
 }
 
  /* Häivytys reunoihin */
-  -webkit-mask-image: linear-gradient(to right, transparent, black 20%, black 80%, transparent);
-  mask-image: linear-gradient(to right, transparent, black 20%, black 80%, transparent);
-} 
+.sponsor::before,
+.sponsor::after {
+  content:"";
+  position:absolute;
+  top:0;
+  width:120px; /* säädä häivytyksen leveys */
+  height:100%;
+  z-index:2;
+  pointer-events:none;
+}
+
+.sponsor::before {
+  left:0;
+  background:linear-gradient(to right, #111, transparent);
+}
+
+.sponsor::after {
+  right:0;
+  background:linear-gradient(to left, #111, transparent);
+}
 
 /* Track */
 .sponsor-track{
@@ -286,6 +303,7 @@ document.getElementById("footer").innerHTML=d;
 
 </body>
 </html>
+
 
 
 
