@@ -140,43 +140,66 @@ box-shadow:
 
 /*  SLIDER */
 
-.sponsor{
-  background:#111;
-  padding:30px 0;
-  overflow:hidden;
-  position:relative;
+/* SLIDER WRAPPER – 3/5 leveydestä ja keskitetty */
+.sponsor {
+  width: 60vw;          /* 3/5 näytöstä */
+  margin: 0 auto;       /* keskitys */
+  background: #000;     /* musta tausta */
+  padding: 30px 0;
+  overflow: hidden;
+  position: relative;
 }
 
- /* Häivytys reunoihin */
+/* 4-SUUNTAINEN FADE */
+.sponsor::before,
+.sponsor::after,
+.sponsor::topfade,
+.sponsor::bottomfade {
+  content: "";
+  position: absolute;
+  left: 0;
+  width: 100%;
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Vasen ja oikea fade */
 .sponsor::before,
 .sponsor::after {
-  content:"";
-  position:absolute;
-  top:0;
-  width:20%; /* säädä häivytyksen leveys */
-  height:100%;
-  z-index:2;
-  pointer-events:none;
+  top: 0;
+  height: 100%;
+  width: 20%; /* 1/5 leveydestä */
 }
 
-/* Vasen fade */
+/* Vasen fade – pehmeä */
 .sponsor::before {
-  left:0;
-  background:linear-gradient(
-    to right,
-    #111 0%,
-    transparent 100%
-  );
+  left: 0;
+  background: linear-gradient(to right, #000 0%, transparent 100%);
 }
 
-/* Oikea fade — HUOM: to left */
+/* Oikea fade – pehmeä */
 .sponsor::after {
-  right:0;
-  background:linear-gradient(
-    to left,
-    #111 0%,
-    transparent 100%
-  );
+  right: 0;
+  left: auto;
+  background: linear-gradient(to left, #000 0%, transparent 100%);
+}
+
+/* Ylä- ja alafade – jyrkempi */
+.sponsor::topfade,
+.sponsor::bottomfade {
+  height: 25px; /* fade-korkeus */
+}
+
+/* Yläfade */
+.sponsor::topfade {
+  top: 0;
+  background: linear-gradient(to bottom, #000 0%, transparent 100%);
+}
+
+/* Alafade */
+.sponsor::bottomfade {
+  bottom: 0;
+  background: linear-gradient(to top, #000 0%, transparent 100%);
 }
 
 /* Track */
@@ -313,6 +336,7 @@ document.getElementById("footer").innerHTML=d;
 
 </body>
 </html>
+
 
 
 
