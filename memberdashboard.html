@@ -18,11 +18,13 @@ body{
   height:100vh;
 }
 
-/* NAVBAR WRAPPER */
+/* NAVBAR */
 #navbar {
   width:100%;
-  position:relative;
-  z-index:10;
+  position:fixed;
+  top:0;
+  left:0;
+  z-index:1000;
 }
 
 /* PAGE WRAPPER (SIDEBAR + MAIN) */
@@ -30,6 +32,7 @@ body{
   display:flex;
   flex:1;
   height:100%;
+  margin-top:80px; /* NAVBAR HEIGHT */
 }
 
 /* SIDEBAR */
@@ -209,7 +212,7 @@ body{
     </div>
 
     <div id="settings" class="section" style="display:none;">
-      <div class="header">Account Settings</div>
+      <div the="header">Account Settings</div>
       <p>Tähän tulee salasanan vaihto, sähköpostin vaihto jne.</p>
     </div>
 
