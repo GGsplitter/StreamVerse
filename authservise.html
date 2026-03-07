@@ -1,0 +1,25 @@
+import supabase from "./supabaseService.js"
+
+/* LOGIN */
+export async function login(email,password){
+
+return await supabase.auth.signInWithPassword({
+email,
+password
+})
+
+}
+
+/* LOGOUT */
+export async function logout(){
+
+return await supabase.auth.signOut()
+
+}
+
+/* GET USER */
+export async function getUser(){
+
+return await supabase.auth.getUser()
+
+}
