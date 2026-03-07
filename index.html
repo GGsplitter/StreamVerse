@@ -159,25 +159,23 @@ box-shadow:
   pointer-events:none;
 }
 
+/* Vasen fade */
 .sponsor::before {
   left:0;
   background:linear-gradient(
-   to right, 
-   #111 0%, 
-   #111 5%,
-   transparent 20%,
-   transparent 100%
+    to right,
+    #111 0%,
+    transparent 100%
   );
 }
 
+/* Oikea fade — HUOM: to left */
 .sponsor::after {
   right:0;
-   background:linear-gradient(
-   to right, 
-   #111 0%, 
-   #111 5%,
-   transparent 20%,
-   transparent 100%
+  background:linear-gradient(
+    to left,
+    #111 0%,
+    transparent 100%
   );
 }
 
@@ -315,6 +313,7 @@ document.getElementById("footer").innerHTML=d;
 
 </body>
 </html>
+
 
 
 
