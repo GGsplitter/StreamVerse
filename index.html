@@ -141,37 +141,21 @@ text-shadow:1px 2px 4px rgba(0,0,0,.5);
 box-shadow:
 0 8px 20px rgba(0,0,0,.3);
 
-  position: relative;
+   position: relative;
   overflow: hidden;
   z-index: 1;
 
+  /* Tämä on se hyvä pieni heiluminen */
   animation: btnShake 3.2s infinite steps(2);
 }
 
-/* PINKKI–LIILA GLITCH LAYERS */
+/* Poistetaan vilkkuvat glitch-layerit kokonaan */
 .btn::before,
 .btn::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  opacity: 0;
-  pointer-events: none;
+  display: none;
 }
 
-/* Pinkki */
-.btn::before {
-  background: #ff00ff55;
-  animation: glitchPink 3.2s infinite steps(2);
-}
-
-/* Liila */
-.btn::after {
-  background: #9900ff55;
-  animation: glitchPurple 3.2s infinite steps(2);
-}
-
-/* --- NAPIN OIKEA GLITCH-LIIKE --- */
+/* --- NAPIN GLITCH-LIIKE (ei vilkkumista) --- */
 @keyframes btnShake {
   0% { transform: translate(0,0); }
   4% { transform: translate(-3px, -2px) skew(-2deg); }
@@ -187,35 +171,6 @@ box-shadow:
   62% { transform: translate(0,0); }
 
   100% { transform: translate(0,0); }
-}
-
-/* --- VÄRIKERROSTEN GLITCH --- */
-@keyframes glitchPink {
-  0% { opacity: 0; }
-  4% { opacity: .7; transform: translate(-4px, -3px); }
-  6% { opacity: 0; }
-
-  18% { opacity: .6; transform: translate(3px, -2px); }
-  20% { opacity: 0; }
-
-  40% { opacity: .5; transform: translate(-2px, 3px); }
-  42% { opacity: 0; }
-
-  100% { opacity: 0; }
-}
-
-@keyframes glitchPurple {
-  0% { opacity: 0; }
-  4% { opacity: .7; transform: translate(4px, 3px); }
-  6% { opacity: 0; }
-
-  18% { opacity: .6; transform: translate(-3px, 2px); }
-  20% { opacity: 0; }
-
-  40% { opacity: .5; transform: translate(2px, -3px); }
-  42% { opacity: 0; }
-
-  100% { opacity: 0; }
 }
 
 /*  SLIDER */
@@ -399,6 +354,7 @@ document.getElementById("footer").innerHTML=d;
 
 </body>
 </html>
+
 
 
 
