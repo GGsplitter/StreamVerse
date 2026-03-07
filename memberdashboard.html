@@ -1,52 +1,196 @@
 <!DOCTYPE html>
-<html>
+<html lang="fi">
 <head>
-<title>Member Area</title>
+<meta charset="UTF-8">
+<title>Creator Dashboard</title>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <style>
 
 body{
-background:#060606;
-color:white;
-font-family:Arial;
-text-align:center;
-padding-top:120px;
+  margin:0;
+  background:#060606;
+  color:white;
+  font-family:Arial;
+  display:flex;
+  height:100vh;
 }
 
-.box{
-max-width:500px;
-margin:auto;
-background:#111;
-padding:40px;
-border-radius:20px;
+/* SIDEBAR */
+.sidebar{
+  width:260px;
+  background:#0a0a0a;
+  padding:30px 20px;
+  display:flex;
+  flex-direction:column;
+  gap:25px;
+  border-right:2px solid #111;
 }
 
-button{
-padding:15px;
-border:none;
-border-radius:12px;
-background:linear-gradient(45deg,#ff0055,#7000ff);
-color:white;
-cursor:pointer;
+.sidebar h2{
+  font-size:22px;
+  margin-bottom:10px;
+}
+
+.sidebar a{
+  color:white;
+  text-decoration:none;
+  padding:12px 15px;
+  border-radius:10px;
+  background:#111;
+  display:block;
+  transition:.2s;
+}
+
+.sidebar a:hover{
+  background:#222;
+}
+
+/* MAIN CONTENT */
+.main{
+  flex:1;
+  padding:40px;
+  overflow-y:auto;
+}
+
+/* HEADER */
+.header{
+  font-size:28px;
+  font-weight:bold;
+  margin-bottom:25px;
+}
+
+/* PROFILE CARD */
+.profile-card{
+  background:#111;
+  padding:25px;
+  border-radius:15px;
+  margin-bottom:30px;
+}
+
+.profile-card h3{
+  margin:0;
+  font-size:22px;
+}
+
+.profile-card p{
+  opacity:.8;
+}
+
+/* STATS GRID */
+.stats{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+  gap:20px;
+  margin-bottom:40px;
+}
+
+.stat-box{
+  background:#111;
+  padding:25px;
+  border-radius:15px;
+  text-align:center;
+}
+
+.stat-box h4{
+  margin:0;
+  font-size:18px;
+  opacity:.8;
+}
+
+.stat-box span{
+  font-size:32px;
+  font-weight:bold;
+  display:block;
+  margin-top:10px;
+}
+
+/* LOGOUT BUTTON */
+.logout-btn{
+  margin-top:40px;
+  padding:15px;
+  border:none;
+  border-radius:12px;
+  background:linear-gradient(45deg,#ff0055,#7000ff);
+  color:white;
+  cursor:pointer;
+  width:100%;
 }
 
 </style>
-
 </head>
 
 <body>
 
-<div class="box">
+<!-- SIDEBAR -->
+<div class="sidebar">
 
-<h2>Member Area</h2>
+  <h2>Creator Hub</h2>
 
-<p id="user-email"></p>
+  <a href="#" onclick="showSection('overview')">📊 Overview</a>
+  <a href="#" onclick="showSection('profile')">👤 Profile</a>
+  <a href="#" onclick="showSection('leaderboard')">🏆 Leaderboard</a>
+  <a href="#" onclick="showSection('rewards')">🎁 Rewards</a>
+  <a href="#" onclick="showSection('settings')">⚙️ Settings</a>
 
-<button onclick="logoutUser()">
-Logout
-</button>
+  <button class="logout-btn" onclick="logoutUser()">Logout</button>
+
+</div>
+
+<!-- MAIN CONTENT -->
+<div class="main">
+
+  <div id="overview" class="section">
+    <div class="header">Dashboard Overview</div>
+
+    <div class="profile-card">
+      <h3 id="user-name">Creator Name</h3>
+      <p id="user-email">email@example.com</p>
+    </div>
+
+    <div class="stats">
+      <div class="stat-box">
+        <h4>TikTok Followers</h4>
+        <span>–</span>
+      </div>
+
+      <div class="stat-box">
+        <h4>YouTube Subs</h4>
+        <span>–</span>
+      </div>
+
+      <div class="stat-box">
+        <h4>Twitch Followers</h4>
+        <span>–</span>
+      </div>
+
+      <div class="stat-box">
+        <h4>Monthly Growth</h4>
+        <span>–</span>
+      </div>
+    </div>
+  </div>
+
+  <div id="profile" class="section" style="display:none;">
+    <div class="header">Profile Settings</div>
+    <p>Tähän tulee profiilin muokkaus (nimi, kuva, bio, linkit…)</p>
+  </div>
+
+  <div id="leaderboard" class="section" style="display:none;">
+    <div class="header">Leaderboard</div>
+    <p>Tähän tulee ranking-listat.</p>
+  </div>
+
+  <div id="rewards" class="section" style="display:none;">
+    <div class="header">Rewards & Badges</div>
+    <p>Tähän tulee saavutukset ja palkinnot.</p>
+  </div>
+
+  <div id="settings" class="section" style="display:none;">
+    <div class="header">Account Settings</div>
+    <p>Tähän tulee salasanan vaihto, sähköpostin vaihto jne.</p>
+  </div>
 
 </div>
 
@@ -55,26 +199,28 @@ Logout
 import { supabase } from "./js/supabase.js"
 
 /* SESSION CHECK */
-
 window.onload = async () => {
+  const { data } = await supabase.auth.getUser()
 
-const { data } = await supabase.auth.getUser()
+  if(!data.user){
+    window.location.href="index.html"
+    return
+  }
 
-if(!data.user){
-window.location.href="index.html"
-return
-}
-
-document.getElementById("user-email").innerText =
-data.user.email
-
+  document.getElementById("user-email").innerText = data.user.email
+  document.getElementById("user-name").innerText = data.user.user_metadata?.username || "Creator"
 }
 
 /* LOGOUT */
-
 window.logoutUser = async () => {
-await supabase.auth.signOut()
-window.location.href="index.html"
+  await supabase.auth.signOut()
+  window.location.href="index.html"
+}
+
+/* SECTION SWITCHER */
+window.showSection = (id) => {
+  document.querySelectorAll(".section").forEach(sec => sec.style.display="none")
+  document.getElementById(id).style.display="block"
 }
 
 </script>
