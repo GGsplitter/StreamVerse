@@ -158,31 +158,40 @@ box-shadow:
   pointer-events: none;
 }
 
-/* RGB-split glitch layer 1 */
-.btn::before {
-  mix-blend-mode: screen;
-  filter: hue-rotate(40deg) saturate(2);
-  animation: btnGlitch 4s infinite ease-in-out;
-}
-
-/* RGB-split glitch layer 2 */
+/* GLITCH LAYERS */
+.btn::before,
 .btn::after {
-  mix-blend-mode: screen;
-  filter: hue-rotate(-40deg) saturate(2);
-  animation: btnGlitch2 4s infinite ease-in-out;
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  opacity: 0;
+  pointer-events: none;
 }
 
-/* Glitch-animaatiot */
-@keyframes btnGlitch {
+/* Pinkki glitch */
+.btn::before {
+  background: linear-gradient(45deg, #ff00ff55, #ff008855);
+  animation: glitchA 4s infinite ease-in-out;
+}
+
+/* Sininen glitch */
+.btn::after {
+  background: linear-gradient(45deg, #00ffff55, #0088ff55);
+  animation: glitchB 4s infinite ease-in-out;
+}
+
+/* ANIMAATIOT */
+@keyframes glitchA {
   0% { opacity: 0; transform: translate(0,0); }
-  5% { opacity: .45; transform: translate(-3px, -2px); }
+  5% { opacity: .5; transform: translate(-3px, -2px); }
   8% { opacity: 0; transform: translate(0,0); }
   100% { opacity: 0; }
 }
 
-@keyframes btnGlitch2 {
+@keyframes glitchB {
   0% { opacity: 0; transform: translate(0,0); }
-  5% { opacity: .45; transform: translate(3px, 2px); }
+  5% { opacity: .5; transform: translate(3px, 2px); }
   8% { opacity: 0; transform: translate(0,0); }
   100% { opacity: 0; }
 }
@@ -368,6 +377,7 @@ document.getElementById("footer").innerHTML=d;
 
 </body>
 </html>
+
 
 
 
