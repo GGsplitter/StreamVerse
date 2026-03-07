@@ -150,56 +150,56 @@ box-shadow:
   position: relative;
 }
 
-/* 4-SUUNTAINEN FADE */
-.sponsor::before,
-.sponsor::after,
-.sponsor::topfade,
-.sponsor::bottomfade {
-  content: "";
-  position: absolute;
-  left: 0;
-  width: 100%;
-  pointer-events: none;
-  z-index: 2;
-}
-
-/* Vasen ja oikea fade */
-.sponsor::before,
-.sponsor::after {
-  top: 0;
-  height: 100%;
-  width: 20%; /* 1/5 leveydestä */
-}
-
-/* Vasen fade – pehmeä */
+/* Vasen fade (pehmeä) */
 .sponsor::before {
-  left: 0;
-  background: linear-gradient(to right, #000 0%, transparent 100%);
+  left:0;
+  background:linear-gradient(
+    to right,
+    #000 0%,
+    transparent 100%
+  );
 }
 
-/* Oikea fade – pehmeä */
+/* Oikea fade (pehmeä) */
 .sponsor::after {
-  right: 0;
-  left: auto;
-  background: linear-gradient(to left, #000 0%, transparent 100%);
+  right:0;
+  background:linear-gradient(
+    to left,
+    #000 0%,
+    transparent 100%
+  );
 }
 
-/* Ylä- ja alafade – jyrkempi */
+/* Ylä- ja alafade */
 .sponsor::topfade,
 .sponsor::bottomfade {
-  height: 25px; /* fade-korkeus */
+  content:"";
+  position:absolute;
+  left:0;
+  width:100%;
+  height:30px;         /* fade-korkeus */
+  z-index:2;
+  pointer-events:none;
 }
 
-/* Yläfade */
+/* Yläfade (jyrkempi) */
 .sponsor::topfade {
-  top: 0;
-  background: linear-gradient(to bottom, #000 0%, transparent 100%);
+  top:0;
+  background:linear-gradient(
+    to bottom,
+    #000 0%,
+    transparent 100%
+  );
 }
 
-/* Alafade */
+/* Alafade (jyrkempi) */
 .sponsor::bottomfade {
-  bottom: 0;
-  background: linear-gradient(to top, #000 0%, transparent 100%);
+  bottom:0;
+  background:linear-gradient(
+    to top,
+    #000 0%,
+    transparent 100%
+  );
 }
 
 /* Track */
@@ -336,6 +336,7 @@ document.getElementById("footer").innerHTML=d;
 
 </body>
 </html>
+
 
 
 
