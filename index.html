@@ -202,7 +202,7 @@ box-shadow:
   position:absolute;
   left:0;
   width:100%;
-  height:50px; /* fade-korkeus */
+  height:40px; /* fade-korkeus */
   z-index:2;
   pointer-events:none;
 }
@@ -212,8 +212,8 @@ box-shadow:
   top:30px;
   background:linear-gradient(
     to bottom,
-    #000 0%,
-    transparent 100%
+    rgba(0,0,0,1) 0%,
+    rgba(0,0,0,0) 100%
   );
 }
 
@@ -222,8 +222,8 @@ box-shadow:
   bottom:30px;
   background:linear-gradient(
     to top,
-    #000 0%,
-    transparent 100%
+    rgba(0,0,0,1) 0%,
+    rgba(0,0,0,0) 100%
   );
 }
 
@@ -362,6 +362,7 @@ document.getElementById("footer").innerHTML=d;
 
 </body>
 </html>
+
 
 
 
