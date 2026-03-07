@@ -196,6 +196,37 @@ box-shadow:
   );
 }
 
+/* Ylä- ja alafade (jyrkempi) */
+.fade-top,
+.fade-bottom {
+  position:absolute;
+  left:0;
+  width:100%;
+  height:40px; /* fade-korkeus */
+  z-index:2;
+  pointer-events:none;
+}
+
+/* Yläfade – jyrkkä */
+.fade-top {
+  top:0;
+  background:linear-gradient(
+    to bottom,
+    #000 0%,
+    transparent 100%
+  );
+}
+
+/* Alafade – jyrkkä */
+.fade-bottom {
+  bottom:0;
+  background:linear-gradient(
+    to top,
+    #000 0%,
+    transparent 100%
+  );
+}
+
 /* Track */
 .sponsor-track{
 display:flex;
@@ -288,7 +319,8 @@ Connect creators. Grow together. Get opportunities.
 </section>
 
 <div class="sponsor">
-
+  <div class="fade-top"></div>
+  <div class="fade-bottom"></div>
 <div class="sponsor-track">
 
 <span>👑 Creator Of The Month</span>
@@ -330,6 +362,7 @@ document.getElementById("footer").innerHTML=d;
 
 </body>
 </html>
+
 
 
 
