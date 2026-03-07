@@ -169,4 +169,131 @@ body{
       <div class="stats">
         <div class="stat-box"><h4>TikTok Followers</h4><span>12 450</span></div>
         <div class="stat-box"><h4>YouTube Subs</h4><span>3 210</span></div>
-        <div class="stat-box"><h4>Twitch Followers</h4><span>980</span>
+        <div class="stat-box"><h4>Twitch Followers</h4><span>980</span></div>
+        <div class="stat-box"><h4>Monthly Growth</h4><span>+14%</span></div>
+      </div>
+    </div>
+
+    <!-- PROFILE -->
+    <div id="profile" class="section" style="display:none;">
+      <div class="header">Profile Settings</div>
+
+      <div class="card">
+        <h2>Edit Profile</h2>
+        <input placeholder="Nimimerkki" value="Aleksi">
+        <input placeholder="Bio" value="Creator & streamer">
+        <input placeholder="TikTok linkki">
+        <input placeholder="YouTube linkki">
+        <input placeholder="Instagram linkki">
+      </div>
+    </div>
+
+    <!-- LEADERBOARD -->
+    <div id="leaderboard" class="section" style="display:none;">
+      <div class="header">Leaderboard</div>
+
+      <div class="card">
+        <h2>Top Creators</h2>
+        <p>1. @Mika — 152k followers</p>
+        <p>2. @Aleksi — 124k followers</p>
+        <p>3. @Jenna — 98k followers</p>
+      </div>
+    </div>
+
+    <!-- REWARDS -->
+    <div id="rewards" class="section" style="display:none;">
+      <div class="header">Rewards & Badges</div>
+
+      <div class="card">
+        <h2>Your Badges</h2>
+        <p>⭐ Rising Creator</p>
+        <p>🔥 Trending 10</p>
+        <p>🏆 Top 1% Creator</p>
+      </div>
+    </div>
+
+    <!-- COLLABS -->
+    <div id="collabs" class="section" style="display:none;">
+      <div class="header">Collabs & Sponsors</div>
+
+      <div class="card">
+        <h2>Active Sponsors</h2>
+        <p>EnergyDrink Co — Code: ALEKSI20</p>
+        <p>GamingGear — Code: ALEKSI10</p>
+      </div>
+
+      <div class="card">
+        <h2>Add New Sponsor</h2>
+        <input placeholder="Sponsor name">
+        <input placeholder="Discount code">
+      </div>
+    </div>
+
+    <!-- SETTINGS -->
+    <div id="settings" class="section" style="display:none;">
+      <div class="header">Account Settings</div>
+
+      <div class="card">
+        <h2>Account Info</h2>
+        <input placeholder="Email" value="aleksi@example.com">
+        <input placeholder="Username" value="Aleksi">
+      </div>
+
+      <div class="card">
+        <h2>Security</h2>
+        <input placeholder="New password">
+        <input placeholder="Confirm password">
+      </div>
+
+      <div class="card">
+        <h2>Notifications</h2>
+        <p>Email alerts: ON</p>
+        <p>Sponsor requests: ON</p>
+      </div>
+
+      <div class="card">
+        <h2>Privacy</h2>
+        <p>Show profile publicly: ON</p>
+      </div>
+
+      <div class="card" style="border:1px solid #ff0055;">
+        <h2 style="color:#ff0055;">Delete Account</h2>
+        <button style="background:#ff0055;">Poista tili pysyvästi</button>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<!-- NAVBAR FETCH -->
+<script>
+fetch("navbar.html")
+  .then(r => r.text())
+  .then(d => document.getElementById("navbar").innerHTML = d);
+</script>
+
+<!-- SUPABASE LOGIC -->
+<script type="module">
+
+import { supabase } from "./js/supabase.js"
+
+window.onload = async () => {
+  const { data } = await supabase.auth.getUser()
+  if(!data.user){ window.location.href="index.html"; return }
+}
+
+window.logoutUser = async () => {
+  await supabase.auth.signOut()
+  window.location.href="index.html"
+}
+
+window.showSection = (id) => {
+  document.querySelectorAll(".section").forEach(sec => sec.style.display="none")
+  document.getElementById(id).style.display="block"
+}
+
+</script>
+
+</body>
+</html>
