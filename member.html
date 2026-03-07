@@ -81,7 +81,7 @@ display:none;
 <input id="email" placeholder="Email">
 <input id="password" type="password" placeholder="Password">
 
-<button onclick=""window.location.href='dashboard.html'"">   <!-- MUISTA MUUTTAA TAKAISIN <button oneclick="loginUser()"> -->
+<button onclick="window.location.href='dashboard.html'">   <!-- MUISTA MUUTTAA TAKAISIN <button oneclick="loginUser()"> -->
 Login                              
 </button>                         
 
@@ -103,10 +103,28 @@ Logout
 </main>
 
 <div id="footer"></div>
+  
+<script>
+/* Navbar */
+fetch("navbar.html")
+  .then(r=>r.text())
+  .then(d=>{
+    document.getElementById("navbar").innerHTML=d;
+});
+
+/* Footer */
+fetch("footer.html")
+  .then(r=>r.text())
+  .then(d=>{
+    document.getElementById("footer").innerHTML=d;
+});
+</script>
+
 
 <!-- PIILOTETTU JS LOGIIKKA -->
 <script type="module" src="js/auth.js"></script>
 
 </body>
 </html>
+
 
