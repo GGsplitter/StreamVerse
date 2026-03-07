@@ -157,19 +157,19 @@ box-shadow:
 
 /* --- NAPIN GLITCH-LIIKE (ei vilkkumista) --- */
 @keyframes btnShake {
-  /* 0–85% = ei mitään */
+  /* 0–95% = ei mitään */
   0%   { transform: translate(0,0) skew(0deg); }
-  92%  { transform: translate(0,0) skew(0deg); }
+  95%  { transform: translate(0,0) skew(0deg); }
 
-  /* NOPEA, TERÄVÄ GLITCH NYTKÄHDYS */
-  93%  { transform: translate(-4px, -3px) skew(-3deg); }
-  94%  { transform: translate(4px, 2px) skew(4deg); }
-  95%  { transform: translate(-3px, 3px) skew(-4deg); }
-  96%  { transform: translate(3px, -3px) skew(3deg); }
+  /* NYTKÄHDYS TAPAHTUU MILLISEKUNNEISSA */
+  95.1% { transform: translate(-5px, -4px) skew(-4deg); }
+  95.2% { transform: translate(5px, 4px) skew(4deg); }
+  95.3% { transform: translate(-4px, 5px) skew(-5deg); }
+  95.4% { transform: translate(4px, -5px) skew(5deg); }
 
   /* Paluu normaaliksi */
-  97%  { transform: translate(0,0) skew(0deg); }
-  100% { transform: translate(0,0) skew(0deg); }
+  95.5% { transform: translate(0,0) skew(0deg); }
+  100%  { transform: translate(0,0) skew(0deg); }
 }
 
 /*  SLIDER */
@@ -353,6 +353,7 @@ document.getElementById("footer").innerHTML=d;
 
 </body>
 </html>
+
 
 
 
