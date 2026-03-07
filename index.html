@@ -146,7 +146,7 @@ box-shadow:
   z-index: 1;
 }
 
-/* GLITCH LAYERS */
+/* --- PINKKI–LIILA GLITCH --- */
 .btn::before,
 .btn::after {
   content: "";
@@ -157,30 +157,44 @@ box-shadow:
   pointer-events: none;
 }
 
-/* Pinkki glitch */
+/* Pinkki glitch layer */
 .btn::before {
-  background: linear-gradient(45deg, #ff00ff55, #ff008855);
-  animation: glitchA 4s infinite ease-in-out;
+  background: linear-gradient(45deg, #ff00ffcc, #ff44ccaa);
+  animation: glitchPink 2.8s infinite steps(2);
 }
 
-/* Sininen glitch */
+/* Liila glitch layer */
 .btn::after {
-  background: linear-gradient(45deg, #00ffff55, #0088ff55);
-  animation: glitchB 4s infinite ease-in-out;
+  background: linear-gradient(45deg, #aa00ffcc, #6600ffaa);
+  animation: glitchPurple 2.8s infinite steps(2);
 }
 
-/* ANIMAATIOT */
-@keyframes glitchA {
-  0% { opacity: 0; transform: translate(0,0); }
-  5% { opacity: .5; transform: translate(-3px, -2px); }
-  8% { opacity: 0; transform: translate(0,0); }
+/* GLITCH ANIMATIONS */
+@keyframes glitchPink {
+  0% { opacity: 0; transform: translate(0,0) skew(0deg); }
+  4% { opacity: .9; transform: translate(-5px, -3px) skew(-3deg); }
+  6% { opacity: 0; transform: translate(0,0) skew(0deg); }
+
+  18% { opacity: .8; transform: translate(4px, -2px) skew(4deg); }
+  20% { opacity: 0; }
+
+  40% { opacity: .7; transform: translate(-3px, 4px) skew(-5deg); }
+  42% { opacity: 0; }
+
   100% { opacity: 0; }
 }
 
-@keyframes glitchB {
-  0% { opacity: 0; transform: translate(0,0); }
-  5% { opacity: .5; transform: translate(3px, 2px); }
-  8% { opacity: 0; transform: translate(0,0); }
+@keyframes glitchPurple {
+  0% { opacity: 0; transform: translate(0,0) skew(0deg); }
+  4% { opacity: .9; transform: translate(5px, 3px) skew(3deg); }
+  6% { opacity: 0; transform: translate(0,0) skew(0deg); }
+
+  18% { opacity: .8; transform: translate(-4px, 2px) skew(-4deg); }
+  20% { opacity: 0; }
+
+  40% { opacity: .7; transform: translate(3px, -4px) skew(5deg); }
+  42% { opacity: 0; }
+
   100% { opacity: 0; }
 }
 
@@ -365,6 +379,7 @@ document.getElementById("footer").innerHTML=d;
 
 </body>
 </html>
+
 
 
 
