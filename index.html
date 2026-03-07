@@ -192,13 +192,12 @@ box-shadow:
   left:0;
   width:100%;
   height:35px; /* fade-korkeus */
-  z-index:3;
-  pointer-events:none;
+  z-index:10;
 }
 
 /* Yläfade – jyrkkä */
 .fade-top {
-  top:-30px;
+ bottom:100%; 
   height:60px;
   background:linear-gradient(
     to bottom,
@@ -209,7 +208,7 @@ box-shadow:
 
 /* Alafade – jyrkkä */
 .fade-bottom {
-  bottom:-30px;
+  bottom:100%; 
   height:60px;
   background:linear-gradient(
     to top,
@@ -309,12 +308,14 @@ Connect creators. Grow together. Get opportunities.
 </div>
 
 </section>
-
-<div class="sponsor">
-  <div class="fade-top"></div>
-  <div class="fade-bottom"></div>
-<div class="sponsor-track">
-
+ 
+<div class="hero">
+ 
+   <div class="fade-top"></div>
+ 
+   <div class="sponsor">
+         <div class="sponsor-track">
+ 
 <span>👑 Creator Of The Month</span>
 <span>🔴 Live Content</span>
 <span>🔝 Grow your community</span>
@@ -329,7 +330,9 @@ Connect creators. Grow together. Get opportunities.
  
 </div>
 </div>
-
+ 
+ <div class="fade-bottom"></div>
+ 
 </main>
 
 <div id="footer"></div>
@@ -354,6 +357,7 @@ document.getElementById("footer").innerHTML=d;
 
 </body>
 </html>
+
 
 
 
