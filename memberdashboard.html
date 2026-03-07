@@ -27,12 +27,12 @@ body{
   z-index:1000;
 }
 
-/* PAGE WRAPPER (SIDEBAR + MAIN) */
+/* PAGE WRAPPER */
 .page-wrapper{
   display:flex;
   flex:1;
   height:100%;
-  margin-top:80px; /* NAVBAR HEIGHT */
+  margin-top:80px;
 }
 
 /* SIDEBAR */
@@ -79,21 +79,12 @@ body{
   margin-bottom:25px;
 }
 
-/* PROFILE CARD */
-.profile-card{
+/* CARD */
+.card{
   background:#111;
   padding:25px;
   border-radius:15px;
-  margin-bottom:30px;
-}
-
-.profile-card h3{
-  margin:0;
-  font-size:22px;
-}
-
-.profile-card p{
-  opacity:.8;
+  margin-bottom:25px;
 }
 
 /* STATS GRID */
@@ -152,12 +143,12 @@ body{
 
     <h2>Creator Hub</h2>
 
-  <a href="overview.html">📊 Overview</a>
-  <a href="profile.html">👤 Profile</a>
-  <a href="leaderboard.html">🏆 Leaderboard</a>
-  <a href="rewards.html">🎁 Rewards</a>
-  <a href="collabs.html">🤝 Collabs</a>
-  <a href="settings.html">⚙️ Settings</a>
+    <a href="#" onclick="showSection('overview')">📊 Overview</a>
+    <a href="#" onclick="showSection('profile')">👤 Profile</a>
+    <a href="#" onclick="showSection('leaderboard')">🏆 Leaderboard</a>
+    <a href="#" onclick="showSection('rewards')">🎁 Rewards</a>
+    <a href="#" onclick="showSection('collabs')">🤝 Collabs</a>
+    <a href="#" onclick="showSection('settings')">⚙️ Settings</a>
 
     <button class="logout-btn" onclick="logoutUser()">Logout</button>
 
@@ -166,101 +157,16 @@ body{
   <!-- MAIN CONTENT -->
   <div class="main">
 
+    <!-- OVERVIEW -->
     <div id="overview" class="section">
       <div class="header">Dashboard Overview</div>
 
-      <div class="profile-card">
-        <h3 id="user-name">Creator Name</h3>
-        <p id="user-email">email@example.com</p>
+      <div class="card">
+        <h2>Creator Stats</h2>
+        <p>Tähän tulee TikTok, YouTube, Twitch, kasvu jne.</p>
       </div>
 
       <div class="stats">
-        <div class="stat-box">
-          <h4>TikTok Followers</h4>
-          <span>–</span>
-        </div>
-
-        <div class="stat-box">
-          <h4>YouTube Subs</h4>
-          <span>–</span>
-        </div>
-
-        <div class="stat-box">
-          <h4>Twitch Followers</h4>
-          <span>–</span>
-        </div>
-
-        <div class="stat-box">
-          <h4>Monthly Growth</h4>
-          <span>–</span>
-        </div>
-      </div>
-    </div>
-
-    <div id="profile" class="section" style="display:none;">
-      <div class="header">Profile Settings</div>
-      <p>Tähän tulee profiilin muokkaus (nimi, kuva, bio, linkit…)</p>
-    </div>
-
-    <div id="leaderboard" class="section" style="display:none;">
-      <div class="header">Leaderboard</div>
-      <p>Tähän tulee ranking-listat.</p>
-    </div>
-
-    <div id="rewards" class="section" style="display:none;">
-      <div class="header">Rewards & Badges</div>
-      <p>Tähän tulee saavutukset ja palkinnot.</p>
-    </div>
-
-    <div id="settings" class="section" style="display:none;">
-      <div the="header">Account Settings</div>
-      <p>Tähän tulee salasanan vaihto, sähköpostin vaihto jne.</p>
-    </div>
-
-  </div>
-
-</div>
-
-<!-- NAVBAR FETCH -->
-<script>
-fetch("navbar.html")
-  .then(r => r.text())
-  .then(d => document.getElementById("navbar").innerHTML = d);
-</script>
-
-<!-- SUPABASE LOGIC -->
-<script type="module">
-
-import { supabase } from "./js/supabase.js"
-
-/* SESSION CHECK */
-window.onload = async () => {
-  const { data } = await supabase.auth.getUser()
-
-  if(!data.user){
-    window.location.href="index.html"
-    return
-  }
-
-  document.getElementById("user-email").innerText = data.user.email
-  document.getElementById("user-name").innerText = data.user.user_metadata?.username || "Creator"
-}
-
-/* LOGOUT */
-window.logoutUser = async () => {
-  await supabase.auth.signOut()
-  window.location.href="index.html"
-}
-
-/* SECTION SWITCHER */
-window.showSection = (id) => {
-  document.querySelectorAll(".section").forEach(sec => sec.style.display="none")
-  document.getElementById(id).style.display="block"
-}
-
-</script>
-
-</body>
-</html>
-
-
+        <div class="stat-box"><h4>TikTok Followers</h4><span>12 450</span></div>
+        <div class="stat-box"><h4>YouTube Subs</h4><span>3 210</span></div>
+        <div class="stat-box"><h4>Twitch Followers</h4><span>980</span>
