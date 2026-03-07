@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+<meta charset="UTF-8">
+<title>Collabs</title>
+
+<style>
+body{ margin:0; background:#060606; color:white; font-family:Arial; }
+#navbar{ width:100%; position:fixed; top:0; left:0; z-index:1000; }
+.page-wrapper{ display:flex; margin-top:80px; }
+.sidebar{ width:260px; background:#0a0a0a; padding:30px 20px; position:fixed; top:80px; left:0; height:100%; }
+.sidebar a{ display:block; padding:12px; background:#111; margin-bottom:10px; border-radius:10px; color:white; text-decoration:none; }
+.sidebar a:hover{ background:#222; }
+.main{ margin-left:260px; padding:40px; width:100%; }
+.card{ background:#111; padding:25px; border-radius:15px; margin-bottom:25px; }
+.item{ padding:12px 0; border-bottom:1px solid #222; }
+input{ width:100%; padding:12px; border:none; border-radius:10px; background:#1a1a1a; color:white; margin-top:10px; }
+button{ padding:12px 20px; border:none; border-radius:10px; background:#7000ff; color:white; margin-top:15px; cursor:pointer; }
+</style>
+</head>
+
+<body>
+
+<div id="navbar"></div>
+
+<div class="page-wrapper">
+
+  <div class="sidebar">
+    <a href="overview.html">📊 Overview</a>
+    <a href="profile.html">👤 Profile</a>
+    <a href="leaderboard.html">🏆 Leaderboard</a>
+    <a href="rewards.html">🎁 Rewards</a>
+    <a href="collabs.html">🤝 Collabs</a>
+    <a href="settings.html">⚙️ Settings</a>
+  </div>
+
+  <div class="main">
+
+    <h1>🤝 Collabs & Sponsors</h1>
+
+    <div class="card">
+      <h2>Active Sponsors</h2>
+      <div class="item">EnergyDrink Co — Code: ALEKSI20</div>
+      <div class="item">GamingGear — Code: ALEKSI10</div>
+      <div class="item">HeadsetPro — Code: ALEKSI5</div>
+    </div>
+
+    <div class="card">
+      <h2>Pending Requests</h2>
+      <div class="item">Brand X — Waiting for approval</div>
+      <div class="item">TechNova — Reviewing your profile</div>
+    </div>
+
+    <div class="card">
+      <h2>Add New Sponsor Code</h2>
+      <input placeholder="Sponsor name">
+      <input placeholder="Discount code">
+      <button>Add Sponsor</button>
+    </div>
+
+  </div>
+
+</div>
+
+<script>
+fetch("../navbar.html")
+  .then(r=>r.text())
+  .then(d=>document.getElementById("navbar").innerHTML=d);
+</script>
+
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+<meta charset="UTF-8">
+<title>Rewards</title>
+
+<style>
+body{ margin:0; background:#060606; color:white; font-family:Arial; }
+#navbar{ width:100%; position:fixed; top:0; left:0; z-index:1000; }
+.page-wrapper{ display:flex; margin-top:80px; }
+.sidebar{ width:260px; background:#0a0a0a; padding:30px 20px; position:fixed; top:80px; left:0; height:100%; }
+.sidebar a{ display:block; padding:12px; background:#111; margin-bottom:10px; border-radius:10px; color:white; text-decoration:none; }
+.sidebar a:hover{ background:#222; }
+.main{ margin-left:260px; padding:40px; width:100%; }
+.card{ background:#111; padding:25px; border-radius:15px; margin-bottom:25px; }
+.badge{ background:#222; padding:12px; border-radius:10px; margin:10px 0; }
+</style>
+</head>
+
+<body>
+
+<div id="navbar"></div>
+
+<div class="page-wrapper">
+
+  <div class="sidebar">
+    <a href="overview.html">📊 Overview</a>
+    <a href="profile.html">👤 Profile</a>
+    <a href="leaderboard.html">🏆 Leaderboard</a>
+    <a href="rewards.html">🎁 Rewards</a>
+    <a href="collabs.html">🤝 Collabs</a>
+    <a href="settings.html">⚙️ Settings</a>
+  </div>
+
+  <div class="main">
+
+    <h1>🎁 Rewards & Badges</h1>
+
+    <div class="card">
+      <h2>Your Badges</h2>
+      <div class="badge">⭐ Rising Creator — 10k followers</div>
+      <div class="badge">🔥 Trending 10 — 3 viral videos</div>
+      <div class="badge">🏆 Top 1% Creator — leaderboard top 10</div>
+    </div>
+
+    <div class="card">
+      <h2>Next Rewards</h2>
+      <div class="badge">🎯 20k followers — Silver Badge</div>
+      <div class="badge">🎬 10 viral videos — Gold Badge</div>
+    </div>
+
+  </div>
+
+</div>
+
+<script>
+fetch("../navbar.html")
+  .then(r=>r.text())
+  .then(d=>document.getElementById("navbar").innerHTML=d);
+</script>
+
+</body>
+</html>
