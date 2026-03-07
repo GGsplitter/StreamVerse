@@ -146,7 +146,7 @@ box-shadow:
   z-index: 1;
 
   /* Tämä on se hyvä pieni heiluminen */
-  animation: btnShake 20s infinite;
+  animation: btnShake 12s infinite;
 }
 
 /* Poistetaan vilkkuvat glitch-layerit kokonaan */
@@ -159,16 +159,16 @@ box-shadow:
 @keyframes btnShake {
   /* 0–85% = ei mitään */
   0%   { transform: translate(0,0) skew(0deg); }
-  85%  { transform: translate(0,0) skew(0deg); }
+  92%  { transform: translate(0,0) skew(0deg); }
 
   /* NOPEA, TERÄVÄ GLITCH NYTKÄHDYS */
-  86%  { transform: translate(-4px, -3px) skew(-3deg); }
-  87%  { transform: translate(4px, 2px) skew(4deg); }
-  88%  { transform: translate(-3px, 3px) skew(-4deg); }
-  89%  { transform: translate(3px, -3px) skew(3deg); }
+  93%  { transform: translate(-4px, -3px) skew(-3deg); }
+  94%  { transform: translate(4px, 2px) skew(4deg); }
+  95%  { transform: translate(-3px, 3px) skew(-4deg); }
+  96%  { transform: translate(3px, -3px) skew(3deg); }
 
   /* Paluu normaaliksi */
-  90%  { transform: translate(0,0) skew(0deg); }
+  97%  { transform: translate(0,0) skew(0deg); }
   100% { transform: translate(0,0) skew(0deg); }
 }
 
@@ -353,6 +353,7 @@ document.getElementById("footer").innerHTML=d;
 
 </body>
 </html>
+
 
 
 
