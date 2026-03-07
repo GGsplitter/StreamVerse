@@ -141,36 +141,6 @@ text-shadow:1px 2px 4px rgba(0,0,0,.5);
 box-shadow:
 0 8px 20px rgba(0,0,0,.3);
 
-   position: relative;
-  overflow: hidden;
-  z-index: 1;
-
-  /* Tämä on se hyvä pieni heiluminen */
-  animation: btnShake 12s infinite;
-}
-
-/* Poistetaan vilkkuvat glitch-layerit kokonaan */
-.btn::before,
-.btn::after {
-  display: none;
-}
-
-/* --- NAPIN GLITCH-LIIKE (ei vilkkumista) --- */
-@keyframes btnShake {
-  /* 0–95% = ei mitään */
-  0%   { transform: translate(0,0) skew(0deg); }
-  95%  { transform: translate(0,0) skew(0deg); }
-
-  /* NYTKÄHDYS TAPAHTUU MILLISEKUNNEISSA */
-  95.1% { transform: translate(-5px, -4px) skew(-4deg); }
-  95.2% { transform: translate(5px, 4px) skew(4deg); }
-  95.3% { transform: translate(-4px, 5px) skew(-5deg); }
-  95.4% { transform: translate(4px, -5px) skew(5deg); }
-
-  /* Paluu normaaliksi */
-  95.5% { transform: translate(0,0) skew(0deg); }
-  100%  { transform: translate(0,0) skew(0deg); }
-}
 
 /*  SLIDER */
 
@@ -353,6 +323,7 @@ document.getElementById("footer").innerHTML=d;
 
 </body>
 </html>
+
 
 
 
