@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Member Area</title>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<style>
+
+body{
+background:#060606;
+color:white;
+font-family:Arial;
+text-align:center;
+padding-top:120px;
+}
+
+.box{
+max-width:500px;
+margin:auto;
+background:#111;
+padding:40px;
+border-radius:20px;
+}
+
+button{
+padding:15px;
+border:none;
+border-radius:12px;
+background:linear-gradient(45deg,#ff0055,#7000ff);
+color:white;
+cursor:pointer;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="box">
+
+<h2>Member Area</h2>
+
+<p id="user-email"></p>
+
+<button onclick="logoutUser()">
+Logout
+</button>
+
+</div>
+
+<script type="module">
+
+import { supabase } from "./js/supabase.js"
+
+/* SESSION CHECK */
+
+window.onload = async () => {
+
+const { data } = await supabase.auth.getUser()
+
+if(!data.user){
+window.location.href="index.html"
+return
+}
+
+document.getElementById("user-email").innerText =
+data.user.email
+
+}
+
+/* LOGOUT */
+
+window.logoutUser = async () => {
+await supabase.auth.signOut()
+window.location.href="index.html"
+}
+
+</script>
+
+</body>
+</html>
