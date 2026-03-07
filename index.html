@@ -159,8 +159,13 @@ overflow: hidden;     /* glitch-viiru pysyy napin sisällä */
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.15) 50%, transparent 100%);
-  mix-blend-mode: overlay;
+  background: linear-gradient(
+    90deg, 
+    transparent 0%, 
+    rgba(255,0,255,0.4) 50%, /* pinkki glitch */
+    transparent 100%
+  );
+  mix-blend-mode: screen;
   opacity: 0;
   transform: translateX(-100%);
   animation: glitchMove 4s infinite ease-in-out;
@@ -367,6 +372,7 @@ document.getElementById("footer").innerHTML=d;
 
 </body>
 </html>
+
 
 
 
