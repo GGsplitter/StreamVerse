@@ -202,29 +202,27 @@ box-shadow:
   position:absolute;
   left:0;
   width:100%;
-  height:70px; /* fade-korkeus */
+  height:50px; /* fade-korkeus */
   z-index:2;
   pointer-events:none;
 }
 
 /* Yläfade – jyrkkä */
 .fade-top {
-  top:0;
+  top:30px;
   background:linear-gradient(
     to bottom,
     #000 0%,
-    #000 40%,
     transparent 100%
   );
 }
 
 /* Alafade – jyrkkä */
 .fade-bottom {
-  bottom:0;
+  bottom:30px;
   background:linear-gradient(
     to top,
     #000 0%,
-    #000 40%,
     transparent 100%
   );
 }
@@ -364,6 +362,7 @@ document.getElementById("footer").innerHTML=d;
 
 </body>
 </html>
+
 
 
 
