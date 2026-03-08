@@ -9,97 +9,110 @@
 href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 <style>
-
-/* ===== GLOBAL LAYOUT FIX ===== */
-
+/* ===== GLOBAL LAYOUT ===== */
 html, body{
-margin:0;
-height:100%;
+  margin:0;
+  height:100%;
 }
 
 body{
-font-family:Arial;
-background:#060606;
-color:white;
-
-display:flex;
-flex-direction:column;
-min-height:100vh;
+  font-family:Arial;
+  background:#060606;
+  color:white;
+  display:flex;
+  flex-direction:column;
+  min-height:100vh;
 }
 
 main{
-flex:1;
+  flex:1;
 }
 
-/* ===== ABOUT SECTION (TAUSTAKUVA KORJATTU) ===== */
-
+/* ===== SECTION BACKGROUND ===== */
 section{
-padding:140px 8%;
-
-background:
-linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.9)),
-url("https://images.unsplash.com/photo-1542751371-adc38448a05e");
-
-background-size:cover;
-background-position:center;
-background-attachment:fixed;
+  padding:140px 8%;
+  background:
+    linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.9)),
+    url("https://images.unsplash.com/photo-1542751371-adc38448a05e");
+  background-size:cover;
+  background-position:center;
+  background-attachment:fixed;
 }
 
-.about-title{
-text-align:center;
-font-size:50px;
-background:linear-gradient(45deg,#ff0055,#7000ff);
--webkit-background-clip:text;
-color:transparent;
-margin-bottom:70px;
+/* ===== TWO COLUMN GRID ===== */
+.about-top {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px 80px;
+  align-items: start; /* tärkeä */
+  max-width: 1400px;
+  margin: auto;
+  margin-bottom: 120px;
 }
 
-.about-box{
-max-width:900px;
-margin:auto;
-padding:60px;
-border-radius:25px;
+/* Molemmat palstat flexiksi */
+.about-left,
+.about-right {
+  display: flex;
+  flex-direction: column;
+}
 
-background:rgba(0,0,0,0.55);
-backdrop-filter:blur(25px);
+/* Otsikot */
+.about-left h2,
+.about-right h2 {
+  font-size:50px;
+  background:linear-gradient(45deg,#ff0055,#7000ff);
+  -webkit-background-clip:text;
+  color:transparent;
+  margin: 0 0 20px 0;
+}
 
-line-height:1.7;
+/* Laatikot alkavat samasta kohdasta */
+.about-box {
+  padding:60px;
+  border-radius:25px;
+  background:rgba(0,0,0,0.55);
+  backdrop-filter:blur(25px);
+  line-height:1.7;
+  box-shadow:0 30px 70px rgba(0,0,0,0.5);
+  flex: 1;
+}
 
-box-shadow:0 30px 70px rgba(0,0,0,0.5);
+/* ===== TEAM ===== */
+.team-title{
+  text-align:center;
+  margin-top:120px;
+  margin-bottom:60px;
+  font-size:40px;
 }
 
 .team-grid{
-margin-top:120px;
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-gap:40px;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:40px;
 }
 
 .team-card{
-text-align:center;
-padding:30px;
-
-background:rgba(0,0,0,0.55);
-backdrop-filter:blur(20px);
-
-border-radius:20px;
-box-shadow:0 20px 40px rgba(0,0,0,0.5);
-
-transition:.4s;
+  text-align:center;
+  padding:30px;
+  background:rgba(0,0,0,0.55);
+  backdrop-filter:blur(20px);
+  border-radius:20px;
+  box-shadow:0 20px 40px rgba(0,0,0,0.5);
+  transition:.4s;
 }
 
 .team-card:hover{
-transform:translateY(-8px);
+  transform:translateY(-8px);
 }
 
 .team-card img{
-width:140px;
-height:140px;
-object-fit:cover;
-border-radius:50%;
-margin-bottom:20px;
+  width:140px;
+  height:140px;
+  object-fit:cover;
+  border-radius:50%;
+  margin-bottom:20px;
 }
-
 </style>
 </head>
 
@@ -108,80 +121,110 @@ margin-bottom:20px;
 <!-- NAVBAR -->
 <div id="navbar"></div>
 
+<main>
 <section>
 
-<h2 class="about-title">
-Mikä on CREATORS Hype Hub
-</h2>
+<div class="about-top">
 
-<div class="about-box">
+  <!-- LEFT -->
+  <div class="about-left">
+    <h2>Ketä olemme?</h2>
+    <div class="about-box">
+      <p>
+        Bunch of average Joes. 
+        <br><br>
+        Kuvittele lasiseinistä rakennettu tila, täynnä sisällöntuottajia, joista jokainen yrittää erottua joukosta. 
+        Sisältösi hukkuu helposti massaan sekaan. Me luomme mahdollisuuden nousta korokkeelle, 
+        jotta kohdeyhteisösi ja mahdolliset yhteistyökumppanit löytävät sinut helpommin.
+        <br><br>
+        Luomme kaikenlaisille sisällöntuottajille alustasta riippumatta paikan, 
+        joka antaa jäsenillemme mahdollisuuden kuulua osaksi isompaa yhteisöä. 
+        Alustan ja yhteisömme päämäärä on nostaa esille sisällöntuottajia, jotka tekevät paljon töitä sisältönsä eteen riippumatta yhteisönsä koosta.
+        <br><br>
+        Rakennamme alustaa, jossa jokainen tekijä voi kasvaa ja tuntea arvostusta sekä kuuluvansa osaksi isompaa yhteisöä.
+        Haluamme, että jokaisella tekijällä on samat lähtökohdat ja mahdollisuudet tuoda oma kanavaansa esille omalla aktiivisuudellaan.
+        <br><br>
+        Emme ole vain alusta, joka seuraa sisällöntuotantoa ja sen kehitystä.
+        Olemme itse Hype Hubin tiimissä osa tätä maailmaa — pelaajia, tekijöitä, seuraajia ja yhteisöjen rakentajia. 
+        Siksi ymmärrämme, miltä tuntuu yrittää kasvaa, löytää oma tyylinsä sekä yhteisönsä, jatkuvasti kasvavassa ja muuttuvassa ympäristössä. 
 
-<p>
-Creators Hype Hub on moderni sisällöntuottajien alustasta riippumaton yhteisöalusta, joka yhdistää sisällöntuottajat, katsojat ja seuraajat sekä tukee kasvumahdollisuuksia.
+      </p>
+    </div>
+  </div>
 
-<br><br>
+  <!-- RIGHT -->
+  <div class="about-right">
+    <h2>Visiomme</h2>
+    <div class="about-box">
+      <p>
+        Moni tekijä törmää digitaalisen maailman rajoihin: algoritmit ohjaavat näkyvyyttä ja yhteistyömahdollisuudet harvassa. 
+        Visiomme on murtaa nämä esteet ja tarjota ilmainen ympäristö, jossa tekijät voivat kasvaa rinnakkain koostaan riippumatta.
+        <br><br>
+        Haluamme yhdistää:
+        <ul>
+          <li>Sisällöntuottajat</li>
+          <li>Yhteisöt</li>
+          <li>Brändit</li>
+        </ul>
+        <br>
+        Arvomme ohjaavat kaikkea mitä teemme:
+        <ul>
+          <li>Yhteisöllisyys: Yhdessä olemme vahvempia.</li>
+          <li>Reiluus: Jokaisella tekijällä on samat mahdollisuudet loistaa.</li>
+          <li>Inspiraatio: Ympäristö, joka sytyttää luovuuden kipinän ja motivoi sinua tavoittelemaan unelmiasi.</li>
+        </ul>
+        <br>
+        Jatkuvan kehityksemme suunta:
+        <ul>
+          <li>Olla johtava sisännöntuottajien hubi</li>
+          <li>Member sivusto, sisältäen laajaa statistiikkaa</li>
+          <li>Luoda tapahtumia, kampanjoita ja yhteistyömahdollisuuksia, jotka tuovat tekijät yhteen.</li>
+          <li>Laajentaa yhteistyöverkostoamme brändien ja muiden kumppaneiden kanssa, jotka jakavat visiomme.</li>
+      </p>
+    </div>
+  </div>
 
-Emme ole vain hype alusta — Olemme mahdollisuus pitkäaikaiseen yhteistyöhön.
+</div> <!-- /.about-top -->
 
-<br><br>
-
-Tulossa:
-
-<ul>
-<li>Members only</li>
-<li>Leaderboard</li>
-<li>Spotlight</li>
-<li>Yhteistyömahdollisuudet</li>
-<li>Sponsorointi mahdollisuuksia</li>
-</ul>
-
-</p>
-
-</div>
-
-<h2 style="text-align:center;margin-top:120px;margin-bottom:60px;">
-Tiimimme
-</h2>
+<h2 class="team-title">Tiimimme</h2>
 
 <div class="team-grid">
 
-<div class="team-card">
-<img src="https://via.placeholder.com/150">
-<h3>Aleksi / Founder</h3>
+  <div class="team-card">
+    <img src="https://via.placeholder.com/150">
+    <h3>Aleksi / Founder</h3>
+    <p>
+      Sähkötekniikan insinööri ja teknologiasta kiinnostunut ideoija ja viettänyt suuren osan elämästä videopelien kanssa. 
+      <br><br>
+      Seuraan aktiivisesti teknologian ja digitaalisen maailman kehittymistä.
+      <br><br>
+      Olen yhdistänyt teknisen taustan sekä kiinnostuksen digitaaliseen kulttuuriin ja pyrin tarkastelemaan eri näkökulmia digitaalisen vuorovaikutuksen kautta.
+      <br><br>
+      Vastaan alustan suuntaamisesta, käyttäjäkokemuksen parantamisesta sekä uusien ominaisuuksien kehittämisestä tarpeiden pohjalta.
+    </p>
+  </div>
 
-<p>
-Sähkötekniikan insinööri ja teknologiasta kiinnostunut ideoija ja viettänyt suuren osan elämästä videopelien kanssa. Seuraa aktiivisesti teknologian ja digitaalisen maailman kehittymistä. 
-Aleksi on yhdistänyt teknisen taustan sekä kiinnostuksen digitaaliseen kulttuuriin ja pyrkii tarkastelemaan eri näkökulmia digitaalisen vuorovaikutuksen kautta ja hyödyntää niitä.
+  <div class="team-card">
+    <img src="https://via.placeholder.com/150">
+    <h3>TBA</h3>
+    <h3>Marketing & Community</h3>
+  </div>
 
-<br><br>
-
-Vastaan alustan suuntaamisesta, käyttäjäkokemuksen parantamisesta sekä uusien ominaisuuksien kehittämisestä tarpeiden pohjalta. 
-Pyrin rakentamaan ympäristöä, joka tukee sisällöntuottajia sen alustasta ja koosta riippumatta, luomalla heille mahdollisuuden kasvattaa ja kehittää omaa yhteisöään sekä synnyttämään pitkäkestoisia yhteistyökumppanuuksia.
-</p>
-
-</div>
-
-<div class="team-card">
-<img src="https://via.placeholder.com/150">
-<h3>TBA</h3>
-<h3>Marketing & Community</h3>
-</div>
-
-<div class="team-card">
-<img src="https://via.placeholder.com/150">
-<h3>TBA</h3>
-<h3>Developer / Tech</h3>
-</div>
+  <div class="team-card">
+    <img src="https://via.placeholder.com/150">
+    <h3>TBA</h3>
+    <h3>Developer / Tech</h3>
+  </div>
 
 </div>
 
 </section>
+</main>
 
 <!-- FOOTER -->
 <div id="footer"></div>
 
 <script>
-
 /* Navbar */
 fetch("navbar.html")
 .then(r=>r.text())
@@ -195,7 +238,6 @@ fetch("footer.html")
 .then(data=>{
 document.getElementById("footer").innerHTML=data;
 });
-
 </script>
 
 </body>

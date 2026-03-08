@@ -35,7 +35,7 @@ padding-top:100px;
 height:60vh;
 background:
 linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.9)),
-url("HERO_IMAGE.png");
+url("assets/HERO_IMAGE.png");
 
 background-size:cover;
 background-position:center;
@@ -68,6 +68,31 @@ transition:.3s;
 
 .hero-logo img:hover{
 transform:scale(1.05);
+}
+
+/* RIGHT SIDE LIVE HOURS */
+
+.hero-right-stats{
+position:absolute;
+right:3%;
+top:15%;
+transform:translateY(-50%);
+text-align:right;
+z-index:2;
+}
+
+.stats-title{
+font-size:31px;
+font-weight:600;
+color:rgba(255,255,255,0.6);
+letter-spacing:2px;
+}
+
+.stats-number{
+font-size:90px;
+font-weight:600;
+color:rgba(255,255,255,0.25);
+line-height:0.9;
 }
 
 /*  HERO CONTENT CENTER */
@@ -140,6 +165,15 @@ text-shadow:1px 2px 4px rgba(0,0,0,.5);
 
 box-shadow:
 0 8px 20px rgba(0,0,0,.3);
+
+
+/* Tämä tekee smooth-efektin */
+transition: transform 0.15s ease;
+}
+
+/* Tämä on se pieni pomppaus */
+.btn:hover{
+  transform: scale(1.08);
 }
 
 /*  SLIDER */
@@ -261,7 +295,21 @@ font-size:16px;
 <section class="hero">
 
 <div class="hero-logo">
-<img src="CHH_LOGO.png">
+<img src="assets/CHH_LOGO.png">
+</div>
+
+
+<div class="hero-right-stats">
+
+<div class="stats-title">
+Live stream hours<br>
+coming soon
+</div>
+
+<div class="stats-number">
+2 845 
+</div>
+
 </div>
 
 <div class="hero-content">
@@ -275,7 +323,9 @@ font-size:16px;
 Connect creators. Grow together. Get opportunities.
 </p>
 
-<button class="btn">Join Hype Hub</button>
+<button class="btn" onclick="window.location.href='register.html'">
+  Join, It's FREE
+</button>
 
 </div>
 

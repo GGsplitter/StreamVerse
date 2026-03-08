@@ -127,6 +127,74 @@ body{
   width:100%;
 }
 
+/* PLATFORM LIST */
+.platform-row {
+  display:flex;
+  align-items:center;
+  gap:12px;
+  max-width:380px;   /* tämä tuo togglea lähemmäs */
+  background:#373737;
+  padding:14px 18px;
+  border-radius:12px;
+  border:1px solid #222;
+  margin-bottom:12px;
+}
+
+.platform-logo {
+  width: 32px;
+  height: 32px;
+  margin-right: 15px;
+}
+
+.platform-name{
+  flex:1;
+  font-size:18px;
+}
+
+/* Toggle Switch */
+.switch {
+  position: relative;
+  width: 50px;
+  height: 26px;
+  display: inline-block;
+}
+
+.switch input {
+  display: none;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  background: #555;
+  border-radius: 34px;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  transition: .3s;
+}
+
+.slider:before {
+  content: "";
+  position: absolute;
+  height: 20px;
+  width: 20px;
+  left: 3px;
+  bottom: 3px;
+  background: white;
+  border-radius: 50%;
+  transition: .3s;
+}
+
+input:checked + .slider {
+  background: #4ade80;
+}
+
+input:checked + .slider:before {
+  transform: translateX(24px);
+}
+
 </style>
 </head>
 
@@ -157,20 +225,50 @@ body{
   <!-- MAIN CONTENT -->
   <div class="main">
 
-    <!-- OVERVIEW -->
-    <div id="overview" class="section">
-      <div class="header">Dashboard Overview</div>
+ <!-- OVERVIEW -->
+<div id="overview" class="section">
+  <div class="header">Dashboard Overview</div>
 
-      <div class="card">
-        <h2>Creator Stats</h2>
-        <p>Tähän tulee TikTok, YouTube, Twitch, kasvu jne.</p>
+  <!-- SUMMARY CARD -->
+  <div class="card">
+    <h2>Creator Summary</h2>
+    <p>Yhdistetty yhteenveto connected alustoista.</p>
+
+    <div class="stats">
+      <div class="stat-box">
+        <h4>Total Followers</h4>
+        <span id="total-followers">0</span>
       </div>
 
-      <div class="stats">
-        <div class="stat-box"><h4>TikTok Followers</h4><span>12 450</span></div>
-        <div class="stat-box"><h4>YouTube Subs</h4><span>3 210</span></div>
-        <div class="stat-box"><h4>Twitch Followers</h4><span>980</span></div>
-        <div class="stat-box"><h4>Monthly Growth</h4><span>+14%</span></div>
+      <div class="stat-box">
+        <h4>Total Views / Reach</h4>
+        <span id="total-views">0</span>
+      </div>
+
+      <div class="stat-box">
+        <h4>Top Platform</h4>
+        <span id="top-platform">-</span>
+      </div>
+
+      <div class="stat-box">
+        <h4>Monthly Growth</h4>
+        <span id="growth">0%</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- QUICK STATS -->
+  <div class="card">
+    <h2>Quick Stats</h2>
+    <p id="quick-stats">Ladataan...</p>
+  </div>
+
+
+
+      <!-- CONNECTED PLATFORMS LIST (Overview) -->
+      <div class="card">
+        <h2>Connected Platforms</h2>
+        <div id="platform-list-overview"></div>
       </div>
     </div>
 
@@ -194,9 +292,9 @@ body{
 
       <div class="card">
         <h2>Top Creators</h2>
-        <p>1. @Mika — 152k followers</p>
-        <p>2. @Aleksi — 124k followers</p>
-        <p>3. @Jenna — 98k followers</p>
+        <p>1. @creator 1 — 152k followers</p>
+        <p>2. @creator 2 — 124k followers</p>
+        <p>3. @creator 3 — 98k followers</p>
       </div>
     </div>
 
@@ -218,8 +316,8 @@ body{
 
       <div class="card">
         <h2>Active Sponsors</h2>
-        <p>EnergyDrink Co — Code: ALEKSI20</p>
-        <p>GamingGear — Code: ALEKSI10</p>
+        <p>EnergyDrink Co — Code: creator20</p>
+        <p>GamingGear — Code: creator10</p>
       </div>
 
       <div class="card">
@@ -256,9 +354,15 @@ body{
         <p>Show profile publicly: ON</p>
       </div>
 
-      <div class="card" style="border:1px solid #ff0055;">
+       <div class="card" style="border:1px solid #ff0055;">
         <h2 style="color:#ff0055;">Delete Account</h2>
         <button style="background:#ff0055;">Poista tili pysyvästi</button>
+      </div>
+
+      <!-- CONNECTED PLATFORMS LIST (Settings) -->
+      <div class="card">
+        <h2>Connected Platforms</h2>
+        <div id="platform-list-settings"></div>
       </div>
     </div>
 
@@ -271,6 +375,13 @@ body{
 fetch("navbar.html")
   .then(r => r.text())
   .then(d => document.getElementById("navbar").innerHTML = d);
+</script>
+
+<script>
+function showSection(id) {
+  document.querySelectorAll(".section").forEach(sec => sec.style.display = "none");
+  document.getElementById(id).style.display = "block";
+}
 </script>
 
 <!-- SUPABASE LOGIC -->
@@ -288,12 +399,163 @@ window.logoutUser = async () => {
   window.location.href="index.html"
 }
 
-window.showSection = (id) => {
-  document.querySelectorAll(".section").forEach(sec => sec.style.display="none")
-  document.getElementById(id).style.display="block"
+</script>
+
+<!-- toggle LOGIC -->
+<script>
+const platforms = [
+  { id: "twitch", name: "Twitch", icon: "assets/icons/TWITCH.png" },
+  { id: "youtube", name: "YouTube", icon: "assets/icons/YOUTUBE.png" },
+  { id: "tiktok", name: "TikTok", icon: "assets/icons/TIKTOK.png" },
+  { id: "instagram", name: "Instagram (TBA)", icon: "assets/icons/INSTAGRAM.png" },
+  { id: "facebook", name: "Facebook (TBA)", icon: "assets/icons/FACEBOOK.png" },
+  { id: "twitter", name: "X (Twitter) (TBA)", icon: "assets/icons/X.png" },
+  { id: "kick", name: "Kick (TBA)", icon: "assets/icons/KICK.png" },
+  { id: "snapchat", name: "Snapchat (TBA)", icon: "assets/icons/SNAPCHAT.png" }
+];
+
+function renderPlatforms() {
+  const overviewContainer = document.getElementById("platform-list-overview");
+  const settingsContainer = document.getElementById("platform-list-settings");
+
+  overviewContainer.innerHTML = "";
+  settingsContainer.innerHTML = "";
+
+  platforms.forEach(p => {
+
+    // --- OVERVIEW RIVI ---
+    const rowOverview = document.createElement("div");
+    rowOverview.className = "platform-row";
+    rowOverview.innerHTML = `
+      <img src="${p.icon}" class="platform-logo">
+      <span class="platform-name">${p.name}</span>
+      <label class="switch">
+        <input type="checkbox" id="${p.id}-toggle-overview">
+        <span class="slider"></span>
+      </label>
+    `;
+
+    // --- SETTINGS RIVI ---
+    const rowSettings = document.createElement("div");
+    rowSettings.className = "platform-row";
+    rowSettings.innerHTML = `
+      <img src="${p.icon}" class="platform-logo">
+      <span class="platform-name">${p.name}</span>
+      <label class="switch">
+        <input type="checkbox" id="${p.id}-toggle-settings">
+        <span class="slider"></span>
+      </label>
+    `;
+
+    overviewContainer.appendChild(rowOverview);
+    settingsContainer.appendChild(rowSettings);
+  });
+
+  // --- SYNKRONOINTI ---
+  document.querySelectorAll(".switch input").forEach(toggle => {
+    toggle.addEventListener("change", () => {
+
+      const baseId = toggle.id
+        .replace("-toggle-overview", "")
+        .replace("-toggle-settings", "");
+
+      const checked = toggle.checked;
+
+      // Synkronoi molemmat toggle-versiot
+      document.querySelectorAll(`#${baseId}-toggle-overview, #${baseId}-toggle-settings`)
+        .forEach(el => el.checked = checked);
+
+      updateOverview();
+    });
+  });
 }
 
+renderPlatforms();
+updateOverview(); 
 </script>
+
+
+
+<script>
+// Esimerkkidata kaikille alustoille
+const platformStats = {
+  twitch: {
+    followers: 980,
+    views: 12000,
+    growth: 8
+  },
+  youtube: {
+    followers: 3210,
+    views: 18400,
+    growth: 12
+  },
+  tiktok: {
+    followers: 12450,
+    views: 54000,
+    growth: 14
+  },
+  instagram: {
+    followers: 2340,
+    views: 12400,
+    growth: 10
+  }
+};
+
+// Lasketaan Overview automaattisesti
+function updateOverview() {
+  let totalFollowers = 0;
+  let totalViews = 0;
+  let topPlatform = "-";
+  let highestGrowth = 0;
+  let connectedList = [];
+
+  document.querySelectorAll(".switch input").forEach(toggle => {
+    if (toggle.checked) {
+      const id = toggle.id
+  .replace("-toggle-overview","")
+  .replace("-toggle-settings","");
+      const data = platformStats[id];
+
+      if (data) {
+        totalFollowers += data.followers;
+        totalViews += data.views;
+
+        connectedList.push(id);
+
+        if (data.growth > highestGrowth) {
+          highestGrowth = data.growth;
+          topPlatform = id.charAt(0).toUpperCase() + id.slice(1);
+        }
+      }
+    }
+  });
+
+  // Päivitä UI
+  document.getElementById("total-followers").innerText = totalFollowers.toLocaleString();
+  document.getElementById("total-views").innerText = totalViews.toLocaleString();
+  document.getElementById("top-platform").innerText = topPlatform;
+  document.getElementById("growth").innerText = `+${highestGrowth}%`;
+
+  // Quick Stats esimerkki
+  if (connectedList.length === 0) {
+    document.getElementById("quick-stats").innerText =
+      "Ei connected alustoja. Kytke platformit päälle nähdäksesi datan.";
+  } else {
+    document.getElementById("quick-stats").innerText =
+      `Connected: ${connectedList.join(", ")}. ` +
+      `Followers: ${totalFollowers.toLocaleString()}, ` +
+      `Views: ${totalViews.toLocaleString()}, ` +
+      `Top: ${topPlatform} (+${highestGrowth}%).`;
+  }
+}
+
+// Päivitä Overview kun toggleja klikataan
+document.addEventListener("change", updateOverview);
+
+// Päivitä heti kun sivu latautuu
+setTimeout(updateOverview, 500);
+</script>
+
 
 </body>
 </html>

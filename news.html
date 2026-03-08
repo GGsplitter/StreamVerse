@@ -24,7 +24,13 @@ url("https://images.unsplash.com/photo-1542751371-adc38448a05e");
 background-size:cover;
 background-position:center;
 background-attachment:fixed;
+
+  /*  Tämä korjaa footerin */
+  display:flex;
+  flex-direction:column;
+  min-height:100vh;
 }
+
 
 /*  Layout fix for navbar */
 main{
@@ -83,7 +89,7 @@ opacity:.8;
 /* Footer spacing */
 
 footer{
-margin-top:120px;
+margin-top:auto;
 }
 
 </style>
@@ -106,15 +112,15 @@ margin-top:120px;
 <a href="news-post1.html" style="text-decoration:none;color:white;">
 <div class="card">
 <img src="https://images.unsplash.com/photo-1522199755839-a2bacb67c546">
-<h3>Launch Campaign</h3>
-<p>Liity mukaan ensimmäisten joukossa</p>
+<h3>Development journey</h3>
+<p>Building brand platform</p>
 </div>
 </a>
 
 <div class="card">
 <img src="https://images.unsplash.com/photo-1511512578047-dfb367046420">
-<h3>TBA</h3>
-<p>TBA</p>
+<h3>Launch Campaign</h3>
+<p>TBA -SUMMER 2026</p>
 </div>
 
 </div>
@@ -124,7 +130,7 @@ margin-top:120px;
 </main>
 
 <!--  FOOTER LOAD -->
-<div id="footer"></div>
+<footer id="footer"></footer>
 
 <script>
 
