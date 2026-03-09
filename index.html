@@ -11,276 +11,345 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
 
 <style>
 
+/* -------------------- GLOBAL -------------------- */
+
 body{
-margin:0;
-font-family:Arial;
-background:#000;
-color:white;
-min-height:100vh;
-
-  display: flex;
-  flex-direction: column;
+  margin:0;
+  font-family:Arial;
+  background:#000;
+  color:white;
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
 }
-
-/* MAIN WRAPPER */
 
 main{
- flex: 1;
-padding-top:100px;
+  flex:1;
+  padding-top:100px; /* koska navbar on fixed */
 }
 
-/*  HERO */
+/* -------------------- HERO -------------------- */
 
 .hero{
-height:60vh;
-background:
-linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.9)),
-url("assets/HERO_IMAGE.png");
-
-background-size:cover;
-background-position:center;
-
-display:flex;
-justify-content:center;
-align-items:center;
-
-position:relative;
-text-align:center;
+  height:60vh;
+  background:
+    linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.9)),
+    url("assets/HERO_IMAGE.png");
+  background-size:cover;
+  background-position:center;
+  background-attachment:fixed;
+  
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  position:relative;
+  text-align:center;
 }
 
-/*  LOGO LEFT CENTER */
-
 .hero-logo{
-position:absolute;
-left:3%;
-top:25%;
-transform:translateY(-50%);
-z-index:2;
+  position:absolute;
+  left:3%;
+  top:25%;
+  transform:translateY(-50%);
+  z-index:2;
+  text-align:center;
 }
 
 .hero-logo img{
-height:300px;
-width:auto;
-filter:drop-shadow(0 0 15px rgba(255,255,255,0.9));
-opacity:0.70;
-transition:.3s;
+  height:300px;
+  width:auto;
+  filter:drop-shadow(0 0 15px rgba(255,255,255,0.9));
+  opacity:0.70;
 }
 
-.hero-logo img:hover{
-transform:scale(1.05);
+.logo-tagline{
+  margin-top:10px;
+  font-size:18px;
+  opacity:0.7;
+  letter-spacing:1px;
 }
-
-/* RIGHT SIDE LIVE HOURS */
-
-.hero-right-stats{
-position:absolute;
-right:3%;
-top:15%;
-transform:translateY(-50%);
-text-align:right;
-z-index:2;
-}
-
-.stats-title{
-font-size:31px;
-font-weight:600;
-color:rgba(255,255,255,0.6);
-letter-spacing:2px;
-}
-
-.stats-number{
-font-size:90px;
-font-weight:600;
-color:rgba(255,255,255,0.25);
-line-height:0.9;
-}
-
-/*  HERO CONTENT CENTER */
 
 .hero-content{
-display:flex;
-flex-direction:column;
-align-items:center;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  opacity:0;
+  animation:fadeIn 1.2s ease forwards;
+  animation-delay:0.3s;
 }
 
-/*  TITLE STACK */
+@keyframes fadeIn{
+  from{opacity:0; transform:translateY(20px);}
+  to{opacity:1; transform:translateY(0);}
+}
 
 .hero-title{
-display:flex;
-flex-direction:column;
-align-items:flex-start;
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
 }
 
 .hero-title span:first-child{
-font-size:70px;
-font-weight:900;
-letter-spacing:2px;
-
-background:linear-gradient(45deg,#ffffff, #ffffff);
--webkit-background-clip:text;
- color: transparent;
-
-
-text-shadow:1px 2px 4px rgba(0,0,0,.5);
+  font-size:70px;
+  font-weight:900;
+  letter-spacing:2px;
+  background:linear-gradient(45deg,#ffffff,#ffffff);
+  -webkit-background-clip:text;
+  color:transparent;
 }
 
 .hero-title span:last-child{
-font-size:55px;
-font-weight:800;
-letter-spacing:4px;
-
-background:linear-gradient(45deg,#ffffff, #ffffff);
--webkit-background-clip:text;
-color: transparent;
-
-text-shadow:1px 2px 4px rgba(0,0,0,.5);  
-  
-margin-top:-15px;
+  font-size:55px;
+  font-weight:800;
+  letter-spacing:4px;
+  background:linear-gradient(45deg,#ffffff,#ffffff);
+  -webkit-background-clip:text;
+  color:transparent;
+  margin-top:-15px;
 }
-
-/*  DESCRIPTION */
 
 .hero p{
-font-size:22px;
-opacity:.9;
-margin:25px 0;
-max-width:600px;
-text-align:center;
+  font-size:22px;
+  opacity:.9;
+  margin:25px 0;
+  max-width:600px;
+  text-align:center;
 }
-
-/*  BUTTON CENTER */
 
 .btn{
-padding:15px 40px;
-border:none;
-border-radius:14px;
-background:linear-gradient(45deg,#ffffff, #e6e6e6);
-color:#000;
-font-size:18px;
-cursor:pointer;
-margin-top:10px;
- 
- /* Sama varjotyyli kuin otsikossa */
-text-shadow:1px 2px 4px rgba(0,0,0,.5);
-
-box-shadow:
-0 8px 20px rgba(0,0,0,.3);
-
-
-/* Tämä tekee smooth-efektin */
-transition: transform 0.15s ease;
+  padding:15px 40px;
+  border:none;
+  border-radius:14px;
+  background:linear-gradient(45deg,#ffffff,#e6e6e6);
+  color:#000;
+  font-size:18px;
+  cursor:pointer;
+  margin-top:10px;
+  box-shadow:0 8px 20px rgba(0,0,0,.3);
+  transition:transform 0.15s ease;
 }
 
-/* Tämä on se pieni pomppaus */
 .btn:hover{
-  transform: scale(1.08);
+  transform:scale(1.08);
 }
 
-/*  SLIDER */
-
-/* SLIDER WRAPPER – 3/5 leveydestä ja keskitetty */
-.sponsor {
-  width: 60vw;          /* 3/5 näytöstä */
-  margin: 0 auto;       /* keskitys */
-  background: #000;     /* musta tausta */
-  overflow: hidden;
-  position: relative;
-  min-height: 90px;     /* nauhan korkeus */
+.cta-subtext{
+  margin-top:10px;
+  font-size:14px;
+  opacity:0.7;
 }
 
-/* --- VASEN + OIKEA FADE --- */
+/* -------------------- SLIDER -------------------- */
 
-/* Yhteiset asetukset pseudo-elementeille */
-.sponsor::before,
-.sponsor::after {
-  content:"";
-  position:absolute;
-  top:0;
-  height:100%;
-  width:20%;           /* fade-alueen leveys */
-  z-index:2;
-  pointer-events:none;
+.sponsor{
+  width:60vw;
+  margin:0 auto;
+  overflow:hidden;
+  position:relative;
+  min-height:90px;
 }
 
-/* Vasen fade */
-.sponsor::before {
-  left:0;
-  background:linear-gradient(
-    to right,
-    #000 0%,
-    transparent 100%
-  );
+.sponsor-track{
+  padding:30px 0;
+  display:flex;
+  width:max-content;
+  animation:loopTape 35s linear infinite;
 }
 
-/* Oikea fade */
-.sponsor::after {
-  right:0;
-  background:linear-gradient(
-    to left,
-    #000 0%,
-    transparent 100%
-  );
-}
-
-
-/* Track */
-.sponsor-track{ 
-padding: 30px 0;   /* Siirretty sponsorista */
-display:flex;
-width:max-content;
-animation:loopTape 35s linear infinite;
-position:relative;
-z-index:1;
-}
-
-/* Spacerit ja sisältö */
 .sponsor-track span{
   padding:0 70px;
   white-space:nowrap;
   font-weight:bold;
-} 
- 
-/* Loop animaatio */
+  font-size:20px;
+}
+
 @keyframes loopTape{
   from{transform:translateX(0);}
   to{transform:translateX(-50%);}
 }
+/* SLIDER FADE EFFECT */
+.sponsor::before,
+.sponsor::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  width: 120px;
+  height: 100%;
+  z-index: 5;
+  pointer-events: none;
+}
 
-/* FOOTER */
+.sponsor::before {
+  left: 0;
+  background: linear-gradient(to right, #000 0%, rgba(0,0,0,0) 100%);
+}
+
+.sponsor::after {
+  right: 0;
+  background: linear-gradient(to left, #000 0%, rgba(0,0,0,0) 100%);
+}
+/* -------------------- TESTIMONIALS -------------------- */
+
+.testimonials {
+  display:flex;
+  justify-content:center;
+  gap:30px;
+  margin:80px auto 40px;
+  max-width:1200px;
+}
+
+.testimonial {
+  flex:1;
+  background:rgba(255,255,255,0.05);
+  padding:30px;
+  border-radius:20px;
+  text-align:center;
+  backdrop-filter:blur(10px);
+  box-shadow:0 0 20px rgba(0,0,0,0.4);
+}
+
+/* -------------------- BLOG PREVIEW -------------------- */
+
+.blog-preview {
+  display:flex;
+  justify-content:center;
+  gap:30px;
+  max-width:1200px;
+  margin:40px auto 80px;
+}
+
+.blog-card {
+  flex: 1;
+  background: rgba(255,255,255,0.05);
+  border-radius: 20px;
+  overflow: hidden; 
+  backdrop-filter: blur(10px);
+  box-shadow: 0 0 20px rgba(0,0,0,0.4);
+  padding: 0; 
+}
+
+.blog-image-full {
+  width: 100%;
+  height: 220px; 
+  object-fit: cover; 
+  display: block;
+}
+
+.blog-content {
+  padding: 25px;
+}
+
+.blog-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.blog-link:hover .blog-card {
+  transform: translateY(-6px);
+  transition: 0.2s ease;
+}
+
+/* -------------------- VIDEO SHOWCASE -------------------- */
+.community-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.community-title {
+  font-size: 48px;
+  margin-top: 80px;
+  margin-bottom: 30px;
+  background: linear-gradient(45deg, #ffffff, #ffffff);
+  -webkit-background-clip: text;
+  color: transparent;
+  letter-spacing: 4px;
+  font-weight: 900;
+  text-align: center;
+}
+
+.community-subtext {
+  font-size: 24px;
+  opacity: 0.85;
+  margin-top: -10px;
+  letter-spacing: 1px;
+  text-align: center;
+}
+
+.homepage-video {
+  max-width:1400px;
+  margin:60px auto;
+  border-radius:25px;
+  overflow:hidden;
+  box-shadow:0 20px 60px rgba(0,0,0,0.6);
+}
+.homepage-video video {
+  width:100%;
+  display:block;
+}
+
+/* -------------------- ROADMAP -------------------- */
+
+.roadmap {
+  max-width: 1100px;
+  margin: 120px auto;
+  text-align: center;
+}
+
+.roadmap h2 {
+  font-size: 48px;
+  margin-bottom: 40px;
+  background: linear-gradient(45deg, #ffffff, #ffffff);
+  -webkit-background-clip: text;
+  color: transparent;
+  letter-spacing: 3px;
+}
+
+.roadmap-grid {
+  display: flex;
+  gap: 30px;
+  justify-content: center;
+}
+
+.roadmap-item {
+  flex: 1;
+  background: rgba(255,255,255,0.05);
+  padding: 30px;
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 0 25px rgba(0,0,0,0.4);
+  transition: transform .2s ease;
+}
+
+.roadmap-item:hover {
+  transform: translateY(-6px);
+}
+
+.roadmap-item h3 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.roadmap-item p {
+  opacity: 0.8;
+  font-size: 16px;
+}
+
+
+/* -------------------- FOOTER -------------------- */
 
 footer{
-padding:70px;
-background:#0a0a0a;
-text-align:center;
-margin-top:auto;
+  padding:70px;
+  background:#0a0a0a;
+  text-align:center;
+  margin-top:auto;
 }
 
 footer a{
-color:white;
-font-size:28px;
-text-decoration:none;
-}
-
-/* MOBILE */
-
-@media(max-width:900px){
-
-.hero-logo img{
-height:120px;
-}
-
-.hero-title span:first-child{
-font-size:45px;
-}
-
-.hero-title span:last-child{
-font-size:35px;
-}
-
-.hero p{
-font-size:16px;
-}
-
+  color:white;
+  font-size:28px;
+  text-decoration:none;
 }
 
 </style>
@@ -288,179 +357,151 @@ font-size:16px;
 
 <body>
 
+<!-- NAVBAR (YOUR ORIGINAL FETCH VERSION) -->
 <div id="navbar"></div>
 
 <main>
 
+<!-- HERO -->
 <section class="hero">
 
-<div class="hero-logo">
-<img src="assets/CHH_LOGO.png">
-</div>
+  <div class="hero-logo">
+    <img src="assets/CHH_LOGO.png">
+  </div>
 
+  <div class="hero-content">
 
-<div class="hero-right-stats">
+    <div class="hero-title">
+      <span>CREATORS</span>
+      <span>HYPE HUB</span>
+    </div>
 
-<div class="stats-title">
-Live stream hours<br>
-coming soon
-</div>
+    <p>Connect creators. Grow together. Get opportunities.</p>
 
-<div class="stats-number">
-2 845 
-</div>
-
-</div>
-
-<div class="hero-content">
-
-<div class="hero-title">
-<span>CREATORS</span>
-<span>HYPE HUB</span>
-</div>
-
-<p>
-Connect creators. Grow together. Get opportunities.
-</p>
-
-<button class="btn" onclick="window.location.href='register.html'">
-  Join, It's FREE
+  <button class="btn" onclick="window.location.href='register.html'">
+  Join our community
 </button>
 
-</div>
+  </div>
 
 </section>
- 
-<div class="sponsor">
-<div class="sponsor-track">
- 
-<span>👑 Creator Of The Month</span>
-<span>🔴 Live Content</span>
-<span>🔝 Grow your community</span>
-<span>🔗 Collabs</span>
-<span>🌏 Visibility</span>
 
-<span>👑 Creator Of The Month</span>
-<span>🔴 Live Content</span>
-<span>🔝 Grow your community</span>
-<span>🔗 Collabs</span>
-<span>🌏 Visibility</span>
- 
+<!-- SLIDER -->
+<div class="sponsor">
+  <div class="sponsor-track">
+    <span>👑 Creator Of The Month</span>
+    <span>🔴 Live Content</span>
+    <span>🔝 Grow your community</span>
+    <span>🔗 Collabs</span>
+    <span>🌏 Visibility</span>
+
+    <span>👑 Creator Of The Month</span>
+    <span>🔴 Live Content</span>
+    <span>🔝 Grow your community</span>
+    <span>🔗 Collabs</span>
+    <span>🌏 Visibility</span>
+  </div>
 </div>
+
+<!-- TESTIMONIALS -->
+<div class="testimonials">
+  <div class="testimonial">
+    <p>"Hype Hub auttoi minua löytämään uusia yhteistyökumppaneita."</p>
+    <span>- Creator </span>
+  </div>
+
+  <div class="testimonial">
+    <p>"Kasvoin nopeammin kuin koskaan ennen."</p>
+    <span>- Creator </span>
+  </div>
+
+  <div class="testimonial">
+    <p>"Paras paikka löytää samanhenkisiä tekijöitä."</p>
+    <span>- Creator </span>
+  </div>
 </div>
- 
+
+<!-- BLOG PREVIEW -->
+<div class="blog-preview">
+
+  <!-- BLOGI_MAIN -kortti -->
+   <a href="blogi.html" class="blog-link"></a>
+  <div class="blog-card">
+    <img class="blog-image-full" src="assets/BLOGI_MAIN.png" alt="Blog image">
+
+    <div class="blog-content">
+      <h3>Uusin blogi</h3>
+      <p>Lue täältä uusin blogi</p>
+    </div>
+  </div>
+</a>
+
+  <!-- Uutinen -kortti -->
+  <div class="blog-card">
+    <img class="blog-image-full" src="assets/NEWS_MAIN.png" alt="Blog image">
+
+    <div class="blog-content">
+      <h3>Uusin uutinen</h3>
+      <p>Lue täältä uusin uutinen</p>
+    </div>
+  </div>
+
+</div>
+
+<!-- VIDEO SHOWCASE -->
+ <div class="community-wrapper"></div>
+  <h2 class="community-title">Join to our Community</h2>
+   <p class="community-subtext">Videosi tähän? </p>
+
+
+<div class="homepage-video">
+  <video autoplay muted loop playsinline>
+    <source src="/assets/SHOWCASE.mp4" type="video/mp4">
+  </video>
+</div>
+
+<!-- ROADMAP -->
+<div class="roadmap">
+  <h2>Tulevia ominaisuuksia</h2>
+
+  <div class="roadmap-grid">
+    <div class="roadmap-item">
+      <h3>Sisällöntuottajien hallintapaneeli</h3>
+      <p>Seuraa kasvua, näkyvyyttä.</p>
+    </div>
+
+    <div class="roadmap-item">
+      <h3>Jäsen analytiikka</h3>
+      <p>Ymmärrä yleisösi paremmin ja kehitä sisältöäsi.</p>
+    </div>
+
+    <div class="roadmap-item">
+      <h3>Oheistuotteet</h3>
+      <p>Löydä tyylisi.</p>
+    </div>
+
+    <div class="roadmap-item">
+      <h3>Leaderboard</h3>
+      <p>Seuraa kasvua ja tuo itsesi näkyviin</p>
+    </div>
+  </div>
+</div>
+
+
 </main>
 
+<!-- FOOTER (YOUR ORIGINAL FETCH VERSION) -->
 <div id="footer"></div>
 
 <script>
-
-/* Navbar */
 fetch("navbar.html")
 .then(r=>r.text())
-.then(d=>{
-document.getElementById("navbar").innerHTML=d;
-});
+.then(d=>{ document.getElementById("navbar").innerHTML=d; });
 
-/* Footer */
 fetch("footer.html")
 .then(r=>r.text())
-.then(d=>{
-document.getElementById("footer").innerHTML=d;
-});
-
+.then(d=>{ document.getElementById("footer").innerHTML=d; });
 </script>
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

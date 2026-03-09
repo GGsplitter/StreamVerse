@@ -11,10 +11,47 @@ body {
   background: #060606;
   color: white;
   font-family: Arial;
+}
+
+/* PAGE WRAPPER (keskittää kaiken nätisti) */
+.page-wrapper {
+  margin-top: 140px; /* navbarin tilaa */
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
-  height: 100vh;
+}
+
+/* HOW IT WORKS */
+.how-it-works {
+  display:flex;
+  justify-content:center;
+  gap:30px;
+  margin-bottom:40px;
+  width: 90%;
+  max-width: 1100px;
+}
+
+.how-it-works .step {
+  flex:1;
+  background:rgba(255,255,255,0.05);
+  padding:25px;
+  border-radius:15px;
+  text-align:center;
+  backdrop-filter:blur(10px);
+  box-shadow:0 0 20px rgba(0,0,0,0.4);
+}
+
+.step-number {
+  width:50px;
+  height:50px;
+  margin:0 auto 15px;
+  border-radius:50%;
+  background:linear-gradient(45deg,#ff0055,#7000ff);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-size:22px;
+  font-weight:bold;
 }
 
 /* NAVBAR placeholder */
@@ -33,7 +70,6 @@ body {
   border-radius: 15px;
   width: 380px;
   box-shadow: 0 0 20px rgba(0,0,0,0.4);
-  margin-top: 120px; /* navbarin tilaa */
 }
 
 h2 {
@@ -88,17 +124,45 @@ a {
 <!-- NAVBAR -->
 <div id="navbar"></div>
 
-<div class="card">
-  <h2>Create an account</h2>
+<!-- PAGE CONTENT WRAPPER -->
+<div class="page-wrapper">
 
-  <input id="email" type="email" placeholder="Email">
-  <input id="password" type="password" placeholder="Password">
+  <!-- HOW IT WORKS -->
+  <div class="how-it-works">
+    <div class="step">
+      <div class="step-number">1</div>
+      <h3>Luo profiili</h3>
+      <p>Perusta oma creator‑profiili muutamassa sekunnissa.</p>
+    </div>
 
-  <button onclick="registerUser()">Join</button>
+    <div class="step">
+      <div class="step-number">2</div>
+      <h3>Kasva näkyvyyttä</h3>
+      <p>Yhteisö, aktivisuus ja algoritmit nostavat sinut esiin.</p>
+    </div>
 
-  <p id="message"></p>
+    <div class="step">
+      <div class="step-number">3</div>
+      <h3>Saa mahdollisuuksia</h3>
+      <p>Yhteistyöt, kampanjat ja uudet kontaktit sekä oman yhteisön kasvu.</p>
+    </div>
+  </div>
 
-  <p>Already have an account? <a href="member.html">Login</a></p>
+  <!-- REGISTRATION CARD -->
+  <div class="card">
+    <h2>Create an account</h2>
+
+    <input id="email" type="email" placeholder="Email">
+    <input id="password" type="password" placeholder="Password">
+
+    <button onclick="registerUser()">Join</button>
+
+    <p id="message"></p>
+
+    <p>Already have an account? <a href="member.html">Login</a></p>
+  </div>
+  <br><br>
+  <div class="cta-subtext">No credit card. No commitments. Just creators.</div>
 </div>
 
 <!-- Load navbar -->

@@ -9,7 +9,6 @@
 href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 <style>
-/* ===== GLOBAL LAYOUT ===== */
 html, body{
   margin:0;
   height:100%;
@@ -28,7 +27,6 @@ main{
   flex:1;
 }
 
-/* ===== SECTION BACKGROUND ===== */
 section{
   padding:140px 8%;
   background:
@@ -39,25 +37,44 @@ section{
   background-attachment:fixed;
 }
 
-/* ===== TWO COLUMN GRID ===== */
+/* HERO */
+.hero {
+  text-align:center;
+  padding:100px 20px 80px;
+  margin-top:-40px;
+}
+
+.hero h1 {
+  font-size:70px;
+  background:linear-gradient(45deg,#ff0055,#7000ff);
+  -webkit-background-clip:text;
+  color:transparent;
+  margin:0;
+}
+
+.hero p {
+  font-size:22px;
+  opacity:0.85;
+  margin-top:20px;
+}
+
+/* TWO COLUMN GRID */
 .about-top {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 20px 80px;
-  align-items: start; /* tärkeä */
+  align-items: start;
   max-width: 1400px;
   margin: auto;
   margin-bottom: 120px;
 }
 
-/* Molemmat palstat flexiksi */
 .about-left,
 .about-right {
   display: flex;
   flex-direction: column;
 }
 
-/* Otsikot */
 .about-left h2,
 .about-right h2 {
   font-size:50px;
@@ -67,7 +84,6 @@ section{
   margin: 0 0 20px 0;
 }
 
-/* Laatikot alkavat samasta kohdasta */
 .about-box {
   padding:60px;
   border-radius:25px;
@@ -78,12 +94,59 @@ section{
   flex: 1;
 }
 
-/* ===== TEAM ===== */
+/* FULL WIDTH VIDEO */
+.video-full {
+  max-width:1400px;
+  margin:0 auto 120px;
+  border-radius:25px;
+  overflow:hidden;
+  box-shadow:0 30px 70px rgba(0,0,0,0.5);
+}
+
+.video-full video {
+  width:100%;
+  height:auto;
+  display:block;
+}
+
+/* FEATURES */
+.features {
+  margin-top:80px;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:40px;
+}
+
+.feature {
+  background:rgba(0,0,0,0.55);
+  backdrop-filter:blur(20px);
+  padding:40px;
+  border-radius:20px;
+  text-align:center;
+  box-shadow:0 20px 40px rgba(0,0,0,0.5);
+  transition:.3s;
+}
+
+.feature:hover {
+  transform:translateY(-8px);
+}
+
+.feature i {
+  font-size:40px;
+  margin-bottom:20px;
+  color:#ff0055;
+}
+
+
+/* TEAM */
 .team-title{
   text-align:center;
   margin-top:120px;
   margin-bottom:60px;
   font-size:40px;
+  background:linear-gradient(45deg,#ff0055,#7000ff);
+  -webkit-background-clip:text;
+  color:transparent;
 }
 
 .team-grid{
@@ -113,16 +176,29 @@ section{
   border-radius:50%;
   margin-bottom:20px;
 }
+/*video title*/
+.video-title {
+  text-align:center;
+  font-size:40px;
+  margin-bottom:30px;
+  background:linear-gradient(45deg,#ff0055,#7000ff);
+  -webkit-background-clip:text;
+  color:transparent;
+}
 </style>
 </head>
 
 <body>
 
-<!-- NAVBAR -->
 <div id="navbar"></div>
 
 <main>
 <section>
+
+<div class="hero">
+  <h1>About Hype Hub</h1>
+  <p>Yhteisö, joka nostaa tekijät esiin</p>
+</div>
 
 <div class="about-top">
 
@@ -147,7 +223,6 @@ section{
         Emme ole vain alusta, joka seuraa sisällöntuotantoa ja sen kehitystä.
         Olemme itse Hype Hubin tiimissä osa tätä maailmaa — pelaajia, tekijöitä, seuraajia ja yhteisöjen rakentajia. 
         Siksi ymmärrämme, miltä tuntuu yrittää kasvaa, löytää oma tyylinsä sekä yhteisönsä, jatkuvasti kasvavassa ja muuttuvassa ympäristössä. 
-
       </p>
     </div>
   </div>
@@ -156,36 +231,68 @@ section{
   <div class="about-right">
     <h2>Visiomme</h2>
     <div class="about-box">
+
       <p>
         Moni tekijä törmää digitaalisen maailman rajoihin: algoritmit ohjaavat näkyvyyttä ja yhteistyömahdollisuudet harvassa. 
         Visiomme on murtaa nämä esteet ja tarjota ilmainen ympäristö, jossa tekijät voivat kasvaa rinnakkain koostaan riippumatta.
-        <br><br>
-        Haluamme yhdistää:
-        <ul>
-          <li>Sisällöntuottajat</li>
-          <li>Yhteisöt</li>
-          <li>Brändit</li>
-        </ul>
-        <br>
-        Arvomme ohjaavat kaikkea mitä teemme:
-        <ul>
-          <li>Yhteisöllisyys: Yhdessä olemme vahvempia.</li>
-          <li>Reiluus: Jokaisella tekijällä on samat mahdollisuudet loistaa.</li>
-          <li>Inspiraatio: Ympäristö, joka sytyttää luovuuden kipinän ja motivoi sinua tavoittelemaan unelmiasi.</li>
-        </ul>
-        <br>
-        Jatkuvan kehityksemme suunta:
-        <ul>
-          <li>Olla johtava sisännöntuottajien hubi</li>
-          <li>Member sivusto, sisältäen laajaa statistiikkaa</li>
-          <li>Luoda tapahtumia, kampanjoita ja yhteistyömahdollisuuksia, jotka tuovat tekijät yhteen.</li>
-          <li>Laajentaa yhteistyöverkostoamme brändien ja muiden kumppaneiden kanssa, jotka jakavat visiomme.</li>
       </p>
+
+      <br>
+
+      <p>Haluamme yhdistää:</p>
+      <ul>
+        <li>Sisällöntuottajat</li>
+        <li>Yhteisöt</li>
+        <li>Brändit</li>
+      </ul>
+
+      <br>
+
+      <p>Jatkuvan kehityksemme suunta:</p>
+      <ul>
+        <li>Rakentaa Hype Hubista johtava sisännöntuottajien yhteinen alusta</li>
+        <li>Luoda tapahtumia, kampanjoita ja yhteistyömahdollisuuksia, jotka tuovat tekijät yhteen.</li>
+        <li>Laajentaa yhteistyöverkostoamme brändien ja muiden kumppaneiden kanssa, jotka jakavat visiomme.</li>
+      </ul>
+
     </div>
   </div>
 
 </div> <!-- /.about-top -->
 
+<!-- FULL WIDTH VIDEO TITLE -->
+<h2 class="video-title">Our Community</h2>
+
+<!-- FULL WIDTH VIDEO -->
+<div class="video-full">
+  <video autoplay muted loop playsinline>
+    <source src="assets/SHOWCASE.mp4" type="video/mp4">
+  </video>
+</div>
+
+<!-- FEATURES -->
+<div class="features">
+  <div class="feature">
+    <i class="fa-solid fa-users"></i>
+    <h3>Yhteisö</h3>
+    <p>Rakennamme ympäristön, jossa tekijät tukevat toisiaan.</p>
+  </div>
+
+  <div class="feature">
+    <i class="fa-solid fa-bolt"></i>
+    <h3>Kasvu</h3>
+    <p>Jokaisella tekijällä on samat mahdollisuudet kasvaa.</p>
+  </div>
+
+  <div class="feature">
+    <i class="fa-solid fa-heart"></i>
+    <h3>Inspiraatio</h3>
+    <p>Luomme tilan, joka sytyttää luovuuden ja motivaation.</p>
+  </div>
+</div>
+
+
+<!-- TEAM -->
 <h2 class="team-title">Tiimimme</h2>
 
 <div class="team-grid">
@@ -221,18 +328,15 @@ section{
 </section>
 </main>
 
-<!-- FOOTER -->
 <div id="footer"></div>
 
 <script>
-/* Navbar */
 fetch("navbar.html")
 .then(r=>r.text())
 .then(data=>{
 document.getElementById("navbar").innerHTML=data;
 });
 
-/* Footer */
 fetch("footer.html")
 .then(r=>r.text())
 .then(data=>{
