@@ -13,10 +13,23 @@ body{ margin:0; background:#060606; color:white; font-family:Arial; }
 .sidebar a:hover{ background:#222; }
 .main{ margin-left:260px; padding:40px; width:100%; }
 .card{ background:#111; padding:25px; border-radius:15px; margin-bottom:25px; }
+
+/* INPUTS */
 input, textarea{ width:100%; padding:12px; border:none; border-radius:10px; background:#1a1a1a; color:white; margin-top:10px; }
 button{ padding:12px 20px; border:none; border-radius:10px; background:#7000ff; color:white; margin-top:15px; cursor:pointer; }
+
+/* PROFILE HEADER */
 .profile-header{ display:flex; gap:20px; align-items:center; }
-.profile-pic{ width:80px; height:80px; border-radius:50%; background:#333; }
+.profile-pic{
+    width:80px; height:80px; border-radius:50%;
+    background:#333; object-fit:cover;
+}
+
+/* BANNER */
+.banner-preview{
+    width:100%; height:160px; border-radius:12px;
+    background:#222; object-fit:cover; margin-bottom:15px;
+}
 </style>
 </head>
 
@@ -39,9 +52,10 @@ button{ padding:12px 20px; border:none; border-radius:10px; background:#7000ff; 
 
     <h1>👤 Profile</h1>
 
+    <!-- PROFILE HEADER -->
     <div class="card">
       <div class="profile-header">
-        <div class="profile-pic"></div>
+        <img id="profilePicPreview" class="profile-pic" src="https://placehold.co/200x200?text=User">
         <div>
           <h2>Aleksi</h2>
           <p>Creator • TikTok & YouTube</p>
@@ -49,13 +63,31 @@ button{ padding:12px 20px; border:none; border-radius:10px; background:#7000ff; 
       </div>
     </div>
 
+    <!-- EDIT PROFILE -->
     <div class="card">
       <h2>Edit Profile</h2>
+
+      <!-- BANNER UPLOAD -->
+      <h3>Banneri</h3>
+      <img id="bannerPreview" class="banner-preview" src="https://placehold.co/1200x300?text=Banner">
+      <input type="file" id="bannerUpload" accept="image/*">
+
+      <!-- PROFILE PIC UPLOAD -->
+      <h3>Profiilikuva</h3>
+      <img id="profilePicPreview2" class="profile-pic" src="https://placehold.co/200x200?text=User">
+      <input type="file" id="profilePicUpload" accept="image/*">
+
+      <h3>Nimimerkki</h3>
       <input placeholder="Nimimerkki" value="Aleksi">
+
+      <h3>Bio</h3>
       <textarea placeholder="Bio">Tervetuloa mun creator-profiiliin!</textarea>
+
+      <h3>Somet</h3>
       <input placeholder="TikTok linkki" value="https://tiktok.com/@aleksi">
       <input placeholder="YouTube linkki" value="https://youtube.com/@aleksi">
       <input placeholder="Instagram linkki" value="https://instagram.com/aleksi">
+
       <button>Tallenna muutokset</button>
     </div>
 
@@ -64,9 +96,28 @@ button{ padding:12px 20px; border:none; border-radius:10px; background:#7000ff; 
 </div>
 
 <script>
+/* NAVBAR */
 fetch("../navbar.html")
   .then(r=>r.text())
   .then(d=>document.getElementById("navbar").innerHTML=d);
+
+/* BANNER PREVIEW */
+document.getElementById("bannerUpload").addEventListener("change", function(){
+    const file = this.files[0];
+    if(file){
+        document.getElementById("bannerPreview").src = URL.createObjectURL(file);
+    }
+});
+
+/* PROFILE PIC PREVIEW */
+document.getElementById("profilePicUpload").addEventListener("change", function(){
+    const file = this.files[0];
+    if(file){
+        const url = URL.createObjectURL(file);
+        document.getElementById("profilePicPreview").src = url;
+        document.getElementById("profilePicPreview2").src = url;
+    }
+});
 </script>
 
 </body>

@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Creator Profile</title>
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+body{
+    margin:0;
+    font-family:Arial;
+    color:white;
+    background:#0a0a0a;
+}
+
+/* Banner */
+.profile-banner{
+    width:100%;
+    height:220px;
+    background:url("https://placehold.co/1200x300/ff0088/ffffff?text=Creator+Banner");
+    background-size:cover;
+    background-position:center;
+    position:relative;
+}
+
+/* Profiilikuvan paikka */
+.profile-picture{
+    width:140px;
+    height:140px;
+    border-radius:50%;
+    border:4px solid #111;
+    position:absolute;
+    bottom:-70px;
+    left:50%;
+    transform:translateX(-50%);
+    object-fit:cover;
+}
+
+/* Profiilin sisältö */
+.profile-container{
+    padding:120px 8% 60px 8%;
+    max-width:900px;
+    margin:auto;
+    text-align:center;
+}
+
+.profile-name{
+    font-size:38px;
+    margin:0;
+    background:linear-gradient(45deg,#ff0088,#7700ff);
+    -webkit-background-clip:text;
+    color:transparent;
+}
+
+.rank-badge{
+    display:inline-block;
+    margin-top:10px;
+    padding:6px 14px;
+    background:#111;
+    border:1px solid #ff0088;
+    border-radius:8px;
+    font-size:14px;
+}
+
+.profile-bio{
+    margin-top:20px;
+    font-size:16px;
+    opacity:0.85;
+}
+
+.profile-socials{
+    margin-top:20px;
+    display:flex;
+    justify-content:center;
+    gap:20px;
+}
+
+.profile-socials a{
+    font-size:26px;
+    color:white;
+    transition:.2s;
+}
+
+.profile-socials a:hover{
+    color:#ff0088;
+}
+
+/* LIVE STATUS BOX */
+.live-box{
+    margin-top:40px;
+    padding:20px;
+    background:#111;
+    border-left:4px solid #00ff7a;
+    border-radius:10px;
+    text-align:left;
+}
+
+.live-title{
+    font-size:20px;
+    color:#00ff7a;
+    margin-bottom:10px;
+}
+
+.live-info{
+    font-size:15px;
+    opacity:0.9;
+    line-height:1.5;
+}
+
+/* VIDEOT / KLIPIT */
+.video-section{
+    margin-top:60px;
+}
+
+.video-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+    gap:20px;
+    margin-top:20px;
+}
+
+.video-card{
+    background:#111;
+    border-radius:10px;
+    overflow:hidden;
+    cursor:pointer;
+    transition:.25s;
+}
+
+.video-card:hover{
+    transform:translateY(-6px);
+}
+
+.video-thumb{
+    width:100%;
+    height:140px;
+    object-fit:cover;
+}
+
+.video-title{
+    padding:10px;
+    font-size:14px;
+    opacity:0.85;
+}
+</style>
+</head>
+
+<body>
+
+<!-- BANNER -->
+<div class="profile-banner"></div>
+
+<!-- PROFILE IMAGE -->
+<img class="profile-picture" src="https://placehold.co/200x200?text=User">
+
+<!-- CONTENT -->
+<div class="profile-container">
+
+    <h1 class="profile-name">CreatorName</h1>
+
+    <div class="rank-badge">Gold</div>
+
+    <p class="profile-bio">
+        Tämä on käyttäjän julkinen profiili.  
+        Tänne tulee bio, kuvaus, esittelyteksti tai mitä käyttäjä haluaa kertoa itsestään.
+    </p>
+
+    <div class="profile-socials">
+        <a><i class="fab fa-youtube"></i></a>
+        <a><i class="fab fa-instagram"></i></a>
+        <a><i class="fab fa-x-twitter"></i></a>
+        <a><i class="fab fa-twitch"></i></a>
+    </div>
+
+    <!-- LIVE STATUS (visuaalinen placeholder) -->
+    <div class="live-box">
+        <div class="live-title">🟢 LIVE nyt</div>
+        <div class="live-info">
+            🎮 Peli: Call of Duty<br>
+            📺 Otsikko: Ranked grind<br>
+            ⏱ Aloitettu: 12:00
+        </div>
+    </div>
+
+    <!-- VIDEOT -->
+    <div class="video-section">
+        <h2>🎥 Viimeisimmät päivitykset</h2>
+
+        <div class="video-grid">
+            <div class="video-card">
+                <img src="https://placehold.co/400x200?text=Video+1" class="video-thumb">
+                <div class="video-title">Video 1 – Esikatselu</div>
+            </div>
+
+            <div class="video-card">
+                <img src="https://placehold.co/400x200?text=Video+2" class="video-thumb">
+                <div class="video-title">Video 2 – Esikatselu</div>
+            </div>
+
+            <div class="video-card">
+                <img src="https://placehold.co/400x200?text=Video+3" class="video-thumb">
+                <div class="video-title">Video 3 – Esikatselu</div>
+            </div>
+
+            <div class="video-card">
+                <img src="https://placehold.co/400x200?text=Video+4" class="video-thumb">
+                <div class="video-title">Video 4 – Esikatselu</div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

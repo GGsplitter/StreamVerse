@@ -74,29 +74,15 @@ display:none;
 <main>
 <section>
 
+<!-- LOGIN BOX -->
 <div class="box" id="login-box">
+  <h2>Member Login</h2>
+  <input id="email" placeholder="Email">
+  <input id="password" type="password" placeholder="Password">
 
-<h2>Member Login</h2>
-
-<input id="email" placeholder="Email">
-<input id="password" type="password" placeholder="Password">
-
-<button oneclick="loginUser()">  
-Login                              
-</button>                         
-
-</div>
-
-<div id="member-content">
-
-<h2>Welcome Member</h2>
-
-<p id="user-email"></p>
-
-<button onclick="logoutUser()">
-Logout
-</button>
-
+  <button onclick="loginUser()">
+    Login
+  </button>
 </div>
 
 </section>

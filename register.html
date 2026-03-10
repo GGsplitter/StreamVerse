@@ -176,8 +176,13 @@ fetch("navbar.html")
 import { supabase } from "./js/supabase.js";
 
 window.registerUser = async () => {
+  console.log("REGISTER FUNCTION STARTED");
+
   const email = document.getElementById("email").value;
   const password = document.getElementById("password").value;
+
+  console.log("EMAIL VALUE:", email);
+  console.log("PASSWORD VALUE:", password);
 
   const { data, error } = await supabase.auth.signUp({
     email: email,
@@ -187,8 +192,20 @@ window.registerUser = async () => {
   if (error) {
     document.getElementById("message").innerText = error.message;
   } else {
+
+    // 🔥 LUODAAN PROFIILI PROFILES-TAULUUN
+    const { error: insertError } = await supabase.from("profiles").upsert({
+    id: data.user.id,
+    email: email,
+    username: null,
+    avatar_url: "https://zqlduhwnipidtweqqnyj.supabase.co/storage/v1/object/public/profile_media/CHH_LOGO.png",
+    banner_url: "https://zqlduhwnipidtweqqnyj.supabase.co/storage/v1/object/public/profile_media/HERO_IMAGE.png"
+  });
+
+    console.log("PROFILE INSERT ERROR:", insertError);
+
     document.getElementById("message").innerText = "Account created! Redirecting...";
-    setTimeout(() => window.location.href = "login.html", 1500);
+    setTimeout(() => window.location.href = "member.html", 1500);
   }
 };
 </script>

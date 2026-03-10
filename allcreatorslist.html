@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>All Creators – Compact View</title>
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+
+body{
+margin:0;
+font-family:Arial;
+color:white;
+background:#0a0a0a;
+}
+
+.page-title{
+    text-align:center;
+    margin-top:140px;
+    font-size:42px;
+    background:linear-gradient(45deg,#ff0088,#7700ff);
+    -webkit-background-clip:text;
+    color:transparent;
+}
+
+/* GRID – 4 CARDS PER ROW */
+.creator-grid{
+    width:1200px;
+    margin:40px auto 80px auto;
+    display:grid;
+    grid-template-columns:repeat(4, 1fr);
+    gap:20px;
+}
+
+/* CARD */
+.creator-card{
+    width:100%;
+    height:200px; /* FINAL HEIGHT */
+    background:#111;
+    border-radius:12px;
+    overflow:hidden;
+    box-shadow:0 0 15px rgba(255,0,120,0.25);
+    transition:.25s;
+    cursor:pointer;
+    text-decoration:none;
+    color:white;
+}
+
+.creator-card:hover{
+    transform:translateY(-6px);
+    box-shadow:0 0 25px rgba(255,0,120,0.45);
+}
+
+/* HERO / BANNER */
+.creator-banner{
+    width:100%;
+    height:60px;
+    background-size:cover;
+    background-position:center;
+}
+
+/* CONTENT ROW */
+.creator-content{
+    display:flex;
+    flex-direction:row;
+    padding:12px 10px 10px 10px;
+    gap:12px;
+    height:140px;
+}
+
+/* PROFILE IMAGE */
+.creator-profile-img{
+    width:70px;
+    height:70px;
+    border-radius:50%;
+    object-fit:cover;
+    border:3px solid #222;
+    flex-shrink:0;
+}
+
+/* RIGHT SIDE INFO */
+.creator-info{
+    flex:1;
+    display:flex;
+    flex-direction:column;
+    overflow:hidden;
+}
+
+/* NAME */
+.creator-name{
+    font-size:17px;
+    margin:0;
+    background:linear-gradient(45deg,#ff0088,#7700ff);
+    -webkit-background-clip:text;
+    color:transparent;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+}
+
+/* RANK + LIVE ROW */
+.rank-live-row{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    margin-top:4px;
+}
+
+/* RANK BADGE */
+.rank-badge{
+    padding:3px 7px;
+    background:#222;
+    border:1px solid #ff0088;
+    border-radius:6px;
+    font-size:11px;
+}
+
+/* LIVE BADGE */
+.live-badge{
+    padding:3px 7px;
+    background:#00ff7a;
+    color:#000;
+    border-radius:6px;
+    font-weight:bold;
+    font-size:11px;
+}
+
+.offline-badge{
+    padding:3px 7px;
+    background:#ff0055;
+    color:#fff;
+    border-radius:6px;
+    font-weight:bold;
+    font-size:11px;
+}
+
+/* BIO */
+.creator-bio{
+    margin-top:6px;
+    opacity:0.75;
+    font-size:12px;
+    height:40px;
+    overflow:hidden;
+    line-height:1.25;
+}
+
+/* SOCIAL ICONS */
+.creator-socials{
+    margin-top:8px;
+    display:flex;
+    gap:10px;
+}
+
+.creator-socials a{
+    font-size:16px;
+    color:white;
+    transition:.2s;
+}
+
+.creator-socials a:hover{
+    color:#ff0088;
+}
+
+</style>
+</head>
+
+<body>
+
+<h1 class="page-title">All Creators</h1>
+
+<div class="creator-grid" id="creator-grid"></div>
+
+<script>
+
+/* EXAMPLE DATA — all fields preserved */
+const exampleCreators = [
+    {
+        username: "G3splitter",
+        profile: "https://placehold.co/200x200?text=G3",
+        banner: "https://placehold.co/400x150/ff0088/ffffff?text=B1",
+        bio: "FPS pelaaja ja sisällöntuottaja.",
+        rank: "Gold",
+        youtube: "#",
+        instagram: "#",
+        twitch: "#"
+    },
+    {
+        username: "Koeda666",
+        profile: "https://placehold.co/200x200?text=K6",
+        banner: "https://placehold.co/400x150/7700ff/ffffff?text=B2",
+        bio: "IRL & Just Chatting.",
+        rank: "Silver",
+        twitter: "#"
+    },
+    {
+        username: "Nallegamerx",
+        profile: "https://placehold.co/200x200?text=NG",
+        banner: "https://placehold.co/400x150/ff55aa/ffffff?text=B3",
+        bio: "Rento pelistriimaaja.",
+        rank: "Bronze",
+        youtube: "#",
+        twitch: "#"
+    },
+    {
+        username: "LofiGirl",
+        profile: "https://placehold.co/200x200?text=LG",
+        banner: "https://placehold.co/400x150/ffaa00/ffffff?text=B4",
+        bio: "Lofi musiikkia 24/7.",
+        rank: "Diamond",
+        instagram: "#"
+    }
+];
+
+/* RENDER CARDS */
+function renderCreators(){
+
+    const grid = document.getElementById("creator-grid");
+    grid.innerHTML = "";
+
+    exampleCreators.forEach(creator => {
+
+        let liveStatus = null;
+        if (creator.twitch) {
+            liveStatus = Math.random() > 0.5 ? "live" : "offline";
+        }
+
+        const card = document.createElement("a");
+        card.className = "creator-card";
+        card.href = `creator.html?user=${creator.username}`;
+
+        card.innerHTML = `
+            <div class="creator-banner" style="background-image:url('${creator.banner}')"></div>
+
+            <div class="creator-content">
+
+                <img src="${creator.profile}" class="creator-profile-img">
+
+                <div class="creator-info">
+
+                    <h3 class="creator-name">${creator.username}</h3>
+
+                    <div class="rank-live-row">
+                        <span class="rank-badge">${creator.rank}</span>
+
+                        ${liveStatus === "live"
+                            ? `<span class="live-badge">🟢 LIVE</span>`
+                            : liveStatus === "offline"
+                                ? `<span class="offline-badge">🔴 OFFLINE</span>`
+                                : ``}
+                    </div>
+
+                    <p class="creator-bio">${creator.bio}</p>
+
+                    <div class="creator-socials">
+                        ${creator.youtube ? `<a href="${creator.youtube}"><i class="fab fa-youtube"></i></a>` : ""}
+                        ${creator.instagram ? `<a href="${creator.instagram}"><i class="fab fa-instagram"></i></a>` : ""}
+                        ${creator.twitter ? `<a href="${creator.twitter}"><i class="fab fa-x-twitter"></i></a>` : ""}
+                        ${creator.twitch ? `<a href="${creator.twitch}"><i class="fab fa-twitch"></i></a>` : ""}
+                    </div>
+
+                </div>
+            </div>
+        `;
+
+        grid.appendChild(card);
+    });
+}
+
+renderCreators();
+
+</script>
+
+</body>
+</html>

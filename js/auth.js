@@ -3,44 +3,42 @@ import { supabase } from "./supabase.js"
 /* LOGIN */
 window.loginUser = async () => {
 
-const email = document.getElementById("email").value
-const password = document.getElementById("password").value
+  const email = document.getElementById("email").value
+  const password = document.getElementById("password").value
 
-const { error } = await supabase.auth.signInWithPassword({
-email,
-password
-})
+  const { error } = await supabase.auth.signInWithPassword({
+    email,
+    password
+  })
 
-if(error){
-alert(error.message)
-return
+  if (error) {
+    alert(error.message)
+    return
+  }
+
+  // 🔥 OHJAUS DASHBOARDIIN
+  window.location.href = "memberdashboard.html"
 }
 
-location.reload()
-
-}
 
 /* LOGOUT */
 window.logoutUser = async () => {
 
-await supabase.auth.signOut()
-location.reload()
+  await supabase.auth.signOut()
 
+  // 🔥 OHJAUS LOGIN-SIVULLE
+  window.location.href = "member.html"
 }
+
 
 /* SESSION CHECK */
 window.onload = async () => {
 
-const { data } = await supabase.auth.getUser()
+  const { data } = await supabase.auth.getUser()
 
-if(data.user){
+  if (data.user) {
 
-document.getElementById("login-box").style.display="none"
-document.getElementById("member-content").style.display="block"
-
-document.getElementById("user-email").innerText =
-data.user.email
-
-}
-
+    // 🔥 JOS KÄYTTÄJÄ ON JO SISÄLLÄ → DASHBOARDIIN
+    window.location.href = "memberdashboard.html"
+  }
 }
