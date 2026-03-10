@@ -10,109 +10,202 @@
 
 <style>
 
-/*  VAIN TÄMÄ LISÄTTY LAYOUT FIX */
+/* GENERAL PAGE STYLE */
 body{
-margin:0;
-font-family:Arial;
-color:white;
+    margin:0;
+    font-family:Arial;
+    color:white;
 
-min-height:100vh;
-display:flex;
-flex-direction:column;
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
 
-background:
-linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.9)),
-url("https://images.unsplash.com/photo-1542751371-adc38448a05e");
+    background:
+    linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.9)),
+    url("https://images.unsplash.com/photo-1542751371-adc38448a05e");
 
-background-size:cover;
-background-position:center;
-background-attachment:fixed;
+    background-size:cover;
+    background-position:center;
+    background-attachment:fixed;
 }
 
-/* NAV */
-
-nav{
-position:fixed;
-top:0;
-width:100%;
-padding:18px 8%;
-display:flex;
-gap:30px;
-backdrop-filter:blur(20px);
-background:rgba(0,0,0,0.7);
-z-index:1000;
+/* NAVBAR ALWAYS ON TOP */
+#navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
 }
 
-nav a{
-color:white;
-text-decoration:none;
-font-weight:bold;
+/* MAIN CONTENT BELOW NAVBAR */
+main{
+  flex:1;
+  padding-top:120px; /* navbarin korkeus */
 }
 
-/* CONTENT */
+/* FOOTER ALWAYS AT BOTTOM */
+#footer {
+  margin-top: auto;
+}
 
+/* CONTENT AREA */
 section{
-padding:140px 8%;
-text-align:center;
-flex:1;
+    padding:40px 8%;
+    text-align:center;
+    flex:1;
 }
 
-/* GRADIENT TITLE */
-
+/* TITLE */
 .gradient-text{
-font-size:48px;
-background:linear-gradient(45deg,#ff0055,#7000ff);
--webkit-background-clip:text;
-color:transparent;
+    font-size:48px;
+    background:linear-gradient(45deg,#ff0055,#7000ff);
+    -webkit-background-clip:text;
+    color:transparent;
 }
 
-/* CREATOR CARD */
+/* HEADINGS ABOVE CARDS — aligned perfectly with card columns */
+.heading-card{
+    width:420px;
+    background:none;
+    padding:0;
+    box-shadow:none;
+    backdrop-filter:none;
+    margin-bottom:-20px; /* nostaa otsikon lähemmäs korttia */
+}
 
+.heading-title{
+    font-size:26px;
+    font-weight:700;
+    background:linear-gradient(45deg,#ff0055,#7000ff);
+    -webkit-background-clip:text;
+    color:transparent;
+    margin:0 auto 10px auto;
+    text-align:center;
+}
+
+
+
+/* MOBILE FIX: headings stack nicely */
+@media(max-width:900px){
+    .cotm-headings{
+        justify-content:center;
+        gap:40px;
+    }
+}
+
+/* TWO-COLUMN LAYOUT */
+.cotm-row{
+    display:flex;
+    justify-content:center;
+    gap:40px;
+    flex-wrap:wrap;
+    margin-top:40px;
+}
+
+/* MAIN CREATOR CARD */
 .creator-card{
-max-width:450px;
-margin:auto;
-padding:40px;
-backdrop-filter:blur(15px);
-background:rgba(0,0,0,0.35);
-border-radius:25px;
-transition:.3s;
+    width:420px;
+    padding:40px;
+    backdrop-filter:blur(15px);
+    background:rgba(0,0,0,0.35);
+    border-radius:25px;
+    transition:.3s;
 }
 
 .creator-card:hover{
-transform:translateY(-10px);
+    transform:translateY(-10px);
 }
 
 /* LOGO */
-
 .cotm-logo{
-max-width:220px;
-width:100%;
-display:block;
-margin:0 auto 20px auto;
-border-radius:20px;
-object-fit:contain;
-filter:drop-shadow(0 0 15px #7000ff);
-transition:.3s;
+    max-width:220px;
+    width:100%;
+    display:block;
+    margin:0 auto 20px auto;
+    border-radius:20px;
+    object-fit:contain;
+    filter:drop-shadow(0 0 15px #7000ff);
+    transition:.3s;
 }
 
 .cotm-logo:hover{
-transform:scale(1.05);
+    transform:scale(1.05);
+}
+
+/* PROFILE CARD */
+.profile-card{
+    margin-top:30px;
+    padding:20px;
+    background:rgba(0,0,0,0.45);
+    backdrop-filter:blur(12px);
+    border-radius:18px;
+    display:flex;
+    gap:20px;
+    align-items:center;
+    box-shadow:0 0 20px rgba(0,0,0,0.4);
+    transition:.3s;
+}
+
+.profile-card:hover{
+    transform:translateY(-5px);
+}
+
+.profile-avatar{
+    width:80px;
+    height:80px;
+    border-radius:50%;
+    background:#222;
+    background-size:cover;
+    background-position:center;
+    box-shadow:0 0 10px rgba(0,0,0,0.5);
+}
+
+.profile-info{
+    flex:1;
+    text-align:left;
+}
+
+.profile-name{
+    margin:0;
+    font-size:20px;
+    font-weight:700;
+}
+
+.profile-bio{
+    margin:6px 0 12px;
+    opacity:.8;
+    font-size:14px;
+}
+
+.profile-btn{
+    background:#7000ff;
+    border:none;
+    padding:10px 18px;
+    border-radius:10px;
+    color:white;
+    cursor:pointer;
+    font-size:14px;
+    transition:.2s;
+}
+
+.profile-btn:hover{
+    background:#8a33ff;
 }
 
 /* FOOTER */
-
 footer{
-padding:70px;
-background:#0a0a0a;
-text-align:center;
-margin-top:auto; /*  TÄRKEÄ */
+    padding:70px;
+    background:#0a0a0a;
+    text-align:center;
+    margin-top:auto;
 }
 
 footer a{
-color:white;
-text-decoration:none;
-font-size:16px;
-font-family:inherit;
+    color:white;
+    text-decoration:none;
+    font-size:16px;
+    font-family:inherit;
 }
 
 </style>
@@ -120,63 +213,94 @@ font-family:inherit;
 
 <body>
 
-<nav>
-<a href="index.html">Home</a>
-<a href="news.html">News</a>
-<a href="streamers.html">Creators</a>
-<a href="creatorofthemonth.html">Creator of the Month</a>
-<a href="about.html">About Us</a>
-<a href="member.html">Member</a>
-</nav>
+<!-- NAVBAR -->
+<div id="navbar"></div>
+
+<main>
 
 <section>
 
-<h2 class="gradient-text">
-Creator of the Month
-</h2>
+<h2 class="gradient-text">Creator of the Month</h2>
 
-<div class="creator-card">
+<div class="cotm-row">
 
-<img src="assets/COTM_LOGO.png" class="cotm-logo">
+    <div class="creator-card heading-card">
+        <h3 class="heading-title">LIVE</h3>
+    </div>
 
-<h2 style="margin-top:20px">Creator Name</h2>
+    <div class="creator-card heading-card">
+        <h3 class="heading-title">VIDEO</h3>
+    </div>
 
-<p style="opacity:.8">
-Esittelyssä on tämän kuukauden erityisesti huomionarvoinen sisällöntuottaja, joka on osoittanut poikkeavaa kasvua,
-yhteisön osallistumista ja sisällön laatua. <br><br>
-TBA
-</p>
+
+    <!-- CARD 1 — LIVE CREATOR -->
+    <div class="creator-card">
+
+        <img src="assets/COTM_LOGO.png" class="cotm-logo">
+
+        <h2 style="margin-top:20px">LIVE Creator</h2>
+
+        <p style="opacity:.8">
+            Kuukauden suosituin live-streamaaja, joka on kasvanut nopeasti ja saanut vahvan yhteisön ympärilleen.
+        </p>
+
+        <div class="profile-card">
+            <div class="profile-avatar"></div>
+
+            <div class="profile-info">
+                <h3 class="profile-name">Live Creator</h3>
+                <p class="profile-bio">Lyhyt esittelyteksti tulee tähän.</p>
+
+                <button class="profile-btn">Näytä profiili</button>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- CARD 2 — VIDEO/VLOG CREATOR -->
+    <div class="creator-card">
+
+        <img src="assets/COTM_LOGO.png" class="cotm-logo">
+
+        <h2 style="margin-top:20px">VIDEO / VLOG Creator</h2>
+
+        <p style="opacity:.8">
+            Kuukauden katsotuin video- ja vlogisisällöntuottaja, joka on noussut esiin laadukkaalla tuotannolla.
+        </p>
+
+        <div class="profile-card">
+            <div class="profile-avatar"></div>
+
+            <div class="profile-info">
+                <h3 class="profile-name">Video Creator</h3>
+                <p class="profile-bio">Lyhyt esittelyteksti tulee tähän.</p>
+
+                <button class="profile-btn">Näytä profiili</button>
+            </div>
+        </div>
+
+    </div>
 
 </div>
 
 </section>
 
-<footer>
+<!-- FOOTER -->
+<div id="footer"></div>
 
-<h2>Contact & Socials</h2>
+<script>
+fetch("navbar.html")
+.then(r=>r.text())
+.then(data=>{
+document.getElementById("navbar").innerHTML=data;
+});
 
-<p>
-Email:
-<a href="mailto:your@email.com">your@email.com</a>
-</p>
-
-<div style="margin-top:25px;display:flex;justify-content:center;gap:30px;">
-
-<a href="#"><i class="fab fa-instagram" style="font-size:28px"></i></a>
-<a href="#"><i class="fab fa-x-twitter" style="font-size:28px"></i></a>
-<a href="#"><i class="fab fa-twitch" style="font-size:28px"></i></a>
-<a href="#"><i class="fab fa-facebook" style="font-size:28px"></i></a>
-<a href="#"><i class="fab fa-tiktok" style="font-size:28px"></i></a>
-<a href="#"><i class="fab fa-youtube" style="font-size:28px"></i></a>
-
-</div>
-
-<p style="margin-top:40px;opacity:.7">
-© 2026 CREATORS Hype Hub
-</p>
-
-</footer>
+fetch("footer.html")
+.then(r=>r.text())
+.then(data=>{
+document.getElementById("footer").innerHTML=data;
+});
+</script>
 
 </body>
 </html>
-
