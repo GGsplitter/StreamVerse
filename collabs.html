@@ -5,17 +5,127 @@
 <title>Collabs</title>
 
 <style>
-body{ margin:0; background:#060606; color:white; font-family:Arial; }
-#navbar{ width:100%; position:fixed; top:0; left:0; z-index:1000; }
-.page-wrapper{ display:flex; margin-top:80px; }
-.sidebar{ width:260px; background:#0a0a0a; padding:30px 20px; position:fixed; top:80px; left:0; height:100%; }
-.sidebar a{ display:block; padding:12px; background:#111; margin-bottom:10px; border-radius:10px; color:white; text-decoration:none; }
-.sidebar a:hover{ background:#222; }
-.main{ margin-left:260px; padding:40px; width:100%; }
-.card{ background:#111; padding:25px; border-radius:15px; margin-bottom:25px; }
-.item{ padding:12px 0; border-bottom:1px solid #222; }
-input{ width:100%; padding:12px; border:none; border-radius:10px; background:#1a1a1a; color:white; margin-top:10px; }
-button{ padding:12px 20px; border:none; border-radius:10px; background:#7000ff; color:white; margin-top:15px; cursor:pointer; }
+body{
+    margin:0;
+    background:#060606;
+    color:white;
+    font-family:Arial;
+}
+
+/* NAVBAR */
+#navbar{
+    width:100%;
+    position:fixed;
+    top:0;
+    left:0;
+    z-index:1000;
+}
+
+/* PAGE WRAPPER */
+.page-wrapper{
+    display:flex;
+    margin-top:80px;
+}
+
+/* SIDEBAR PLACEHOLDER */
+#sidebar{
+    width:260px;
+}
+
+/* MAIN CONTENT */
+.main{
+    margin-left:260px;
+    padding:40px;
+    width:100%;
+    position:relative;
+}
+
+/* HERO GLOW */
+.main::before{
+    content:"";
+    position:absolute;
+    top:0;
+    left:50%;
+    transform:translateX(-50%);
+    width:70%;
+    height:200px;
+    background:radial-gradient(circle at center,
+      rgba(255,230,120,0.15),
+      transparent 70%);
+    filter:blur(25px);
+    z-index:-1;
+}
+
+/* TITLE */
+.main h1{
+    font-size:42px;
+    margin-bottom:30px;
+    background:linear-gradient(45deg,#ffffff,#ffe680);
+    -webkit-background-clip:text;
+    color:transparent;
+}
+
+/* CARD */
+.card{
+    background:#111;
+    padding:30px;
+    border-radius:18px;
+    margin-bottom:30px;
+    border:1px solid rgba(255,255,255,0.05);
+    box-shadow:
+        0 0 12px rgba(255,255,200,0.10),
+        0 0 20px rgba(0,0,0,0.4);
+}
+
+.card h2{
+    margin-top:0;
+    margin-bottom:20px;
+    background:linear-gradient(45deg,#ffffff,#ffe680);
+    -webkit-background-clip:text;
+    color:transparent;
+}
+
+/* SPONSOR ITEM */
+.sponsor-item{
+    padding:15px 0;
+    border-bottom:1px solid #222;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    transition:.2s;
+}
+
+.sponsor-item:hover{
+    background:#181818;
+}
+
+.sponsor-left{
+    display:flex;
+    flex-direction:column;
+}
+
+.sponsor-name{
+    font-weight:bold;
+    font-size:16px;
+}
+
+.sponsor-meta{
+    opacity:.8;
+    font-size:13px;
+}
+
+.sponsor-status{
+    padding:6px 12px;
+    border-radius:8px;
+    font-size:12px;
+    font-weight:bold;
+}
+
+.active{ background:#4ade80; color:#000; }
+.pending{ background:#ffe680; color:#000; }
+.general{ background:#3b82f6; color:#fff; }
+.personal{ background:#a855f7; color:#fff; }
+.recommended{ background:#ff4d88; color:#fff; }
 </style>
 </head>
 
@@ -25,37 +135,91 @@ button{ padding:12px 20px; border:none; border-radius:10px; background:#7000ff; 
 
 <div class="page-wrapper">
 
-  <div class="sidebar">
-    <a href="overview.html">📊 Overview</a>
-    <a href="profile.html">👤 Profile</a>
-    <a href="leaderboard.html">🏆 Leaderboard</a>
-    <a href="rewards.html">🎁 Rewards</a>
-    <a href="collabs.html">🤝 Collabs</a>
-    <a href="settings.html">⚙️ Settings</a>
-  </div>
+  <!-- SIDEBAR LOADED FROM sidebarnav.html -->
+  <div id="sidebar"></div>
 
   <div class="main">
 
     <h1>🤝 Collabs & Sponsors</h1>
 
+    <!-- ACTIVE SPONSORS -->
     <div class="card">
-      <h2>Active Sponsors</h2>
-      <div class="item">EnergyDrink Co — Code: ALEKSI20</div>
-      <div class="item">GamingGear — Code: ALEKSI10</div>
-      <div class="item">HeadsetPro — Code: ALEKSI5</div>
+      <h2>Aktiiviset sponsorit</h2>
+
+      <div class="sponsor-item">
+        <div class="sponsor-left">
+          <div class="sponsor-name">EnergyDrink Co</div>
+          <div class="sponsor-meta">Koodi: ALEKSI20 • 12% konversio</div>
+        </div>
+        <div class="sponsor-status active">Aktiivinen</div>
+      </div>
+
+      <div class="sponsor-item">
+        <div class="sponsor-left">
+          <div class="sponsor-name">GamingGear</div>
+          <div class="sponsor-meta">Koodi: ALEKSI10 • 8% konversio</div>
+        </div>
+        <div class="sponsor-status active">Aktiivinen</div>
+      </div>
+
     </div>
 
+    <!-- PERSONAL SPONSORS -->
     <div class="card">
-      <h2>Pending Requests</h2>
-      <div class="item">Brand X — Waiting for approval</div>
-      <div class="item">TechNova — Reviewing your profile</div>
+      <h2>Henkilökohtaiset sponsorit</h2>
+
+      <div class="sponsor-item">
+        <div class="sponsor-left">
+          <div class="sponsor-name">HeadsetPro</div>
+          <div class="sponsor-meta">Koodi: ALEKSI5 • Yhteistyö jatkuu</div>
+        </div>
+        <div class="sponsor-status personal">Henkilökohtainen</div>
+      </div>
+
     </div>
 
+    <!-- GENERAL SPONSORS -->
     <div class="card">
-      <h2>Add New Sponsor Code</h2>
-      <input placeholder="Sponsor name">
-      <input placeholder="Discount code">
-      <button>Add Sponsor</button>
+      <h2>Yleiset sponsorikampanjat</h2>
+
+      <div class="sponsor-item">
+        <div class="sponsor-left">
+          <div class="sponsor-name">TechNova</div>
+          <div class="sponsor-meta">Avoin kampanja kaikille Creatoreille</div>
+        </div>
+        <div class="sponsor-status general">Avoin</div>
+      </div>
+
+      <div class="sponsor-item">
+        <div class="sponsor-left">
+          <div class="sponsor-name">Brand X</div>
+          <div class="sponsor-meta">Sponsoroitu postaus • 150€ / video</div>
+        </div>
+        <div class="sponsor-status general">Avoin</div>
+      </div>
+
+    </div>
+
+    <!-- RECOMMENDED SPONSORS -->
+    <div class="card">
+      <h2>Suositellut sponsorit (sinulle)</h2>
+
+      <div class="sponsor-item">
+        <div class="sponsor-left">
+          <div class="sponsor-name">FitFuel</div>
+          <div class="sponsor-meta">Perustuu sisältöösi: lifestyle + fitness</div>
+        </div>
+        <div class="sponsor-status recommended">Suositeltu</div>
+      </div>
+
+      <div class="sponsor-item">
+        <div class="sponsor-left">
+          <div class="sponsor-name">StreamTech</div>
+          <div class="sponsor-meta">Perustuu: live‑stream engagement</div>
+        </div>
+        <div class="sponsor-status recommended">Suositeltu</div>
+      </div>
+
     </div>
 
   </div>
@@ -66,6 +230,29 @@ button{ padding:12px 20px; border:none; border-radius:10px; background:#7000ff; 
 fetch("../navbar.html")
   .then(r=>r.text())
   .then(d=>document.getElementById("navbar").innerHTML=d);
+</script>
+
+<script>
+fetch("../sidebarnav.html")
+  .then(r=>r.text())
+  .then(d=>document.getElementById("sidebar").innerHTML=d);
+</script>
+
+<!-- SUPABASE LOGIC -->
+<script type="module">
+
+import { supabase } from "./js/supabase.js"
+
+window.onload = async () => {
+  const { data } = await supabase.auth.getUser()
+  if(!data.user){ window.location.href="index.html"; return }
+}
+
+window.logoutUser = async () => {
+  await supabase.auth.signOut()
+  window.location.href="index.html"
+}
+
 </script>
 
 </body>

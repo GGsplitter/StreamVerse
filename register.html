@@ -11,6 +11,14 @@ body {
   background: #060606;
   color: white;
   font-family: Arial;
+
+  background:
+linear-gradient(rgba(6,6,6,0.65),rgba(6,6,6,0.95)),
+url("assets/HERO_CREATORS.png");
+  background-size: cover;       /* Täyttää koko näytön */
+  background-position: center;  /* Keskittää kuvan */
+  background-repeat: no-repeat; /* Ei toista kuvaa */
+  background-attachment: fixed; /* Parallax-efekti (valinnainen) */
 }
 
 /* PAGE WRAPPER (keskittää kaiken nätisti) */
@@ -150,12 +158,12 @@ a {
 
   <!-- REGISTRATION CARD -->
   <div class="card">
-    <h2>Create an account</h2>
+    <h2>Luo profiili</h2>
 
     <input id="email" type="email" placeholder="Email">
     <input id="password" type="password" placeholder="Password">
 
-    <button onclick="registerUser()">Join</button>
+    <button onclick="registerUser()">Liity</button>
 
     <p id="message"></p>
 
@@ -193,7 +201,7 @@ window.registerUser = async () => {
     document.getElementById("message").innerText = error.message;
   } else {
 
-    // 🔥 LUODAAN PROFIILI PROFILES-TAULUUN
+    //  LUODAAN PROFIILI PROFILES-TAULUUN
     const { error: insertError } = await supabase.from("profiles").upsert({
     id: data.user.id,
     email: email,

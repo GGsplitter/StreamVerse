@@ -5,30 +5,266 @@
 <title>Profile</title>
 
 <style>
-body{ margin:0; background:#060606; color:white; font-family:Arial; }
-#navbar{ width:100%; position:fixed; top:0; left:0; z-index:1000; }
-.page-wrapper{ display:flex; margin-top:80px; }
-.sidebar{ width:260px; background:#0a0a0a; padding:30px 20px; position:fixed; top:80px; left:0; height:100%; }
-.sidebar a{ display:block; padding:12px; background:#111; margin-bottom:10px; border-radius:10px; color:white; text-decoration:none; }
-.sidebar a:hover{ background:#222; }
-.main{ margin-left:260px; padding:40px; width:100%; }
-.card{ background:#111; padding:25px; border-radius:15px; margin-bottom:25px; }
-
-/* INPUTS */
-input, textarea{ width:100%; padding:12px; border:none; border-radius:10px; background:#1a1a1a; color:white; margin-top:10px; }
-button{ padding:12px 20px; border:none; border-radius:10px; background:#7000ff; color:white; margin-top:15px; cursor:pointer; }
-
-/* PROFILE HEADER */
-.profile-header{ display:flex; gap:20px; align-items:center; }
-.profile-pic{
-    width:80px; height:80px; border-radius:50%;
-    background:#333; object-fit:cover;
+body{
+    margin:0;
+    background:#060606;
+    color:white;
+    font-family:Arial;
 }
 
-/* BANNER */
-.banner-preview{
-    width:100%; height:160px; border-radius:12px;
-    background:#222; object-fit:cover; margin-bottom:15px;
+/* NAVBAR */
+#navbar{
+    width:100%;
+    position:fixed;
+    top:0;
+    left:0;
+    z-index:1000;
+}
+
+/* PAGE WRAPPER */
+.page-wrapper{
+    display:flex;
+    margin-top:80px;
+    min-height:100vh;
+}
+
+/* SIDEBAR PLACEHOLDER */
+#sidebar{
+    width:260px;
+}
+
+/* MAIN CONTENT */
+.main{
+    margin-left:260px; /* matches sidebar width */
+    padding:40px;
+    width:calc(100% - 260px);
+}
+
+/* CENTRAL CONTAINER */
+.profile-container{
+    max-width:900px;
+    margin:0 auto;
+}
+
+/* BIG BANNER */
+.big-banner{
+    width:100%;
+    height:220px;
+    border-radius:20px;
+    background:url("https://images.unsplash.com/photo-1542751371-adc38448a05e") center/cover;
+    box-shadow:0 0 20px rgba(255,255,200,0.15);
+    border:1px solid rgba(255,255,255,0.05);
+    margin-bottom:35px;
+}
+
+/* PROFILE HEADER */
+.profile-header{
+    display:flex;
+    gap:25px;
+    align-items:center;
+    background:#111;
+    padding:25px;
+    border-radius:18px;
+    box-shadow:0 0 12px rgba(255,255,200,0.10);
+    border:1px solid rgba(255,255,255,0.05);
+}
+
+/* AVATAR */
+.avatar-wrapper{
+    position:relative;
+    width:110px;
+    height:110px;
+}
+
+.avatar{
+    width:110px;
+    height:110px;
+    border-radius:50%;
+    background:#222;
+    background-size:cover;
+    background-position:center;
+    box-shadow:0 0 12px rgba(255,255,200,0.25);
+}
+
+.edit-avatar{
+    position:absolute;
+    bottom:0;
+    right:0;
+    background:#ffe680;
+    color:#000;
+    padding:6px 10px;
+    border-radius:8px;
+    font-size:12px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+/* PROFILE INFO */
+.profile-info h1{
+    margin:0;
+    font-size:28px;
+    background:linear-gradient(45deg,#ffffff,#ffe680);
+    -webkit-background-clip:text;
+    color:transparent;
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.edit-name{
+    background:#ffe680;
+    color:#000;
+    padding:4px 8px;
+    border-radius:6px;
+    font-size:12px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+.bio{
+    margin-top:8px;
+    opacity:.85;
+}
+
+.edit-bio{
+    margin-top:10px;
+    background:#ffe680;
+    color:#000;
+    padding:6px 10px;
+    border-radius:8px;
+    font-size:12px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+.location{
+    margin-top:6px;
+    opacity:.8;
+    font-size:14px;
+}
+
+.edit-location{
+    margin-top:6px;
+    background:#ffe680;
+    color:#000;
+    padding:4px 8px;
+    border-radius:6px;
+    font-size:12px;
+    cursor:pointer;
+    font-weight:bold;
+    display:inline-block;
+}
+
+.visibility-box{
+    margin-top:12px;
+    opacity:.9;
+}
+
+.visibility-box select{
+    margin-left:8px;
+    padding:6px 10px;
+    border-radius:8px;
+    background:#222;
+    color:white;
+    border:none;
+}
+
+/* SMALL BANNER */
+.small-banner-box{
+    margin-top:25px;
+    background:#111;
+    padding:20px;
+    border-radius:15px;
+    border:1px solid rgba(255,255,255,0.05);
+}
+
+.small-banner-preview{
+    width:100%;
+    height:120px;
+    border-radius:12px;
+    background:#222;
+    background-size:cover;
+    background-position:center;
+    margin-bottom:12px;
+}
+
+/* GRID */
+.profile-grid{
+    margin-top:30px;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:20px;
+}
+
+/* SMALL CARD */
+.small-card{
+    background:#111;
+    padding:20px;
+    border-radius:15px;
+    border:1px solid rgba(255,255,255,0.05);
+    box-shadow:0 0 10px rgba(255,255,200,0.10);
+}
+
+.small-card:hover{
+    transform:translateY(-6px);
+    box-shadow:0 0 14px rgba(255,255,200,0.20);
+}
+
+/* SOCIAL ICONS */
+.social-icons{
+    display:flex;
+    gap:12px;
+    margin-top:10px;
+}
+
+.social-icons img{
+    width:28px;
+    height:28px;
+    opacity:.85;
+    transition:.2s;
+}
+
+.social-icons img:hover{
+    opacity:1;
+    transform:scale(1.1);
+}
+
+/* CUSTOM LINKS */
+.custom-links{
+    list-style:none;
+    padding:0;
+    margin:10px 0;
+}
+
+.custom-links li{
+    margin-bottom:6px;
+}
+
+.custom-links a{
+    color:#ffe680;
+    text-decoration:none;
+    font-size:14px;
+}
+
+.add-link-btn,
+.linkbio-btn{
+    margin-top:10px;
+    padding:10px 15px;
+    border-radius:10px;
+    border:none;
+    cursor:pointer;
+    background:#ffe680;
+    color:#000;
+    font-weight:bold;
+}
+
+/* STATS */
+.stat-value{
+    font-size:26px;
+    font-weight:bold;
+    background:linear-gradient(45deg,#ffffff,#ffe680);
+    -webkit-background-clip:text;
+    color:transparent;
 }
 </style>
 </head>
@@ -39,56 +275,104 @@ button{ padding:12px 20px; border:none; border-radius:10px; background:#7000ff; 
 
 <div class="page-wrapper">
 
-  <div class="sidebar">
-    <a href="overview.html">📊 Overview</a>
-    <a href="profile.html">👤 Profile</a>
-    <a href="leaderboard.html">🏆 Leaderboard</a>
-    <a href="rewards.html">🎁 Rewards</a>
-    <a href="collabs.html">🤝 Collabs</a>
-    <a href="settings.html">⚙️ Settings</a>
-  </div>
+  <!-- SIDEBAR LOADED FROM sidebarnav.html -->
+  <div id="sidebar"></div>
 
+  <!-- MAIN CONTENT -->
   <div class="main">
 
-    <h1>👤 Profile</h1>
+    <div class="profile-container">
 
-    <!-- PROFILE HEADER -->
-    <div class="card">
+      <!-- BIG BANNER -->
+      <div class="big-banner"></div>
+
+      <!-- PROFILE HEADER -->
       <div class="profile-header">
-        <img id="profilePicPreview" class="profile-pic" src="https://placehold.co/200x200?text=User">
-        <div>
-          <h2>Aleksi</h2>
-          <p>Creator • TikTok & YouTube</p>
+
+        <div class="avatar-wrapper">
+          <div class="avatar" style="background-image:url('https://i.pravatar.cc/300');"></div>
+          <div class="edit-avatar">Muokkaa</div>
         </div>
+
+        <div class="profile-info">
+          <h1>
+            @CreatorName
+            <span class="edit-name">Muokkaa</span>
+          </h1>
+
+          <p class="bio">Tähän tulee käyttäjän bio. Kuka olet, mitä teet ja miksi seuraajat tykkäävät sinusta.</p>
+          <div class="edit-bio">Muokkaa bioa</div>
+
+          <p class="location">📍 Helsinki, Suomi</p>
+          <div class="edit-location">Muokkaa sijaintia</div>
+
+          <div class="visibility-box">
+              <label>Näkyvyys:</label>
+              <select>
+                  <option>Kaikille</option>
+                  <option>Vain jäsenille</option>
+                  <option>Yksityinen</option>
+              </select>
+          </div>
+
+        </div>
+
       </div>
-    </div>
 
-    <!-- EDIT PROFILE -->
-    <div class="card">
-      <h2>Edit Profile</h2>
+      <!-- SMALL BANNER -->
+      <div class="small-banner-box">
+        <h3>Banner Preview</h3>
+        <div class="small-banner-preview" style="background-image:url('assets/user-banner.jpg');"></div>
+        <button style="padding:10px 15px; border-radius:8px; border:none; cursor:pointer;">Lataa uusi banneri</button>
+      </div>
 
-      <!-- BANNER UPLOAD -->
-      <h3>Banneri</h3>
-      <img id="bannerPreview" class="banner-preview" src="https://placehold.co/1200x300?text=Banner">
-      <input type="file" id="bannerUpload" accept="image/*">
+      <!-- GRID -->
+      <div class="profile-grid">
 
-      <!-- PROFILE PIC UPLOAD -->
-      <h3>Profiilikuva</h3>
-      <img id="profilePicPreview2" class="profile-pic" src="https://placehold.co/200x200?text=User">
-      <input type="file" id="profilePicUpload" accept="image/*">
+        <div class="small-card">
+          <h3>Socials</h3>
+          <div class="social-icons">
+            <img src="assets/icons/tiktok.png">
+            <img src="assets/icons/youtube.png">
+            <img src="assets/icons/instagram.png">
+            <img src="assets/icons/twitch.png">
+            <img src="assets/icons/twitter.png">
+          </div>
+        </div>
 
-      <h3>Nimimerkki</h3>
-      <input placeholder="Nimimerkki" value="Aleksi">
+        <div class="small-card">
+          <h3>Omat linkit</h3>
+          <ul class="custom-links">
+              <li><a href="#">Merch Store</a></li>
+              <li><a href="#">Portfolio</a></li>
+              <li><a href="#">Kotisivu</a></li>
+          </ul>
+          <button class="add-link-btn">Lisää linkki</button>
+        </div>
 
-      <h3>Bio</h3>
-      <textarea placeholder="Bio">Tervetuloa mun creator-profiiliin!</textarea>
+        <div class="small-card">
+          <h3>Link‑in‑Bio</h3>
+          <p>Luo oma sivu, jossa kaikki linkkisi yhdessä paikassa.</p>
+          <button class="linkbio-btn">Luo Link‑in‑Bio</button>
+        </div>
 
-      <h3>Somet</h3>
-      <input placeholder="TikTok linkki" value="https://tiktok.com/@aleksi">
-      <input placeholder="YouTube linkki" value="https://youtube.com/@aleksi">
-      <input placeholder="Instagram linkki" value="https://instagram.com/aleksi">
+        <div class="small-card">
+          <h3>TikTok Followers</h3>
+          <div class="stat-value">12 450</div>
+        </div>
 
-      <button>Tallenna muutokset</button>
+        <div class="small-card">
+          <h3>YouTube Subs</h3>
+          <div class="stat-value">3 210</div>
+        </div>
+
+        <div class="small-card">
+          <h3>Twitch Followers</h3>
+          <div class="stat-value">980</div>
+        </div>
+
+      </div>
+
     </div>
 
   </div>
@@ -96,28 +380,32 @@ button{ padding:12px 20px; border:none; border-radius:10px; background:#7000ff; 
 </div>
 
 <script>
-/* NAVBAR */
 fetch("../navbar.html")
   .then(r=>r.text())
   .then(d=>document.getElementById("navbar").innerHTML=d);
+</script>
 
-/* BANNER PREVIEW */
-document.getElementById("bannerUpload").addEventListener("change", function(){
-    const file = this.files[0];
-    if(file){
-        document.getElementById("bannerPreview").src = URL.createObjectURL(file);
-    }
-});
+<script>
+fetch("../sidebarnav.html")
+  .then(r=>r.text())
+  .then(d=>document.getElementById("sidebar").innerHTML=d);
+</script>
 
-/* PROFILE PIC PREVIEW */
-document.getElementById("profilePicUpload").addEventListener("change", function(){
-    const file = this.files[0];
-    if(file){
-        const url = URL.createObjectURL(file);
-        document.getElementById("profilePicPreview").src = url;
-        document.getElementById("profilePicPreview2").src = url;
-    }
-});
+<!-- SUPABASE LOGIC -->
+<script type="module">
+
+import { supabase } from "./js/supabase.js"
+
+window.onload = async () => {
+  const { data } = await supabase.auth.getUser()
+  if(!data.user){ window.location.href="index.html"; return }
+}
+
+window.logoutUser = async () => {
+  await supabase.auth.signOut()
+  window.location.href="index.html"
+}
+
 </script>
 
 </body>

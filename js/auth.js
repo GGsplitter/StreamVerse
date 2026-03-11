@@ -17,7 +17,7 @@ window.loginUser = async () => {
   }
 
   // 🔥 OHJAUS DASHBOARDIIN
-  window.location.href = "memberdashboard.html"
+  window.location.href = "overview.html"
 }
 
 
@@ -39,6 +39,6 @@ window.onload = async () => {
   if (data.user) {
 
     // 🔥 JOS KÄYTTÄJÄ ON JO SISÄLLÄ → DASHBOARDIIN
-    window.location.href = "memberdashboard.html"
+    window.location.href = "overview.html"
   }
 }

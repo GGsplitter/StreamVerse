@@ -306,34 +306,67 @@ main{
   letter-spacing: 3px;
 }
 
+/* GRID – toimii 4 kortilla */
 .roadmap-grid {
   display: flex;
-  gap: 30px;
+  flex-wrap: wrap;
+  gap: 20px;               /* pienempi väli */
   justify-content: center;
 }
 
+/* KORTIT – vielä pienemmät */
 .roadmap-item {
-  flex: 1;
+  width: 190px;            /* 🔥 pienempi leveys */
   background: rgba(255,255,255,0.05);
-  padding: 30px;
-  border-radius: 20px;
+  padding: 18px;           /* 🔥 pienempi padding */
+  border-radius: 16px;
   backdrop-filter: blur(10px);
-  box-shadow: 0 0 25px rgba(0,0,0,0.4);
-  transition: transform .2s ease;
+  border: 1px solid rgba(255,255,255,0.12);
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+  transition: transform .25s ease, border .25s ease, box-shadow .25s ease;
+
+  /* 🔥 JATKUVA HEHKU */
+  box-shadow:
+    0 0 8px rgba(255,255,200,0.22),
+    0 0 14px rgba(255,230,120,0.12);
 }
 
+/* SISÄINEN HEHKU – aina päällä */
+.roadmap-item::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center,
+    rgba(255,230,120,0.10),
+    transparent 60%);
+  opacity: 1;
+  pointer-events: none;
+}
+
+/* HOVER – kevyt lisähehku */
 .roadmap-item:hover {
-  transform: translateY(-6px);
+  transform: translateY(-4px); /* 🔥 pienempi nosto */
+  border: 1px solid rgba(255,240,180,0.7);
+  box-shadow:
+    0 0 10px rgba(255,255,200,0.30),
+    0 0 16px rgba(255,230,120,0.20);
 }
 
+/* OTSIKKO – valkoinen → keltainen */
 .roadmap-item h3 {
-  font-size: 24px;
-  margin-bottom: 10px;
+  font-size: 18px;         /* 🔥 pienempi fontti */
+  margin-bottom: 6px;
+  background: linear-gradient(45deg, #ffffff, #ffe680);
+  -webkit-background-clip: text;
+  color: transparent;
 }
 
+/* TEKSTI */
 .roadmap-item p {
-  opacity: 0.8;
-  font-size: 16px;
+  font-size: 13px;         /* 🔥 pienempi fontti */
+  opacity: 0.85;
 }
 
 
@@ -467,12 +500,12 @@ footer a{
   <div class="roadmap-grid">
     <div class="roadmap-item">
       <h3>Sisällöntuottajien hallintapaneeli</h3>
-      <p>Seuraa kasvua, näkyvyyttä.</p>
+      <p>Ymmärrä yleisösi paremmin ja seuraa kasvua sekä näkyvyyttä.</p>
     </div>
 
     <div class="roadmap-item">
-      <h3>Jäsen analytiikka</h3>
-      <p>Ymmärrä yleisösi paremmin ja kehitä sisältöäsi.</p>
+      <h3>Affiliate järjestelmä</h3>
+      <p>Kasvata verkostoa ja hyödy.</p>
     </div>
 
     <div class="roadmap-item">
@@ -482,7 +515,7 @@ footer a{
 
     <div class="roadmap-item">
       <h3>Leaderboard</h3>
-      <p>Seuraa kasvua ja tuo itsesi näkyviin</p>
+      <p>Etene ja tuo itsesi näkyviin</p>
     </div>
   </div>
 </div>

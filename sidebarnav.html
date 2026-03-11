@@ -1,0 +1,52 @@
+<style>
+.sidebar{
+    width:260px;
+    background:#0a0a0a;
+    padding:30px 20px;
+    position:fixed;
+    top:80px;
+    left:0;
+    height:100%;
+    box-shadow:0 0 20px rgba(255,230,120,0.08);
+    border-right:1px solid rgba(255,255,255,0.05);
+}
+
+.sidebar a{
+    display:block;
+    padding:12px;
+    background:#111;
+    margin-bottom:10px;
+    border-radius:10px;
+    color:white;
+    text-decoration:none;
+    transition:.2s;
+    box-shadow:0 0 8px rgba(255,255,200,0.08);
+}
+
+.sidebar a:hover{
+    background:#1a1a1a;
+    box-shadow:0 0 12px rgba(255,255,200,0.15);
+}
+
+.logout-btn{
+    margin-top:20px;
+    padding:12px;
+    width:100%;
+    border:none;
+    border-radius:10px;
+    background:linear-gradient(45deg,#ff0055,#7000ff);
+    color:white;
+    cursor:pointer;
+}
+</style>
+
+<div class="sidebar">
+  <a href="overview.html">📊 Overview</a>
+  <a href="profile.html">👤 Profile</a>
+  <a href="leaderboard.html">🏆 Leaderboard</a>
+  <a href="rewards.html">🎁 Rewards</a>
+  <a href="collabs.html">🤝 Collabs</a>
+  <a href="settings.html">⚙️ Settings</a>
+
+  <button class="logout-btn" onclick="logoutUser()">Logout</button>
+</div>

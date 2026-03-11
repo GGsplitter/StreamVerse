@@ -5,15 +5,130 @@
 <title>Rewards</title>
 
 <style>
-body{ margin:0; background:#060606; color:white; font-family:Arial; }
-#navbar{ width:100%; position:fixed; top:0; left:0; z-index:1000; }
-.page-wrapper{ display:flex; margin-top:80px; }
-.sidebar{ width:260px; background:#0a0a0a; padding:30px 20px; position:fixed; top:80px; left:0; height:100%; }
-.sidebar a{ display:block; padding:12px; background:#111; margin-bottom:10px; border-radius:10px; color:white; text-decoration:none; }
-.sidebar a:hover{ background:#222; }
-.main{ margin-left:260px; padding:40px; width:100%; }
-.card{ background:#111; padding:25px; border-radius:15px; margin-bottom:25px; }
-.badge{ background:#222; padding:12px; border-radius:10px; margin:10px 0; }
+body{
+    margin:0;
+    background:#060606;
+    color:white;
+    font-family:Arial;
+}
+
+/* NAVBAR */
+#navbar{
+    width:100%;
+    position:fixed;
+    top:0;
+    left:0;
+    z-index:1000;
+}
+
+/* PAGE WRAPPER */
+.page-wrapper{
+    display:flex;
+    margin-top:80px;
+}
+
+/* SIDEBAR PLACEHOLDER */
+#sidebar{
+    width:260px;
+}
+
+/* MAIN CONTENT */
+.main{
+    margin-left:260px;
+    padding:40px;
+    width:100%;
+    position:relative;
+}
+
+/* HERO GLOW */
+.main::before{
+    content:"";
+    position:absolute;
+    top:0;
+    left:50%;
+    transform:translateX(-50%);
+    width:70%;
+    height:200px;
+    background:radial-gradient(circle at center,
+      rgba(255,230,120,0.15),
+      transparent 70%);
+    filter:blur(25px);
+    z-index:-1;
+}
+
+/* TITLE */
+.main h1{
+    font-size:42px;
+    margin-bottom:30px;
+    background:linear-gradient(45deg,#ffffff,#ffe680);
+    -webkit-background-clip:text;
+    color:transparent;
+}
+
+/* CARD */
+.card{
+    background:#111;
+    padding:30px;
+    border-radius:18px;
+    margin-bottom:30px;
+    border:1px solid rgba(255,255,255,0.05);
+    box-shadow:
+        0 0 12px rgba(255,255,200,0.10),
+        0 0 20px rgba(0,0,0,0.4);
+}
+
+.card h2{
+    margin-top:0;
+    margin-bottom:20px;
+    background:linear-gradient(45deg,#ffffff,#ffe680);
+    -webkit-background-clip:text;
+    color:transparent;
+}
+
+/* BADGE GRID */
+.badge-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:20px;
+}
+
+/* BADGE ITEM */
+.badge{
+    background:#181818;
+    padding:20px;
+    border-radius:15px;
+    border:1px solid rgba(255,255,255,0.05);
+    box-shadow:0 0 10px rgba(255,255,200,0.10);
+    transition:.25s;
+}
+
+.badge:hover{
+    transform:translateY(-6px);
+    box-shadow:0 0 14px rgba(255,255,200,0.20);
+}
+
+.badge-title{
+    font-size:18px;
+    font-weight:bold;
+    margin-bottom:8px;
+}
+
+.badge-desc{
+    opacity:.85;
+    font-size:14px;
+}
+
+/* SPECIAL COLORS */
+.gold{ color:#ffd700; }
+.silver{ color:#c0c0c0; }
+.bronze{ color:#cd7f32; }
+
+/* SECTION LABEL */
+.section-label{
+    font-size:20px;
+    margin-bottom:15px;
+    opacity:.9;
+}
 </style>
 </head>
 
@@ -23,30 +138,83 @@ body{ margin:0; background:#060606; color:white; font-family:Arial; }
 
 <div class="page-wrapper">
 
-  <div class="sidebar">
-    <a href="overview.html">📊 Overview</a>
-    <a href="profile.html">👤 Profile</a>
-    <a href="leaderboard.html">🏆 Leaderboard</a>
-    <a href="rewards.html">🎁 Rewards</a>
-    <a href="collabs.html">🤝 Collabs</a>
-    <a href="settings.html">⚙️ Settings</a>
-  </div>
+  <!-- SIDEBAR LOADED FROM sidebarnav.html -->
+  <div id="sidebar"></div>
 
   <div class="main">
 
     <h1>🎁 Rewards & Badges</h1>
 
+    <!-- EARNED REWARDS -->
     <div class="card">
-      <h2>Your Badges</h2>
-      <div class="badge">⭐ Rising Creator — 10k followers</div>
-      <div class="badge">🔥 Trending 10 — 3 viral videos</div>
-      <div class="badge">🏆 Top 1% Creator — leaderboard top 10</div>
+      <h2>Ansaitut palkinnot</h2>
+
+      <div class="badge-grid">
+
+        <div class="badge">
+          <div class="badge-title gold">⭐ Rising Creator</div>
+          <div class="badge-desc">Saavutettu: 10k seuraajaa</div>
+        </div>
+
+        <div class="badge">
+          <div class="badge-title">🔥 Trending 10</div>
+          <div class="badge-desc">3 viraalivideota viimeisen 30 päivän aikana</div>
+        </div>
+
+        <div class="badge">
+          <div class="badge-title bronze">🏆 Top 1% Creator</div>
+          <div class="badge-desc">Sijoitus leaderboardin Top 10</div>
+        </div>
+
+      </div>
     </div>
 
+    <!-- RANK REWARDS -->
     <div class="card">
-      <h2>Next Rewards</h2>
-      <div class="badge">🎯 20k followers — Silver Badge</div>
-      <div class="badge">🎬 10 viral videos — Gold Badge</div>
+      <h2>Rank Rewards (Tulevat palkinnot)</h2>
+
+      <div class="badge-grid">
+
+        <div class="badge">
+          <div class="badge-title silver">🎯 Silver Rank</div>
+          <div class="badge-desc">20k seuraajaa — avaa Silver‑tason edut</div>
+        </div>
+
+        <div class="badge">
+          <div class="badge-title gold">🏅 Gold Rank</div>
+          <div class="badge-desc">50k seuraajaa — avaa Gold‑tason edut</div>
+        </div>
+
+        <div class="badge">
+          <div class="badge-title">💎 Diamond Rank</div>
+          <div class="badge-desc">100k seuraajaa — Diamond Creator status</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- CAMPAIGN REWARDS -->
+    <div class="card">
+      <h2>Kampanja Rewards</h2>
+
+      <div class="badge-grid">
+
+        <div class="badge">
+          <div class="badge-title">🎬 Viral Challenge</div>
+          <div class="badge-desc">10 viraalivideota → Gold Creator Badge</div>
+        </div>
+
+        <div class="badge">
+          <div class="badge-title">📈 Growth Sprint</div>
+          <div class="badge-desc">Kasvata 5k seuraajaa kuukaudessa → Bonus‑palkinto</div>
+        </div>
+
+        <div class="badge">
+          <div class="badge-title">🤝 Sponsor Quest</div>
+          <div class="badge-desc">3 hyväksyttyä sponsoridiiliä → Partner Badge</div>
+        </div>
+
+      </div>
     </div>
 
   </div>
@@ -57,6 +225,29 @@ body{ margin:0; background:#060606; color:white; font-family:Arial; }
 fetch("../navbar.html")
   .then(r=>r.text())
   .then(d=>document.getElementById("navbar").innerHTML=d);
+</script>
+
+<script>
+fetch("../sidebarnav.html")
+  .then(r=>r.text())
+  .then(d=>document.getElementById("sidebar").innerHTML=d);
+</script>
+
+<!-- SUPABASE LOGIC -->
+<script type="module">
+
+import { supabase } from "./js/supabase.js"
+
+window.onload = async () => {
+  const { data } = await supabase.auth.getUser()
+  if(!data.user){ window.location.href="index.html"; return }
+}
+
+window.logoutUser = async () => {
+  await supabase.auth.signOut()
+  window.location.href="index.html"
+}
+
 </script>
 
 </body>

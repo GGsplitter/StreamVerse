@@ -5,16 +5,199 @@
 <title>Leaderboard</title>
 
 <style>
-body{ margin:0; background:#060606; color:white; font-family:Arial; }
-#navbar{ width:100%; position:fixed; top:0; left:0; z-index:1000; }
-.page-wrapper{ display:flex; margin-top:80px; }
-.sidebar{ width:260px; background:#0a0a0a; padding:30px 20px; position:fixed; top:80px; left:0; height:100%; }
-.sidebar a{ display:block; padding:12px; background:#111; margin-bottom:10px; border-radius:10px; color:white; text-decoration:none; }
-.sidebar a:hover{ background:#222; }
-.main{ margin-left:260px; padding:40px; width:100%; }
-.card{ background:#111; padding:25px; border-radius:15px; margin-bottom:25px; }
-.item{ padding:15px; border-bottom:1px solid #222; display:flex; justify-content:space-between; }
-.rank{ font-weight:bold; }
+body{
+    margin:0;
+    background:#060606;
+    color:white;
+    font-family:Arial;
+}
+
+/* NAVBAR */
+#navbar{
+    width:100%;
+    position:fixed;
+    top:0;
+    left:0;
+    z-index:1000;
+}
+
+/* PAGE WRAPPER */
+.page-wrapper{
+    display:flex;
+    margin-top:80px;
+}
+
+/* SIDEBAR PLACEHOLDER */
+#sidebar{
+    width:260px;
+}
+
+/* MAIN CONTENT */
+.main{
+    margin-left:260px;
+    padding:40px;
+    width:100%;
+    position:relative;
+}
+
+/* HERO GLOW */
+.main::before{
+    content:"";
+    position:absolute;
+    top:0;
+    left:50%;
+    transform:translateX(-50%);
+    width:70%;
+    height:200px;
+    background:radial-gradient(circle at center,
+      rgba(255,230,120,0.15),
+      transparent 70%);
+    filter:blur(25px);
+    z-index:-1;
+}
+
+/* TITLE */
+.main h1{
+    font-size:42px;
+    margin-bottom:25px;
+    background:linear-gradient(45deg,#ffffff,#ffe680);
+    -webkit-background-clip:text;
+    color:transparent;
+}
+
+/* CARD */
+.card{
+    background:#111;
+    padding:25px;
+    border-radius:15px;
+    margin-bottom:25px;
+    border:1px solid rgba(255,255,255,0.05);
+    box-shadow:
+        0 0 12px rgba(255,255,200,0.10),
+        0 0 20px rgba(0,0,0,0.4);
+}
+
+.card h2{
+    margin-top:0;
+    margin-bottom:15px;
+    background:linear-gradient(45deg,#ffffff,#ffe680);
+    -webkit-background-clip:text;
+    color:transparent;
+}
+
+/* LEADERBOARD LIST */
+.lb-list{
+    margin-top:10px;
+}
+
+.lb-item{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:12px 10px;
+    border-bottom:1px solid #222;
+    position:relative;
+    cursor:pointer;
+    transition:.2s;
+}
+
+.lb-item:hover{
+    background:#181818;
+}
+
+/* RANK BADGE */
+.lb-rank{
+    width:40px;
+    text-align:center;
+    font-weight:bold;
+}
+
+/* TOP 3 COLORS */
+.lb-item.gold   .lb-rank{ color:#ffd700; }
+.lb-item.silver .lb-rank{ color:#c0c0c0; }
+.lb-item.bronze .lb-rank{ color:#cd7f32; }
+
+/* CREATOR INFO */
+.lb-main{
+    flex:1;
+    margin-left:10px;
+}
+
+.lb-name{
+    font-weight:bold;
+}
+
+.lb-meta{
+    font-size:13px;
+    opacity:.8;
+}
+
+/* FOLLOWERS */
+.lb-followers{
+    font-weight:bold;
+}
+
+/* HOVER STATS */
+.lb-tooltip{
+    position:absolute;
+    right:10px;
+    top:100%;
+    margin-top:6px;
+    background:#111;
+    border-radius:10px;
+    padding:10px 12px;
+    font-size:12px;
+    border:1px solid #333;
+    box-shadow:0 0 10px rgba(0,0,0,0.6);
+    opacity:0;
+    pointer-events:none;
+    transform:translateY(-4px);
+    transition:.15s;
+    white-space:nowrap;
+    z-index:10;
+}
+
+.lb-item:hover .lb-tooltip{
+    opacity:1;
+    transform:translateY(0);
+}
+
+/* YOUR POSITION CARD */
+.your-rank{
+    background:#151515;
+    border:1px solid rgba(255,255,255,0.08);
+}
+
+/* SIMPLE BAR CHART */
+.chart{
+    margin-top:10px;
+}
+
+.chart-row{
+    display:flex;
+    align-items:center;
+    margin-bottom:8px;
+    font-size:13px;
+}
+
+.chart-label{
+    width:80px;
+    opacity:.8;
+}
+
+.chart-bar-wrap{
+    flex:1;
+    background:#222;
+    border-radius:999px;
+    overflow:hidden;
+    height:10px;
+}
+
+.chart-bar{
+    height:100%;
+    border-radius:999px;
+    background:linear-gradient(90deg,#ffe680,#ff4d88);
+}
 </style>
 </head>
 
@@ -24,42 +207,136 @@ body{ margin:0; background:#060606; color:white; font-family:Arial; }
 
 <div class="page-wrapper">
 
-  <div class="sidebar">
-    <a href="overview.html">📊 Overview</a>
-    <a href="profile.html">👤 Profile</a>
-    <a href="leaderboard.html">🏆 Leaderboard</a>
-    <a href="rewards.html">🎁 Rewards</a>
-    <a href="collabs.html">🤝 Collabs</a>
-    <a href="settings.html">⚙️ Settings</a>
-  </div>
+  <!-- SIDEBAR LOADED FROM sidebarnav.html -->
+  <div id="sidebar"></div>
 
   <div class="main">
 
     <h1>🏆 Leaderboard</h1>
 
+    <!-- TOP CREATORS -->
     <div class="card">
       <h2>Top Creators</h2>
 
-      <div class="item">
-        <span class="rank">1. @Mika</span>
-        <span>152k followers</span>
+      <div class="lb-list">
+
+        <div class="lb-item gold">
+          <div class="lb-rank">1.</div>
+          <div class="lb-main">
+            <div class="lb-name">@Mika</div>
+            <div class="lb-meta">Gaming • Helsinki</div>
+          </div>
+          <div class="lb-followers">152k followers</div>
+          <div class="lb-tooltip">
+            Fans: 152k • Est. income: 3.2k€/kk • Avg. views: 480k
+          </div>
+        </div>
+
+        <div class="lb-item silver">
+          <div class="lb-rank">2.</div>
+          <div class="lb-main">
+            <div class="lb-name">@Aleksi</div>
+            <div class="lb-meta">Creator • Suomi</div>
+          </div>
+          <div class="lb-followers">124k followers</div>
+          <div class="lb-tooltip">
+            Fans: 124k • Est. income: 2.4k€/kk • Avg. views: 320k
+          </div>
+        </div>
+
+        <div class="lb-item bronze">
+          <div class="lb-rank">3.</div>
+          <div class="lb-main">
+            <div class="lb-name">@Jenna</div>
+            <div class="lb-meta">Lifestyle • Turku</div>
+          </div>
+          <div class="lb-followers">98k followers</div>
+          <div class="lb-tooltip">
+            Fans: 98k • Est. income: 1.9k€/kk • Avg. views: 260k
+          </div>
+        </div>
+
+        <div class="lb-item">
+          <div class="lb-rank">4.</div>
+          <div class="lb-main">
+            <div class="lb-name">@Ville</div>
+            <div class="lb-meta">Tech • Tampere</div>
+          </div>
+          <div class="lb-followers">75k followers</div>
+          <div class="lb-tooltip">
+            Fans: 75k • Est. income: 1.2k€/kk • Avg. views: 180k
+          </div>
+        </div>
+
+        <div class="lb-item">
+          <div class="lb-rank">5.</div>
+          <div class="lb-main">
+            <div class="lb-name">@Sara</div>
+            <div class="lb-meta">Art • Oulu</div>
+          </div>
+          <div class="lb-followers">62k followers</div>
+          <div class="lb-tooltip">
+            Fans: 62k • Est. income: 900€/kk • Avg. views: 140k
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- YOUR POSITION -->
+    <div class="card your-rank">
+      <h2>Sinun sijoitus</h2>
+
+      <div class="lb-item">
+        <div class="lb-rank">12.</div>
+        <div class="lb-main">
+          <div class="lb-name">@Creator</div>
+          <div class="lb-meta">Creator • Suomi • Ei vielä Top 10, mutta näkyvissä aina</div>
+        </div>
+        <div class="lb-followers">24.3k followers</div>
+        <div class="lb-tooltip">
+          Fans: 24.3k • Est. income: 420€/kk • Avg. views: 65k
+        </div>
+      </div>
+    </div>
+
+    <!-- SIMPLE VISUAL CHART -->
+    <div class="card">
+      <h2>Kasvu vs. Top 3</h2>
+
+      <div class="chart">
+        <div class="chart-row">
+          <div class="chart-label">@creator</div>
+          <div class="chart-bar-wrap">
+            <div class="chart-bar" style="width:100%;"></div>
+          </div>
+        </div>
+
+        <div class="chart-row">
+          <div class="chart-label">@Creator</div>
+          <div class="chart-bar-wrap">
+            <div class="chart-bar" style="width:78%;"></div>
+          </div>
+        </div>
+
+        <div class="chart-row">
+          <div class="chart-label">@Creator</div>
+          <div class="chart-bar-wrap">
+            <div class="chart-bar" style="width:64%;"></div>
+          </div>
+        </div>
+
+        <div class="chart-row">
+          <div class="chart-label">Sinä</div>
+          <div class="chart-bar-wrap">
+            <div class="chart-bar" style="width:40%;"></div>
+          </div>
+        </div>
       </div>
 
-      <div class="item">
-        <span class="rank">2. @Aleksi</span>
-        <span>124k followers</span>
-      </div>
-
-      <div class="item">
-        <span class="rank">3. @Jenna</span>
-        <span>98k followers</span>
-      </div>
-
-      <div class="item">
-        <span class="rank">4. @Ville</span>
-        <span>75k followers</span>
-      </div>
-
+      <p style="margin-top:12px; font-size:13px; opacity:.8;">
+        Tämä on visuaalinen placeholder. Myöhemmin korvataan oikealla datalla ja pisteytyslogiikalla.
+      </p>
     </div>
 
   </div>
@@ -70,6 +347,29 @@ body{ margin:0; background:#060606; color:white; font-family:Arial; }
 fetch("../navbar.html")
   .then(r=>r.text())
   .then(d=>document.getElementById("navbar").innerHTML=d);
+</script>
+
+<script>
+fetch("../sidebarnav.html")
+  .then(r=>r.text())
+  .then(d=>document.getElementById("sidebar").innerHTML=d);
+</script>
+
+<!-- SUPABASE LOGIC -->
+<script type="module">
+
+import { supabase } from "./js/supabase.js"
+
+window.onload = async () => {
+  const { data } = await supabase.auth.getUser()
+  if(!data.user){ window.location.href="index.html"; return }
+}
+
+window.logoutUser = async () => {
+  await supabase.auth.signOut()
+  window.location.href="index.html"
+}
+
 </script>
 
 </body>
