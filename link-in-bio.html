@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+<meta charset="UTF-8">
+<title>@Creator – Link in Bio</title>
+
+<style>
+body{
+    margin:0;
+    background:#060606;
+    color:white;
+    font-family:Arial;
+    text-align:center;
+}
+
+/* BANNER */
+.banner{
+    width:100%;
+    height:220px;
+    background-size:cover;
+    background-position:center;
+    border-bottom:1px solid rgba(255,255,255,0.1);
+}
+
+/* PROFILE PIC */
+.avatar{
+    width:130px;
+    height:130px;
+    border-radius:50%;
+    margin-top:-65px;
+    border:4px solid #060606;
+    background-size:cover;
+    background-position:center;
+    box-shadow:0 0 15px rgba(255,255,200,0.25);
+}
+
+/* NAME */
+h1{
+    margin-top:15px;
+    font-size:32px;
+    background:linear-gradient(45deg,#ffffff,#ffe680);
+    -webkit-background-clip:text;
+    color:transparent;
+}
+
+/* BIO */
+.bio{
+    max-width:500px;
+    margin:10px auto 25px;
+    opacity:.85;
+    font-size:15px;
+}
+
+/* LINK BUTTONS */
+.link-btn{
+    display:block;
+    width:85%;
+    max-width:420px;
+    margin:12px auto;
+    padding:15px;
+    background:#111;
+    border-radius:12px;
+    text-decoration:none;
+    color:white;
+    font-size:18px;
+    border:1px solid rgba(255,255,255,0.1);
+    box-shadow:0 0 12px rgba(255,255,200,0.10);
+    transition:.25s;
+}
+
+.link-btn:hover{
+    transform:translateY(-4px);
+    box-shadow:0 0 18px rgba(255,255,200,0.25);
+    background:#181818;
+}
+
+/* SOCIAL ICONS */
+.socials{
+    margin-top:25px;
+    display:flex;
+    justify-content:center;
+    gap:18px;
+}
+
+.socials img{
+    width:32px;
+    height:32px;
+    opacity:.85;
+    transition:.2s;
+}
+
+.socials img:hover{
+    opacity:1;
+    transform:scale(1.15);
+}
+
+/* FOOTER */
+.footer{
+    margin-top:40px;
+    opacity:.5;
+    font-size:13px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- BANNER -->
+<div id="banner" class="banner"></div>
+
+<!-- PROFILE PIC -->
+<div id="avatar" class="avatar"></div>
+
+<!-- NAME -->
+<h1 id="name"></h1>
+
+<!-- BIO -->
+<p id="bio" class="bio"></p>
+
+<!-- LINKS -->
+<div id="links"></div>
+
+<!-- SOCIAL ICONS -->
+<div id="socials" class="socials"></div>
+
+<div class="footer">
+  © 2026 Creator Platform
+</div>
+
+<script>
+// ⭐ MUOKATTAVAT TIEDOT TÄSSÄ ⭐
+// Myöhemmin nämä voidaan hakea Supabasesta
+const profileData = {
+  name: "@CreatorName",
+  bio: "Sisällöntuottaja • Lifestyle • Gaming • TikTok & YouTube",
+  avatar: "https://i.pravatar.cc/300",
+  banner: "https://images.unsplash.com/photo-1542751371-adc38448a05e",
+
+  links: [
+    { title: "🔥 Uusin YouTube-video", url: "#" },
+    { title: "🎧 Spotify Playlist", url: "#" },
+    { title: "🛒 Merch Store", url: "#" },
+    { title: "📸 Instagram", url: "#" },
+    { title: "🎮 Twitch Live", url: "#" },
+    { title: "🌐 Kotisivu", url: "#" }
+  ],
+
+  socials: [
+    { icon: "assets/icons/TIKTOK.png", url: "#" },
+    { icon: "assets/icons/YOUTUBE.png", url: "#" },
+    { icon: "assets/icons/INSTAGRAM.png", url: "#" },
+    { icon: "assets/icons/TWITCH.png", url: "#" },
+    { icon: "assets/icons/X.png", url: "#" }
+  ]
+};
+
+// ⭐ RENDERÖINTI ⭐
+document.getElementById("banner").style.backgroundImage = `url('${profileData.banner}')`;
+document.getElementById("avatar").style.backgroundImage = `url('${profileData.avatar}')`;
+document.getElementById("name").textContent = profileData.name;
+document.getElementById("bio").textContent = profileData.bio;
+
+// Linkit
+const linksContainer = document.getElementById("links");
+profileData.links.forEach(link => {
+  const a = document.createElement("a");
+  a.className = "link-btn";
+  a.href = link.url;
+  a.textContent = link.title;
+  linksContainer.appendChild(a);
+});
+
+// Some-ikonit
+const socialsContainer = document.getElementById("socials");
+profileData.socials.forEach(s => {
+  const a = document.createElement("a");
+  a.href = s.url;
+  a.innerHTML = `<img src="${s.icon}">`;
+  socialsContainer.appendChild(a);
+});
+</script>
+
+</body>
+</html>

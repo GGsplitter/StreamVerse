@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+<meta charset="UTF-8">
+<title>Link in Bio Editor</title>
+
+<style>
+body{
+    margin:0;
+    background:#060606;
+    color:white;
+    font-family:Arial;
+}
+
+/* NAVBAR */
+#navbar{
+    width:100%;
+    position:fixed;
+    top:0;
+    left:0;
+    z-index:1000;
+}
+
+/* PAGE WRAPPER */
+.page-wrapper{
+    display:flex;
+    margin-top:80px;
+    min-height:100vh;
+}
+
+/* SIDEBAR PLACEHOLDER */
+#sidebar{
+    width:260px;
+}
+
+/* MAIN CONTENT */
+.main{
+    margin-left:260px;
+    padding:40px;
+    width:calc(100% - 260px);
+}
+
+/* TITLE */
+.main h1{
+    font-size:32px;
+    margin-bottom:20px;
+    background:linear-gradient(45deg,#ffffff,#ffe680);
+    -webkit-background-clip:text;
+    color:transparent;
+}
+
+/* LAYOUT */
+.editor-layout{
+    display:grid;
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+    gap:30px;
+}
+
+/* CARD */
+.card{
+    background:#111;
+    padding:20px;
+    border-radius:16px;
+    border:1px solid rgba(255,255,255,0.08);
+    box-shadow:0 0 12px rgba(255,255,200,0.10);
+}
+
+/* LABELS & INPUTS */
+.card h2{
+    margin-top:0;
+    margin-bottom:15px;
+    font-size:20px;
+    background:linear-gradient(45deg,#ffffff,#ffe680);
+    -webkit-background-clip:text;
+    color:transparent;
+}
+
+label{
+    display:block;
+    font-size:13px;
+    opacity:.8;
+    margin-bottom:4px;
+}
+
+input[type="text"],
+input[type="url"],
+input[type="number"],
+textarea,
+select{
+    width:100%;
+    padding:8px 10px;
+    border-radius:8px;
+    border:none;
+    background:#1a1a1a;
+    color:white;
+    margin-bottom:10px;
+    font-size:14px;
+}
+
+textarea{
+    min-height:70px;
+    resize:vertical;
+}
+
+input[type="color"]{
+    width:60px;
+    height:32px;
+    padding:0;
+    border-radius:8px;
+    border:none;
+    background:#1a1a1a;
+    margin-left:8px;
+}
+
+/* BUTTONS */
+button{
+    padding:8px 14px;
+    border-radius:8px;
+    border:none;
+    cursor:pointer;
+    font-size:13px;
+    font-weight:bold;
+}
+
+.btn-primary{
+    background:#ffe680;
+    color:#000;
+}
+
+.btn-danger{
+    background:#ff4d88;
+    color:#fff;
+}
+
+.btn-ghost{
+    background:#222;
+    color:#fff;
+}
+
+/* LINKS LIST */
+.link-item{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    background:#181818;
+    padding:10px 12px;
+    border-radius:10px;
+    margin-bottom:8px;
+    font-size:14px;
+}
+
+.link-main{
+    flex:1;
+}
+
+.link-title{
+    font-weight:bold;
+}
+
+.link-url{
+    font-size:12px;
+    opacity:.8;
+}
+
+.link-actions button{
+    margin-left:6px;
+}
+
+/* PREVIEW */
+.preview-wrapper{
+    text-align:center;
+    padding:10px 0 20px;
+    border-radius:16px;
+}
+
+/* BANNER */
+.preview-banner{
+    width:100%;
+    height:180px;
+    border-radius:16px;
+    background-size:cover;
+    background-position:center;
+    margin-bottom:-50px;
+}
+
+/* AVATAR */
+.preview-avatar{
+    width:110px;
+    height:110px;
+    border-radius:50%;
+    border:4px solid #060606;
+    background-size:cover;
+    background-position:center;
+    margin:0 auto;
+    box-shadow:0 0 15px rgba(255,255,200,0.25);
+}
+
+/* NAME */
+.preview-name{
+    margin-top:10px;
+    font-size:24px;
+    background:linear-gradient(45deg,#ffffff,#ffe680);
+    -webkit-background-clip:text;
+    color:transparent;
+}
+
+/* BIO */
+.preview-bio{
+    max-width:360px;
+    margin:8px auto 18px;
+    font-size:13px;
+    opacity:.85;
+}
+
+/* PREVIEW LINKS */
+.preview-links{
+    margin-top:10px;
+}
+
+.preview-link-btn{
+    display:block;
+    width:90%;
+    max-width:360px;
+    margin:8px auto;
+    padding:10px 14px;
+    border-radius:10px;
+    text-decoration:none;
+    font-size:14px;
+    border:1px solid rgba(255,255,255,0.1);
+    box-shadow:0 0 10px rgba(255,255,200,0.10);
+}
+
+/* DRAG AND DRPOP LINKS */
+.link-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.drag-handle {
+  cursor: grab;
+  padding: 0 10px;
+  font-size: 20px;
+  color: #888;
+  user-select: none;
+}
+
+.link-item.dragging .drag-handle {
+  cursor: grabbing;
+  color: #fff;
+}
+
+/* FOOTER */
+.preview-footer{
+    margin-top:20px;
+    opacity:.5;
+    font-size:11px;
+}
+</style>
+</head>
+
+<body>
+
+<div id="navbar"></div>
+
+<div class="page-wrapper">
+
+  <div id="sidebar"></div>
+
+  <div class="main">
+
+    <h1>🔗 Link in Bio Editor</h1>
+
+    <div class="editor-layout">
+
+      <!-- VASEN: EDITORI -->
+      <div class="card">
+
+        <h2>Profiili & Teema</h2>
+
+        <label>Näytettävä nimi</label>
+        <input id="nameInput" type="text" placeholder="@CreatorName">
+
+        <label>Bio</label>
+        <textarea id="bioInput" placeholder="Kerro lyhyesti kuka olet ja mitä teet."></textarea>
+
+        <label>Avatar URL</label>
+        <input id="avatarInput" type="url" placeholder="https://...">
+
+        <label>Banner URL</label>
+        <input id="bannerInput" type="url" placeholder="https://...">
+
+        <label>Taustakuva (URL)</label>
+        <input id="bgImageInput" type="url" placeholder="https://...">
+
+        <div style="margin-top:10px; margin-bottom:15px;">
+          <label>Värit</label>
+          <div style="display:flex; flex-wrap:wrap; align-items:center; gap:12px; margin-top:6px;">
+            <span style="font-size:12px; opacity:.8;">Tausta</span>
+            <input id="bgColorInput" type="color" value="#060606">
+            <span style="font-size:12px; opacity:.8;">Linkkien tausta</span>
+            <input id="linkBgColorInput" type="color" value="#111111">
+            <span style="font-size:12px; opacity:.8;">Linkkien teksti</span>
+            <input id="linkTextColorInput" type="color" value="#ffffff">
+            <span style="font-size:12px; opacity:.8;">Reunaväri</span>
+            <input id="linkBorderColorInput" type="color" value="#ffe680">
+            <span style="font-size:12px; opacity:.8;">Korostus</span>
+            <input id="accentColorInput" type="color" value="#ffe680">
+          </div>
+        </div>
+
+        <label>Nimen fonttikoko</label>
+        <input id="nameFontSizeInput" type="number" min="10" max="60" value="24">
+
+        <label>Bion fonttikoko</label>
+        <input id="bioFontSizeInput" type="number" min="10" max="40" value="13">
+
+        <label>Linkkien fonttikoko</label>
+        <input id="linkFontSizeInput" type="number" min="10" max="40" value="14">
+
+        <label>Fonttiperhe</label>
+        <select id="fontFamilyInput">
+          <option value="Arial">Arial</option>
+          <option value="Inter">Inter</option>
+          <option value="Poppins">Poppins</option>
+          <option value="Roboto">Roboto</option>
+        </select>
+
+        <label>Linkkien kulmien pyöristys (px)</label>
+        <input id="linkRadiusInput" type="range" min="0" max="40" value="10">
+
+        <label style="margin-top:8px;">
+          <input id="linkShadowInput" type="checkbox" checked style="width:auto; margin-right:6px;">
+          Linkkien varjot käytössä
+        </label>
+
+        <hr style="border-color:#222; margin:18px 0;">
+
+        <h2>Linkit</h2>
+
+        <label>Linkin otsikko</label>
+        <input id="linkTitleInput" type="text" placeholder="Esim. Uusin YouTube-video">
+
+        <label>Linkin URL</label>
+        <input id="linkUrlInput" type="url" placeholder="https://...">
+
+        <button class="btn-primary" id="addLinkBtn">Lisää linkki</button>
+
+        <div id="linksList" class="custom-links" style="margin-top:15px;"></div>
+          
+      </div>
+
+      <!-- OIKEA: ESIKATSELU -->
+      <div class="card">
+
+        <h2>Esikatselu</h2>
+
+        <div class="preview-wrapper" id="previewWrapper">
+
+          <div id="previewBanner" class="preview-banner"></div>
+
+          <div style="margin-top:-50px;">
+            <div id="previewAvatar" class="preview-avatar"></div>
+          </div>
+
+          <div id="previewName" class="preview-name">@CreatorName</div>
+          <div id="previewBio" class="preview-bio">Bio tähän...</div>
+
+          <div id="previewLinks" class="preview-links"></div>
+
+          <div class="preview-footer">
+            Link in Bio • Esikatselu
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+<script>
+// ------------------------------
+// EDITORIN SISÄINEN DATA
+// ------------------------------
+let editorState = {
+  name: "@CreatorName",
+  bio: "Kerro lyhyesti kuka olet ja mitä teet.",
+  avatar: "https://i.pravatar.cc/300",
+  banner: "https://images.unsplash.com/photo-1542751371-adc38448a05e",
+  style: {
+    backgroundImage: "",
+    bannerImage: "",
+    linkRadius: 10,
+    linkShadow: true
+  },
+  colors: {
+    background: "#060606",
+    linkBackground: "#111111",
+    linkText: "#ffffff",
+    linkBorder: "#ffe680",
+    accent: "#ffe680"
+  },
+  fonts: {
+    nameSize: 24,
+    bioSize: 13,
+    linkSize: 14,
+    fontFamily: "Arial"
+  },
+
+};
+
+// ------------------------------
+// INPUT‑VIITTEET
+// ------------------------------
+const nameInput = document.getElementById("nameInput");
+const bioInput = document.getElementById("bioInput");
+const avatarInput = document.getElementById("avatarInput");
+const bannerInput = document.getElementById("bannerInput");
+const bgImageInput = document.getElementById("bgImageInput");
+
+const bgColorInput = document.getElementById("bgColorInput");
+const linkBgColorInput = document.getElementById("linkBgColorInput");
+const linkTextColorInput = document.getElementById("linkTextColorInput");
+const linkBorderColorInput = document.getElementById("linkBorderColorInput");
+const accentColorInput = document.getElementById("accentColorInput");
+
+const nameFontSizeInput = document.getElementById("nameFontSizeInput");
+const bioFontSizeInput = document.getElementById("bioFontSizeInput");
+const linkFontSizeInput = document.getElementById("linkFontSizeInput");
+const fontFamilyInput = document.getElementById("fontFamilyInput");
+
+const linkRadiusInput = document.getElementById("linkRadiusInput");
+const linkShadowInput = document.getElementById("linkShadowInput");
+
+const linkTitleInput = document.getElementById("linkTitleInput");
+const linkUrlInput = document.getElementById("linkUrlInput");
+const addLinkBtn = document.getElementById("addLinkBtn");
+const linksList = document.getElementById("linksList");
+
+// ------------------------------
+// PREVIEW‑VIITTEET
+// ------------------------------
+const previewWrapper = document.getElementById("previewWrapper");
+const previewBanner = document.getElementById("previewBanner");
+const previewAvatar = document.getElementById("previewAvatar");
+const previewName = document.getElementById("previewName");
+const previewBio = document.getElementById("previewBio");
+const previewLinks = document.getElementById("previewLinks");
+
+
+// ------------------------------
+// RENDERÖINTI
+// ------------------------------
+function renderPreview() {
+
+  // Taustakuva
+  if (editorState.style.backgroundImage) {
+    previewWrapper.style.backgroundImage = `url('${editorState.style.backgroundImage}')`;
+    previewWrapper.style.backgroundSize = "cover";
+    previewWrapper.style.backgroundPosition = "center";
+  } else {
+    previewWrapper.style.backgroundImage = "none";
+  }
+
+  // Banneri
+  previewBanner.style.backgroundImage = `url('${editorState.banner}')`;
+
+  // Avatar
+  previewAvatar.style.backgroundImage = `url('${editorState.avatar}')`;
+
+  // Tekstit
+  previewName.textContent = editorState.name;
+  previewBio.textContent = editorState.bio;
+
+  // Fontit
+  previewWrapper.style.fontFamily = editorState.fonts.fontFamily;
+  previewName.style.fontSize = editorState.fonts.nameSize + "px";
+  previewBio.style.fontSize = editorState.fonts.bioSize + "px";
+
+  // Linkit (SUPABASE → links-taulukko)
+  previewLinks.innerHTML = "";
+  links.forEach(link => {
+    const a = document.createElement("a");
+    a.className = "preview-link-btn";
+    a.href = link.url;
+    a.textContent = link.title;
+
+    a.style.backgroundColor = editorState.colors.linkBackground;
+    a.style.color = editorState.colors.linkText;
+    a.style.borderColor = editorState.colors.linkBorder;
+    a.style.fontSize = editorState.fonts.linkSize + "px";
+    a.style.borderRadius = editorState.style.linkRadius + "px";
+
+    if (editorState.style.linkShadow) {
+      a.style.boxShadow = "0 0 12px rgba(255,255,200,0.15)";
+    } else {
+      a.style.boxShadow = "none";
+    }
+
+    previewLinks.appendChild(a);
+  });
+}
+
+
+
+
+
+// ------------------------------
+// INPUT‑KUUNTELIJAT
+// ------------------------------
+nameInput.addEventListener("input", e => {
+  editorState.name = e.target.value;
+  renderPreview();
+});
+
+bioInput.addEventListener("input", e => {
+  editorState.bio = e.target.value;
+  renderPreview();
+});
+
+avatarInput.addEventListener("input", e => {
+  editorState.avatar = e.target.value;
+  renderPreview();
+});
+
+bannerInput.addEventListener("input", e => {
+  editorState.banner = e.target.value;
+  renderPreview();
+});
+
+bgImageInput.addEventListener("input", e => {
+  editorState.style.backgroundImage = e.target.value;
+  renderPreview();
+});
+
+// Värit
+bgColorInput.addEventListener("input", e => {
+  editorState.colors.background = e.target.value;
+  previewWrapper.style.backgroundColor = e.target.value;
+});
+
+linkBgColorInput.addEventListener("input", e => {
+  editorState.colors.linkBackground = e.target.value;
+  renderPreview();
+});
+
+linkTextColorInput.addEventListener("input", e => {
+  editorState.colors.linkText = e.target.value;
+  renderPreview();
+});
+
+linkBorderColorInput.addEventListener("input", e => {
+  editorState.colors.linkBorder = e.target.value;
+  renderPreview();
+});
+
+accentColorInput.addEventListener("input", e => {
+  editorState.colors.accent = e.target.value;
+  renderPreview();
+});
+
+// Fontit
+nameFontSizeInput.addEventListener("input", e => {
+  editorState.fonts.nameSize = e.target.value;
+  renderPreview();
+});
+
+bioFontSizeInput.addEventListener("input", e => {
+  editorState.fonts.bioSize = e.target.value;
+  renderPreview();
+});
+
+linkFontSizeInput.addEventListener("input", e => {
+  editorState.fonts.linkSize = e.target.value;
+  renderPreview();
+});
+
+fontFamilyInput.addEventListener("change", e => {
+  editorState.fonts.fontFamily = e.target.value;
+  renderPreview();
+});
+
+// Kulmien pyöristys
+linkRadiusInput.addEventListener("input", e => {
+  editorState.style.linkRadius = e.target.value;
+  renderPreview();
+});
+
+// Varjot
+linkShadowInput.addEventListener("change", e => {
+  editorState.style.linkShadow = e.target.checked;
+  renderPreview();
+});
+</script>
+
+<!-- 1. SUPABASE CLIENT -->
+<script type="module" src="./js/supabase.js"></script>
+
+<!-- SUPABASE AUTH CHECK (valinnainen) -->
+<script type="module">
+import { supabase } from "./js/supabase.js"
+
+window.onload = async () => {
+  const { data } = await supabase.auth.getUser()
+  if(!data.user){ window.location.href="index.html"; return }
+}
+
+window.logoutUser = async () => {
+  await supabase.auth.signOut()
+  window.location.href="index.html"
+}
+</script>
+
+<!-- LINK-IN-BIO LOGIIKKA -->
+<script type="module" src="js/linkbio.js"></script>
+
+
+</body>
+</html>
