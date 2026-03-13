@@ -1,126 +1,153 @@
-// profile.js — Showcase Dashboard profiiliosio
 import { supabase } from "./supabase.js";
 
-// Storage bucket
-const bucketName = "profile_media";
+// Haetaan kirjautunut käyttäjä
+async function getUser() {
+    const { data: { user } } = await supabase.auth.getUser();
+    return user;
+}
 
-// HTML-elementit
-const bannerPreview = document.getElementById("banner-preview");
-const avatarPreview = document.getElementById("avatar-preview");
-const bannerInput = document.getElementById("banner-input");
-const avatarInput = document.getElementById("avatar-input");
-const usernameInput = document.getElementById("username-input");
-const saveBtn = document.getElementById("save-profile-btn");
-const statusEl = document.getElementById("profile-status");
-
-// Muuttujat
-let currentUser = null;
-let profile = null;
-let newBannerFile = null;
-let newAvatarFile = null;
-
-// 1. Ladataan kirjautunut käyttäjä + profiili
+// Ladataan profiilin tiedot
 async function loadProfile() {
-  statusEl.textContent = "Ladataan profiilia...";
+    const user = await getUser();
+    if (!user) return;
 
-  const { data: userData } = await supabase.auth.getUser();
-  if (!userData.user) {
-    statusEl.textContent = "Et ole kirjautunut.";
-    return;
-  }
-
-  currentUser = userData.user;
-
-  const { data: profileData, error } = await supabase
-    .from("profiles")
-    .select("*")
-    .eq("id", currentUser.id)
-    .single();
-
-  if (error) {
-    statusEl.textContent = "Profiilin lataus epäonnistui.";
-    return;
-  }
-
-  profile = profileData;
-
-  usernameInput.value = profile.username || "";
-  avatarPreview.src = profile.avatar_url;
-  bannerPreview.src = profile.banner_url;
-
-  statusEl.textContent = "Profiili ladattu.";
-}
-
-// 2. Esikatselu kun käyttäjä valitsee uuden kuvan
-bannerInput.addEventListener("change", (e) => {
-  const file = e.target.files[0];
-  if (!file) return;
-  newBannerFile = file;
-  bannerPreview.src = URL.createObjectURL(file);
-});
-
-avatarInput.addEventListener("change", (e) => {
-  const file = e.target.files[0];
-  if (!file) return;
-  newAvatarFile = file;
-  avatarPreview.src = URL.createObjectURL(file);
-});
-
-// 3. Upload helper — palauttaa public URL:n
-async function uploadToStorage(path, file) {
-  const { error } = await supabase.storage
-    .from(bucketName)
-    .upload(path, file, { upsert: true });
-
-  if (error) {
-    console.error(error);
-    throw error;
-  }
-
-  const { data } = supabase.storage.from(bucketName).getPublicUrl(path);
-  return data.publicUrl;
-}
-
-// 4. Tallennetaan profiili
-saveBtn.addEventListener("click", async () => {
-  statusEl.textContent = "Tallennetaan...";
-  saveBtn.disabled = true;
-
-  let avatarUrl = profile.avatar_url;
-  let bannerUrl = profile.banner_url;
-
-  try {
-    if (newAvatarFile) {
-      const avatarPath = `avatars/${currentUser.id}-${Date.now()}.png`;
-      avatarUrl = await uploadToStorage(avatarPath, newAvatarFile);
-    }
-
-    if (newBannerFile) {
-      const bannerPath = `banners/${currentUser.id}-${Date.now()}.png`;
-      bannerUrl = await uploadToStorage(bannerPath, newBannerFile);
-    }
-
-    const { error } = await supabase
-      .from("profiles")
-      .update({
-        username: usernameInput.value || null,
-        avatar_url: avatarUrl,
-        banner_url: bannerUrl,
-      })
-      .eq("id", currentUser.id);
+    const { data, error } = await supabase
+        .from("profiles")
+        .select("*")
+        .eq("id", user.id)
+        .single();
 
     if (error) {
-      statusEl.textContent = "Tallennus epäonnistui.";
-      console.error(error);
-    } else {
-      statusEl.textContent = "Profiili tallennettu.";
+        console.error("Profiilin lataus epäonnistui:", error);
+        return;
     }
-  } catch (err) {
-    statusEl.textContent = "Virhe tallennuksessa.";
-  }
 
-  saveBtn.disabled = false;
-});
+    // Asetetaan profiilikortin tiedot
+    document.getElementById("username-display").textContent = data.username || "@username";
 
-// 5. Käynnistetään profiilin lataus
+    // Asetetaan muokkauskenttien arvot
+    document.getElementById("username-input").value = data.username || "";
+    document.getElementById("bio-input").value = data.bio || "";
+
+    // Asetetaan avatar
+    if (data.avatar_url) {
+        document.getElementById("avatar-preview").style.backgroundImage = `url(${data.avatar_url})`;
+    }
+
+    // Asetetaan banneri
+    if (data.banner_url) {
+        document.getElementById("banner-area").style.backgroundImage = `url(${data.banner_url})`;
+    }
+}
+
+// Päivitä nimimerkki
+async function updateUsername() {
+    const user = await getUser();
+    const newName = document.getElementById("username-input").value.trim();
+
+    if (!newName) return;
+
+    const { error } = await supabase
+        .from("profiles")
+        .update({ username: newName })
+        .eq("id", user.id);
+
+    if (error) {
+        // UNIQUE constraint violation (username varattu)
+        if (error.code === "23505") {
+            alert("Tämä nimimerkki on jo käytössä.");
+            return;
+        }
+
+        console.error("Nimimerkin tallennus epäonnistui:", error);
+        return;
+    }
+
+    // Päivitä profiilikorttiin heti
+    document.getElementById("username-display").textContent = newName;
+}
+
+// Päivitä bio
+async function updateBio() {
+    const user = await getUser();
+    const newBio = document.getElementById("bio-input").value.trim();
+
+    const { error } = await supabase
+        .from("profiles")
+        .update({ bio: newBio })
+        .eq("id", user.id);
+
+    if (error) {
+        console.error("Bion tallennus epäonnistui:", error);
+        return;
+    }
+}
+
+// Lataa kuva Supabaseen
+async function uploadImage(file, path) {
+    const { error } = await supabase.storage
+        .from("profile_media")
+        .upload(path, file, { upsert: true });
+
+    if (error) {
+        console.error("Kuvan lataus epäonnistui:", error);
+        return null;
+    }
+
+    const { data: urlData } = supabase.storage
+        .from("profile_media")
+        .getPublicUrl(path);
+
+    return urlData.publicUrl;
+}
+
+// Vaihda avatar
+async function changeAvatar(event) {
+    const file = event.target.files[0];
+    if (!file) return;
+
+    const user = await getUser();
+    const filePath = `avatars/${user.id}.png`;
+
+    const url = await uploadImage(file, filePath);
+    if (!url) return;
+
+    // Päivitä tietokantaan
+    await supabase
+        .from("profiles")
+        .update({ avatar_url: url })
+        .eq("id", user.id);
+
+    // Päivitä UI
+    document.getElementById("avatar-preview").style.backgroundImage = `url(${url})`;
+}
+
+// Vaihda banneri
+async function changeBanner(event) {
+    const file = event.target.files[0];
+    if (!file) return;
+
+    const user = await getUser();
+    const filePath = `banners/${user.id}.png`;
+
+    const url = await uploadImage(file, filePath);
+    if (!url) return;
+
+    // Päivitä tietokantaan
+    await supabase
+        .from("profiles")
+        .update({ banner_url: url })
+        .eq("id", user.id);
+
+    // Päivitä UI
+    document.getElementById("banner-area").style.backgroundImage = `url(${url})`;
+}
+
+// Event listenerit
+document.getElementById("save-username-btn").addEventListener("click", updateUsername);
+document.getElementById("save-bio-btn").addEventListener("click", updateBio);
+document.getElementById("avatar-input").addEventListener("change", changeAvatar);
+document.getElementById("banner-input").addEventListener("change", changeBanner);
+
+// Lataa profiili sivun avautuessa
 loadProfile();

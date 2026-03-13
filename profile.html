@@ -12,7 +12,6 @@ body{
     font-family:Arial;
 }
 
-/* NAVBAR */
 #navbar{
     width:100%;
     position:fixed;
@@ -21,55 +20,77 @@ body{
     z-index:1000;
 }
 
-/* PAGE WRAPPER */
 .page-wrapper{
     display:flex;
     margin-top:80px;
     min-height:100vh;
 }
 
-/* SIDEBAR PLACEHOLDER */
 #sidebar{
     width:260px;
 }
 
-/* MAIN CONTENT */
 .main{
-    margin-left:260px; /* matches sidebar width */
+    margin-left:260px;
     padding:40px;
     width:calc(100% - 260px);
 }
 
-/* CENTRAL CONTAINER */
 .profile-container{
     max-width:900px;
     margin:0 auto;
 }
 
-/* BIG BANNER */
-.big-banner{
-    width:100%;
-    height:220px;
+/* ⭐ Profiilikortti banneritaustalla */
+.profile-header{
+    position:relative;
+    padding:40px;
     border-radius:20px;
-    background:url("https://images.unsplash.com/photo-1542751371-adc38448a05e") center/cover;
+    background-size:cover;
+    background-position:center;
+    background-color:#111;
     box-shadow:0 0 20px rgba(255,255,200,0.15);
     border:1px solid rgba(255,255,255,0.05);
-    margin-bottom:35px;
 }
 
-/* PROFILE HEADER */
-.profile-header{
+/* Tumma overlay bannerin päällä */
+.profile-header::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:rgba(0,0,0,0.45);
+    border-radius:20px;
+}
+
+.profile-header-content{
+    position:relative;
     display:flex;
     gap:25px;
     align-items:center;
-    background:#111;
-    padding:25px;
-    border-radius:18px;
-    box-shadow:0 0 12px rgba(255,255,200,0.10);
-    border:1px solid rgba(255,255,255,0.05);
+    z-index:2;
 }
 
-/* AVATAR */
+/* ⭐ Bannerin muokkaus (harmaa kynä) */
+.edit-banner{
+    position:absolute;
+    bottom:15px;
+    right:15px;
+    background:rgba(255,255,255,0.25);
+    color:#000;
+    padding:8px 12px;
+    border-radius:8px;
+    font-size:14px;
+    cursor:pointer;
+    font-weight:bold;
+    opacity:0.7;
+    backdrop-filter:blur(4px);
+    transition:0.2s;
+    z-index:3;
+}
+.edit-banner:hover{
+    opacity:1;
+}
+
 .avatar-wrapper{
     position:relative;
     width:110px;
@@ -86,20 +107,26 @@ body{
     box-shadow:0 0 12px rgba(255,255,200,0.25);
 }
 
+/* ⭐ Avatarin muokkaus (harmaa kynä) */
 .edit-avatar{
     position:absolute;
     bottom:0;
     right:0;
-    background:#ffe680;
+    background:rgba(255,255,255,0.25);
     color:#000;
     padding:6px 10px;
     border-radius:8px;
     font-size:12px;
     cursor:pointer;
     font-weight:bold;
+    opacity:0.7;
+    backdrop-filter:blur(4px);
+    transition:0.2s;
+}
+.edit-avatar:hover{
+    opacity:1;
 }
 
-/* PROFILE INFO */
 .profile-info h1{
     margin:0;
     font-size:28px;
@@ -111,84 +138,42 @@ body{
     gap:10px;
 }
 
-.edit-name{
-    background:#ffe680;
-    color:#000;
-    padding:4px 8px;
-    border-radius:6px;
-    font-size:12px;
-    cursor:pointer;
-    font-weight:bold;
-}
-
-.bio{
-    margin-top:8px;
-    opacity:.85;
-}
-
-.edit-bio{
-    margin-top:10px;
-    background:#ffe680;
-    color:#000;
-    padding:6px 10px;
-    border-radius:8px;
-    font-size:12px;
-    cursor:pointer;
-    font-weight:bold;
-}
-
-.location{
-    margin-top:6px;
-    opacity:.8;
-    font-size:14px;
-}
-
-.edit-location{
-    margin-top:6px;
-    background:#ffe680;
-    color:#000;
-    padding:4px 8px;
-    border-radius:6px;
-    font-size:12px;
-    cursor:pointer;
-    font-weight:bold;
-    display:inline-block;
-}
-
-.visibility-box{
-    margin-top:12px;
-    opacity:.9;
-}
-
-.visibility-box select{
-    margin-left:8px;
-    padding:6px 10px;
-    border-radius:8px;
-    background:#222;
-    color:white;
-    border:none;
-}
-
-/* SMALL BANNER */
-.small-banner-box{
-    margin-top:25px;
+/* ⭐ Muokkauslaatikot */
+.settings-box{
     background:#111;
     padding:20px;
     border-radius:15px;
     border:1px solid rgba(255,255,255,0.05);
+    margin-top:25px;
 }
 
-.small-banner-preview{
+.settings-box h3{
+    margin-top:0;
+}
+
+.settings-box input,
+.settings-box textarea{
     width:100%;
-    height:120px;
-    border-radius:12px;
+    padding:10px;
+    border-radius:10px;
+    border:none;
+    margin-top:8px;
     background:#222;
-    background-size:cover;
-    background-position:center;
-    margin-bottom:12px;
+    color:white;
 }
 
-/* GRID */
+.settings-box button{
+    margin-top:10px;
+    padding:10px 15px;
+    border-radius:10px;
+    border:none;
+    cursor:pointer;
+    background:#ffe680;
+    color:#000;
+    font-weight:bold;
+}
+
+/* ⭐ GRID (ennallaan) */
 .profile-grid{
     margin-top:30px;
     display:grid;
@@ -196,7 +181,6 @@ body{
     gap:20px;
 }
 
-/* SMALL CARD */
 .small-card{
     background:#111;
     padding:20px;
@@ -210,7 +194,6 @@ body{
     box-shadow:0 0 14px rgba(255,255,200,0.20);
 }
 
-/* SOCIAL ICONS */
 .social-icons{
     display:flex;
     gap:12px;
@@ -229,7 +212,6 @@ body{
     transform:scale(1.1);
 }
 
-/* CUSTOM LINKS */
 .custom-links{
     list-style:none;
     padding:0;
@@ -258,14 +240,42 @@ body{
     font-weight:bold;
 }
 
-/* STATS */
-.stat-value{
-    font-size:26px;
-    font-weight:bold;
-    background:linear-gradient(45deg,#ffffff,#ffe680);
-    -webkit-background-clip:text;
-    color:transparent;
+#profile-status{
+    margin-top:15px;
+    opacity:0.8;
 }
+
+/* Piilotetut inputit */
+#banner-input,
+#avatar-input {
+    display: none;
+}
+
+/* username laatikko */
+#username-input {
+    width: 250px;       /* lyhyempi kenttä */
+    display: block;     /* oma rivinsä */
+    margin-top: 8px;
+}
+
+#save-username-btn {
+    display: block;     /* nappi omalle riville */
+    margin-top: 10px;
+}
+
+/* bio laatikko */
+#bio-input {
+    width: 100%;
+    max-width: 500px;   /* ei veny koko sivun leveydelle */
+    display: block;
+    margin-top: 8px;
+}
+
+#save-bio-btn {
+    display: block;
+    margin-top: 10px;
+}
+
 </style>
 </head>
 
@@ -275,58 +285,52 @@ body{
 
 <div class="page-wrapper">
 
-  <!-- SIDEBAR LOADED FROM sidebarnav.html -->
   <div id="sidebar"></div>
 
-  <!-- MAIN CONTENT -->
   <div class="main">
 
     <div class="profile-container">
 
-      <!-- BIG BANNER -->
-      <div class="big-banner"></div>
+      <!-- ⭐ Profiilikortti banneritaustalla -->
+      <div class="profile-header" id="banner-area">
 
-      <!-- PROFILE HEADER -->
-      <div class="profile-header">
+        <!-- Bannerin muokkaus -->
+        <div class="edit-banner" onclick="document.getElementById('banner-input').click()">✏️</div>
 
-        <div class="avatar-wrapper">
-          <div class="avatar" style="background-image:url('https://i.pravatar.cc/300');"></div>
-          <div class="edit-avatar">Muokkaa</div>
-        </div>
+        <div class="profile-header-content">
 
-        <div class="profile-info">
-          <h1>
-            @CreatorName
-            <span class="edit-name">Muokkaa</span>
-          </h1>
+          <div class="avatar-wrapper">
+            <div class="avatar" id="avatar-preview"></div>
+            <div class="edit-avatar" onclick="document.getElementById('avatar-input').click()">✏️</div>
+          </div>
 
-          <p class="bio">Tähän tulee käyttäjän bio. Kuka olet, mitä teet ja miksi seuraajat tykkäävät sinusta.</p>
-          <div class="edit-bio">Muokkaa bioa</div>
-
-          <p class="location">📍 Helsinki, Suomi</p>
-          <div class="edit-location">Muokkaa sijaintia</div>
-
-          <div class="visibility-box">
-              <label>Näkyvyys:</label>
-              <select>
-                  <option>Kaikille</option>
-                  <option>Vain jäsenille</option>
-                  <option>Yksityinen</option>
-              </select>
+          <div class="profile-info">
+            <h1 id="username-display">@username</h1>
           </div>
 
         </div>
 
       </div>
 
-      <!-- SMALL BANNER -->
-      <div class="small-banner-box">
-        <h3>Banner Preview</h3>
-        <div class="small-banner-preview" style="background-image:url('assets/user-banner.jpg');"></div>
-        <button style="padding:10px 15px; border-radius:8px; border:none; cursor:pointer;">Lataa uusi banneri</button>
+      <!-- Piilotetut inputit -->
+      <input type="file" id="banner-input" accept="image/*">
+      <input type="file" id="avatar-input" accept="image/*">
+
+      <!-- ⭐ Nimimerkin muokkaus -->
+      <div class="settings-box">
+        <h3>Nimimerkki</h3>
+        <input type="text" id="username-input">
+        <button id="save-username-btn">Tallenna nimimerkki</button>
       </div>
 
-      <!-- GRID -->
+      <!-- ⭐ Bio muokkaus -->
+      <div class="settings-box">
+        <h3>Bio</h3>
+        <textarea id="bio-input" rows="4"></textarea>
+        <button id="save-bio-btn">Tallenna bio</button>
+      </div>
+
+      <!-- ⭐ GRID (ennallaan) -->
       <div class="profile-grid">
 
         <div class="small-card">
@@ -336,7 +340,7 @@ body{
             <img src="assets/icons/youtube.png">
             <img src="assets/icons/instagram.png">
             <img src="assets/icons/twitch.png">
-            <img src="assets/icons/twitter.png">
+            <img src="assets/icons/X.png">
           </div>
         </div>
 
@@ -354,26 +358,13 @@ body{
           <h3>Link‑in‑Bio</h3>
           <p>Luo oma sivu, jossa kaikki linkkisi yhdessä paikassa.</p>
           <button class="linkbio-btn" onclick="window.location.href='link-in-bio-editor.html'">
-  Luo Link‑in‑Bio
-</button>
-        </div>
-
-        <div class="small-card">
-          <h3>TikTok Followers</h3>
-          <div class="stat-value">12 450</div>
-        </div>
-
-        <div class="small-card">
-          <h3>YouTube Subs</h3>
-          <div class="stat-value">3 210</div>
-        </div>
-
-        <div class="small-card">
-          <h3>Twitch Followers</h3>
-          <div class="stat-value">980</div>
+            Luo Link‑in‑Bio
+          </button>
         </div>
 
       </div>
+
+      <div id="profile-status"></div>
 
     </div>
 
@@ -382,33 +373,12 @@ body{
 </div>
 
 <script>
-fetch("../navbar.html")
-  .then(r=>r.text())
-  .then(d=>document.getElementById("navbar").innerHTML=d);
+fetch("../navbar.html").then(r=>r.text()).then(d=>document.getElementById("navbar").innerHTML=d);
+fetch("../sidebarnav.html").then(r=>r.text()).then(d=>document.getElementById("sidebar").innerHTML=d);
 </script>
 
-<script>
-fetch("../sidebarnav.html")
-  .then(r=>r.text())
-  .then(d=>document.getElementById("sidebar").innerHTML=d);
-</script>
-
-<!-- SUPABASE LOGIC -->
-<script type="module">
-
-import { supabase } from "./js/supabase.js"
-
-window.onload = async () => {
-  const { data } = await supabase.auth.getUser()
-  if(!data.user){ window.location.href="index.html"; return }
-}
-
-window.logoutUser = async () => {
-  await supabase.auth.signOut()
-  window.location.href="index.html"
-}
-
-</script>
+<!-- ⭐ Profiililogiikka -->
+<script type="module" src="../js/profile.js"></script>
 
 </body>
 </html>
