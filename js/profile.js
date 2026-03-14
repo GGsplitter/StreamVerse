@@ -22,21 +22,27 @@ async function loadProfile() {
         return;
     }
 
-    // Asetetaan profiilikortin tiedot
+    // Nimimerkki
     document.getElementById("username-display").textContent = data.username || "@username";
-
-    // Asetetaan muokkauskenttien arvot
     document.getElementById("username-input").value = data.username || "";
     document.getElementById("bio-input").value = data.bio || "";
 
-    // Asetetaan avatar
+    // ⭐ DEFAULT + FALLBACK LOGIIKKA
+
+    // Avatar
+    const avatarEl = document.getElementById("avatar-preview");
     if (data.avatar_url) {
-        document.getElementById("avatar-preview").style.backgroundImage = `url(${data.avatar_url})`;
+        avatarEl.style.backgroundImage = `url(${data.avatar_url})`;
+    } else {
+        avatarEl.style.backgroundImage = "url('../assets/default-avatar.png')";
     }
 
-    // Asetetaan banneri
+    // Banner
+    const bannerEl = document.getElementById("banner-area");
     if (data.banner_url) {
-        document.getElementById("banner-area").style.backgroundImage = `url(${data.banner_url})`;
+        bannerEl.style.backgroundImage = `url(${data.banner_url})`;
+    } else {
+        bannerEl.style.backgroundImage = "url('../assets/default-banner.jpg')";
     }
 }
 
@@ -44,7 +50,6 @@ async function loadProfile() {
 async function updateUsername() {
     const user = await getUser();
     const newName = document.getElementById("username-input").value.trim();
-
     if (!newName) return;
 
     const { error } = await supabase
@@ -53,17 +58,14 @@ async function updateUsername() {
         .eq("id", user.id);
 
     if (error) {
-        // UNIQUE constraint violation (username varattu)
         if (error.code === "23505") {
             alert("Tämä nimimerkki on jo käytössä.");
             return;
         }
-
         console.error("Nimimerkin tallennus epäonnistui:", error);
         return;
     }
 
-    // Päivitä profiilikorttiin heti
     document.getElementById("username-display").textContent = newName;
 }
 
@@ -79,7 +81,6 @@ async function updateBio() {
 
     if (error) {
         console.error("Bion tallennus epäonnistui:", error);
-        return;
     }
 }
 
@@ -112,13 +113,11 @@ async function changeAvatar(event) {
     const url = await uploadImage(file, filePath);
     if (!url) return;
 
-    // Päivitä tietokantaan
     await supabase
         .from("profiles")
         .update({ avatar_url: url })
         .eq("id", user.id);
 
-    // Päivitä UI
     document.getElementById("avatar-preview").style.backgroundImage = `url(${url})`;
 }
 
@@ -133,13 +132,11 @@ async function changeBanner(event) {
     const url = await uploadImage(file, filePath);
     if (!url) return;
 
-    // Päivitä tietokantaan
     await supabase
         .from("profiles")
         .update({ banner_url: url })
         .eq("id", user.id);
 
-    // Päivitä UI
     document.getElementById("banner-area").style.backgroundImage = `url(${url})`;
 }
 

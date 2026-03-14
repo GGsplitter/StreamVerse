@@ -285,6 +285,184 @@ input:checked + .slider:before {
     gap:10px;
 }
 
+/* ===================================================== */
+/*  FIRST-TIME SETUP POPUP (ACCOUNT INITIALIZATION)  */
+/* ===================================================== */
+
+.setup-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.65);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 99999;
+}
+
+.setup-overlay.hidden {
+  display: none;
+}
+
+.setup-popup {
+  background: #111827;
+  color: #f9fafb;
+  padding: 28px;
+  border-radius: 14px;
+  width: 100%;
+  max-width: 480px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+}
+
+.setup-title {
+  margin-top: 0;
+  margin-bottom: 10px;
+  font-size: 24px;
+  background: linear-gradient(45deg,#ffffff,#ffe680);
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.setup-section {
+  margin-top: 18px;
+}
+
+.setup-section label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 14px;
+}
+
+.setup-section input {
+  width: 100%;
+  padding: 8px 10px;
+  border-radius: 6px;
+  border: 1px solid #374151;
+  background: #020617;
+  color: #f9fafb;
+}
+
+
+.setup-actions {
+  margin-top: 25px;
+  text-align: right;
+}
+
+#first-setup-save {
+  padding: 10px 18px;
+  border-radius: 6px;
+  border: none;
+  background: #22c55e;
+  color: #022c22;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.twitch-connect-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 10px;
+}
+
+.twitch-logo {
+  width: 32px;
+  height: 32px;
+}
+
+.connect-label {
+  flex-grow: 1;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+/* Toggle switch in pop up*/
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 48px;
+  height: 24px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0; left: 0;
+  right: 0; bottom: 0;
+  background-color: #ccc;
+  transition: .3s;
+  border-radius: 24px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 18px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  transition: .3s;
+  border-radius: 50%;
+}
+
+input:checked + .slider {
+  background-color: #00c853; /* vihreä connected */
+}
+
+input:checked + .slider:before {
+  transform: translateX(24px);
+}
+
+/* TBA ROWS POPUP */
+.platform-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 10px;
+  opacity: 0.5; /* näyttää ei-aktiiviselta */
+}
+
+.platform-logo {
+  width: 32px;
+  height: 32px;
+}
+
+.platform-label {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+/* MODERNI POPUP – ylikirjoittaa kaiken vanhan */
+.setup-popup {
+  background: rgba(17, 24, 39, 0.75) !important; /* läpikuultava tumma */
+  backdrop-filter: blur(18px) !important;        /* blur-efekti */
+  -webkit-backdrop-filter: blur(18px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border-radius: 18px !important;
+  padding: 32px !important;
+  box-shadow: 0 25px 60px rgba(0,0,0,0.55) !important;
+  animation: popupFade 0.25s ease-out !important;
+}
+
+/* Smooth animaatio */
+@keyframes popupFade {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+
 </style>
 </head>
 
@@ -417,10 +595,170 @@ window.logoutUser = async () => {
 }
 </script>
 
+<!-- ===================================================== -->
+<!-- ⭐ FIRST-TIME SETUP POPUP (ACCOUNT INITIALIZATION) ⭐ -->
+<!-- ===================================================== -->
+<div id="first-setup-overlay" class="setup-overlay hidden">
+  <div class="setup-popup">
+
+    <h2 class="setup-title">Tilin aloitusasetukset</h2>
+    <p>Viimeistellään tilisi ennen kuin jatkat.</p>
+
+    <!-- Käyttäjänimi -->
+    <div class="setup-section">
+      <label for="display-name">Käyttäjänimi</label>
+      <input id="display-name" type="text" placeholder="Valitse näkyvä nimi" />
+    </div>
+
+    <!-- Connect-alustat -->
+    <div class="setup-section">
+      <p>Yhdistä sosiaalisen median tilisi:</p>
+
+      <!-- Twitch Connect Row -->
+<div class="setup-section twitch-connect-row">
+  <img src="assets/ICONS/TWITCH.png" class="twitch-logo" />
+
+  <span class="connect-label" id="twitch-connect-label">Connect Twitch</span>
+
+  <label class="switch">
+    <input type="checkbox" id="twitch-toggle">
+    <span class="slider round"></span>
+  </label>
+</div>
+
+<!-- YouTube (TBA) -->
+<div class="setup-section platform-row">
+  <img src="assets/icons/YOUTUBE.png" class="platform-logo" />
+  <span class="platform-label">TBA</span>
+</div>
+
+<!-- TikTok (TBA) -->
+<div class="setup-section platform-row">
+  <img src="assets/icons/TIKTOK.png" class="platform-logo" />
+  <span class="platform-label">TBA</span>
+</div>
+
+<!-- Instagram (TBA) -->
+<div class="setup-section platform-row">
+  <img src="assets/icons/INSTAGRAM.png" class="platform-logo" />
+  <span class="platform-label">TBA</span>
+</div>
+
+<!-- X / Twitter (TBA) -->
+<div class="setup-section platform-row">
+  <img src="assets/icons/X.png" class="platform-logo" />
+  <span class="platform-label">TBA</span>
+</div>
+
+
+    <div class="setup-actions">
+      <button id="first-setup-save">Tallenna ja jatka</button>
+    </div>
+
+  </div>
+</div>
+
+
 <script type="module" src="js/overview.js"></script>
 
 <!-- MAIN LOGIC -->
 <script type="module" src="js/main.js"></script>
+
+
+<!-- POPUP LOGIC -->
+<script type="module">
+import { supabase } from "./js/supabase.js"
+
+async function loadProfile() {
+  const { data } = await supabase.auth.getUser()
+  if (!data.user) return null
+
+  const { data: profile } = await supabase
+    .from("profiles")
+    .select("*")
+    .eq("id", data.user.id)
+    .single()
+
+  return profile
+}
+
+async function showSetupPopup() {
+  const profile = await loadProfile()
+  if (!profile) return
+
+  const overlay = document.getElementById("first-setup-overlay")
+  const nameInput = document.getElementById("display-name")
+
+  if (profile.display_name) {
+    nameInput.value = profile.display_name
+  }
+
+  if (!profile.has_completed_setup) {
+    overlay.classList.remove("hidden")
+  }
+}
+
+document.addEventListener("DOMContentLoaded", async () => {
+  showSetupPopup();
+
+  const profile = await loadProfile();
+  const twitchToggle = document.getElementById("twitch-toggle");
+  const twitchLabel = document.getElementById("twitch-connect-label");
+
+  // Jos käyttäjällä on twitch_id → toggle ON + Connected ✓
+  if (profile?.twitch_id) {
+    twitchToggle.checked = true;
+    twitchLabel.textContent = "Connected ✓";
+  }
+
+  // Toggle painettu → avaa OAuth
+  twitchToggle.addEventListener("change", () => {
+    if (twitchToggle.checked) {
+      window.location.href = "http://localhost:5000/auth/twitch/login";
+    } else {
+      disconnectTwitch();
+    }
+  });
+
+  // OAuth palautti käyttäjän takaisin
+  const url = new URL(window.location.href);
+  if (url.searchParams.get("twitch") === "connected") {
+    twitchToggle.checked = true;
+    twitchLabel.textContent = "Connected ✓";
+  }
+
+  // MANUAALINEN TALLENNUS
+  document.getElementById("first-setup-save").addEventListener("click", async () => {
+    const name = document.getElementById("display-name").value.trim();
+    const { data: userData } = await supabase.auth.getUser();
+
+    await supabase
+      .from("profiles")
+      .update({
+        display_name: name || null,
+        has_completed_setup: true
+      })
+      .eq("id", userData.user.id);
+
+    // Nyt popup suljetaan
+    document.getElementById("first-setup-overlay").classList.add("hidden");
+  });
+});
+
+// Poistaa Twitch-yhteyden
+async function disconnectTwitch() {
+  const { data: userData } = await supabase.auth.getUser();
+
+  await supabase
+    .from("profiles")
+    .update({ twitch_id: null })
+    .eq("id", userData.user.id);
+
+  document.getElementById("twitch-connect-label").textContent = "Connect Twitch";
+}
+
+</script>
+
 
 </body>
 </html>

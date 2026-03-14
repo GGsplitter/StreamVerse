@@ -72,112 +72,230 @@ body{
     color:transparent;
 }
 
-/* SETTINGS GRID */
-.settings-grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
-    gap:25px;
+.settings-section {
+  margin-bottom: 40px;
+  padding-bottom: 25px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
 }
 
-/* SETTINGS CARD */
-.settings-card{
-    background:#111;
-    padding:25px;
-    border-radius:18px;
-    border:1px solid rgba(255,255,255,0.05);
-    box-shadow:
-        0 0 10px rgba(255,255,200,0.10),
-        0 0 18px rgba(0,0,0,0.4);
-    transition:.25s;
+.settings-section h2 {
+  font-size: 20px;
+  margin-bottom: 18px;
+  color: #ffe680;
+  font-weight: 600;
 }
 
-.settings-card:hover{
-    transform:translateY(-6px);
-    box-shadow:
-        0 0 14px rgba(255,255,200,0.20),
-        0 0 25px rgba(255,230,120,0.15);
+.settings-item {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background: #0d0d0d;
+  padding: 20px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.05);
 }
 
-.settings-card h2{
-    margin-top:0;
-    margin-bottom:15px;
-    font-size:22px;
-    background:linear-gradient(45deg,#ffffff,#ffe680);
-    -webkit-background-clip:text;
-    color:transparent;
+.settings-item label {
+  font-size: 15px;
+  opacity: 0.9;
 }
 
-/* INPUTS */
-.settings-card input,
-.settings-card textarea{
-    width:100%;
-    padding:12px;
-    border-radius:10px;
-    border:none;
-    margin-top:8px;
-    background:#222;
-    color:white;
-    font-size:14px;
+.settings-item input[type="email"],
+.settings-item input[type="text"],
+.settings-item textarea {
+  background: #1a1a1a;
+  border: none;
+  padding: 10px;
+  border-radius: 8px;
+  color: white;
 }
 
-.settings-card button{
-    margin-top:12px;
-    padding:10px 15px;
-    border-radius:10px;
-    border:none;
-    cursor:pointer;
-    background:#ffe680;
-    color:#000;
-    font-weight:bold;
+.social-icons {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  opacity: 0.85;
 }
 
-/* SOCIAL ICONS */
-.social-icons{
-    display:flex;
-    gap:12px;
-    margin-top:10px;
+.social-icons img {
+  width: 22px;
+  height: 22px;
+  opacity: 0.75;
+  transition: 0.15s;
 }
 
-.social-icons img{
-    width:32px;
-    height:32px;
-    opacity:.85;
-    transition:.2s;
+.social-icons img:hover {
+  opacity: 1;
+  transform: none; /* ei zoomia asetuksissa */
 }
 
-.social-icons img:hover{
-    opacity:1;
-    transform:scale(1.1);
+.social-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: #0d0d0d;
+  padding: 14px 18px;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.05);
+  margin-bottom: 10px;
+}
+/* togglet */
+.social-logo {
+  width: 26px;
+  height: 26px;
+  opacity: 0.9;
 }
 
-/* DELETE ACCOUNT */
-.delete-box{
-    background:#200;
-    padding:25px;
-    border-radius:18px;
-    border:1px solid rgba(255,0,0,0.3);
-    box-shadow:0 0 15px rgba(255,0,0,0.2);
+.social-name {
+  flex-grow: 1;
+  font-size: 16px;
 }
 
-.delete-box h2{
-    background:none;
-    color:#ff6b6b;
+.social-status {
+  font-size: 14px;
+  opacity: 0.7;
+  margin-right: 10px;
 }
 
-.delete-btn{
-    background:#ff4444;
-    color:white;
-    padding:12px 18px;
-    border-radius:10px;
-    border:none;
-    cursor:pointer;
-    font-weight:bold;
-    margin-top:10px;
+.connect-btn {
+  padding: 6px 12px;
+  border-radius: 8px;
+  border: none;
+  background: #ffe680;
+  color: #000;
+  font-weight: bold;
+  cursor: pointer;
 }
 
-.delete-btn:hover{
-    background:#ff2222;
+.connect-btn.disabled {
+  background: #333;
+  color: #777;
+  cursor: not-allowed;
 }
+
+
+.settings-item button {
+  align-self: flex-start;
+  padding: 8px 14px;
+  border-radius: 8px;
+  border: none;
+  background: #ffe680;
+  color: #000;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.settings-item button:hover {
+  background: #ffef9c;
+}
+
+.danger h2 {
+  color: #ff6b6b;
+}
+
+.delete-btn {
+  background: #ff4444 !important;
+  color: white !important;
+}
+
+.delete-btn:hover {
+  background: #ff2222 !important;
+}
+
+.social-row {
+  display: flex;
+  align-items: center;
+  gap: 12px; /* 🔥 tämä tuo kaiken lähemmäksi */
+  background: #0d0d0d;
+  padding: 14px 18px;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.05);
+  margin-bottom: 10px;
+}
+
+.social-logo {
+  width: 24px;
+  height: 24px;
+  opacity: 0.9;
+}
+
+.social-name {
+  font-size: 16px;
+  margin-right: 8px; /* tuo togglea lähemmäksi */
+}
+
+.social-row {
+  margin: 0; /*  poistaa keskityksen */
+}
+
+
+/*  Kaikki social-row laatikot saman levyisiksi */
+.social-row {
+  width: 100%;
+  max-width: 420px; /* voit säätää, esim 380–480px */
+  margin: 0;   /* keskittää laatikon */
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /*  pitää tekstin ja togglen linjassa */
+  padding-right: 16px;
+}
+
+/*  Tuo tekstin ja togglen lähemmäksi toisiaan */
+.social-name {
+  margin-right: 12px;
+}
+
+/*  Estää elementtejä venymästä */
+.social-row > * {
+  flex-shrink: 0;
+}
+
+/* Toggle switch (popupin tyyli) */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 46px;
+  height: 24px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0; left: 0;
+  right: 0; bottom: 0;
+  background-color: #444;
+  transition: .3s;
+  border-radius: 24px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 18px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  transition: .3s;
+  border-radius: 50%;
+}
+
+input:checked + .slider {
+  background-color: #00c853; /* popupin vihreä */
+}
+
+input:checked + .slider:before {
+  transform: translateX(22px);
+}
+
+
+
 </style>
 </head>
 
@@ -202,66 +320,137 @@ body{
 
     <div class="settings-grid">
 
-      <!-- EMAIL -->
-      <div class="settings-card">
-        <h2>Sähköposti</h2>
-        <input type="email" placeholder="creator@example.com">
-        <button>Vaihda sähköposti</button>
-      </div>
+    <div class="settings-section">
+  <h2>Account</h2>
+  <div class="settings-item">
+    <label>Sähköposti</label>
+    <input type="email" placeholder="creator@example.com">
+    <button>Vaihda sähköposti</button>
+  </div>
 
-      <!-- PASSWORD -->
-      <div class="settings-card">
-        <h2>Salasana</h2>
-        <button>Vaihda salasana</button>
-      </div>
+  <div class="settings-item">
+    <label>Salasana</label>
+    <button>Vaihda salasana</button>
+  </div>
+</div>
 
-      <!-- SOCIAL MEDIA LINKS -->
-      <div class="settings-card">
-        <h2>Sosiaaliset mediat</h2>
-        <div class="social-icons">
-          <img src="assets/icons/tiktok.png">
-          <img src="assets/icons/youtube.png">
-          <img src="assets/icons/instagram.png">
-          <img src="assets/icons/twitch.png">
-          <img src="assets/icons/twitter.png">
-        </div>
-        <button>Muokkaa linkkejä</button>
-      </div>
+<!-- SOCIALS -->
+<div class="settings-section">
+  <h2>Connected Accounts</h2>
 
-      <!-- NOTIFICATIONS -->
-      <div class="settings-card">
-        <h2>Ilmoitukset</h2>
-        <label><input type="checkbox"> Uudet seuraajat</label><br>
-        <label><input type="checkbox"> Kommentit</label><br>
-        <label><input type="checkbox"> Yhteistyöpyynnöt</label><br>
-        <label><input type="checkbox"> Tärkeät päivitykset</label><br>
-        <button>Tallenna</button>
-      </div>
+   <!-- LUKITTU TILA -->
+  <div id="socials-locked">
 
-      <!-- PRIVACY -->
-      <div class="settings-card">
-        <h2>Yksityisyys</h2>
-        <label><input type="checkbox"> Profiili julkinen</label><br>
-        <label><input type="checkbox"> Näytä seuraajamäärät</label><br>
-        <label><input type="checkbox"> Näytä some‑linkit</label><br>
-        <button>Tallenna</button>
-      </div>
-
-      <!-- SECURITY -->
-      <div class="settings-card">
-        <h2>Turvallisuus</h2>
-        <button>Ota 2FA käyttöön</button>
-        <button style="margin-top:10px;">Näytä kirjautuneet laitteet</button>
-      </div>
-
-      <!-- DELETE ACCOUNT -->
-      <div class="delete-box">
-        <h2>Poista tili</h2>
-        <p>Tämä toiminto on pysyvä. Kaikki tietosi poistetaan.</p>
-        <button class="delete-btn">Poista tili pysyvästi</button>
-      </div>
-
+    <div class="social-row">
+      <img src="assets/icons/TWITCH.png" class="social-logo">
+      <span class="social-name">Twitch</span>
+      <span class="social-status" id="twitch-status-locked">Loading...</span>
     </div>
+
+    <div class="social-row">
+      <img src="assets/icons/YOUTUBE.png" class="social-logo">
+      <span class="social-name">YouTube</span>
+      <span class="social-status">TBA</span>
+    </div>
+
+    <div class="social-row">
+      <img src="assets/icons/TIKTOK.png" class="social-logo">
+      <span class="social-name">TikTok</span>
+      <span class="social-status">TBA</span>
+    </div>
+
+    <div class="social-row">
+      <img src="assets/icons/INSTAGRAM.png" class="social-logo">
+      <span class="social-name">Instagram</span>
+      <span class="social-status">TBA</span>
+    </div>
+
+    <div class="social-row">
+      <img src="assets/icons/X.png" class="social-logo">
+      <span class="social-name">X</span>
+      <span class="social-status">TBA</span>
+    </div>
+
+    <button id="edit-socials-btn" class="connect-btn">Muokkaa sosiaalisia medioita</button>
+  </div>
+
+  <!-- MUOKKAUSTILA -->
+  <div id="socials-edit" style="display:none;">
+
+    <!-- Twitch -->
+    <div class="social-row">
+      <img src="assets/icons/TWITCH.png" class="social-logo">
+      <span class="social-name">Twitch</span>
+
+      <label class="switch">
+        <input type="checkbox" id="twitch-toggle">
+        <span class="slider round"></span>
+      </label>
+    </div>
+
+    <!-- YouTube -->
+    <div class="social-row">
+      <img src="assets/icons/YOUTUBE.png" class="social-logo">
+      <span class="social-name">YouTube</span>
+      <span class="social-status">TBA</span>
+    </div>
+
+    <!-- TikTok -->
+    <div class="social-row">
+      <img src="assets/icons/TIKTOK.png" class="social-logo">
+      <span class="social-name">TikTok</span>
+      <span class="social-status">TBA</span>
+    </div>
+
+    <!-- Instagram -->
+    <div class="social-row">
+      <img src="assets/icons/INSTAGRAM.png" class="social-logo">
+      <span class="social-name">Instagram</span>
+      <span class="social-status">TBA</span>
+    </div>
+
+    <!-- X -->
+    <div class="social-row">
+      <img src="assets/icons/X.png" class="social-logo">
+      <span class="social-name">X</span>
+      <span class="social-status">TBA</span>
+    </div>
+
+    <button id="save-socials-btn" class="connect-btn">Tallenna muutokset</button>
+    <button id="cancel-socials-btn" class="connect-btn" style="background:#333;color:#fff;">Peruuta</button>
+  </div>
+</div>
+
+
+<div class="settings-section">
+  <h2>Notifications</h2>
+  <div class="settings-item">
+    <label><input type="checkbox"> Uudet seuraajat</label>
+    <label><input type="checkbox"> Kommentit</label>
+    <label><input type="checkbox"> Yhteistyöpyynnöt</label>
+    <label><input type="checkbox"> Tärkeät päivitykset</label>
+    <button>Tallenna</button>
+  </div>
+</div>
+
+<div class="settings-section">
+  <h2>Privacy</h2>
+  <div class="settings-item">
+    <label><input type="checkbox"> Profiili julkinen</label>
+    <label><input type="checkbox"> Näytä seuraajamäärät</label>
+    <label><input type="checkbox"> Näytä some‑linkit</label>
+    <button>Tallenna</button>
+  </div>
+</div>
+
+<div class="settings-section danger">
+  <h2>Danger Zone</h2>
+  <div class="settings-item">
+    <p>Tämä toiminto on pysyvä. Kaikki tietosi poistetaan.</p>
+    <button class="delete-btn">Poista tili pysyvästi</button>
+  </div>
+</div>
+
 
   </div>
 
@@ -292,6 +481,76 @@ window.logoutUser = async () => {
 }
 
 </script>
+
+<script type="module">
+import { supabase } from "./js/supabase.js"
+
+// Elementit
+const socialsLocked = document.getElementById("socials-locked")
+const socialsEdit = document.getElementById("socials-edit")
+
+const editBtn = document.getElementById("edit-socials-btn")
+const saveBtn = document.getElementById("save-socials-btn")
+const cancelBtn = document.getElementById("cancel-socials-btn")
+
+const twitchToggle = document.getElementById("twitch-toggle")
+const twitchStatusLocked = document.getElementById("twitch-status-locked")
+const twitchStatusEdit = document.getElementById("twitch-status-edit")
+
+// Haetaan käyttäjän tila
+async function loadSocials() {
+  const { data: userData } = await supabase.auth.getUser()
+  const user = userData.user
+
+  const { data: profile } = await supabase
+    .from("profiles")
+    .select("twitch_enabled")
+    .eq("id", user.id)
+    .single()
+
+  const twitchEnabled = profile?.twitch_enabled
+
+  // Locked-tila
+  twitchStatusLocked.textContent = twitchEnabled ? "Connected ✓" : "Not connected"
+
+  // Edit-tila
+  twitchStatusEdit.textContent = twitchEnabled ? "Connected ✓" : "Not connected"
+  twitchToggle.checked = twitchEnabled
+}
+
+// Muokkaustila päälle
+editBtn.onclick = () => {
+  socialsLocked.style.display = "none"
+  socialsEdit.style.display = "block"
+}
+
+// Peruuta
+cancelBtn.onclick = () => {
+  socialsEdit.style.display = "none"
+  socialsLocked.style.display = "block"
+  loadSocials() // palautetaan alkuperäinen tila
+}
+
+// Tallenna
+saveBtn.onclick = async () => {
+  const twitchEnabled = twitchToggle.checked
+
+  const { data: userData } = await supabase.auth.getUser()
+
+  await supabase
+    .from("profiles")
+    .update({ twitch_enabled: twitchEnabled })
+    .eq("id", userData.user.id)
+
+  socialsEdit.style.display = "none"
+  socialsLocked.style.display = "block"
+  loadSocials()
+}
+
+// Ladataan alussa
+loadSocials()
+</script>
+
 
 <!-- MAIN LOGIC -->
 <script type="module" src="js/main.js"></script>
