@@ -616,7 +616,7 @@ window.logoutUser = async () => {
 
       <!-- Twitch Connect Row -->
 <div class="setup-section twitch-connect-row">
-  <img src="assets/ICONS/TWITCH.png" class="twitch-logo" />
+  <img src="assets/icons/TWITCH.png" class="twitch-logo" />
 
   <span class="connect-label" id="twitch-connect-label">Connect Twitch</span>
 
@@ -714,7 +714,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   // Toggle painettu → avaa OAuth
   twitchToggle.addEventListener("change", () => {
     if (twitchToggle.checked) {
-      window.location.href = "http://localhost:5000/auth/twitch/login";
+      window.location.href = "https://creatorshypehub.com/api/twitchlogin";
     } else {
       disconnectTwitch();
     }
