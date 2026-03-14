@@ -1,0 +1,7 @@
+{
+  "functions": {
+    "twitch": {
+      "verify_jwt": false
+    }
+  }
+}

@@ -1,0 +1,22 @@
+
+[functions.twitch]
+enabled = true
+verify_jwt = true
+import_map = "./functions/twitch/deno.json"
+# Uncomment to specify a custom file path to the entrypoint.
+# Supported file extensions are: .ts, .js, .mjs, .jsx, .tsx
+entrypoint = "./functions/twitch/index.ts"
+# Specifies static files to be bundled with the function. Supports glob patterns.
+# For example, if you want to serve static HTML pages in your function:
+# static_files = [ "./functions/twitch/*.html" ]
+
+[functions.twitch-stats]
+enabled = true
+verify_jwt = true
+import_map = "./functions/twitch-stats/deno.json"
+# Uncomment to specify a custom file path to the entrypoint.
+# Supported file extensions are: .ts, .js, .mjs, .jsx, .tsx
+entrypoint = "./functions/twitch-stats/index.ts"
+# Specifies static files to be bundled with the function. Supports glob patterns.
+# For example, if you want to serve static HTML pages in your function:
+# static_files = [ "./functions/twitch-stats/*.html" ]

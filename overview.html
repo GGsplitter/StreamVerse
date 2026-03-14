@@ -221,7 +221,6 @@ body{
     border-radius: 50%;
 }
 
-/* ACTIVE (CONNECTED) */
 input:checked + .slider {
     background-color: #4ade80;
 }
@@ -229,6 +228,63 @@ input:checked + .slider {
 input:checked + .slider:before {
     transform: translateX(22px);
 }
+
+/* ⭐ OVERVIEW BANNERI – sama rakenne kuin profiilisivulla */
+.profile-header{
+    position:relative;
+    padding:40px;
+    border-radius:20px;
+    background-size:cover;
+    background-position:center;
+    background-color:#111;
+    box-shadow:0 0 20px rgba(255,255,200,0.15);
+    border:1px solid rgba(255,255,255,0.05);
+    margin-bottom:40px;
+}
+
+.profile-header::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:rgba(0,0,0,0.45);
+    border-radius:20px;
+}
+
+.profile-header-content{
+    position:relative;
+    display:flex;
+    gap:25px;
+    align-items:center;
+    z-index:2;
+}
+
+.avatar-wrapper{
+    position:relative;
+    width:110px;
+    height:110px;
+}
+
+.avatar{
+    width:110px;
+    height:110px;
+    border-radius:50%;
+    background:#222;
+    background-size:cover;
+    background-position:center;
+    box-shadow:0 0 12px rgba(255,255,200,0.25);
+}
+
+.profile-info h1{
+    margin:0;
+    font-size:28px;
+    background:linear-gradient(45deg,#ffffff,#ffe680);
+    -webkit-background-clip:text;
+    color:transparent;
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
 </style>
 </head>
 
@@ -238,10 +294,26 @@ input:checked + .slider:before {
 
 <div class="page-wrapper">
 
-  <!-- SIDEBAR LOADED FROM sidebarnav.html -->
   <div id="sidebar"></div>
 
   <div class="main">
+
+    <!-- ⭐ OIKEA OVERVIEW BANNERI + AVATAR + NIMI -->
+    <div class="profile-header" id="overview-banner-area">
+
+        <div class="profile-header-content">
+
+            <div class="avatar-wrapper">
+                <div class="avatar" id="overview-avatar-preview"></div>
+            </div>
+
+            <div class="profile-info">
+                <h1 id="overview-username-display">@username</h1>
+            </div>
+
+        </div>
+
+    </div>
 
     <h1>📊 Overview</h1>
 
@@ -272,7 +344,6 @@ input:checked + .slider:before {
       <div class="activity-item">🏆 Nousit 3 sijaa leaderboardissa</div>
     </div>
 
-    <!-- LINKED PLATFORMS -->
     <div class="card" style="margin-top:40px;">
       <h2>Linked Platforms</h2>
       <div id="platform-list-overview" class="platform-grid"></div>
@@ -331,7 +402,6 @@ function renderPlatforms() {
 renderPlatforms();
 </script>
 
-<!-- SUPABASE LOGIC -->
 <script type="module">
 
 import { supabase } from "./js/supabase.js"
@@ -345,8 +415,12 @@ window.logoutUser = async () => {
   await supabase.auth.signOut()
   window.location.href="index.html"
 }
-
 </script>
+
+<script type="module" src="js/overview.js"></script>
+
+<!-- MAIN LOGIC -->
+<script type="module" src="js/main.js"></script>
 
 </body>
 </html>

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+<meta charset="UTF-8">
+<title>Stats</title>
+
+<style>
+body{
+    margin:0;
+    background:#060606;
+    color:white;
+    font-family:Arial;
+}
+
+#navbar{
+    width:100%;
+    position:fixed;
+    top:0;
+    left:0;
+    z-index:1000;
+}
+
+.page-wrapper{
+    display:flex;
+    margin-top:80px;
+}
+
+#sidebar{
+    width:260px;
+}
+
+.main{
+    margin-left:260px;
+    padding:40px;
+    width:100%;
+}
+
+/* Otsikko */
+.main h1{
+    font-size:42px;
+    margin-bottom:30px;
+    background:linear-gradient(45deg,#ffffff,#ffe680);
+    -webkit-background-clip:text;
+    color:transparent;
+}
+
+/* Collapsible osiot */
+.section{
+    background:#111;
+    border:1px solid rgba(255,255,255,0.05);
+    border-radius:12px;
+    margin-bottom:20px;
+    box-shadow:0 0 12px rgba(255,255,200,0.10);
+}
+
+.section-header{
+    padding:18px;
+    font-size:20px;
+    cursor:pointer;
+    background:#181818;
+    border-radius:12px 12px 0 0;
+}
+
+.section-content{
+    display:none;
+    padding:20px;
+    font-size:14px;
+    background:#111;
+    border-radius:0 0 12px 12px;
+}
+
+/* JSON debug box */
+.json-box{
+    background:#000;
+    padding:15px;
+    border-radius:10px;
+    font-family:monospace;
+    white-space:pre-wrap;
+    border:1px solid #222;
+    margin-top:10px;
+}
+</style>
+</head>
+
+<body>
+
+<div id="navbar"></div>
+
+<div class="page-wrapper">
+
+    <div id="sidebar"></div>
+
+    <div class="main">
+
+        <h1>📊 Stats</h1>
+
+        <!-- TikTok -->
+        <div class="section">
+            <div class="section-header" onclick="toggleSection('tiktok')">TikTok Data</div>
+            <div class="section-content" id="tiktok">
+                <div class="json-box" id="tiktok-json">Ei dataa vielä</div>
+            </div>
+        </div>
+
+        <!-- YouTube -->
+        <div class="section">
+            <div class="section-header" onclick="toggleSection('youtube')">YouTube Data</div>
+            <div class="section-content" id="youtube">
+                <div class="json-box" id="youtube-json">Ei dataa vielä</div>
+            </div>
+        </div>
+
+        <!-- Twitch -->
+        <div class="section">
+            <div class="section-header" onclick="toggleSection('twitch')">Twitch Data</div>
+            <div class="section-content" id="twitch">
+                <div class="json-box" id="twitch-json">Ei dataa vielä</div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+fetch("../navbar.html")
+  .then(r=>r.text())
+  .then(d=>document.getElementById("navbar").innerHTML=d);
+
+fetch("../sidebarnav.html")
+  .then(r=>r.text())
+  .then(d=>document.getElementById("sidebar").innerHTML=d);
+
+/* Collapsible logiikka */
+function toggleSection(id){
+    const el = document.getElementById(id);
+    el.style.display = el.style.display === "block" ? "none" : "block";
+}
+</script>
+
+<script type="module" src="js/stats.js"></script>
+<!-- MAIN LOGIC -->
+<script type="module" src="js/main.js"></script>
+</body>
+</html>
