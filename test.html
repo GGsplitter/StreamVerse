@@ -10,6 +10,9 @@
 href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 <style>
+/* ============================
+   YLEINEN TAUSTA JA TYPOGRAFIA
+   ============================ */
 body{
     margin:0;
     font-family:Arial;
@@ -24,9 +27,9 @@ body{
 
 #navbar{ position:relative; z-index:1000; }
 
-
 section{ padding:180px 8% 140px 8%; }
 
+/* Sivun iso otsikko */
 .page-title{
     text-align:center;
     font-size:50px;
@@ -36,8 +39,9 @@ section{ padding:180px 8% 140px 8%; }
     margin-bottom:40px;
 }
 
-
-/* TOP TAB MENU */
+/* ============================
+   TAB MENU
+   ============================ */
 .tabs{
     display:flex;
     justify-content:center;
@@ -61,7 +65,7 @@ section{ padding:180px 8% 140px 8%; }
     box-shadow:0 0 12px #ff0088;
 }
 
-/* SECTION TITLE */
+/* Kategoriaotsikot */
 .cat-title{
     font-size:28px;
     margin:40px 0 15px 0;
@@ -70,7 +74,7 @@ section{ padding:180px 8% 140px 8%; }
     color:transparent;
 }
 
-/* GRID — 5 per rivi */
+/* 5 kortin grid */
 .grid{
     max-width:1200px;
     margin:auto;
@@ -79,18 +83,21 @@ section{ padding:180px 8% 140px 8%; }
     gap:14px;
 }
 
-/* FOOTER */
-footer{
-    padding:80px;
-    background:#0a0a0a;
-    margin-top:120px;
-    text-align:center;
+/* Näytä lisää -linkki */
+.show-more{
+    text-align:right;
+    margin:10px 0 40px 0;
 }
 
-/* ========================= */
-/* COMPACT CREATOR PROFILE CARD */
-/* ========================= */
+.show-more a{
+    color:#ff66cc;
+    text-decoration:none;
+    font-size:14px;
+}
 
+/* ============================
+   CREATOR-KORTIT (uusimmat)
+   ============================ */
 .creator-card{
     width:100%;
     height:140px;
@@ -154,26 +161,9 @@ footer{
     line-height:1.25;
 }
 
-.creator-socials{
-    margin-top:8px;
-    display:flex;
-    gap:8px;
-}
-
-.creator-socials a{
-    font-size:14px;
-    color:white;
-    transition:.2s;
-}
-
-.creator-socials a:hover{
-    color:#ff0088;
-}
-
-/* ========================= */
-/* LIVE TOP PROFILE CARD */
-/* ========================= */
-
+/* ============================
+   LIVE TOP PROFILE -KORTTI
+   ============================ */
 .live-top-card{
     width:100%;
     height:140px;
@@ -186,11 +176,6 @@ footer{
     text-decoration:none;
     color:white;
     display:block;
-}
-
-.live-top-card:hover{
-    transform:translateY(-4px);
-    box-shadow:0 0 18px rgba(0,255,120,0.45);
 }
 
 .live-top-content{
@@ -209,40 +194,9 @@ footer{
     border:2px solid #00ff7a;
 }
 
-.live-top-info{
-    flex:1;
-    display:flex;
-    flex-direction:column;
-    overflow:hidden;
-}
-
-.live-top-name{
-    font-size:15px;
-    margin:0;
-    background:linear-gradient(45deg,#00ff7a,#00ffaa);
-    -webkit-background-clip:text;
-    color:transparent;
-}
-
-.live-top-bio{
-    margin-top:6px;
-    opacity:0.75;
-    font-size:11px;
-    height:32px;
-    overflow:hidden;
-    line-height:1.25;
-}
-
-.live-top-socials{
-    margin-top:8px;
-    display:flex;
-    gap:8px;
-}
-
-/* ========================= */
-/* TWITCH LIVE CARD */
-/* ========================= */
-
+/* ============================
+   TWITCH LIVE -KORTIT
+   ============================ */
 .twitch-card{
     background:#111;
     border-radius:14px;
@@ -258,8 +212,12 @@ footer{
     overflow:hidden;
 }
 
-.twitch-card:hover{ transform:translateY(-6px); }
+.twitch-card.live{
+    border:1px solid #00ff7a;
+    box-shadow:0 0 20px rgba(0,255,120,.6);
+}
 
+/* Thumbnail hover */
 .thumb-preview{
     position:absolute;
     top:0; left:0;
@@ -293,21 +251,12 @@ footer{
     z-index:2;
 }
 
-.twitch-card img.profile{
+.profile{
     width:60px;
     height:60px;
     border-radius:50%;
     object-fit:cover;
     border:2px solid #111;
-}
-
-.twitch-card.live{
-    border:1px solid #00ff7a;
-    box-shadow:0 0 20px rgba(0,255,120,.6);
-}
-
-.twitch-card.live .profile{
-    border:2px solid #00ff7a;
 }
 
 .viewer{
@@ -328,32 +277,34 @@ footer{
 
 <h2 class="page-title">Creators</h2>
 
-<!-- TOP TAB MENU -->
+<!-- TAB MENU -->
 <div class="tabs">
     <button class="active">Overview</button>
     <button onclick="location.href='allcreatorslist.html'">All Creators</button>
 </div>
 
-<!-- 1) UUSIMMAT SISÄLLÖNTUOTTAJAT -->
+<!-- Uusimmat creatorit -->
 <h3 class="cat-title">🆕 Uusimmat sisällöntuottajat</h3>
 <div class="grid" id="newest-creators-grid"></div>
+<div class="show-more"><a href="#">Näytä lisää →</a></div>
 
-<!-- 2) LIVE CREATORS -->
+<!-- LIVE CREATORIT -->
 <h3 class="cat-title">🟢 Live Creators</h3>
 
-<!-- YLÄPROFIILIKORTTI -->
+<!-- Iso yläprofiilikortti -->
 <div class="grid" id="live-top-profile"></div>
 
-<!-- LIVE-KORTIT -->
+<!-- 5 live-korttia -->
 <div class="grid" id="live-grid"></div>
 
 <div class="show-more"><a href="live-all.html">Näytä kaikki livet →</a></div>
 
-<!-- 3) TRENDING -->
+<!-- TRENDING -->
 <h3 class="cat-title">🔥 Trending</h3>
 <div class="grid" id="trending-grid"></div>
+<div class="show-more"><a href="#">Näytä lisää →</a></div>
 
-<!-- 4) UUSIMMAT VLOGIT / VIDEOT -->
+<!-- VIDEOT -->
 <h3 class="cat-title">🎥 Uusimmat vlogit / videot</h3>
 <div class="grid" id="vlog-grid"></div>
 <div class="show-more"><a href="vlog-all.html">Näytä kaikki videot →</a></div>
@@ -363,80 +314,51 @@ footer{
 <div id="footer"></div>
 
 <script>
-/* NAV + FOOTER */
+/* ============================
+   NAVIGAATIO JA FOOTER
+   ============================ */
 fetch("navbar.html").then(r=>r.text()).then(d=>navbar.innerHTML=d);
 fetch("footer.html").then(r=>r.text()).then(d=>footer.innerHTML=d);
 
-/* MOCK-PROFIILIT UUSIMMAT SISÄLLÖNTUOTTAJAT */
+/* ============================
+   UUSIMMAT CREATORIT (mock-data)
+   ============================ */
 const newestCreators = [
-    {
-        username: "G3splitter",
-        profile: "https://placehold.co/200x200?text=G3",
-        bio: "FPS pelaaja ja sisällöntuottaja.",
-        youtube: "#",
-        instagram: "#",
-        twitter: "#",
-        twitch: "#"
-    },
-    {
-        username: "Koeda666",
-        profile: "https://placehold.co/200x200?text=K6",
-        bio: "IRL & Just Chatting.",
-        twitter: "#"
-    },
-    {
-        username: "Nallegamerx",
-        profile: "https://placehold.co/200x200?text=NG",
-        bio: "Rento pelistriimaaja.",
-        youtube: "#",
-        twitch: "#"
-    },
-    {
-        username: "LofiGirl",
-        profile: "https://placehold.co/200x200?text=LG",
-        bio: "Lofi musiikkia 24/7.",
-        instagram: "#"
-    },
-    {
-        username: "NewMember",
-        profile: "https://placehold.co/200x200?text=NM",
-        bio: "Uusi sisällöntuottaja.",
-        youtube: "#",
-        instagram: "#",
-        twitter: "#"
-    }
+    { username:"G3splitter", profile:"https://placehold.co/200x200?text=G3", bio:"FPS pelaaja", youtube:"#", instagram:"#", twitter:"#", twitch:"#"},
+    { username:"Koeda666", profile:"https://placehold.co/200x200?text=K6", bio:"IRL & Chatting", twitter:"#"},
+    { username:"Nallegamerx", profile:"https://placehold.co/200x200?text=NG", bio:"Rento pelaaja", youtube:"#", twitch:"#"},
+    { username:"LofiGirl", profile:"https://placehold.co/200x200?text=LG", bio:"Lofi 24/7", instagram:"#"},
+    { username:"NewMember", profile:"https://placehold.co/200x200?text=NM", bio:"Uusi creator", youtube:"#", instagram:"#", twitter:"#"}
 ];
 
+/* Piirtää uusimmat creator-kortit */
 function renderNewestCreators(){
     const grid = document.getElementById("newest-creators-grid");
     grid.innerHTML = "";
-
     newestCreators.forEach(c=>{
-        const card = document.createElement("a");
-        card.className = "creator-card";
-        card.href = `creator.html?user=${c.username}`;
-
-        card.innerHTML = `
-            <div class="creator-content">
-                <img src="${c.profile}" class="creator-profile-img">
-                <div class="creator-info">
-                    <h3 class="creator-name">${c.username}</h3>
-                    <p class="creator-bio">${c.bio}</p>
-                    <div class="creator-socials">
-                        ${c.youtube ? `<a href="${c.youtube}"><i class="fab fa-youtube"></i></a>` : ""}
-                        ${c.instagram ? `<a href="${c.instagram}"><i class="fab fa-instagram"></i></a>` : ""}
-                        ${c.twitter ? `<a href="${c.twitter}"><i class="fab fa-x-twitter"></i></a>` : ""}
-                        ${c.twitch ? `<a href="${c.twitch}"><i class="fab fa-twitch"></i></a>` : ""}
+        grid.innerHTML += `
+            <a class="creator-card" href="creator.html?user=${c.username}">
+                <div class="creator-content">
+                    <img src="${c.profile}" class="creator-profile-img">
+                    <div class="creator-info">
+                        <h3 class="creator-name">${c.username}</h3>
+                        <p class="creator-bio">${c.bio}</p>
+                        <div class="creator-socials">
+                            ${c.youtube ? `<a href="${c.youtube}"><i class="fab fa-youtube"></i></a>` : ""}
+                            ${c.instagram ? `<a href="${c.instagram}"><i class="fab fa-instagram"></i></a>` : ""}
+                            ${c.twitter ? `<a href="${c.twitter}"><i class="fab fa-x-twitter"></i></a>` : ""}
+                            ${c.twitch ? `<a href="${c.twitch}"><i class="fab fa-twitch"></i></a>` : ""}
+                        </div>
                     </div>
                 </div>
-            </div>
+            </a>
         `;
-
-        grid.appendChild(card);
     });
 }
 
-/* TWITCH DATA LIVE / TRENDING / VLOG */
+/* ============================
+   TWITCH API -KANAVAT
+   ============================ */
 const channels = [
     "G3splitter","Koeda666","Nallegamerx","lofigirl",
     "Aydan","diazbiffle","imangelikaa","timthetatman",
@@ -446,109 +368,134 @@ const channels = [
 const clientId = "SUN_CLIENT_ID";
 const accessToken = "SUN_ACCESS_TOKEN";
 
+/* ============================
+   LADATAAN TWITCH DATA
+   ============================ */
 async function loadTwitchData(){
     try{
+        /* Haetaan käyttäjätiedot */
         const resUsers = await fetch(
             "https://api.twitch.tv/helix/users?login="+channels.join("&login="),
             { headers:{ "Client-ID":clientId, "Authorization":`Bearer ${accessToken}` } }
         );
         const users = (await resUsers.json()).data || [];
 
+        /* Haetaan stream-tiedot */
         const resStreams = await fetch(
             "https://api.twitch.tv/helix/streams?user_login="+channels.join("&user_login="),
             { headers:{ "Client-ID":clientId, "Authorization":`Bearer ${accessToken}` } }
         );
         const streams = (await resStreams.json()).data || [];
 
-        const cards = channels.map(ch=>{
-            return {
-                channel: ch,
-                user: users.find(u=>u.login.toLowerCase()==ch.toLowerCase()),
-                stream: streams.find(s=>s.user_login.toLowerCase()==ch.toLowerCase())
-            };
-        });
+        /* Yhdistetään käyttäjä + stream */
+        const cards = channels.map(ch=>({
+            channel: ch,
+            user: users.find(u=>u.login.toLowerCase()==ch.toLowerCase()),
+            stream: streams.find(s=>s.user_login.toLowerCase()==ch.toLowerCase())
+        }));
 
-        /* LIVE: kaikki livessä olevat */
+        /* Suodatetaan vain live-kanavat */
         const liveAll = cards.filter(c => c.stream);
+
+        /* Järjestetään pisimpään livessä → lyhimpään */
+        liveAll.sort((a, b) => {
+            const startA = new Date(a.stream.started_at).getTime();
+            const startB = new Date(b.stream.started_at).getTime();
+            return startA - startB;
+        });
 
         /* Yläprofiilikortti */
         renderLiveTopProfile(liveAll[0]);
 
-        /* Kaikki live-kortit */
+        /* Live-kortit */
         renderLiveCards("live-grid", liveAll);
 
-        /* Trending + vlog placeholder */
-        renderLiveCards("trending-grid", cards.slice(0,5));
-        renderLiveCards("vlog-grid", cards.slice(0,5));
+        /* Trending ja videot käyttävät samaa korttipohjaa */
+        renderLiveCards("trending-grid", cards);
+        renderLiveCards("vlog-grid", cards);
 
     }catch(e){
         console.error(e);
     }
 }
 
-/* Yläprofiilikortti → profiilisivulle */
+/* ============================
+   YLÄPROFIILIKORTTI
+   ============================ */
 function renderLiveTopProfile(item){
     const div = document.getElementById("live-top-profile");
     div.innerHTML = "";
 
-    if(!item) return;
-
-    const card = document.createElement("a");
-    card.className = "live-top-card";
-    card.href = `creator.html?user=${item.channel}`;
+    if(!item){
+        div.innerHTML = `<div class="twitch-card">Ei livejä</div>`;
+        return;
+    }
 
     const profile = item.user?.profile_image_url || "https://placehold.co/110x110";
 
-    card.innerHTML = `
-        <div class="live-top-content">
-            <img src="${profile}" class="live-top-img">
-            <div class="live-top-info">
-                <h3 class="live-top-name">${item.channel}</h3>
-                <p class="live-top-bio">${item.stream?.title || "Live stream"}</p>
-                <div class="live-top-socials">
-                    🟢 LIVE nyt
+    div.innerHTML = `
+        <a class="live-top-card" href="creator.html?user=${item.channel}">
+            <div class="live-top-content">
+                <img src="${profile}" class="live-top-img">
+                <div class="live-top-info">
+                    <h3 class="live-top-name">${item.channel}</h3>
+                    <p class="live-top-bio">${item.stream?.title || "Live stream"}</p>
+                    <div class="live-top-socials">🟢 LIVE nyt</div>
                 </div>
             </div>
-        </div>
+        </a>
     `;
-
-    div.appendChild(card);
 }
 
-/* Live-kortit → suoraan Twitch-liveen */
+/* ============================
+   LIVE-KORTIT (5 kpl)
+   ============================ */
 function renderLiveCards(id, list){
     const div = document.getElementById(id);
     div.innerHTML = "";
 
-    list.forEach(item=>{
-        const card = document.createElement("a");
-        card.className = "twitch-card live";
-        card.href = `https://twitch.tv/${item.channel}`;
-        card.target = "_blank";
+    /* Jos ei livejä → näytä placeholderit */
+    if (!list || list.length === 0) {
+        for (let i = 0; i < 5; i++) {
+            div.innerHTML += `
+                <div class="twitch-card">
+                    <div class="card-center">
+                        <img src="https://placehold.co/80x80" class="profile">
+                        <h3>Offline</h3>
+                        <div class="viewer">Ei liveä</div>
+                    </div>
+                </div>
+            `;
+        }
+        return;
+    }
 
+    /* Piirretään max 5 live-korttia */
+    list.slice(0,5).forEach(item=>{
         const profile = item.user?.profile_image_url || "https://placehold.co/110x110";
         const thumb = `https://static-cdn.jtvnw.net/previews-ttv/live_user_${item.channel.toLowerCase()}-320x180.jpg`;
 
-        card.innerHTML = `
-            <img src="${thumb}" class="thumb-preview">
-            <div class="card-top">
-                <div>🟢 LIVE</div>
-                <div>⏱ ${formatDuration(item.stream.started_at)}</div>
-            </div>
-            <div class="card-center">
-                <img src="${profile}" class="profile">
-                <h3>${item.channel}</h3>
-                <div class="viewer">
-                    🎮 ${item.stream.game_name}<br>
-                    📺 ${item.stream.title}
+        div.innerHTML += `
+            <a class="twitch-card live" href="https://twitch.tv/${item.channel}" target="_blank">
+                <img src="${thumb}" class="thumb-preview">
+                <div class="card-top">
+                    <div>🟢 LIVE</div>
+                    <div>⏱ ${formatDuration(item.stream.started_at)}</div>
                 </div>
-            </div>
+                <div class="card-center">
+                    <img src="${profile}" class="profile">
+                    <h3>${item.channel}</h3>
+                    <div class="viewer">
+                        🎮 ${item.stream.game_name}<br>
+                        📺 ${item.stream.title}
+                    </div>
+                </div>
+            </a>
         `;
-
-        div.appendChild(card);
     });
 }
 
+/* Laskee kauanko stream on ollut käynnissä */
 function formatDuration(start){
     const ms = Date.now() - new Date(start).getTime();
     const h = Math.floor(ms/3600000);
@@ -556,6 +503,9 @@ function formatDuration(start){
     return `${h}h ${m}m`;
 }
 
+/* ============================
+   KÄYNNISTYS
+   ============================ */
 document.addEventListener("DOMContentLoaded", ()=>{
     renderNewestCreators();
     loadTwitchData();

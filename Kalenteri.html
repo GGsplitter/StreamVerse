@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+<meta charset="UTF-8">
+<title>Julkaisukalenteri</title>
+
+<link href="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js"></script>
+
+<style>
+body{
+  margin:0;
+  background:#060606;
+  color:white;
+  font-family:Arial, sans-serif;
+}
+
+/* Taustakuva + glass‑morphism overlay */
+.page-bg{
+  position:fixed;
+  inset:0;
+  background:#050505;
+  background-size:cover;
+  background-position:center;
+  z-index:-2;
+}
+
+.page-bg::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:rgba(0,0,0,0.55);
+  backdrop-filter:blur(10px);
+  z-index:-1;
+}
+
+.page-wrapper{
+  padding:40px;
+  min-height:100vh;
+}
+
+.calendar-container{
+  max-width:1100px;
+  margin:0 auto;
+}
+
+/* Kortti kalenterille */
+.calendar-card{
+  background:rgba(10,10,10,0.85);
+  padding:20px;
+  border-radius:20px;
+  border:1px solid rgba(255,255,255,0.08);
+  box-shadow:0 0 30px rgba(255,255,200,0.18);
+  backdrop-filter:blur(12px);
+}
+
+.calendar-header-row{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:15px;
+}
+
+.calendar-header-row h2{
+  margin:0;
+  font-size:24px;
+  background:linear-gradient(45deg,#ffffff,#ffe680);
+  -webkit-background-clip:text;
+  color:transparent;
+}
+
+.calendar-header-actions{
+  display:flex;
+  gap:10px;
+  align-items:center;
+}
+
+.calendar-edit-btn,
+.calendar-view-btn{
+  padding:8px 14px;
+  border-radius:10px;
+  border:none;
+  cursor:pointer;
+  background:#ffe680;
+  color:#000;
+  font-weight:bold;
+  font-size:13px;
+}
+
+.calendar-view-btn{
+  background:#222;
+  color:#fff;
+  border:1px solid rgba(255,255,255,0.2);
+}
+
+.calendar-view-btn.active{
+  background:#ffe680;
+  color:#000;
+}
+
+/* FullCalendar kontti */
+#calendar{
+  background:rgba(8,8,8,0.9);
+  border-radius:15px;
+  padding:10px;
+  border:1px solid rgba(255,255,255,0.05);
+}
+
+/* FullCalendar custom‑tyyliä */
+.fc{
+  color:white;
+  font-size:13px;
+}
+
+.fc-toolbar-title{
+  font-size:20px !important;
+  background:linear-gradient(45deg,#ffffff,#ffe680);
+  -webkit-background-clip:text;
+  color:transparent !important;
+}
+
+.fc-button{
+  background:#222 !important;
+  border:none !important;
+  border-radius:8px !important;
+  color:white !important;
+  padding:4px 8px !important;
+  font-size:12px !important;
+}
+
+.fc-button-primary:not(:disabled).fc-button-active,
+.fc-button-primary:not(:disabled):active{
+  background:#ffe680 !important;
+  color:#000 !important;
+}
+
+.fc-daygrid-day,
+.fc-timegrid-slot{
+  border:1px solid rgba(255,255,255,0.08);
+}
+
+.fc-daygrid-day-frame{
+  background:rgba(10,10,10,0.9);
+  border-radius:10px;
+  box-sizing:border-box;
+}
+
+.fc-day-today .fc-daygrid-day-frame{
+  box-shadow:0 0 15px rgba(255,255,200,0.35);
+}
+
+/* Tapahtumat */
+.fc-event{
+  border-radius:10px !important;
+  border:none !important;
+  padding:2px 4px !important;
+  box-shadow:0 0 10px rgba(0,0,0,0.6);
+  font-size:12px;
+}
+
+.fc-event-main{
+  padding:2px 4px;
+}
+
+/* Overlayt (asetukset + tapahtuma) */
+.overlay{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.7);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  z-index:2000;
+}
+
+.panel{
+  background:#111;
+  border-radius:15px;
+  border:1px solid rgba(255,255,255,0.08);
+  padding:20px;
+  width:360px;
+  max-height:90vh;
+  overflow:auto;
+  box-shadow:0 0 25px rgba(255,255,200,0.25);
+}
+
+.panel h3{
+  margin-top:0;
+}
+
+.panel label{
+  display:block;
+  margin-top:10px;
+  font-size:14px;
+}
+
+.panel input[type="text"],
+.panel textarea,
+.panel select{
+  width:100%;
+  margin-top:6px;
+  padding:8px;
+  border-radius:10px;
+  border:none;
+  background:#222;
+  color:white;
+  box-sizing:border-box;
+}
+
+.panel input[type="color"],
+.panel input[type="range"],
+.panel input[type="file"]{
+  width:100%;
+  margin-top:6px;
+}
+
+.panel textarea{
+  resize:vertical;
+}
+
+.panel-actions{
+  display:flex;
+  justify-content:flex-end;
+  gap:10px;
+  margin-top:15px;
+}
+
+.panel-actions button{
+  padding:8px 12px;
+  border-radius:10px;
+  border:none;
+  cursor:pointer;
+  font-weight:bold;
+}
+
+.btn-primary{
+  background:#ffe680;
+  color:#000;
+}
+
+.btn-secondary{
+  background:#333;
+  color:#fff;
+}
+
+/* Pieni info */
+.info-text{
+  margin-top:10px;
+  font-size:12px;
+  opacity:0.7;
+}
+
+/* Julkinen merkki */
+.event-public-badge{
+  font-size:10px;
+  opacity:0.8;
+  margin-left:4px;
+}
+
+/* Legend */
+.calendar-legend{
+  margin-top:8px;
+  font-size:11px;
+  opacity:0.7;
+}
+</style>
+</head>
+<body>
+
+<div class="page-bg" id="page-bg"></div>
+
+<div class="page-wrapper">
+  <div class="calendar-container">
+
+    <div class="calendar-card">
+      <div class="calendar-header-row">
+        <h2>Julkaisukalenteri</h2>
+        <div class="calendar-header-actions">
+          <button class="calendar-view-btn active" id="btn-month">Kuukausi</button>
+          <button class="calendar-view-btn" id="btn-week">Viikko</button>
+          <button class="calendar-edit-btn" id="calendar-edit-btn">Muokkaa</button>
+        </div>
+      </div>
+
+      <div id="calendar"></div>
+
+      <div class="calendar-legend">
+        Kaksoisklikkaa tyhjää kohtaa lisätäksesi tapahtuman. Raahaa tapahtumaa siirtääksesi. Venytä reunasta muuttaaksesi kestoa.
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Asetus‑overlay -->
+<div class="overlay" id="settings-overlay">
+  <div class="panel">
+    <h3>Kalenterin ulkoasu</h3>
+
+    <label>Taustakuvan URL</label>
+    <input type="text" id="bg-image-url" placeholder="https://...">
+
+    <label>Taustakuvan tiedosto</label>
+    <input type="file" id="bg-image-file" accept="image/*">
+
+    <label>Taustan tummennus (overlay)</label>
+    <input type="range" id="bg-darkness" min="0" max="0.9" step="0.05" value="0.55">
+
+    <label>Taustan blur</label>
+    <input type="range" id="bg-blur" min="0" max="20" step="1" value="10">
+
+    <label>Päiväruutujen reunusväri</label>
+    <input type="color" id="day-border-color">
+
+    <label>Päiväruutujen reunuksen paksuus</label>
+    <input type="range" id="day-border-width" min="0" max="3" step="1" value="1">
+
+    <label>Tapahtumakortin taustaväri</label>
+    <input type="color" id="event-bg-color">
+
+    <label>Tapahtumakortin reunaväri</label>
+    <input type="color" id="event-border-color">
+
+    <label>Tapahtumatekstin väri</label>
+    <input type="color" id="event-text-color">
+
+    <label>Fontti</label>
+    <select id="calendar-font-family">
+      <option value="Arial">Arial</option>
+      <option value="Inter">Inter</option>
+      <option value="Roboto">Roboto</option>
+    </select>
+
+    <label>Fonttikoko</label>
+    <input type="range" id="calendar-font-size" min="12" max="18" value="13">
+
+    <div class="panel-actions">
+      <button class="btn-secondary" id="settings-cancel">Peruuta</button>
+      <button class="btn-primary" id="settings-save">Tallenna</button>
+    </div>
+  </div>
+</div>
+
+<!-- Tapahtuma‑overlay -->
+<div class="overlay" id="event-overlay">
+  <div class="panel">
+    <h3>Tapahtuma</h3>
+
+    <label>Otsikko</label>
+    <input type="text" id="event-title">
+
+    <label>Kuvaus</label>
+    <textarea id="event-description" rows="3"></textarea>
+
+    <label>Alkaa</label>
+    <input type="datetime-local" id="event-start">
+
+    <label>Päättyy</label>
+    <input type="datetime-local" id="event-end">
+
+    <label>Media (kuva/gif/video URL)</label>
+    <input type="text" id="event-media-url">
+
+    <label>Media tyyppi</label>
+    <select id="event-media-type">
+      <option value="">Ei mediaa</option>
+      <option value="image">Kuva</option>
+      <option value="gif">Gif</option>
+      <option value="video">Video</option>
+      <option value="link">Linkki</option>
+    </select>
+
+    <label>Linkki (esim. YouTube/TikTok)</label>
+    <input type="text" id="event-link-url">
+
+    <label>
+      <input type="checkbox" id="event-is-public">
+      Näytä julkisessa profiilissa
+    </label>
+
+    <div class="info-text">
+      MVP‑vaiheessa tämä on visuaalinen kalenteri. Myöhemmin tähän voidaan kytkeä ajastettu julkaisu muihin medioihin ja Supabase‑tallennus.
+    </div>
+
+    <div class="panel-actions">
+      <button class="btn-secondary" id="event-cancel">Peruuta</button>
+      <button class="btn-primary" id="event-save">Tallenna</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ----------------------
+// localStorage avaimet
+// ----------------------
+const LS_EVENTS_KEY = 'creator_calendar_events_v1';
+const LS_SETTINGS_KEY = 'creator_calendar_settings_v1';
+const LS_BG_FILE_KEY = 'creator_calendar_bg_file_v1';
+
+// ----------------------
+// Data
+// ----------------------
+let events = [];
+let calendarSettings = {
+  bgImageUrl: '',
+  bgDarkness: 0.55,
+  bgBlur: 10,
+  dayBorderColor: '#3a3a3a',
+  dayBorderWidth: 1,
+  eventBgColor: '#333333',
+  eventBorderColor: '#ffe680',
+  eventTextColor: '#ffffff',
+  fontFamily: 'Arial',
+  fontSize: 13
+};
+
+let calendar; // FullCalendar instance
+let currentEditingEvent = null;
+
+// ----------------------
+// localStorage helpers
+// ----------------------
+function loadFromLocalStorage(){
+  try{
+    const evStr = localStorage.getItem(LS_EVENTS_KEY);
+    if(evStr){
+      events = JSON.parse(evStr);
+    }
+  }catch(e){}
+
+  try{
+    const stStr = localStorage.getItem(LS_SETTINGS_KEY);
+    if(stStr){
+      const parsed = JSON.parse(stStr);
+      calendarSettings = {...calendarSettings, ...parsed};
+    }
+  }catch(e){}
+}
+
+function saveEvents(){
+  localStorage.setItem(LS_EVENTS_KEY, JSON.stringify(events));
+}
+
+function saveSettings(){
+  localStorage.setItem(LS_SETTINGS_KEY, JSON.stringify(calendarSettings));
+}
+
+// ----------------------
+// Taustakuva
+// ----------------------
+const pageBg = document.getElementById('page-bg');
+
+function applyBackground(){
+  if(calendarSettings.bgImageUrl){
+    pageBg.style.backgroundImage = `url("${calendarSettings.bgImageUrl}")`;
+  }else{
+    pageBg.style.backgroundImage = 'none';
+  }
+  pageBg.style.setProperty('--darkness', calendarSettings.bgDarkness);
+  pageBg.style.setProperty('--blur', calendarSettings.bgBlur + 'px');
+  pageBg.style.backdropFilter = `blur(${calendarSettings.bgBlur}px)`;
+  pageBg.style.setProperty('background-color', '#050505');
+  pageBg.style.setProperty('background-size', 'cover');
+  pageBg.style.setProperty('background-position', 'center');
+  pageBg.style.setProperty('background-repeat', 'no-repeat');
+  pageBg.style.setProperty('background-attachment', 'fixed');
+
+  // overlay tummennus
+  pageBg.style.setProperty('--overlay', calendarSettings.bgDarkness);
+  pageBg.style.setProperty('position','fixed');
+}
+
+const bgStyleObserver = new MutationObserver(() => {
+  // overlay pseudo-elementti hoitaa tummennuksen
+});
+bgStyleObserver.observe(pageBg, {attributes:true});
+
+// ----------------------
+// Asetus‑overlay
+// ----------------------
+const settingsOverlay = document.getElementById('settings-overlay');
+const editBtn = document.getElementById('calendar-edit-btn');
+const settingsCancel = document.getElementById('settings-cancel');
+const settingsSave = document.getElementById('settings-save');
+
+editBtn.addEventListener('click', () => {
+  document.getElementById('bg-image-url').value = calendarSettings.bgImageUrl || '';
+  document.getElementById('bg-darkness').value = calendarSettings.bgDarkness;
+  document.getElementById('bg-blur').value = calendarSettings.bgBlur;
+  document.getElementById('day-border-color').value = calendarSettings.dayBorderColor;
+  document.getElementById('day-border-width').value = calendarSettings.dayBorderWidth;
+  document.getElementById('event-bg-color').value = calendarSettings.eventBgColor;
+  document.getElementById('event-border-color').value = calendarSettings.eventBorderColor;
+  document.getElementById('event-text-color').value = calendarSettings.eventTextColor;
+  document.getElementById('calendar-font-family').value = calendarSettings.fontFamily;
+  document.getElementById('calendar-font-size').value = calendarSettings.fontSize;
+
+  settingsOverlay.style.display = 'flex';
+});
+
+settingsCancel.addEventListener('click', () => {
+  settingsOverlay.style.display = 'none';
+});
+
+document.getElementById('bg-image-file').addEventListener('change', (e) => {
+  const file = e.target.files[0];
+  if(!file) return;
+  const reader = new FileReader();
+  reader.onload = function(ev){
+    calendarSettings.bgImageUrl = ev.target.result;
+    applyBackground();
+    saveSettings();
+  };
+  reader.readAsDataURL(file);
+});
+
+settingsSave.addEventListener('click', () => {
+  calendarSettings.bgImageUrl = document.getElementById('bg-image-url').value.trim() || calendarSettings.bgImageUrl;
+  calendarSettings.bgDarkness = parseFloat(document.getElementById('bg-darkness').value);
+  calendarSettings.bgBlur = parseInt(document.getElementById('bg-blur').value,10);
+  calendarSettings.dayBorderColor = document.getElementById('day-border-color').value;
+  calendarSettings.dayBorderWidth = parseInt(document.getElementById('day-border-width').value,10);
+  calendarSettings.eventBgColor = document.getElementById('event-bg-color').value;
+  calendarSettings.eventBorderColor = document.getElementById('event-border-color').value;
+  calendarSettings.eventTextColor = document.getElementById('event-text-color').value;
+  calendarSettings.fontFamily = document.getElementById('calendar-font-family').value;
+  calendarSettings.fontSize = parseInt(document.getElementById('calendar-font-size').value,10);
+
+  saveSettings();
+  applyBackground();
+  applyCalendarTheme();
+  settingsOverlay.style.display = 'none';
+});
+
+// ----------------------
+// Tapahtuma‑overlay
+// ----------------------
+const eventOverlay = document.getElementById('event-overlay');
+const eventCancel = document.getElementById('event-cancel');
+const eventSave = document.getElementById('event-save');
+
+eventCancel.addEventListener('click', () => {
+  eventOverlay.style.display = 'none';
+  currentEditingEvent = null;
+});
+
+eventSave.addEventListener('click', () => {
+  const title = document.getElementById('event-title').value.trim();
+  if(!title){
+    alert('Otsikko vaaditaan');
+    return;
+  }
+
+  const startVal = document.getElementById('event-start').value;
+  const endVal = document.getElementById('event-end').value;
+  if(!startVal || !endVal){
+    alert('Alku- ja loppuaika vaaditaan');
+    return;
+  }
+
+  const payload = {
+    title,
+    description: document.getElementById('event-description').value.trim(),
+    start: new Date(startVal).toISOString(),
+    end: new Date(endVal).toISOString(),
+    media_url: document.getElementById('event-media-url').value.trim(),
+    media_type: document.getElementById('event-media-type').value,
+    link_url: document.getElementById('event-link-url').value.trim(),
+    is_public: document.getElementById('event-is-public').checked
+  };
+
+if(currentEditingEvent){
+    // Etsitään oikea eventti ID:n perusteella
+    const idx = events.findIndex(e => e.id === currentEditingEvent.id);
+
+    if(idx !== -1){
+      events[idx] = {
+        ...events[idx],
+        ...payload,
+        id: currentEditingEvent.id
+      };
+    }
+
+    // Päivitetään FullCalendarissa
+    const fcEvent = calendar.getEventById(currentEditingEvent.id);
+    if(fcEvent){
+      fcEvent.remove();
+    }
+
+    calendar.addEvent({
+      id: currentEditingEvent.id,
+      ...payload
+    });
+
+} else {
+    // UUSI EVENT
+    const newId = String(Date.now());
+    const newEvent = {
+      id: newId,
+      ...payload
+    };
+
+    events.push(newEvent);
+
+    calendar.addEvent({
+      id: newId,
+      ...payload
+    });
+}
+
+// Tallennetaan localStorageen
+saveEvents();
+
+// Suljetaan modal
+eventOverlay.style.display = 'none';
+currentEditingEvent = null;
+});
+
+// ----------------------
+// FullCalendar init
+// ----------------------
+function applyCalendarTheme() {
+  const styleEl = document.getElementById('dynamic-calendar-style') || document.createElement('style');
+  styleEl.id = 'dynamic-calendar-style';
+
+  styleEl.innerHTML = `
+    /* Kalenterin tausta */
+    #calendar {
+      background: ${calendarSettings.calendarBackground || "rgba(8,8,8,0.9)"};
+      background-image: ${calendarSettings.calendarBackgroundImage ? `url("${calendarSettings.calendarBackgroundImage}")` : "none"};
+      background-size: cover;
+      background-position: center;
+      border-radius: ${calendarSettings.calendarBorderRadius || 15}px;
+      padding: 10px;
+      border: 1px solid rgba(255,255,255,0.05);
+    }
+
+    /* Päiväruutujen reunat */
+    .fc-daygrid-day, .fc-timegrid-slot {
+      border-color: ${calendarSettings.dayBorderColor};
+      border-width: ${calendarSettings.dayBorderWidth}px;
+    }
+
+    /* Päiväruutujen sisäkehys */
+    .fc-daygrid-day-frame {
+      background: rgba(10,10,10,0.9);
+      border-radius: ${calendarSettings.dayCellRadius || 10}px;
+    }
+
+    /* Tapahtumien tyyli */
+    .fc-event {
+      background: ${calendarSettings.eventBgColor} !important;
+      color: ${calendarSettings.eventTextColor} !important;
+      border-left: 4px solid ${calendarSettings.eventBorderColor} !important;
+      border-radius: ${calendarSettings.eventRadius || 10}px !important;
+    }
+
+    /* Fontti */
+    .fc {
+      font-family: ${calendarSettings.fontFamily}, sans-serif;
+      font-size: ${calendarSettings.fontSize}px;
+    }
+  `;
+
+  document.head.appendChild(styleEl);
+}
+
+
+document.addEventListener('DOMContentLoaded', function() {
+  loadFromLocalStorage();
+  applyBackground();
+  applyCalendarTheme();
+
+  const calendarEl = document.getElementById('calendar');
+
+  calendar = new FullCalendar.Calendar(calendarEl, {
+    initialView: 'dayGridMonth',
+    headerToolbar: {
+      left: 'prev,next today',
+      center: 'title',
+      right: ''
+    },
+    selectable: true,
+    editable: true,
+    droppable: false,
+    eventResizableFromStart: true,
+    slotDuration: '00:30:00',
+    slotLabelInterval: '00:30:00',
+    slotMinTime: '06:00:00',
+    slotMaxTime: '24:00:00',
+    height: 'auto',
+    events: events,
+    dateClick: function(info){
+      // kuukausinäkymässä: kaksoisklikkaus hoidetaan eventillä
+    },
+    eventClick: function(info){
+      const ev = info.event;
+      const stored = events.find(e => e.id === ev.id);
+      if(!stored) return;
+      openEventModal(stored);
+    },
+    eventDrop: function(info){
+      const ev = info.event;
+      const stored = events.find(e => e.id === ev.id);
+      if(stored){
+        stored.start = ev.start.toISOString();
+        stored.end = ev.end ? ev.end.toISOString() : ev.start.toISOString();
+        saveEvents();
+      }
+    },
+    eventResize: function(info){
+      const ev = info.event;
+      const stored = events.find(e => e.id === ev.id);
+
+      if(stored){
+        stored.start = ev.start.toISOString();
+        stored.end = ev.end.toISOString();
+        saveEvents();
+      }
+    },
+    select: function(info){
+      // viikkonäkymässä valinta → uusi event
+      openNewEventModal(info.startStr, info.endStr);
+    },
+    dayMaxEvents: true
+  });
+
+  // kaksoisklikkaus tyhjään kohtaan (kuukausi)
+  calendarEl.addEventListener('dblclick', function(e){
+    const cell = e.target.closest('.fc-daygrid-day');
+    if(cell){
+      const dateStr = cell.getAttribute('data-date');
+      if(dateStr){
+        const start = new Date(dateStr);
+        const end = new Date(start.getTime() + 60*60*1000);
+        openNewEventModal(start.toISOString(), end.toISOString());
+      }
+    }
+  });
+
+  calendar.render();
+
+  // näkymän vaihto
+  const btnMonth = document.getElementById('btn-month');
+  const btnWeek = document.getElementById('btn-week');
+
+  btnMonth.addEventListener('click', () => {
+    btnMonth.classList.add('active');
+    btnWeek.classList.remove('active');
+    calendar.changeView('dayGridMonth');
+  });
+
+  btnWeek.addEventListener('click', () => {
+    btnWeek.classList.add('active');
+    btnMonth.classList.remove('active');
+    calendar.changeView('timeGridWeek');
+  });
+});
+
+// ----------------------
+// Modalien avaus
+// ----------------------
+function openNewEventModal(startIso, endIso){
+  currentEditingEvent = null;
+  document.getElementById('event-title').value = '';
+  document.getElementById('event-description').value = '';
+  document.getElementById('event-media-url').value = '';
+  document.getElementById('event-media-type').value = '';
+  document.getElementById('event-link-url').value = '';
+  document.getElementById('event-is-public').checked = false;
+
+  const start = new Date(startIso);
+  const end = new Date(endIso);
+
+  document.getElementById('event-start').value = toLocalInputValue(start);
+  document.getElementById('event-end').value = toLocalInputValue(end);
+
+  eventOverlay.style.display = 'flex';
+}
+
+function openEventModal(ev){
+  // Kopioidaan eventti ja varmistetaan että ID on FullCalendarin ID
+  currentEditingEvent = {...ev};
+  currentEditingEvent.id = ev.id;
+
+  document.getElementById('event-title').value = ev.title || '';
+  document.getElementById('event-description').value = ev.description || '';
+  document.getElementById('event-media-url').value = ev.media_url || '';
+  document.getElementById('event-media-type').value = ev.media_type || '';
+  document.getElementById('event-link-url').value = ev.link_url || '';
+  document.getElementById('event-is-public').checked = !!ev.is_public;
+
+  // Asetetaan alku- ja loppuaika input-kenttiin
+  document.getElementById('event-start').value = toLocalInputValue(new Date(ev.start));
+  document.getElementById('event-end').value = toLocalInputValue(new Date(ev.end || ev.start));
+
+  // Näytetään modal
+  eventOverlay.style.display = 'flex';
+}
+
+function toLocalInputValue(date){
+  const pad = n => n<10 ? '0'+n : n;
+  const year = date.getFullYear();
+  const month = pad(date.getMonth()+1);
+  const day = pad(date.getDate());
+  const hours = pad(date.getHours());
+  const mins = pad(date.getMinutes());
+  return `${year}-${month}-${day}T${hours}:${mins}`;
+}
+</script>
+
+</body>
+</html>

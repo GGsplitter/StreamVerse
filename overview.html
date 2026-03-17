@@ -4,6 +4,8 @@
 <meta charset="UTF-8">
 <title>Overview</title>
 
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gridstack/dist/gridstack.min.css" />
+
 <style>
 body{
     margin:0;
@@ -229,7 +231,7 @@ input:checked + .slider:before {
     transform: translateX(22px);
 }
 
-/* ⭐ OVERVIEW BANNERI – sama rakenne kuin profiilisivulla */
+/*  OVERVIEW BANNERI – sama rakenne kuin profiilisivulla */
 .profile-header{
     position:relative;
     padding:40px;
@@ -462,6 +464,26 @@ input:checked + .slider:before {
   }
 }
 
+/* gridstack */
+.grid-stack{
+    background:rgba(255,255,255,0.05);
+    border-radius:16px;
+    padding:10px;
+    margin-top:30px;
+  }
+
+  .grid-stack-item-content{
+    background:#15151f;
+    border-radius:12px;
+    box-shadow:0 0 15px rgba(0,0,0,0.5);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:18px;
+    color:white;
+  }
+
+  
 
 </style>
 </head>
@@ -476,7 +498,7 @@ input:checked + .slider:before {
 
   <div class="main">
 
-    <!-- ⭐ OIKEA OVERVIEW BANNERI + AVATAR + NIMI -->
+    <!--  OIKEA OVERVIEW BANNERI + AVATAR + NIMI -->
     <div class="profile-header" id="overview-banner-area">
 
         <div class="profile-header-content">
@@ -513,6 +535,12 @@ input:checked + .slider:before {
         <span>+14%</span>
       </div>
     </div>
+
+
+     <!--  gridstack -->
+    <p>Raahaa ja muokkaa moduuleita — myöhemmin nämä näyttävät oikeaa dataa.</p>
+
+    <div class="grid-stack"></div>
 
     <div class="card">
       <h2>Recent Activity</h2>
@@ -596,7 +624,7 @@ window.logoutUser = async () => {
 </script>
 
 <!-- ===================================================== -->
-<!-- ⭐ FIRST-TIME SETUP POPUP (ACCOUNT INITIALIZATION) ⭐ -->
+<!--  FIRST-TIME SETUP POPUP (ACCOUNT INITIALIZATION)  -->
 <!-- ===================================================== -->
 <div id="first-setup-overlay" class="setup-overlay hidden">
   <div class="setup-popup">
@@ -757,6 +785,35 @@ async function disconnectTwitch() {
   document.getElementById("twitch-connect-label").textContent = "Connect Twitch";
 }
 
+</script>
+
+<!-- gridstack -->
+<script src="https://cdn.jsdelivr.net/npm/gridstack/dist/gridstack.all.js"></script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+  const grid = GridStack.init({
+    cellHeight: 120,
+    float: true,
+    resizable: { handles: 'all' }
+  });
+
+  // Testimoduulit
+  grid.addWidget({
+    x: 0, y: 0, w: 3, h: 2,
+    content: '<div class="grid-stack-item-content">Followers (number)</div>'
+  });
+
+  grid.addWidget({
+    x: 3, y: 0, w: 3, h: 3,
+    content: '<div class="grid-stack-item-content">Views (graph)</div>'
+  });
+
+  grid.addWidget({
+    x: 0, y: 2, w: 2, h: 1,
+    content: '<div class="grid-stack-item-content">Earnings (number)</div>'
+  });
+  });
 </script>
 
 
